@@ -249,7 +249,9 @@
     </Compile>
     <Compile Include="Common\Enum.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DashBoardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\Network\MakeTableController.cs" />
     <Compile Include="Controllers\UserDetailController.cs" />
