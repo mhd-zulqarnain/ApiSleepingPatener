@@ -32,6 +32,16 @@ namespace ApiSleepingPatener.Controllers
             }
 
         }
+        //Get Ads
+        [HttpGet]
+        [Route("getAds")]
+        public IHttpActionResult ShowAdvertisementData()
+        {
+            SleepingtestEntities db = new SleepingtestEntities();
+            List<Advertisement> listadvertisement = db.Advertisements.Where(x => x.IsActive == true).ToList();
+            return Ok(listadvertisement);
+
+        }
         //[HttpGet]
         //[Route("setting/getdownliner")]
         //public IHttpActionResult GetUserDownlineMembersLeft(int userId)

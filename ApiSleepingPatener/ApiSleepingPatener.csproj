@@ -296,6 +296,7 @@
     <Compile Include="Models\Account\UserTableLevelModel.cs" />
     <Compile Include="Models\Advertisement\AdvertisementModel.cs" />
     <Compile Include="Models\CountryModel.cs" />
+    <Compile Include="Models\DashboardDetail.cs" />
     <Compile Include="Models\DownlineMemberModel.cs" />
     <Compile Include="Models\EWallet\EWalletPayoutConfigModel.cs" />
     <Compile Include="Models\EWallet\EWalletTransactionModel.cs" />

@@ -16,6 +16,35 @@ namespace ApiSleepingPatener.Controllers
    
     public class DashboardController : ApiController
     {
+
+
+        [Authorize]
+        [HttpGet]
+        [Route("dashboardcommission/{userId}")]
+        public IHttpActionResult getMaketableDataa(int userId)
+
+        {
+            return Ok("check");
+        }
+
+        public string GetUserTotalDirectCommission(int userId)
+        {
+            //var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
+            using (SleepingtestEntities dc = new SleepingtestEntities())
+            {
+
+
+                var CGP = (from a in dc.EWalletTransactions
+                           where a.UserId.Value == userId
+                           && a.IsParentBonus.Value == true
+                           select a).ToList();
+                var query = CGP.Sum(x => x.Amount);
+                return query.ToString();
+            }
+   
+
+        }
+
         [Authorize]
         [HttpGet]
         [Route("maketabledetails/{userId}")]
