@@ -629,19 +629,19 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <EntityDeploy Include="SleepingManagment.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SleepingManagment.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="SleepingManagment.edmx.diagram">
-      <DependentUpon>SleepingManagment.edmx</DependentUpon>
-    </Content>
     <EntityDeploy Include="sleepingtreetest.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>sleepingtreetest.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <Content Include="sleepingtreetest.edmx.diagram">
       <DependentUpon>sleepingtreetest.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="SleepingManagment.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SleepingManagment.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="SleepingManagment.edmx.diagram">
+      <DependentUpon>SleepingManagment.edmx</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>
