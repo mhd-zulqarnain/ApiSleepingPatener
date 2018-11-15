@@ -13,7 +13,7 @@ using ApiSleepingPatener.Models.Account;
 
 namespace ApiSleepingPatener.Controllers
 {
-   
+
     public class DashboardController : ApiController
     {
         [Authorize]
@@ -37,22 +37,47 @@ namespace ApiSleepingPatener.Controllers
             obj.rightRemaingAmount = RightRemaingAmount;
             obj.leftRemaingAmount = LeftRemaingAmount;
 
-           return Ok(obj);
+            return Ok(obj);
 
         }
 
-        [Authorize]
+        /// [Authorize]
         [HttpGet]
         [Route("getAllDownlineMembersLeft/{userId}")]
         public IHttpActionResult AllGetUserDownlineMembersLeft(int userId)
         {
-            SleepingtestEntities db = new SleepingtestEntities();
-            
+            sleepingtestEntities db = new sleepingtestEntities();
+            SleepingTestTreeEntities dbTree = new SleepingTestTreeEntities();
             IEnumerable<UserModel> usrmodel = new List<UserModel>();
+            //List = db.NewUserRegistrations.Where(a => a.UserCode.Equals(UserTypeUser)
+            //    && a.DownlineMemberId.Equals(userId))
+            usrmodel = (from n in db.GetParentChildsLeftSP(userId)
+                        join c in db.NewUserRegistrations on n.SponsorId equals c.UserId
+                        where n.IsPaidMember.Value == true
+                        select new UserModel
+                        {
+                            UserId = n.UserId.Value,
+                            UserName = n.Username,
+                            Country = n.Country,
+                            Phone = n.Phone,
+                            AccountNumber = n.AccountNumber,
+                            BankName = n.BankName,
+                            SponsorId = n.SponsorId,
+                            PaidAmount = n.PaidAmount.Value,
+                            SponsorName = c.Username
+                        }).ToList();
+            return Ok(usrmodel);
+
+        }
+        [HttpGet]
+        [Route("getAllDownlineMembersRight/{userId}")]
+        public IHttpActionResult AllGetUserDownlineMembersRight(int userId)
+        {
+            sleepingtestEntities db = new sleepingtestEntities();
+            IEnumerable<UserModel> usrmodel = new List<UserModel>();
+            string UserTypeUser = Common.Enum.UserType.User.ToString();
 
             List<GetParentChildsSP_Result> List = new List<GetParentChildsSP_Result>();
-
-
             //List = db.NewUserRegistrations.Where(a => a.UserCode.Equals(UserTypeUser)
             //    && a.DownlineMemberId.Equals(userId))
             //List = db.NewUserRegistrations.Select(x => new UserModel
@@ -62,6 +87,7 @@ namespace ApiSleepingPatener.Controllers
 
             usrmodel = (from n in db.GetParentChildsRightSP(userId)
                         join c in db.NewUserRegistrations on n.SponsorId equals c.UserId
+                        where n.IsPaidMember.Value == true
                         select new UserModel
                         {
                             UserId = n.UserId.Value,
@@ -74,48 +100,36 @@ namespace ApiSleepingPatener.Controllers
                             PaidAmount = n.PaidAmount.Value,
                             SponsorName = c.Username
                         }).ToList();
-
             return Ok(usrmodel);
-
         }
-
-        [Authorize]
-        [HttpGet]
-        [Route("getAllDownlineMembersRight/{userId}")]
-        public IHttpActionResult AllGetUserDownlineMembersRight(int userId)
-        {
-            SleepingtestEntities db = new SleepingtestEntities();
-
-            IEnumerable<UserModel> usrmodel = new List<UserModel>();
+    
 
 
-            string UserTypeAdmin = Common.Enum.UserType.Admin.ToString();
-            string UserTypeUser = Common.Enum.UserType.User.ToString();
-
-            List<GetParentChildsSP_Result> List = new List<GetParentChildsSP_Result>();
-
-
-            //List = db.NewUserRegistrations.Where(a => a.UserCode.Equals(UserTypeUser)
-            //    && a.DownlineMemberId.Equals(userId))
-            usrmodel = (from n in db.GetParentChildsLeftSP(userId)
-                        join c in db.NewUserRegistrations on n.SponsorId equals c.UserId
-                        select new UserModel
-                        {
-                            UserId = n.UserId.Value,
-                            UserName = n.Username,
-                            Country = n.Country,
-                            Phone = n.Phone,
-                            AccountNumber = n.AccountNumber,
-                            BankName = n.BankName,
-                            SponsorId = n.SponsorId,
-                            PaidAmount = n.PaidAmount.Value,
-                            SponsorName = c.Username
-                        }).ToList();
-
-
-            return Ok(usrmodel);
-
-        }
+        //  [Authorize]
+        //[HttpGet]
+        //[Route("getAllDownlineMembersRight/{userId}")]
+        //public IHttpActionResult AllGetUserDownlineMembersRight(int userId)
+        //{
+        //    sleepingtestEntities db = new sleepingtestEntities();
+        //    IEnumerable<UserModel> usrmodel = new List<UserModel>();            
+        //        usrmodel = (from n in db.GetParentChildsRightSP(userId)
+        //                    join c in db.NewUserRegistrations on n.SponsorId equals c.UserId
+        //                    where n.IsPaidMember.Value == true
+        //                    select new UserModel
+        //                    {
+        //                        UserId = n.UserId.Value,
+        //                        UserName = n.Username,
+        //                        Country = n.Country,
+        //                        Phone = n.Phone,
+        //                        AccountNumber = n.AccountNumber,
+        //                        BankName = n.BankName,
+        //                        SponsorId = n.SponsorId,
+        //                        PaidAmount = n.PaidAmount.Value,
+        //                        SponsorName = c.Username
+        //                    }).ToList();
+            
+        //    return Ok(usrmodel);
+        //}
 
         public decimal GetLeftRemaingAmount(int userId)
         {
@@ -126,7 +140,7 @@ namespace ApiSleepingPatener.Controllers
             string UserTypeUser = ApiSleepingPatener.Common.Enum.UserType.User.ToString();
             List<GetParentChildsLeftSP_Result> ListLeft = new List<GetParentChildsLeftSP_Result>();
             List<GetParentChildsRightSP_Result> ListRight = new List<GetParentChildsRightSP_Result>();
-            using (SleepingtestEntities dc = new SleepingtestEntities())
+            using (sleepingtestEntities dc = new sleepingtestEntities())
             {
                 ListLeft = dc.GetParentChildsLeftSP(userId).ToList();
                 ListRight = dc.GetParentChildsRightSP(userId).ToList();
@@ -134,7 +148,7 @@ namespace ApiSleepingPatener.Controllers
                 List<NewUserRegistration> newUsersLeft = new List<NewUserRegistration>();
                 List<UserGenealogyTableRight> usersRight = new List<UserGenealogyTableRight>();
                 List<NewUserRegistration> newUsersRight = new List<NewUserRegistration>();
-
+                
                 List<NewUserRegistration> listDownlineMemberLeft = new List<NewUserRegistration>();
                 List<NewUserRegistration> listDownlineMemberRight = new List<NewUserRegistration>();
 
@@ -218,7 +232,7 @@ namespace ApiSleepingPatener.Controllers
             int TotalLeftUsersShow = 0;
             decimal TotalLeftUsers = 0;
             List<GetParentChildsLeftSP_Result> List = new List<GetParentChildsLeftSP_Result>();
-            using (SleepingtestEntities dc = new SleepingtestEntities())
+            using (sleepingtestEntities dc = new sleepingtestEntities())
             {
                 List = dc.GetParentChildsLeftSP(userId).ToList();
                 List<NewUserRegistration> listDownlineMember = new List<NewUserRegistration>();
@@ -264,7 +278,7 @@ namespace ApiSleepingPatener.Controllers
             decimal TotalAmountLeftUsersShow = 0;
            
             List<GetParentChildsLeftSP_Result> List = new List<GetParentChildsLeftSP_Result>();
-            using (SleepingtestEntities dc = new SleepingtestEntities())
+            using (sleepingtestEntities dc = new sleepingtestEntities())
             {
                 List = dc.GetParentChildsLeftSP(userId).ToList();
                 List<UserGenealogyTableLeft> usersLeft = new List<UserGenealogyTableLeft>();
@@ -319,7 +333,7 @@ namespace ApiSleepingPatener.Controllers
             string UserTypeUser = Common.Enum.UserType.User.ToString();
             List<GetParentChildsLeftSP_Result> ListLeft = new List<GetParentChildsLeftSP_Result>();
             List<GetParentChildsRightSP_Result> ListRight = new List<GetParentChildsRightSP_Result>();
-            using (SleepingtestEntities dc = new SleepingtestEntities())
+            using (sleepingtestEntities dc = new sleepingtestEntities())
             {
                 ListLeft = dc.GetParentChildsLeftSP(userId).ToList();
                 ListRight = dc.GetParentChildsRightSP(userId).ToList();
@@ -412,7 +426,7 @@ namespace ApiSleepingPatener.Controllers
             decimal TotalRightUsers = 0;
 
             List<GetParentChildsRightSP_Result> List = new List<GetParentChildsRightSP_Result>();
-            using (SleepingtestEntities dc = new SleepingtestEntities())
+            using (sleepingtestEntities dc = new sleepingtestEntities())
             {
                 List = dc.GetParentChildsRightSP(userId).ToList();
                 List<NewUserRegistration> listDownlineMember = new List<NewUserRegistration>();
@@ -457,7 +471,7 @@ namespace ApiSleepingPatener.Controllers
             decimal TotalAmountRightUsersShow = 0;
             decimal TotalAmountRightUsers = 0;
             List<GetParentChildsRightSP_Result> List = new List<GetParentChildsRightSP_Result>();
-            using (SleepingtestEntities dc = new SleepingtestEntities())
+            using (sleepingtestEntities dc = new sleepingtestEntities())
             {
                 List = dc.GetParentChildsRightSP(userId).ToList();
                 List<UserGenealogyTableRight> usersRight = new List<UserGenealogyTableRight>();
@@ -536,7 +550,7 @@ namespace ApiSleepingPatener.Controllers
         //            NewUserRegistration newuser = new NewUserRegistration();
 
         //            newuser.Name = model.Name;
-        //            newuser.Username = model.UserName;
+        //            newuser.Username = model.Username;
         //            newuser.Password = model.Password;
         //            newuser.Country = model.Country;
         //            newuser.Address = model.Address;
@@ -589,7 +603,7 @@ namespace ApiSleepingPatener.Controllers
         //            dc.UserPackages.Add(userpackage);
 
 
-        //            userTableLevel.UserName = model.UserName;
+        //            userTableLevel.Username = model.Username;
         //            userTableLevel.TableLevel = 1;
         //            userTableLevel.NoOfUsers = 0;
         //            userTableLevel.RightUsers = 0;
@@ -642,7 +656,7 @@ namespace ApiSleepingPatener.Controllers
         {
             //var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
 
-            SleepingtestEntities db = new SleepingtestEntities();
+            sleepingtestEntities db = new sleepingtestEntities();
 
             List<GetParentChildsLeftSP_Result> List = new List<GetParentChildsLeftSP_Result>();
             List = db.GetParentChildsLeftSP(userId).ToList();
@@ -676,7 +690,7 @@ namespace ApiSleepingPatener.Controllers
         public IHttpActionResult GetUserForDownlineMemberByUserOnlyRight(int userId)
         {
 
-            SleepingtestEntities db = new SleepingtestEntities();
+            sleepingtestEntities db = new sleepingtestEntities();
 
             List<GetParentChildsRightSP_Result> List = new List<GetParentChildsRightSP_Result>();
             List = db.GetParentChildsRightSP(userId).ToList();
@@ -705,8 +719,8 @@ namespace ApiSleepingPatener.Controllers
         [Route("maketablemembersleft/{userId}")]
         public IHttpActionResult GetUserDownlineMembersLeft(int userId)
         {
-            SleepingtestEntities db = new SleepingtestEntities();
-            TreeDataTbl dbTree = new TreeDataTbl();
+            sleepingtestEntities db = new sleepingtestEntities();
+       //     TreeDataTbl dbTree = new TreeDataTbl();
             UserModel usrmodel = new UserModel();
             List<GetParentChildsLeftSP_Result> List = new List<GetParentChildsLeftSP_Result>();          
                 List = db.GetParentChildsLeftSP(userId).ToList();
@@ -746,7 +760,7 @@ namespace ApiSleepingPatener.Controllers
         [Route("maketablemembersright/{userId}")]
         public IHttpActionResult GetUserDownlineMembersRight(int userId)
         {
-            SleepingtestEntities db = new SleepingtestEntities();
+            sleepingtestEntities db = new sleepingtestEntities();
             UserModel usrmodel = new UserModel();
 
             List<GetParentChildsRightSP_Result> List = new List<GetParentChildsRightSP_Result>();
@@ -801,7 +815,83 @@ namespace ApiSleepingPatener.Controllers
             return Ok(listDownlineMember);
            // return Json(new { data = listDownlineMember }, JsonRequestBehavior.AllowGet);
         }
-            
+        [HttpGet]
+        [Route("GetUserPaidMembersList/{userId}")]
+        public IHttpActionResult GetUserPaidMembersList(int userId)
+        {
+            sleepingtestEntities db = new sleepingtestEntities();
+
+           // var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
+            IEnumerable<UserModel> usrmodel = new List<UserModel>();
+            usrmodel = (from n in db.GetParentChildsSP(userId)
+                        join c in db.NewUserRegistrations on n.SponsorId equals c.UserId
+                        where n.IsPaidMember.Value == true
+                        select new UserModel
+                        {
+                            UserId = n.UserId.Value,
+                            UserName = n.Username,
+                            Country = n.Country,
+                            Phone = n.Phone,
+                            AccountNumber = n.AccountNumber,
+                            BankName = n.BankName,
+                            SponsorId = n.SponsorId,
+                            PaidAmount = n.PaidAmount.Value,
+                            SponsorName = c.Username
+                        }).ToList();
+
+            return Ok(usrmodel);
+        }
+
+        [HttpGet]
+        [Route("GetUserUnPaidMembersList/{userId}")]
+        public IHttpActionResult GetUserUnPaidMembersList(int userId)
+        {
+            sleepingtestEntities db = new sleepingtestEntities();
+
+            //var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
+            IEnumerable<UserModel> usrmodel = new List<UserModel>();
+            usrmodel = (from n in db.GetParentChildsSP(userId)
+                        join c in db.NewUserRegistrations on n.SponsorId equals c.UserId
+                        where n.IsPaidMember.Value == false
+                        select new UserModel
+                        {
+                            UserId = n.UserId.Value,
+                            UserName = n.Username,
+                            Country = n.Country,
+                            Phone = n.Phone,
+                            AccountNumber = n.AccountNumber,
+                            BankName = n.BankName,
+                            SponsorId = n.SponsorId,
+                            PaidAmount = n.PaidAmount.Value,
+                            SponsorName = c.Username
+                        }).ToList();
+            return Ok(usrmodel);
+        }
+        //refered members
+        [HttpGet]
+        [Route("GetUserReferedMembers/{userId}")]
+        public IHttpActionResult GetUserReferedMembers(int userId)
+        {
+            sleepingtestEntities db = new sleepingtestEntities();
+            string UserTypeUser = Common.Enum.UserType.User.ToString();
+            UserModel usrmodel = new UserModel();
+            List<UserModel> List = new List<UserModel>();           
+                List = db.NewUserRegistrations.Where(a => a.UserCode.Equals(UserTypeUser)
+                    && a.SponsorId.Equals(userId))
+                    .Select(x => new UserModel
+                    //List = db.NewUserRegistrations.Select(x => new UserModel
+                    {
+                        UserId = x.UserId,
+                        UserName = x.Username,
+                        Country = x.Country,
+                        Phone = x.Phone,
+                        AccountNumber = x.AccountNumber,
+                        BankName = x.BankName,
+                        SponsorId = x.SponsorId,
+                        PaidAmount = x.PaidAmount.Value
+                    }).ToList();
+            return Ok(List);
+        }
     }
 
 }

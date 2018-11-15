@@ -34,12 +34,17 @@ namespace ApiSleepingPatener
         public Nullable<bool> IsUserActive { get; set; }
         public Nullable<bool> IsNewRequest { get; set; }
         public string UserPosition { get; set; }
-        public Nullable<bool> IsEmailConfirmed { get; set; }
+        public Nullable<bool> IsPaidMember { get; set; }
         public Nullable<int> UserPackage { get; set; }
         public byte[] DocumentImage { get; set; }
         public Nullable<bool> IsSleepingPartner { get; set; }
         public Nullable<bool> IsSalesExecutive { get; set; }
         public string UserDesignation { get; set; }
         public Nullable<bool> IsWithdrawalOpen { get; set; }
+        public byte[] NICImage { get; set; }
+        public byte[] ProfileImage { get; set; }
+        public string AccountTitle { get; set; }
+        public Nullable<bool> IsVerify { get; set; }
+        public Nullable<bool> IsBlock { get; set; }
     }
 }
