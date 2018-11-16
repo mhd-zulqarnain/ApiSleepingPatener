@@ -57,7 +57,7 @@ namespace TokenAuth.Services
 }
 
 
-//sleepingtestEntities dce = new sleepingtestEntities();
+//sleepingtestEntities1 dce = new sleepingtestEntities1();
 ////NewUserRegistration newuser = dce.NewUserRegistrations.Where(a => a.UserId.Equals(model.UserId)).FirstOrDefault();
 //NewUserRegistration newuser = dce.NewUserRegistrations.SingleOrDefault(x => x.Username == username && x.Password.Equals(password));
 //            if (newuser != null) {

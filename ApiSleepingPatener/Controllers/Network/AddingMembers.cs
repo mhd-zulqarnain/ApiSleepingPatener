@@ -24,7 +24,7 @@ namespace ApiSleepingPatener.Controllers
         //    {
         //        // var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
         //        //Slee  dbTree = new TreeDataTbl();
-        //        using (SleepingtestEntities dc = new SleepingtestEntities())
+        //        using (sleepingtestEntities1 dc = new sleepingtestEntities1())
         //        {
         //            var usercheckEmail = dc.NewUserRegistrations.Where(a => a.Email.Equals(model.Email)).FirstOrDefault();
         //            var usercheckPhone = dc.NewUserRegistrations.Where(a => a.Phone.Equals(model.Phone)).FirstOrDefault();

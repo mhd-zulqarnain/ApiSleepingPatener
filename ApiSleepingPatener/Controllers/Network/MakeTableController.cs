@@ -48,24 +48,30 @@ namespace ApiSleepingPatener.Controllers
         {
             sleepingtestEntities db = new sleepingtestEntities();
             SleepingTestTreeEntities dbTree = new SleepingTestTreeEntities();
-            IEnumerable<UserModel> usrmodel = new List<UserModel>();
+            IEnumerable<UserModel> usrmodel = new List<UserModel>();  
+            string UserTypeUser = Common.Enum.UserType.User.ToString();
+
+            List<GetParentChildsSP_Result> List = new List<GetParentChildsSP_Result>();          
             //List = db.NewUserRegistrations.Where(a => a.UserCode.Equals(UserTypeUser)
-            //    && a.DownlineMemberId.Equals(userId))
-            usrmodel = (from n in db.GetParentChildsLeftSP(userId)
-                        join c in db.NewUserRegistrations on n.SponsorId equals c.UserId
-                        where n.IsPaidMember.Value == true
-                        select new UserModel
-                        {
-                            UserId = n.UserId.Value,
-                            UserName = n.Username,
-                            Country = n.Country,
-                            Phone = n.Phone,
-                            AccountNumber = n.AccountNumber,
-                            BankName = n.BankName,
-                            SponsorId = n.SponsorId,
-                            PaidAmount = n.PaidAmount.Value,
-                            SponsorName = c.Username
-                        }).ToList();
+                //    && a.DownlineMemberId.Equals(userId))
+                usrmodel = (from n in db.GetParentChildsLeftSP(userId)
+                            join c in db.NewUserRegistrations on n.SponsorId equals c.UserId
+                            where n.IsUserActive.Value == true
+                            //&& n.IsPaidMember.Value == true
+                            select new UserModel
+                            {
+                                UserId = n.UserId.Value,
+                                UserName = n.Username,
+                                Country = n.Country,
+                                Phone = n.Phone,
+                                AccountNumber = n.AccountNumber,
+                                BankName = n.BankName,
+                                SponsorId = n.SponsorId,
+                                PaidAmount = n.PaidAmount.Value,
+                                SponsorName = c.Username
+                            }).ToList();
+
+          
             return Ok(usrmodel);
 
         }
@@ -517,138 +523,14 @@ namespace ApiSleepingPatener.Controllers
             return TotalAmountRightUsersShow;
 
         }
-        
-        // public ActionResult AddNewMemeberLeft(UserModel model)
-        //{
-        //    var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
-        //    BinaryMLMTreeEntities dbTree = new BinaryMLMTreeEntities();
-        //    using (BinaryMLMSystemEntities dc = new BinaryMLMSystemEntities())
-        //    {
-        //        var usercheckEmail = dc.NewUserRegistrations.Where(a => a.Email.Equals(model.Email)).FirstOrDefault();
-        //        var usercheckPhone = dc.NewUserRegistrations.Where(a => a.Phone.Equals(model.Phone)).FirstOrDefault();
-        //        var usercheckAccountNumber = dc.NewUserRegistrations.Where(a => a.AccountNumber.Equals(model.AccountNumber)).FirstOrDefault();
-        //        if (usercheckEmail != null)
-        //        {
-        //            //ViewBag.MessageAddNewMemeberLeft = "User email already exist";
-        //            return Json(new { error = true, message = "User email already exist" }, JsonRequestBehavior.AllowGet);
-        //        }
-        //        else if (usercheckPhone != null)
-        //        {
-        //            //ViewBag.MessageAddNewMemeberLeft = "User phone number already exist";
-        //            return Json(new { error = true, message = "User phone number already exist" }, JsonRequestBehavior.AllowGet);
-        //        }
-        //        else if (usercheckAccountNumber != null)
-        //        {
-        //            //ViewBag.MessageAddNewMemeberLeft = "User Account Number already exist";
-        //            return Json(new { error = true, message = "User Account Number already exist" }, JsonRequestBehavior.AllowGet);
-        //        }
-        //        else
-        //        {
-        //            Package package = dc.Packages.Where(a => a.PackageId.Equals(model.UserPackage)).FirstOrDefault();
-        //            UserPackage userpackage = new UserPackage();
-        //            UserTableLevel userTableLevel = new UserTableLevel();
-        //            NewUserRegistration newuser = new NewUserRegistration();
 
-        //            newuser.Name = model.Name;
-        //            newuser.Username = model.Username;
-        //            newuser.Password = model.Password;
-        //            newuser.Country = model.Country;
-        //            newuser.Address = model.Address;
-        //            newuser.Phone = model.Phone;
-        //            newuser.Email = model.Email;
-        //            newuser.AccountNumber = model.AccountNumber;
-        //            newuser.BankName = model.BankName;
-        //            newuser.CNIC = model.CNICNumber;
-        //            newuser.IsThisFirstUser = model.IsThisFirstUser;
-        //            if (model.DownlineMemberId == 0 || model.DownlineMemberId == null)
-        //            {
-        //                newuser.DownlineMemberId = userId;
-        //            }
-        //            else
-        //            {
-        //                newuser.DownlineMemberId = model.DownlineMemberId.Value;
-        //            }
-        //            newuser.UserPosition = Common.Enum.UserPosition.Left;
-        //            newuser.IsUserActive = false;
-        //            newuser.IsNewRequest = true;
-        //            newuser.SponsorId = userId;
-        //            newuser.UpperId = model.UpperId;
-        //            newuser.PaidAmount = package.PackagePrice;
-        //            newuser.CreateDate = DateTime.Now;
-        //            newuser.UserCode = BinaryMLMSystem.Common.Enum.UserType.User.ToString();
-        //            newuser.IsEmailConfirmed = false;
-        //            newuser.UserPackage = model.UserPackage;
-        //            //file = Request.Files["AddNewMemberLeftImageData"];
-        //            var fileImage = model.DocumentImage;
-        //            if (fileImage != null)
-        //            {
-        //                byte[] img = ConvertToBytes(fileImage);
-        //                newuser.DocumentImage = img;
-        //            }
-        //            dc.NewUserRegistrations.Add(newuser);
-        //            dc.SaveChanges();
+        [HttpPost]
+        [Route("addleftmembers/{userId}")]
+        public IHttpActionResult AddNewMemeber(UserModel model,int userId)
+        {
+            return Ok(0);
 
-
-        //            userpackage.PackageId = package.PackageId;
-        //            userpackage.PackageName = package.PackageName;
-        //            userpackage.PackagePercent = package.PackagePercent;
-        //            userpackage.PackagePrice = package.PackagePrice;
-        //            userpackage.PackageValidity = package.PackageValidity;
-        //            userpackage.PackageMinWithdrawalAmount = package.PackageMinWithdrawalAmount;
-        //            userpackage.PackageMaxWithdrawalAmount = package.PackageMaxWithdrawalAmount;
-        //            userpackage.UserId = newuser.UserId;
-        //            userpackage.IsInCurrentUse = true;
-        //            userpackage.PurchaseDate = DateTime.Now;
-
-        //            dc.UserPackages.Add(userpackage);
-
-
-        //            userTableLevel.Username = model.Username;
-        //            userTableLevel.TableLevel = 1;
-        //            userTableLevel.NoOfUsers = 0;
-        //            userTableLevel.RightUsers = 0;
-        //            userTableLevel.LeftUsers = 0;
-        //            userTableLevel.TableLevelLimit = 2;
-        //            userTableLevel.UserId = newuser.UserId;
-        //            userTableLevel.LastModifiedDate = DateTime.Now;
-        //            dc.UserTableLevels.Add(userTableLevel);
-
-        //            dc.SaveChanges();
-
-        //            #region creating first user tree
-
-        //            TreeDataTbl userTree = dbTree.TreeDataTbls.Where(a => a.UserId.Value.Equals(newuser.DownlineMemberId)).FirstOrDefault();
-
-        //            if (userTree == null)
-        //            {
-        //                if (newuser.IsThisFirstUser == true)
-        //                {
-        //                    dbTree.insert_tree_node(newuser.Username, 0, newuser.UserId, newuser.DownlineMemberId, newuser.UserPosition);
-        //                }
-        //                else
-        //                {
-        //                    dbTree.insert_tree_node(newuser.Username, userTree.Tree_ID, newuser.UserId, newuser.DownlineMemberId, newuser.UserPosition);
-        //                }
-        //            }
-
-
-
-        //            #endregion
-
-        //            ModelState.Clear();
-        //            model = null;
-        //            ViewBag.MessageAddNewMemeberLeft = "Successfully Registration Done";
-        //        }
-
-        //    }
-        //    //this.AddNotification("Data has bees saved", NotificationType.SUCCESS);
-        //    //return RedirectToAction("UserDownlineMembers");
-        //    //return PartialView("_AddNewMemeberLeft", model);
-        //    return Json(new { success = true, message = "User has been saved" }, JsonRequestBehavior.AllowGet);
-        //    //return View("UserDownlineMembers");
-        //}
-
-        //dropdown foir left users 
+        }
         [Authorize]
         [HttpGet]
         [Route("dropdownleft/{userId}")]

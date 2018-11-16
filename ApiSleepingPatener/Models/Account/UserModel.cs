@@ -55,7 +55,7 @@ namespace ApiSleepingPatener.Models.Account
 
         //public byte[] DocumentImage { get; set; }
 
-        public HttpPostedFileWrapper DocumentImage { get; set; }
+        public byte[] DocumentImage { get; set; }
 
         public bool IsSleepingPartner { get; set; }
 
@@ -67,9 +67,9 @@ namespace ApiSleepingPatener.Models.Account
 
         public decimal EWalletBalance { get; set; }
 
-        public HttpPostedFileWrapper NICImage { get; set; }
+        public byte[] NICImage { get; set; }
 
-        public HttpPostedFileWrapper ProfileImage { get; set; }
+        public byte[] ProfileImage { get; set; }
 
         [Required(ErrorMessage = "enter title", AllowEmptyStrings = false)]
         public string AccountTitle { get; set; }
