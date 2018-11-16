@@ -334,7 +334,6 @@
     <Compile Include="Models\EWalletTransactionModel.cs" />
     <Compile Include="Models\EWalletWithdrawalFundModel.cs" />
     <Compile Include="Models\EWallet\EWalletPayoutConfigModel.cs" />
-    <Compile Include="Models\EWallet\EWalletTransactionModel.cs" />
     <Compile Include="Models\EWallet\EWalletWithdrawalFundModel.cs" />
     <Compile Include="Models\GenealogyTable\AdminViewUserDownlinersModel.cs" />
     <Compile Include="Models\GenealogyTable\SignUpUserModel.cs" />
