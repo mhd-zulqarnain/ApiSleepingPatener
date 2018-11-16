@@ -42,5 +42,6 @@ namespace ApiSleepingPatener.Models.EWallet
         public bool AdminDebit { get; set; }
         
         public string AdminTransactionName { get; set; }
+        public bool isWithdrawalOpen { get; set; }
     }
 }
