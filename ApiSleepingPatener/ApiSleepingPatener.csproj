@@ -273,6 +273,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\DasboardDetailController.cs" />
     <Compile Include="Controllers\Network\AddingMembers.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\SettingController .cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\Network\MakeTableController.cs" />
