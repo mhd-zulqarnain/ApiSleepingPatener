@@ -12,3 +12,13 @@ Install-Package Microsoft.AspNet.Identity.EntityFramework -Version 2.2.2
 
 Update-Package -Reinstall
 
+
+show error
+
+<system.web>
+    <customErrors mode="Off"/>
+</system.web>
+<system.webServer>
+    <httpErrors errorMode="Detailed" />
+</system.webServer>
+
