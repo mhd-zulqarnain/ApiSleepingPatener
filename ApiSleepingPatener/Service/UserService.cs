@@ -18,7 +18,7 @@ namespace TokenAuth.Services
             // Here you can write the code to validate
             // User from database and return accordingly
             // To test we use dummy list here
-            var user = GetUserList(email,password);
+            var user = GetUserList(email, password);
             //var user = userList.FirstOrDefault(x => x.Email == email && x.Password == password);
             return user;
         }
@@ -26,7 +26,7 @@ namespace TokenAuth.Services
         public User GetUserList(String email, String password)
         {
 
-          //  List<NewUserRegistration> list = new List<NewUserRegistration>();
+            //  List<NewUserRegistration> list = new List<NewUserRegistration>();
             SqlConnection connect = new SqlConnection(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
             if (connect.State != ConnectionState.Open)
                 connect.Open();
@@ -45,13 +45,14 @@ namespace TokenAuth.Services
 
                 sdr.Close();
                 connect.Close();
-                return new User(id,name,email,pass,uname);
-            } catch(Exception n)
+                return new User(id, name, email, pass, uname);
+            }
+            catch (Exception n)
             {
                 return null;
             }
-           
-         
+
+
         }
     }
 }

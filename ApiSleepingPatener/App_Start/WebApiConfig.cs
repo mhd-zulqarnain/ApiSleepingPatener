@@ -27,19 +27,19 @@ namespace ApiSleepingPatener
                 defaults: new { id = RouteParameter.Optional }
             );
 
-       
 
-          //  config.Routes.MapHttpRoute(
-          //     name: "DefaultApiWithAction",
-          //     routeTemplate: "api/{controller}/GetPassword/{id}",
-          //     defaults: null
-          // );
 
-          //  config.Routes.MapHttpRoute(
-          //    name: "DefaultApiWithActions",
-          //    routeTemplate: "api/{controller}/GetById/{id}",
-          //    defaults: null
-          //);
+            //  config.Routes.MapHttpRoute(
+            //     name: "DefaultApiWithAction",
+            //     routeTemplate: "api/{controller}/GetPassword/{id}",
+            //     defaults: null
+            // );
+
+            //  config.Routes.MapHttpRoute(
+            //    name: "DefaultApiWithActions",
+            //    routeTemplate: "api/{controller}/GetById/{id}",
+            //    defaults: null
+            //);
         }
     }
 }
