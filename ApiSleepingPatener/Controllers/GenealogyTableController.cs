@@ -16,7 +16,7 @@ namespace ApiSleepingPatener.Controllers
         [Route("GetUserCommission/{userId}")]
         public IHttpActionResult GetUserCommissionList(int userId)
         {
-            sleepingtestEntities db = new sleepingtestEntities();
+            SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             List<EWalletTransactionModel> List = new List<EWalletTransactionModel>();
             List = db.EWalletTransactions.Where(a => a.UserId.Value.Equals(userId)
                 && a.IsParentBonus.Value.Equals(false) && a.IsMatchingBonus.Value.Equals(false)
@@ -39,7 +39,7 @@ namespace ApiSleepingPatener.Controllers
         public IHttpActionResult GetUserDirectCommissionList(int userId)
         {
             //var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
-            sleepingtestEntities db = new sleepingtestEntities();
+            SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             List<EWalletTransactionModel> ListEwalletModel = new List<EWalletTransactionModel>();
 
             List<EWalletTransaction> ListEwallet = new List<EWalletTransaction>();
@@ -79,7 +79,7 @@ namespace ApiSleepingPatener.Controllers
                         TransactionDate = item.TransactionDate.Value,
                         IsWithdrawlRequestByUser = item.IsWithdrawlRequestByUser.Value,
                         isWithdrawalOpen = checkWithDrawalOpen,
-                        UserName = ""
+                        Username = ""
                     });
 
                 }
@@ -92,7 +92,7 @@ namespace ApiSleepingPatener.Controllers
         [Route("GetUserMatchingCommission/{userId}")]
         public IHttpActionResult GetUserMatchingCommissionList(int userId)
         {
-            sleepingtestEntities db = new sleepingtestEntities();
+            SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             List<EWalletTransactionModel> List = new List<EWalletTransactionModel>();  
                 List = db.EWalletTransactions.Where(a => a.UserId.Value.Equals(userId)
                     && a.IsParentBonus.Value.Equals(false) && a.IsMatchingBonus.Value.Equals(true)

@@ -32,6 +32,6 @@ namespace ApiSleepingPatener
         public Nullable<bool> IsPaid { get; set; }
         public Nullable<bool> IsRejected { get; set; }
         public Nullable<int> UserId { get; set; }
-        public string UserName { get; set; }
+        public string Username { get; set; }
     }
 }

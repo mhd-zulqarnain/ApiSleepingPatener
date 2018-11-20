@@ -57,7 +57,7 @@ namespace ApiSleepingPatener.Controllers
         [Route("wallet/overalllist/{userId}")] 
         public IHttpActionResult GetEWalletTransactionsOverAllList(int userId)
         {
-            sleepingtestEntities db = new sleepingtestEntities();
+            SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             List<EWalletTransactionModel> List = new List<EWalletTransactionModel>();           
                 List = db.EWalletTransactions.Where(a => a.UserId.Value.Equals(userId))
                     .Select(x => new EWalletTransactionModel
@@ -81,7 +81,7 @@ namespace ApiSleepingPatener.Controllers
         [Route("wallet/thismonth/{userId}")]
         public IHttpActionResult GetEWalletTransactionsThisMonthList(int userId)
         {            
-            sleepingtestEntities db = new sleepingtestEntities();
+            SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             List<EWalletTransactionModel> List = new List<EWalletTransactionModel>();          
 
                 List = db.EWalletTransactions.Where(a => a.UserId.Value.Equals(userId)
@@ -104,7 +104,7 @@ namespace ApiSleepingPatener.Controllers
         [Route("ewalletcredit/overall/{userId}")]
         public IHttpActionResult GetEWalletCreditsOverAllList(int userId)
         {
-            sleepingtestEntities db = new sleepingtestEntities();
+            SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             List<EWalletTransactionModel> List = new List<EWalletTransactionModel>();          
                 List = db.EWalletTransactions.Where(a => a.UserId.Value.Equals(userId)
                 && a.Credit == true && a.Debit == false)
@@ -124,7 +124,7 @@ namespace ApiSleepingPatener.Controllers
         [Route("ewalletcredit/thismonth/{userId}")]
         public IHttpActionResult GetEWalletCreditsThisMonthList(int userId)
         {
-            sleepingtestEntities db = new sleepingtestEntities();
+            SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             List<EWalletTransactionModel> List = new List<EWalletTransactionModel>();          
                 List = db.EWalletTransactions.Where(a => a.UserId.Value.Equals(userId)
                     && a.TransactionDate.Value.Year.Equals(DateTime.Now.Year)
@@ -147,7 +147,7 @@ namespace ApiSleepingPatener.Controllers
         [Route("ewalletdebit/overall/{userId}")]
         public IHttpActionResult GetEWalletDebitsOverAllList(int userId)
         {
-            sleepingtestEntities db = new sleepingtestEntities();
+            SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             List<EWalletTransactionModel> List = new List<EWalletTransactionModel>();          
                 List = db.EWalletTransactions.Where(a => a.UserId.Value.Equals(userId)
                     && a.Credit == false && a.Debit == true)
@@ -168,7 +168,7 @@ namespace ApiSleepingPatener.Controllers
         [Route("ewalletdebit/thismonth/{userId}")]
         public IHttpActionResult GetEWalletDebitsThisMonthList(int userId)
         {
-            sleepingtestEntities db = new sleepingtestEntities();
+            SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             List<EWalletTransactionModel> List = new List<EWalletTransactionModel>();      
                 List = db.EWalletTransactions.Where(a => a.UserId.Value.Equals(userId)
                     && a.TransactionDate.Value.Year.Equals(DateTime.Now.Year)
@@ -194,7 +194,7 @@ namespace ApiSleepingPatener.Controllers
         [Route("addAds")]
         public IHttpActionResult postAdd(Advertisement model)
         {
-            sleepingtestEntities db = new sleepingtestEntities();
+            SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
           
             db.Advertisements.Add(model);
             db.SaveChanges();
@@ -206,7 +206,7 @@ namespace ApiSleepingPatener.Controllers
         public string GetEWalletSummarySponsorBonus(int userId)
         {
             //var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
-            using (sleepingtestEntities dc = new sleepingtestEntities())
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
             {
                 var Debit = (from eWallTr in dc.EWalletTransactions
                              where eWallTr.UserId == userId && eWallTr.Credit == false && eWallTr.Debit == true
@@ -228,7 +228,7 @@ namespace ApiSleepingPatener.Controllers
         public string GetEWalletSummaryWithdrawal(int userId)
         {
             //var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
-            using (sleepingtestEntities dc = new sleepingtestEntities())
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
             {
                 var CGP = (from eWallTr in dc.EWalletTransactions
                            where eWallTr.UserId == userId && eWallTr.Credit == true && eWallTr.Debit == false
@@ -245,7 +245,7 @@ namespace ApiSleepingPatener.Controllers
         public string GetEWalletThisMonthSponsorBonus(int userId)
         {
             //var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
-            using (sleepingtestEntities dc = new sleepingtestEntities())
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
             {
                 var Debit = (from eWallTr in dc.EWalletTransactions
                              where eWallTr.UserId == userId && eWallTr.Credit == false && eWallTr.Debit == true
@@ -270,7 +270,7 @@ namespace ApiSleepingPatener.Controllers
         public string GetEWalletThisMonthWithdrawal(int userId)
         {
             //var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
-            using (sleepingtestEntities dc = new sleepingtestEntities())
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
             {
                 var CGP = (from eWallTr in dc.EWalletTransactions
                            where eWallTr.UserId == userId && eWallTr.Credit == true && eWallTr.Debit == false
@@ -288,7 +288,7 @@ namespace ApiSleepingPatener.Controllers
         public string GetEWalletThisYearSponsorBonus(int userId)
         {
             //var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
-            using (sleepingtestEntities dc = new sleepingtestEntities())
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
             {
                 var Debit = (from eWallTr in dc.EWalletTransactions
                              where eWallTr.UserId == userId && eWallTr.Credit == false && eWallTr.Debit == true
@@ -311,7 +311,7 @@ namespace ApiSleepingPatener.Controllers
         public string GetEWalletThisYearWithdrawal(int userId)
         {
             //var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
-            using (sleepingtestEntities dc = new sleepingtestEntities())
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
             {
                 var CGP = (from eWallTr in dc.EWalletTransactions
                            where eWallTr.UserId == userId && eWallTr.Credit == true && eWallTr.Debit == false
@@ -328,13 +328,13 @@ namespace ApiSleepingPatener.Controllers
         public IHttpActionResult GetEWalletPendingWithdrawalRequestsList(int userId)
         {
             //var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
-            sleepingtestEntities db = new sleepingtestEntities();
+            SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             List<EWalletWithdrawalFundModel> List = new List<EWalletWithdrawalFundModel>();  
                 List = db.EWalletWithdrawalFunds.Where(a => a.UserId.Value.Equals(userId)
                 && a.IsActive.Value == true && a.IsPending.Value == true)
                     .Select(x => new EWalletWithdrawalFundModel
                     {
-                        UserName = x.UserName,
+                        Username = x.Username,
                         WithdrawalFundMethod = x.WithdrawalFundMethod,
                         AmountPayble = x.AmountPayble.Value,
                         WithdrawalFundCharge = x.WithdrawalFundCharge.Value,
@@ -348,13 +348,13 @@ namespace ApiSleepingPatener.Controllers
         public IHttpActionResult GetEWalletApprovedRequestPendingPaymentList(int userId)
         {
            // var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
-            sleepingtestEntities db = new sleepingtestEntities();
+            SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             List<EWalletWithdrawalFundModel> List = new List<EWalletWithdrawalFundModel>();  
                 List = db.EWalletWithdrawalFunds.Where(a => a.UserId.Value.Equals(userId)
                 && a.IsActive.Value == true && a.IsApproved.Value == true)
                     .Select(x => new EWalletWithdrawalFundModel
                     {
-                        UserName = x.UserName,
+                        Username = x.Username,
                         WithdrawalFundMethod = x.WithdrawalFundMethod,
                         AmountPayble = x.AmountPayble.Value,
                         WithdrawalFundCharge = x.WithdrawalFundCharge.Value,
@@ -367,13 +367,13 @@ namespace ApiSleepingPatener.Controllers
         [Route("GetEWalletApprovedRequestPaidPayment/{userId}")]
         public IHttpActionResult GetEWalletApprovedRequestPaidPaymentList(int userId)
         {
-            sleepingtestEntities db = new sleepingtestEntities();
+            SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             List<EWalletWithdrawalFundModel> List = new List<EWalletWithdrawalFundModel>();     
                 List = db.EWalletWithdrawalFunds.Where(a => a.UserId.Value.Equals(userId)
                 && a.IsActive.Value == false && a.IsApproved.Value == true && a.IsPaid.Value == true)
                     .Select(x => new EWalletWithdrawalFundModel
                     {
-                        UserName = x.UserName,
+                        Username = x.Username,
                         WithdrawalFundMethod = x.WithdrawalFundMethod,
                         AmountPayble = x.AmountPayble.Value,
                         WithdrawalFundCharge = x.WithdrawalFundCharge.Value,
@@ -387,13 +387,13 @@ namespace ApiSleepingPatener.Controllers
         public IHttpActionResult GetEWalletRejectedWithdrawalRequestsList(int userId)
         {
             //var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
-            sleepingtestEntities db = new sleepingtestEntities();
+            SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             List<EWalletWithdrawalFundModel> List = new List<EWalletWithdrawalFundModel>();
             List = db.EWalletWithdrawalFunds.Where(a => a.UserId.Value.Equals(userId)
                 && a.IsActive.Value == false && a.IsRejected.Value == true)
                     .Select(x => new EWalletWithdrawalFundModel
                     {
-                        UserName = x.UserName,
+                        Username = x.Username,
                         WithdrawalFundMethod = x.WithdrawalFundMethod,
                         AmountPayble = x.AmountPayble.Value,
                         WithdrawalFundCharge = x.WithdrawalFundCharge.Value,

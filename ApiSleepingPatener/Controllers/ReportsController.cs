@@ -15,14 +15,14 @@ namespace ApiSleepingPatener.Controllers
         [Route("getactivepayout/{userId}")]
         public IHttpActionResult GetActivePayoutList(int userId)
         {
-            sleepingtestEntities db = new sleepingtestEntities();
+            SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             List<ActivePayoutModel> List = new List<ActivePayoutModel>();
 
             List = db.EWalletWithdrawalFunds.Where(a => a.UserId.Value.Equals(userId)
             && a.IsActive.Value == true && a.IsApproved.Value == true)
                 .Select(x => new ActivePayoutModel
                 {
-                    UserName = x.UserName,
+                    Username = x.Username,
                     WithdrawalFundMethod = x.WithdrawalFundMethod,
                     AccountNumber = x.AccountNumber,
                     BankName = x.BankName,
@@ -37,14 +37,14 @@ namespace ApiSleepingPatener.Controllers
         [Route("getpayouthistory/{userId}")]
         public IHttpActionResult GetPayoutHistoryList(int userId)
         {
-            sleepingtestEntities db = new sleepingtestEntities();
+            SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             List<PayoutHistoryModel> List = new List<PayoutHistoryModel>();
             List = db.EWalletWithdrawalFunds.Where(a => a.UserId.Value.Equals(userId)
             && a.IsActive.Value == false && a.IsApproved.Value == true && a.IsPaid.Value == true)
                 .Select(x => new PayoutHistoryModel
                 {
                     UserId = x.UserId.Value,
-                    UserName = x.UserName,
+                    Username = x.Username,
                     WithdrawalFundMethod = x.WithdrawalFundMethod,
                     AccountNumber = x.AccountNumber,
                     BankName = x.BankName,
@@ -62,13 +62,13 @@ namespace ApiSleepingPatener.Controllers
         public IHttpActionResult GetPayoutWithdrawalInProccessList(int userId)
         {
 
-            sleepingtestEntities db = new sleepingtestEntities();
+            SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             List<PayoutWithdrawalInProccessModel> List = new List<PayoutWithdrawalInProccessModel>();           
                 List = db.EWalletWithdrawalFunds.Where(a => a.UserId.Value.Equals(userId)
                 && a.IsActive.Value == true && a.IsApproved.Value == true)
                     .Select(x => new PayoutWithdrawalInProccessModel
                     {
-                        UserName = x.UserName,
+                        Username = x.Username,
                         WithdrawalFundMethod = x.WithdrawalFundMethod,
                         AccountNumber = x.AccountNumber,
                         BankName = x.BankName,

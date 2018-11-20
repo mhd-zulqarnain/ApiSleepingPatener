@@ -15,7 +15,7 @@ namespace ApiSleepingPatener
     public partial class UserTableLevel
     {
         public int UserTableLevelId { get; set; }
-        public string UserName { get; set; }
+        public string Username { get; set; }
         public Nullable<int> TableLevel { get; set; }
         public Nullable<int> NoOfUsers { get; set; }
         public Nullable<int> LeftUsers { get; set; }

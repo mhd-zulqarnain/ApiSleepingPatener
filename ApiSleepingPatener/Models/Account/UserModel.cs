@@ -10,7 +10,7 @@ namespace ApiSleepingPatener.Models.Account
     {
         public int UserId { get; set; }        
         public string Name { get; set; }
-        public string UserName { get; set; }
+        public string Username { get; set; }
         public string Password { get; set; }
         public int? Country { get; set; }
         public string CountryName { get; set; }
@@ -69,6 +69,8 @@ namespace ApiSleepingPatener.Models.Account
 
         public byte[] NICImage { get; set; }
 
+        public byte[] NICImage1 { get; set; }
+    
         public byte[] ProfileImage { get; set; }
 
         [Required(ErrorMessage = "enter title", AllowEmptyStrings = false)]

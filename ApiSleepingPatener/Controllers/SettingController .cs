@@ -28,7 +28,7 @@ namespace ApiSleepingPatener.Controllers
             try
             {
                 List<Package> List = new List<Package>();
-                using (sleepingtestEntities dce = new sleepingtestEntities())
+                using (SleepingPartnermanagementTestingEntities dce = new SleepingPartnermanagementTestingEntities())
                 {
 
                     List = dce.Packages.ToList();
@@ -48,7 +48,7 @@ namespace ApiSleepingPatener.Controllers
         [Route("getAds")]
         public IHttpActionResult ShowAdvertisementData()
         {
-            sleepingtestEntities db = new sleepingtestEntities();
+            SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             List<Advertisement> listadvertisement = db.Advertisements.Where(x => x.IsActive == true).ToList();
             return Ok(listadvertisement);
 
@@ -59,7 +59,7 @@ namespace ApiSleepingPatener.Controllers
         public IHttpActionResult RetrieveProfileImage(int userId)
         {
 
-            sleepingtestEntities db = new sleepingtestEntities();
+            SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             var q = from temp in db.NewUserRegistrations where temp.UserId == userId select temp.ProfileImage;
             byte[] cover = q.First();
             if (cover != null)
@@ -81,7 +81,7 @@ namespace ApiSleepingPatener.Controllers
         public IHttpActionResult RetrieveNicImage(int userId)
         {
 
-            sleepingtestEntities db = new sleepingtestEntities();
+            SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             var q = from temp in db.NewUserRegistrations where temp.UserId == userId select temp.NICImage;
             byte[] cover = q.First();
             if (cover != null)

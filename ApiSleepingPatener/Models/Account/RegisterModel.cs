@@ -13,8 +13,8 @@ namespace ApiSleepingPatener.Models.Account
         [Required(ErrorMessage = "Please provide name", AllowEmptyStrings = false)]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Please provide username", AllowEmptyStrings = false)]
-        public string UserName { get; set; }
+        [Required(ErrorMessage = "Please provide Username", AllowEmptyStrings = false)]
+        public string Username { get; set; }
 
         [Required(ErrorMessage = "Please provide Password", AllowEmptyStrings = false)]
         [DataType(System.ComponentModel.DataAnnotations.DataType.Password)]

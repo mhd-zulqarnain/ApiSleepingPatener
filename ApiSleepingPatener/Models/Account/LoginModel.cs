@@ -10,8 +10,8 @@ namespace ApiSleepingPatener.Models.Account
     {
         public int UserId { get; set; }
 
-        [Required(ErrorMessage = "enter username")]
-        public string UserName { get; set; }
+        [Required(ErrorMessage = "enter Username")]
+        public string Username { get; set; }
 
         [Required(ErrorMessage = "enter password")]
         [DataType(System.ComponentModel.DataAnnotations.DataType.Password)]

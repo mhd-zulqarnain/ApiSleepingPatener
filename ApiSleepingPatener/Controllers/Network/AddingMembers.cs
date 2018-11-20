@@ -54,7 +54,7 @@ namespace ApiSleepingPatener.Controllers
         //                NewUserRegistration newuser = new NewUserRegistration();
 
         //                newuser.Name = model.Name;
-        //                newuser.Username = model.UserName;
+        //                newuser.Username = model.Username;
         //                newuser.Password = model.Password;
         //                newuser.Country = model.Country;
         //                newuser.Address = model.Address;
@@ -110,7 +110,7 @@ namespace ApiSleepingPatener.Controllers
         //                dc.UserPackages.Add(userpackage);
 
 
-        //                userTableLevel.UserName = model.UserName;
+        //                userTableLevel.Username = model.Username;
         //                userTableLevel.TableLevel = 1;
         //                userTableLevel.NoOfUsers = 0;
         //                userTableLevel.RightUsers = 0;
@@ -151,7 +151,7 @@ namespace ApiSleepingPatener.Controllers
         //                    body: "Welcome to Sleeping partner portal. "
         //                    + " Please make sure to pay your amount with in 5 bussiness days"
         //                    + " to avoid your account deactivation. "
-        //                    + " Your username is : " + model.UserName
+        //                    + " Your Username is : " + model.Username
         //                    + " and password is : " + model.Password + "."
         //                    + " Click on http://sleepingpartnermanagementportalrct.com ",
         //                    from: new Twilio.Types.PhoneNumber(SendSMSFromNumber),
@@ -168,7 +168,7 @@ namespace ApiSleepingPatener.Controllers
         //                mail1.To.Add(model.Email);
         //                mail1.Subject = "Sleeping partner management portal";
         //                mail1.Body = "User accept by admin. " +
-        //                    " Your username is " + model.UserName + " and password : " + model.Password + "</br></br>" +
+        //                    " Your Username is " + model.Username + " and password : " + model.Password + "</br></br>" +
         //                    "<table style='font-family:Verdana, Helvetica, sans-serif;' cellpadding='0' cellspacing='0'><tbody><tr><td style='font-family:Verdana; border-right:2px solid #BD272D; padding-right:15px; text-align: right; vertical-align:top; ' valign='top'><table style='font-family:Verdana; margin-right:0; margin-left:auto;' cellpadding='0' cellspacing='0'><tbody><tr><td style='font-family:Verdana; height:55px; vertical-align:top; text-align:right;' valign='top' align='right'><span style='font-family:Verdana; font-size:14pt; font-weight:bold'>Sleeping partner management<span><br></span></span></td></tr><tr><td style='font-family:Verdana; height:40px; vertical-align:top; padding:0; text-align:right;' valign='top' align='right'><span style='font-family:Verdana; font-size:10pt;'>phone: 123456<span><br></span></span><span style='font-family:Verdana; font-size:10pt;'>mobile: 0123456</span></td></tr><tr><td><a href='http://sleepingpartnermanagementportalrct.com'>sleepingpartnermanagementportal</a></td></tr></tbody></table></td><td style='padding-left:15px;font-size:1pt; vertical-align:top; font-family:Verdana;' valign='top'><table style='font-family:Verdana;' cellpadding='0' cellspacing='0'><tbody><tr><td style='height:55px; font-family:Verdana; vertical-align:top;' valign='top'><a href='{Logo URL}' target='_blank'><img alt='Logo' style='height:40px; width:auto; border:0; ' height='40' border='0'  src='~/Content/images/newsleepinglogo.png'></a></td></tr><tr><td style='height:40px; font-family:Verdana; vertical-align:top; padding:0;' valign='top'><span style='font-family:Verdana; font-size:10pt;'>{Address 1}<span><br></span></span> <span style='font-family:Verdana; font-size:10pt;'>{Address 2}</span> </td></tr><tr><td style='height:20px; font-family:Verdana; vertical-align:middle;' valign='middle'><a href='http://{Web page}' target='_blank' style='color:#BD272D; font-size:10pt; font-family:Verdana;'>{Web page}</a></td></tr></tbody></table></td></tr></tbody></table>";
         //                mail1.IsBodyHtml = true;
         //                SmtpClient smtp1 = new SmtpClient();

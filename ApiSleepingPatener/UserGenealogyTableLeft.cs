@@ -22,7 +22,7 @@ namespace ApiSleepingPatener
         public Nullable<bool> UserPositionLeft { get; set; }
         public Nullable<bool> UserPositionRight { get; set; }
         public Nullable<int> UserId { get; set; }
-        public string UserName { get; set; }
+        public string Username { get; set; }
         public Nullable<int> SponsorId { get; set; }
         public string SponsorName { get; set; }
         public Nullable<int> DownlineMemberId { get; set; }

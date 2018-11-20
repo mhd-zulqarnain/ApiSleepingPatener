@@ -20,7 +20,7 @@ namespace ApiSleepingPatener
         public Nullable<decimal> UserLeftAmount { get; set; }
         public Nullable<decimal> UserRightAmount { get; set; }
         public Nullable<int> UserId { get; set; }
-        public string UserName { get; set; }
+        public string Username { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<int> RewardId { get; set; }
         public Nullable<bool> IsClaimByUser { get; set; }

@@ -17,15 +17,15 @@ namespace ApiSleepingPatener.Controllers
     {
       //  [Authorize]
         [HttpGet]
-        [Route("getuser/{username}")]
-        public IHttpActionResult getNewRegistration(string username)
+        [Route("getuser/{Username}")]
+        public IHttpActionResult getNewRegistration(string Username)
         {
             try
             {
-                using (sleepingtestEntities dce = new sleepingtestEntities())
+                using (SleepingPartnermanagementTestingEntities dce = new SleepingPartnermanagementTestingEntities())
                 {
                    
-                    NewUserRegistration v = dce.NewUserRegistrations.Where(a => a.Username == username).FirstOrDefault();
+                    NewUserRegistration v = dce.NewUserRegistrations.Where(a => a.Username == Username).FirstOrDefault();
                   
                     return Ok(v);
                 }
@@ -41,7 +41,7 @@ namespace ApiSleepingPatener.Controllers
         public IHttpActionResult ProfileSetup(NewUserRegistration model)
         {
 
-            sleepingtestEntities dce = new sleepingtestEntities();
+            SleepingPartnermanagementTestingEntities dce = new SleepingPartnermanagementTestingEntities();
             //NewUserRegistration newuser = dce.NewUserRegistrations.Where(a => a.UserId.Equals(model.UserId)).FirstOrDefault();
             NewUserRegistration newuser = dce.NewUserRegistrations.SingleOrDefault(x => x.UserId == model.UserId);
             if (newuser != null)
@@ -73,7 +73,7 @@ namespace ApiSleepingPatener.Controllers
         public IHttpActionResult addUserSetup(NewUserRegistration model)
         {
 
-            sleepingtestEntities dce = new sleepingtestEntities();
+            SleepingPartnermanagementTestingEntities dce = new SleepingPartnermanagementTestingEntities();
             NewUserRegistration newuser = dce.NewUserRegistrations.Where(a => a.Username.Equals(model.Username)).FirstOrDefault();
             //NewUserRegistration newuser = dce.NewUserRegistrations.SingleOrDefault(x => x.Username == model.UserId);
             if (newuser == null)
@@ -93,7 +93,7 @@ namespace ApiSleepingPatener.Controllers
         [Route("forgetpassword/{email}")]
         public IHttpActionResult fortgetPassword(string email)
         {
-            sleepingtestEntities dc = new sleepingtestEntities();
+            SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities();
            
                 var v = dc.NewUserRegistrations.Where(a => a.Email.Equals(email)).FirstOrDefault();
                 if (v != null)
@@ -136,7 +136,7 @@ namespace ApiSleepingPatener.Controllers
             try
             {
                 List<Country> List = new List<Country>();
-                using (sleepingtestEntities dce = new sleepingtestEntities())
+                using (SleepingPartnermanagementTestingEntities dce = new SleepingPartnermanagementTestingEntities())
                 {
 
                     List = dce.Countries.ToList();
