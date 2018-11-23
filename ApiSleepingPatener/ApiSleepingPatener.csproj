@@ -369,6 +369,7 @@
     <Compile Include="Models\Packages\PackageModel.cs" />
     <Compile Include="Models\PrivacySettingModel.cs" />
     <Compile Include="Models\ProfileSettingModel.cs" />
+    <Compile Include="Models\ProfileSetup.cs" />
     <Compile Include="Models\ReceiveAdminMessageModel.cs" />
     <Compile Include="Models\ReciveUserMessageModel.cs" />
     <Compile Include="Models\Reports\ActivePayoutModel.cs" />

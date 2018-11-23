@@ -27,8 +27,8 @@ namespace ApiSleepingPatener.Controllers
             string totalGetUserTotalPackageCommission = GetUserTotalPackageCommission(userId);
             string totalGetEWalletDebitSum = GetEWalletDebitSum(userId); 
             string totalGetUserCurrentPackage = GetUserCurrentPackage(userId);
-        //  string totalGetAllTotalLeftUserPV = GetAllTotalLeftUserPV(userId);
-            //string totalGetAllTotalRightUserPV = GetAllTotalRightUserPV(userId);
+            string totalGetAllTotalLeftUserPV = GetAllTotalLeftUserPV(userId);
+            string totalGetAllTotalRightUserPV = GetAllTotalRightUserPV(userId);
             string totalGetUserDownlineMembers = GetUserDownlineMembers(userId);
             string totalGetPayoutHistorySum = GetPayoutHistorySum(userId);
             string totalGetUserTotalMatchingCommission = GetUserTotalMatchingCommission(userId);
@@ -46,8 +46,8 @@ namespace ApiSleepingPatener.Controllers
             dbd.GetUserTotalPackageCommission = totalGetUserTotalPackageCommission;
             dbd.GetEWalletDebitSum = totalGetEWalletDebitSum;
             dbd.GetUserCurrentPackage = totalGetUserCurrentPackage;
-            //dbd.GetAllTotalLeftUserPV = totalGetAllTotalLeftUserPV;
-            //dbd.GetAllTotalRightUserPV = totalGetAllTotalRightUserPV;
+            dbd.GetAllTotalLeftUserPV = totalGetAllTotalLeftUserPV;
+            dbd.GetAllTotalRightUserPV = totalGetAllTotalRightUserPV;
             dbd.GetUserDownlineMembers = totalGetUserDownlineMembers;
             dbd.GetPayoutHistorySum = totalGetPayoutHistorySum;
             dbd.GetUserTotalMatchingCommission = totalGetUserTotalMatchingCommission;
@@ -156,57 +156,52 @@ namespace ApiSleepingPatener.Controllers
 
         public string GetUserCurrentPackage(int userId)
         {
-            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
-            {
-                NewUserRegistration newpckg = dc.NewUserRegistrations.Where(a => a.UserId.Equals(userId)).FirstOrDefault();
+            return "";
+            //using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
+            //{
+            //    NewUserRegistration newpckg = dc.NewUserRegistrations.Where(a => a.UserId.Equals(userId)).FirstOrDefault();
 
-                Package pkge = dc.Packages.Where(a => a.PackageId.Equals(newpckg.UserPackage.Value)).FirstOrDefault();
+            //    Package pkge = dc.Packages.Where(a => a.PackageId.Equals(newpckg.UserPackage.Value)).FirstOrDefault();
 
-                var PackageName = pkge.PackageName;
-                var PackagePrice = pkge.PackagePrice.Value;
-                return PackagePrice.ToString();
-            }
+            //    var PackageName = pkge.PackageName;
+            //    var PackagePrice = pkge.PackagePrice.Value;
+            //    return PackagePrice.ToString();
+            //}
         }
 
-        ////public string GetAllTotalLeftUserPV(int userId)
-        ////{
-        ////    using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
-        ////    {
-        ////        var TotalAmountLeftUsers = dc.GetParentChildsLeftSP(userId).ToList();
-        ////        decimal TotalAmountLeftUsersShow = TotalAmountLeftUsers.Sum(x => x.PaidAmount.Value);
-        ////        return TotalAmountLeftUsersShow.ToString();
+        public string GetAllTotalLeftUserPV(int userId)
+        {
+            //var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
+            {
+              var TotalAmountLeftUsers = dc.GetParentChildsLeftSP(userId).Where(a => a.IsPaidMember.Value.Equals(true)).ToList();
+                decimal TotalAmountLeftUsersShow = TotalAmountLeftUsers.Sum(x => x.PaidAmount.Value);
+                return TotalAmountLeftUsers.ToString();
 
-        ////        //if (TotalAmountLeftUsersShow != 0)
-        ////        //{
-        ////        //    return TotalAmountLeftUsers.ToString();
-        ////        //}
-        ////        //else
-        ////        //{
-        ////        //    return Json(new { success = true, result = 0 }, JsonRequestBehavior.AllowGet);
-        ////        //}
+                //if (TotalAmountLeftUsersShow != 0)
+                //{
+                //    return Ok(new { success = true, result = TotalAmountLeftUsersShow });
+                //}
+                //else
+                //{
+                //    return Ok(new { success = true, result = 0 });
+                //}
+            }
 
-        ////    }
 
+        }
 
-        ////}
+        public string GetAllTotalRightUserPV(int userId)
+        {
+            // var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
+            {
+                var TotalAmountRightUsers = dc.GetParentChildsRightSP(userId).Where(a => a.IsPaidMember.Value.Equals(true)).ToList();
+                decimal TotalAmountRightUsersShow = TotalAmountRightUsers.Sum(x => x.PaidAmount.Value);
 
-        //public string GetAllTotalRightUserPV(int userId)
-        //{
-        //    using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
-        //    {
-        //        var TotalAmountRightUsers = dc.GetParentChildsRightSP(userId).ToList();
-        //        decimal TotalAmountRightUsersShow = TotalAmountRightUsers.Sum(x => x.PaidAmount.Value);
-        //        //if (TotalAmountRightUsersShow != 0)
-        //        //{
-        //        //    return Json(new { success = true, result = TotalAmountRightUsersShow }, JsonRequestBehavior.AllowGet);
-        //        //}
-        //        //else
-        //        //{
-        //        //    return Json(new { success = true, result = 0 }, JsonRequestBehavior.AllowGet);
-        //        //}
-        //        return TotalAmountRightUsersShow.ToString();
-        //    }
-        //}
+                return TotalAmountRightUsersShow.ToString();
+            }
+        }
 
         public string GetUserDownlineMembers(int userId)
         {
