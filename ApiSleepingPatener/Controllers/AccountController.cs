@@ -15,7 +15,7 @@ namespace ApiSleepingPatener.Controllers
     public class AccountController : ApiController
     {
 
-        [Authorize]
+     //   [Authorize]
         [HttpGet]
         [Route("api/account/getuser/{id}")]
         public IHttpActionResult GetUFirstUser(int id)
@@ -157,7 +157,7 @@ namespace ApiSleepingPatener.Controllers
                     {
                         foreach (var item in userEWF)
                         {
-                            item.Username = username;
+                            item.UserName = username;
                         }
                     }
                     if (userRAM != null)
@@ -193,21 +193,21 @@ namespace ApiSleepingPatener.Controllers
                     {
                         foreach (var item in userUGT)
                         {
-                            item.Username = username;
+                            item.UserName = username;
                         }
                     }
                     if (userUGTL != null)
                     {
                         foreach (var item in userUGTL)
                         {
-                            item.Username = username;
+                            item.UserName = username;
                         }
                     }
                     if (userUGTR != null)
                     {
                         foreach (var item in userUGTR)
                         {
-                            item.Username = username;
+                            item.UserName = username;
                         }
                     }
                     //
@@ -258,7 +258,7 @@ namespace ApiSleepingPatener.Controllers
 
                     if (userUTL != null)
                     {
-                        userUTL.Username = username;
+                        userUTL.UserName = username;
                     }
 
                     dc.SaveChanges();

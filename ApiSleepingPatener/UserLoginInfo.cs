@@ -15,7 +15,7 @@ namespace ApiSleepingPatener
     public partial class UserLoginInfo
     {
         public int UserId { get; set; }
-        public string Username { get; set; }
+        public string UserName { get; set; }
         public string Password { get; set; }
         public Nullable<System.DateTime> LastLoginDate { get; set; }
         public Nullable<int> LoginFailedCount { get; set; }

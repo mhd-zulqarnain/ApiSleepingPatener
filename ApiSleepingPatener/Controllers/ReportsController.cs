@@ -22,7 +22,7 @@ namespace ApiSleepingPatener.Controllers
             && a.IsActive.Value == true && a.IsApproved.Value == true)
                 .Select(x => new ActivePayoutModel
                 {
-                    Username = x.Username,
+                    Username = x.UserName,
                     WithdrawalFundMethod = x.WithdrawalFundMethod,
                     AccountNumber = x.AccountNumber,
                     BankName = x.BankName,
@@ -44,7 +44,7 @@ namespace ApiSleepingPatener.Controllers
                 .Select(x => new PayoutHistoryModel
                 {
                     UserId = x.UserId.Value,
-                    Username = x.Username,
+                    Username = x.UserName,
                     WithdrawalFundMethod = x.WithdrawalFundMethod,
                     AccountNumber = x.AccountNumber,
                     BankName = x.BankName,
@@ -68,7 +68,7 @@ namespace ApiSleepingPatener.Controllers
                 && a.IsActive.Value == true && a.IsApproved.Value == true)
                     .Select(x => new PayoutWithdrawalInProccessModel
                     {
-                        Username = x.Username,
+                        Username = x.UserName,
                         WithdrawalFundMethod = x.WithdrawalFundMethod,
                         AccountNumber = x.AccountNumber,
                         BankName = x.BankName,

@@ -16,11 +16,11 @@ namespace ApiSleepingPatener
     {
         public int UserCommissionId { get; set; }
         public Nullable<int> UserId { get; set; }
-        public string Username { get; set; }
+        public string UserName { get; set; }
         public Nullable<int> DownlineMemberId { get; set; }
         public Nullable<int> MatchingCommUserId { get; set; }
         public string MatchingCommUserPosition { get; set; }
-        public string MatchingCommUsername { get; set; }
+        public string MatchingCommUserName { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
     }
 }

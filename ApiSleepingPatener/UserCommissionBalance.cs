@@ -16,7 +16,7 @@ namespace ApiSleepingPatener
     {
         public int UserCommBalanceId { get; set; }
         public Nullable<int> UserId { get; set; }
-        public string Username { get; set; }
+        public string UserName { get; set; }
         public Nullable<decimal> UserCommBalance { get; set; }
         public string UserCommPosition { get; set; }
         public Nullable<bool> UserCommIsLeft { get; set; }

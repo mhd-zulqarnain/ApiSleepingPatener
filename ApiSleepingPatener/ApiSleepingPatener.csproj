@@ -352,6 +352,7 @@
     <Compile Include="Models\EwalletModel.cs" />
     <Compile Include="Models\EWalletTransactionModel.cs" />
     <Compile Include="Models\EWalletWithdrawalFundModel.cs" />
+    <Compile Include="Models\EwalletWithDrawObjectModel.cs" />
     <Compile Include="Models\EWallet\EWalletPayoutConfigModel.cs" />
     <Compile Include="Models\EWallet\EWalletWithdrawalFundModel.cs" />
     <Compile Include="Models\GenealogyTable\AdminViewUserDownlinersModel.cs" />
@@ -578,19 +579,19 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <EntityDeploy Include="SleepingPartnermanagementTesting.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SleepingPartnermanagementTesting.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="SleepingPartnermanagementTesting.edmx.diagram">
-      <DependentUpon>SleepingPartnermanagementTesting.edmx</DependentUpon>
-    </Content>
     <EntityDeploy Include="SleepingPartnermanagementTreeTesting.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SleepingPartnermanagementTreeTesting.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <Content Include="SleepingPartnermanagementTreeTesting.edmx.diagram">
       <DependentUpon>SleepingPartnermanagementTreeTesting.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="SleepingPartnermanagementTesting.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SleepingPartnermanagementTesting.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="SleepingPartnermanagementTesting.edmx.diagram">
+      <DependentUpon>SleepingPartnermanagementTesting.edmx</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>

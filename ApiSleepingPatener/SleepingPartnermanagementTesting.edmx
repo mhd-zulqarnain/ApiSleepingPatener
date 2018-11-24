@@ -87,7 +87,7 @@
           <Property Name="IsPaid" Type="bit" />
           <Property Name="IsRejected" Type="bit" />
           <Property Name="UserId" Type="int" />
-          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="HelpRequest">
           <Key>
@@ -275,11 +275,11 @@
           </Key>
           <Property Name="UserCommissionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="int" />
-          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
           <Property Name="DownlineMemberId" Type="int" />
           <Property Name="MatchingCommUserId" Type="int" />
           <Property Name="MatchingCommUserPosition" Type="nvarchar" MaxLength="50" />
-          <Property Name="MatchingCommUsername" Type="nvarchar" MaxLength="50" />
+          <Property Name="MatchingCommUserName" Type="nvarchar" MaxLength="50" />
           <Property Name="CreateDate" Type="datetime" />
         </EntityType>
         <EntityType Name="UserCommissionBalance">
@@ -288,7 +288,7 @@
           </Key>
           <Property Name="UserCommBalanceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="int" />
-          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
           <Property Name="UserCommBalance" Type="money" />
           <Property Name="UserCommPosition" Type="nvarchar" MaxLength="50" />
           <Property Name="UserCommIsLeft" Type="bit" />
@@ -307,7 +307,7 @@
           <Property Name="UserPositionLeft" Type="bit" />
           <Property Name="UserPositionRight" Type="bit" />
           <Property Name="UserId" Type="int" />
-          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
           <Property Name="SponsorId" Type="int" />
           <Property Name="SponsorName" Type="nvarchar" MaxLength="50" />
           <Property Name="DownlineMemberId" Type="int" />
@@ -329,7 +329,7 @@
           <Property Name="UserPositionLeft" Type="bit" />
           <Property Name="UserPositionRight" Type="bit" />
           <Property Name="UserId" Type="int" />
-          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
           <Property Name="SponsorId" Type="int" />
           <Property Name="SponsorName" Type="nvarchar" MaxLength="50" />
           <Property Name="DownlineMemberId" Type="int" />
@@ -351,7 +351,7 @@
           <Property Name="UserPositionLeft" Type="bit" />
           <Property Name="UserPositionRight" Type="bit" />
           <Property Name="UserId" Type="int" />
-          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
           <Property Name="SponsorId" Type="int" />
           <Property Name="SponsorName" Type="nvarchar" MaxLength="50" />
           <Property Name="DownlineMemberId" Type="int" />
@@ -366,7 +366,7 @@
             <PropertyRef Name="UserId" />
           </Key>
           <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="Username" Type="nvarchar" MaxLength="20" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="20" />
           <Property Name="Password" Type="nvarchar" MaxLength="20" />
           <Property Name="LastLoginDate" Type="datetime" />
           <Property Name="LoginFailedCount" Type="int" />
@@ -423,7 +423,7 @@
           <Property Name="UserLeftAmount" Type="money" />
           <Property Name="UserRightAmount" Type="money" />
           <Property Name="UserId" Type="int" />
-          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
           <Property Name="CreateDate" Type="datetime" />
           <Property Name="RewardId" Type="int" />
           <Property Name="IsClaimByUser" Type="bit" />
@@ -436,7 +436,7 @@
             <PropertyRef Name="UserTableLevelId" />
           </Key>
           <Property Name="UserTableLevelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
           <Property Name="TableLevel" Type="int" />
           <Property Name="NoOfUsers" Type="int" />
           <Property Name="LeftUsers" Type="int" />
@@ -612,7 +612,7 @@
           <Property Name="IsPaid" Type="Boolean" />
           <Property Name="IsRejected" Type="Boolean" />
           <Property Name="UserId" Type="Int32" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="HelpRequest">
           <Key>
@@ -800,11 +800,11 @@
           </Key>
           <Property Name="UserCommissionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="Int32" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DownlineMemberId" Type="Int32" />
           <Property Name="MatchingCommUserId" Type="Int32" />
           <Property Name="MatchingCommUserPosition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MatchingCommUsername" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MatchingCommUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="UserCommissionBalance">
@@ -813,7 +813,7 @@
           </Key>
           <Property Name="UserCommBalanceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="Int32" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UserCommBalance" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="UserCommPosition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UserCommIsLeft" Type="Boolean" />
@@ -832,7 +832,7 @@
           <Property Name="UserPositionLeft" Type="Boolean" />
           <Property Name="UserPositionRight" Type="Boolean" />
           <Property Name="UserId" Type="Int32" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SponsorId" Type="Int32" />
           <Property Name="SponsorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DownlineMemberId" Type="Int32" />
@@ -854,7 +854,7 @@
           <Property Name="UserPositionLeft" Type="Boolean" />
           <Property Name="UserPositionRight" Type="Boolean" />
           <Property Name="UserId" Type="Int32" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SponsorId" Type="Int32" />
           <Property Name="SponsorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DownlineMemberId" Type="Int32" />
@@ -876,7 +876,7 @@
           <Property Name="UserPositionLeft" Type="Boolean" />
           <Property Name="UserPositionRight" Type="Boolean" />
           <Property Name="UserId" Type="Int32" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SponsorId" Type="Int32" />
           <Property Name="SponsorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DownlineMemberId" Type="Int32" />
@@ -891,7 +891,7 @@
             <PropertyRef Name="UserId" />
           </Key>
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="LastLoginDate" Type="DateTime" Precision="3" />
           <Property Name="LoginFailedCount" Type="Int32" />
@@ -948,7 +948,7 @@
           <Property Name="UserLeftAmount" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="UserRightAmount" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="UserId" Type="Int32" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="3" />
           <Property Name="RewardId" Type="Int32" />
           <Property Name="IsClaimByUser" Type="Boolean" />
@@ -961,7 +961,7 @@
             <PropertyRef Name="UserTableLevelId" />
           </Key>
           <Property Name="UserTableLevelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TableLevel" Type="Int32" />
           <Property Name="NoOfUsers" Type="Int32" />
           <Property Name="LeftUsers" Type="Int32" />
@@ -1358,7 +1358,7 @@
                 <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
                 <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1559,11 +1559,11 @@
               <MappingFragment StoreEntitySet="UserCommission">
                 <ScalarProperty Name="UserCommissionId" ColumnName="UserCommissionId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="DownlineMemberId" ColumnName="DownlineMemberId" />
                 <ScalarProperty Name="MatchingCommUserId" ColumnName="MatchingCommUserId" />
                 <ScalarProperty Name="MatchingCommUserPosition" ColumnName="MatchingCommUserPosition" />
-                <ScalarProperty Name="MatchingCommUsername" ColumnName="MatchingCommUsername" />
+                <ScalarProperty Name="MatchingCommUserName" ColumnName="MatchingCommUserName" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1573,7 +1573,7 @@
               <MappingFragment StoreEntitySet="UserCommissionBalance">
                 <ScalarProperty Name="UserCommBalanceId" ColumnName="UserCommBalanceId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserCommBalance" ColumnName="UserCommBalance" />
                 <ScalarProperty Name="UserCommPosition" ColumnName="UserCommPosition" />
                 <ScalarProperty Name="UserCommIsLeft" ColumnName="UserCommIsLeft" />
@@ -1593,7 +1593,7 @@
                 <ScalarProperty Name="UserPositionLeft" ColumnName="UserPositionLeft" />
                 <ScalarProperty Name="UserPositionRight" ColumnName="UserPositionRight" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="SponsorId" ColumnName="SponsorId" />
                 <ScalarProperty Name="SponsorName" ColumnName="SponsorName" />
                 <ScalarProperty Name="DownlineMemberId" ColumnName="DownlineMemberId" />
@@ -1616,7 +1616,7 @@
                 <ScalarProperty Name="UserPositionLeft" ColumnName="UserPositionLeft" />
                 <ScalarProperty Name="UserPositionRight" ColumnName="UserPositionRight" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="SponsorId" ColumnName="SponsorId" />
                 <ScalarProperty Name="SponsorName" ColumnName="SponsorName" />
                 <ScalarProperty Name="DownlineMemberId" ColumnName="DownlineMemberId" />
@@ -1639,7 +1639,7 @@
                 <ScalarProperty Name="UserPositionLeft" ColumnName="UserPositionLeft" />
                 <ScalarProperty Name="UserPositionRight" ColumnName="UserPositionRight" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="SponsorId" ColumnName="SponsorId" />
                 <ScalarProperty Name="SponsorName" ColumnName="SponsorName" />
                 <ScalarProperty Name="DownlineMemberId" ColumnName="DownlineMemberId" />
@@ -1655,7 +1655,7 @@
             <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.UserLoginInfo">
               <MappingFragment StoreEntitySet="UserLoginInfo">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
                 <ScalarProperty Name="LoginFailedCount" ColumnName="LoginFailedCount" />
@@ -1716,7 +1716,7 @@
                 <ScalarProperty Name="UserLeftAmount" ColumnName="UserLeftAmount" />
                 <ScalarProperty Name="UserRightAmount" ColumnName="UserRightAmount" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="RewardId" ColumnName="RewardId" />
                 <ScalarProperty Name="IsClaimByUser" ColumnName="IsClaimByUser" />
@@ -1730,7 +1730,7 @@
             <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.UserTableLevel">
               <MappingFragment StoreEntitySet="UserTableLevel">
                 <ScalarProperty Name="UserTableLevelId" ColumnName="UserTableLevelId" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="TableLevel" ColumnName="TableLevel" />
                 <ScalarProperty Name="NoOfUsers" ColumnName="NoOfUsers" />
                 <ScalarProperty Name="LeftUsers" ColumnName="LeftUsers" />
