@@ -84,11 +84,12 @@ namespace ApiSleepingPatener.Controllers
                 newuser.Address = model.Address;
                 newuser.Phone = model.Phone;
                 newuser.Email = model.Email;
+                newuser.IsBlock = true;             
                 newuser.AccountTitle = model.AccountTitle;
                 newuser.AccountNumber = model.AccountNumber;
                 newuser.BankName = model.BankName;
                 newuser.CNIC = model.CNICNumber;
-                //if (Session["LogedUserCode"].ToString() == BinaryMLMSystem.Common.Enum.UserType.User.ToString())
+                //if (userId == Common.Enum.UserType.User.ToString())
                 //{
                 //    newuser.IsBlock = model.IsBlock = true;
                 //}
@@ -109,6 +110,7 @@ namespace ApiSleepingPatener.Controllers
                 }
                 dc.SaveChanges();
                 //dbTree.update_tree_name(userId, model.UserName);
+
                 ModelState.Clear();
                 return Ok(new { success = true, message = "Update Successfully" });
 

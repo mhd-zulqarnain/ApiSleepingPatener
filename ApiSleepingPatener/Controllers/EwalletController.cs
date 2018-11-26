@@ -498,121 +498,121 @@ namespace ApiSleepingPatener.Controllers
                 }).FirstOrDefault();
             return obj;
         }
-        //[HttpPost]
-        //[Route("ewalletwithdrawalfund/{userId}")]
-        //public string EWalletWithdrawalFund(EWalletWithdrawalFundModel model,int userId)
-        //{
-        //    try
-        //    {
-        //      //  var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
-        //        using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
-        //        {
-        //            decimal amountcheck = model.AmountPayble;
-        //            decimal withdrawalFundCharges = 0;
-        //            int payoutChargesPercent = 0;
-        //            decimal payoutChargesPercentValue = 0;
-        //            decimal minimumPayout = 0;
-        //            decimal amountAfterChargesDeduct = 0;
+        [HttpPost]
+        [Route("ewalletwithdrawalfund/{userId}/{amount}")]
+        public string EWalletWithdrawalFund(EWalletWithdrawalFundModel model, int userId,int amount)
+        {
+            try
+            {
+                //  var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
+                using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
+                {
+                    decimal amountcheck = model.AmountPayble;
+                    decimal withdrawalFundCharges = 0;
+                    int payoutChargesPercent = 0;
+                    decimal payoutChargesPercentValue = 0;
+                    decimal minimumPayout = 0;
+                    decimal amountAfterChargesDeduct = 0;
 
-        //            var Debit = (from eWallTr in dc.EWalletTransactions
-        //                         where eWallTr.UserId == userId && eWallTr.Credit == false
-        //                         && eWallTr.Debit == true && eWallTr.IsPackageBonus == true
-        //                         select eWallTr).ToList();
-        //            decimal DebitValue = Debit.Sum(x => x.Amount.Value);
+                    var Debit = (from eWallTr in dc.EWalletTransactions
+                                 where eWallTr.UserId == userId && eWallTr.Credit == false
+                                 && eWallTr.Debit == true && eWallTr.IsPackageBonus == true
+                                 select eWallTr).ToList();
+                    decimal DebitValue = Debit.Sum(x => x.Amount.Value);
 
-        //            var Credit = (from eWallTr in dc.EWalletTransactions
-        //                          where eWallTr.UserId == userId && eWallTr.Credit == true
-        //                          && eWallTr.Debit == false && eWallTr.IsPackageBonus == true
-        //                          select eWallTr).ToList();
-        //            decimal CreditValue = Credit.Sum(x => x.Amount.Value);
+                    var Credit = (from eWallTr in dc.EWalletTransactions
+                                  where eWallTr.UserId == userId && eWallTr.Credit == true
+                                  && eWallTr.Debit == false && eWallTr.IsPackageBonus == true
+                                  select eWallTr).ToList();
+                    decimal CreditValue = Credit.Sum(x => x.Amount.Value);
 
-        //            decimal minVal = Math.Min(DebitValue, CreditValue);
-        //            decimal maxVal = Math.Max(DebitValue, CreditValue);
+                    decimal minVal = Math.Min(DebitValue, CreditValue);
+                    decimal maxVal = Math.Max(DebitValue, CreditValue);
 
-        //            decimal Sum = maxVal - minVal;
+                    decimal Sum = maxVal - minVal;
 
-        //            EWalletWithdrawalFund newpckg = dc.EWalletWithdrawalFunds.Where(a => a.WithdrawalFundId.Equals(model.WithdrawalFundId)).FirstOrDefault();
-        //            NewUserRegistration user = dc.NewUserRegistrations.Where(a => a.UserId.Equals(userId)).FirstOrDefault();
-        //            if (user.IsPaidMember.Value == true)
-        //            {
-        //                EWalletPayoutConfig payoutconfig = dc.EWalletPayoutConfigs.FirstOrDefault();
-        //                minimumPayout = payoutconfig.MinimumPayout.Value;
-        //                if (model.AmountPayble >= minimumPayout)
-        //                {
+                    EWalletWithdrawalFund newpckg = dc.EWalletWithdrawalFunds.Where(a => a.WithdrawalFundId.Equals(model.WithdrawalFundId)).FirstOrDefault();
+                    NewUserRegistration user = dc.NewUserRegistrations.Where(a => a.UserId.Equals(userId)).FirstOrDefault();
+                    if (user.IsPaidMember.Value == true)
+                    {
+                        EWalletPayoutConfig payoutconfig = dc.EWalletPayoutConfigs.FirstOrDefault();
+                        minimumPayout = payoutconfig.MinimumPayout.Value;
+                        if (model.AmountPayble >= minimumPayout)
+                        {
 
-        //                    if (model.AmountPayble <= Sum)
-        //                    {
-        //                        if (newpckg == null)
-        //                        {
+                            if (model.AmountPayble <= Sum)
+                            {
+                                if (newpckg == null)
+                                {
 
-        //                            payoutChargesPercent = payoutconfig.PayoutChargesPercent.Value;
-        //                            payoutChargesPercentValue = (decimal)payoutChargesPercent / 100; //0.1
+                                    payoutChargesPercent = payoutconfig.PayoutChargesPercent.Value;
+                                    payoutChargesPercentValue = (decimal)payoutChargesPercent / 100; //0.1
 
-        //                            withdrawalFundCharges = model.AmountPayble * payoutChargesPercentValue;
-        //                            amountAfterChargesDeduct = model.AmountPayble - withdrawalFundCharges;
+                                    withdrawalFundCharges = model.AmountPayble * payoutChargesPercentValue;
+                                    amountAfterChargesDeduct = model.AmountPayble - withdrawalFundCharges;
 
-        //                            EWalletWithdrawalFund newpckgadd = new EWalletWithdrawalFund();
-        //                            newpckgadd.UserName = user.Username;
-        //                            newpckgadd.AccountNumber = user.AccountNumber; //auto
-        //                            newpckgadd.BankName = user.BankName; //auto
-        //                            newpckgadd.WithdrawalFundMethod = Common.Enum.PaymentSource.BankAccount.ToString();
-        //                            newpckgadd.AmountPayble = amountAfterChargesDeduct;
-        //                            newpckgadd.WithdrawalFundDescription = model.WithdrawalFundDescription;
-        //                            newpckgadd.WithdrawalFundCharge = withdrawalFundCharges; //auto
-        //                            newpckgadd.Country = user.Country;
-        //                            newpckgadd.RequestedDate = DateTime.Now;
-        //                            newpckgadd.ApprovedDate = null;
-        //                            newpckgadd.PaidDate = null;
-        //                            newpckgadd.RejectedDate = null;
-        //                            newpckgadd.IsActive = true;
-        //                            newpckgadd.IsPending = true;
-        //                            newpckgadd.IsApproved = false;
-        //                            newpckgadd.IsPaid = false;
-        //                            newpckgadd.IsRejected = false;
-        //                            newpckgadd.UserId = user.UserId;
-        //                            dc.EWalletWithdrawalFunds.Add(newpckgadd);
-        //                            dc.SaveChanges();
-        //                            ModelState.Clear();
-        //                        //    ViewBag.Message = "Successfully Done";
-        //                            return "Successfully Done";
+                                    EWalletWithdrawalFund newpckgadd = new EWalletWithdrawalFund();
+                                    newpckgadd.UserName = user.Username;
+                                    newpckgadd.AccountNumber = user.AccountNumber; //auto
+                                    newpckgadd.BankName = user.BankName; //auto
+                                    newpckgadd.WithdrawalFundMethod = Common.Enum.PaymentSource.BankAccount.ToString();
+                                    newpckgadd.AmountPayble = amountAfterChargesDeduct;
+                                    newpckgadd.WithdrawalFundDescription = model.WithdrawalFundDescription;
+                                    newpckgadd.WithdrawalFundCharge = withdrawalFundCharges; //auto
+                                    newpckgadd.Country = user.Country;
+                                    newpckgadd.RequestedDate = DateTime.Now;
+                                    newpckgadd.ApprovedDate = null;
+                                    newpckgadd.PaidDate = null;
+                                    newpckgadd.RejectedDate = null;
+                                    newpckgadd.IsActive = true;
+                                    newpckgadd.IsPending = true;
+                                    newpckgadd.IsApproved = false;
+                                    newpckgadd.IsPaid = false;
+                                    newpckgadd.IsRejected = false;
+                                    newpckgadd.UserId = user.UserId;
+                                    dc.EWalletWithdrawalFunds.Add(newpckgadd);
+                                    dc.SaveChanges();
+                                    ModelState.Clear();
+                                    //    ViewBag.Message = "Successfully Done";
+                                    return "Successfully Done";
 
-        //                        }
-        //                        //else
-        //                        //{
-        //                        //    newpckg.TimePeriod = model.TimePeriod;
-        //                        //    newpckg.MinimumPayout = model.MinimumPayout;
-        //                        //    newpckg.PayoutChargesPercent = model.PayoutChargesPercent;
-        //                        //    dc.SaveChanges();
-        //                        //    model = null;
-        //                        //    ViewBag.Message = "Successfully Edit";
-        //                        //}
-        //                    }
-        //                    else
-        //                    {
-        //                        return "Amount must be smaller than the eligible amount";
-        //                    }
-        //                }
-        //                else
-        //                {
-        //                    //this.AddNotification("Amount payable is less then minimum range", NotificationType.WARNING);
-        //                    return "Amount must be greater than the processing charges";
-        //                    //return RedirectToAction("EWalletWithdrawalFund");
-        //                }
-        //            }
-        //            else
-        //            {
-        //                return  "You are not eligible for withdrawal. Kindly purchase your package.";
-        //            }
+                                }
+                                //else
+                                //{
+                                //    newpckg.TimePeriod = model.TimePeriod;
+                                //    newpckg.MinimumPayout = model.MinimumPayout;
+                                //    newpckg.PayoutChargesPercent = model.PayoutChargesPercent;
+                                //    dc.SaveChanges();
+                                //    model = null;
+                                //    ViewBag.Message = "Successfully Edit";
+                                //}
+                            }
+                            else
+                            {
+                                return "Amount must be smaller than the eligible amount";
+                            }
+                        }
+                        else
+                        {
+                            //this.AddNotification("Amount payable is less then minimum range", NotificationType.WARNING);
+                            return "Amount must be greater than the processing charges";
+                            //return RedirectToAction("EWalletWithdrawalFund");
+                        }
+                    }
+                    else
+                    {
+                        return "You are not eligible for withdrawal. Kindly purchase your package.";
+                    }
 
-        //        }
-        //        //this.AddNotification("Value has bees saved", NotificationType.SUCCESS);
-        //        return "Successfully Done";
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //    //return View();
-        //}
+                }
+                //this.AddNotification("Value has bees saved", NotificationType.SUCCESS);
+                return "Successfully Done";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            //return View();
+        }
     }
 }

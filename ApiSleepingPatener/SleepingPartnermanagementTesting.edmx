@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SleepingPartnermanagementTestingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SleepingPartnermanagementTestingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Advertisement">
           <Key>
             <PropertyRef Name="AdvertisementId" />
@@ -151,6 +151,7 @@
           <Property Name="IsVerify" Type="bit" />
           <Property Name="IsBlock" Type="bit" />
           <Property Name="NICImage1" Type="image" />
+          <Property Name="IsReject" Type="bit" />
         </EntityType>
         <EntityType Name="Packages">
           <Key>
@@ -525,8 +526,7 @@
           <EntitySet Name="UserRewards" EntityType="Self.UserRewards" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserTableLevel" EntityType="Self.UserTableLevel" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SleepingPartnermanagementTestingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -676,6 +676,7 @@
           <Property Name="IsVerify" Type="Boolean" />
           <Property Name="IsBlock" Type="Boolean" />
           <Property Name="NICImage1" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IsReject" Type="Boolean" />
         </EntityType>
         <EntityType Name="Package">
           <Key>
@@ -1005,31 +1006,31 @@
           <EntitySet Name="UserRewards" EntityType="Self.UserReward" />
           <EntitySet Name="UserTableLevels" EntityType="Self.UserTableLevel" />
           <FunctionImport Name="GetParentChildsLeftSP" ReturnType="Collection(SleepingPartnermanagementTestingModel.GetParentChildsLeftSP_Result)">
-            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetParentChildsOuterLeftSP" ReturnType="Collection(SleepingPartnermanagementTestingModel.GetParentChildsOuterLeftSP_Result)">
-            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetParentChildsOuterRightSP" ReturnType="Collection(SleepingPartnermanagementTestingModel.GetParentChildsOuterRightSP_Result)">
-            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetParentChildsRightSP" ReturnType="Collection(SleepingPartnermanagementTestingModel.GetParentChildsRightSP_Result)">
-            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetParentChildsSP" ReturnType="Collection(SleepingPartnermanagementTestingModel.GetParentChildsSP_Result)">
-            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetUserParentsSP" ReturnType="Collection(SleepingPartnermanagementTestingModel.GetUserParentsSP_Result)">
-            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetUserTree">
-            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetUserTreeLeft">
-            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetUserTreeRight">
-            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="insert_tree_node">
             <Parameter Name="tree_name" Mode="In" Type="String" />
@@ -1039,13 +1040,13 @@
             <Parameter Name="UserPosition" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="move_node_down">
-            <Parameter Name="tree_id" Mode="In" Type="Int32" />
+          <Parameter Name="tree_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="move_node_up">
-            <Parameter Name="tree_id" Mode="In" Type="Int32" />
+          <Parameter Name="tree_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="remove_node">
-            <Parameter Name="tree_id" Mode="In" Type="Int32" />
+          <Parameter Name="tree_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="view_human_tree" />
           <FunctionImport Name="view_tree" />
@@ -1391,6 +1392,7 @@
           <EntitySetMapping Name="NewUserRegistrations">
             <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.NewUserRegistration">
               <MappingFragment StoreEntitySet="NewUserRegistration">
+                <ScalarProperty Name="IsReject" ColumnName="IsReject" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Username" ColumnName="Username" />

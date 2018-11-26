@@ -288,6 +288,35 @@ namespace ApiSleepingPatener.Controllers
         {
             return null;
         }
+        //New user selection post on dashboard page 
+        [HttpPost]
+        [Route("approvesaleexecutive/{userId}")]
+        public IHttpActionResult ApproveSalesExecutiveContinue(int userId)
+        {
+            SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities();
+            NewUserRegistration newuserdata = dc.NewUserRegistrations.Where(a => a.UserId.Equals(userId)).FirstOrDefault();
+            if (newuserdata != null)
+            {
+                newuserdata.IsSalesExecutive = true;
+                newuserdata.UserDesignation = Common.Enum.UserAsSPorSM.SalesExecutive;
+                dc.SaveChanges();
+            }
+            return Ok(new { success = true });
+        }
+        [HttpPost]
+        [Route("approvesleepingpartner/{userId}")]
+        public IHttpActionResult ApproveSleepingPartnerContinue(int userId)
+        {
+            SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities();
+            NewUserRegistration newuserdata = dc.NewUserRegistrations.Where(a => a.UserId.Equals(userId)).FirstOrDefault();
+            if (newuserdata != null)
+            {
+                newuserdata.IsSleepingPartner = true;
+                newuserdata.UserDesignation = Common.Enum.UserAsSPorSM.SleepingPartner;
+                dc.SaveChanges();
+            }
+            return Ok(new { success = true });
+        }
 
     }
 
