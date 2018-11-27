@@ -108,17 +108,17 @@ namespace ApiSleepingPatener
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("remove_node", tree_idParameter);
         }
     
-        public virtual int update_tree_name(Nullable<int> userId, string Username)
+        public virtual int update_tree_name(Nullable<int> userId, string userName)
         {
             var userIdParameter = userId.HasValue ?
                 new ObjectParameter("UserId", userId) :
                 new ObjectParameter("UserId", typeof(int));
     
-            var UsernameParameter = Username != null ?
-                new ObjectParameter("Username", Username) :
-                new ObjectParameter("Username", typeof(string));
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("update_tree_name", userIdParameter, UsernameParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("update_tree_name", userIdParameter, userNameParameter);
         }
     
         public virtual ObjectResult<view_human_tree_Result> view_human_tree()

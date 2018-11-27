@@ -56,6 +56,7 @@ namespace ApiSleepingPatener
         public virtual DbSet<UserPosition> UserPositions { get; set; }
         public virtual DbSet<UserReward> UserRewards { get; set; }
         public virtual DbSet<UserTableLevel> UserTableLevels { get; set; }
+        public virtual DbSet<VideoPackTbl> VideoPackTbls { get; set; }
     
         public virtual ObjectResult<GetParentChildsLeftSP_Result> GetParentChildsLeftSP(Nullable<int> userId)
         {

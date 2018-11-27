@@ -985,40 +985,50 @@ namespace ApiSleepingPatener.Controllers
         {
             SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             SleepingPartnermanagementTreeTestingEntities dbTree = new SleepingPartnermanagementTreeTestingEntities();
-            UserModel usrmodel = new UserModel();
-            //string UserTypeAdmin = Common.Enum.UserType.Admin.ToString();
-            string UserTypeUser = Common.Enum.UserType.User.ToString();       
-            List<GetParentChildsLeftSP_Result> List = new List<GetParentChildsLeftSP_Result>();
-            List = db.GetParentChildsLeftSP(userId).Where(a => a.IsPaidMember.Value == true).ToList();
+            NewMembers usrmodel = new NewMembers();
+            string UserTypeUser =Common.Enum.UserType.User.ToString();
 
-                List<NewUserRegistration> listDownlineMember = new List<NewUserRegistration>();
-                UserGenealogyTableLeft usersLeft = new UserGenealogyTableLeft();
+            List<GetParentChildsLeftSP_Result> List = new List<GetParentChildsLeftSP_Result>();        
+                List = db.GetParentChildsLeftSP(userId).ToList();
+
+                List<NewMembers> listDownlineMember = new List<NewMembers>();
+                UserGenealogyTable usersLeft = new UserGenealogyTable();
+                List<UserCommission> userCommissionLeft = new List<UserCommission>();
 
                 foreach (var item in List)
                 {
                     var userIdChild = Convert.ToInt32(item.UserId);
                     if (item.UserCode == Common.Enum.UserType.User)
                     {
-                        usersLeft = db.UserGenealogyTableLefts.Where(a => a.UserId.Value.Equals(userIdChild)
+                        usersLeft = db.UserGenealogyTables.Where(a => a.UserId.Value.Equals(userIdChild)
                             && a.MatchingCommision.Value.Equals(false)).FirstOrDefault();
                         if (usersLeft != null)
                         {
-                            listDownlineMember.Add(new NewUserRegistration()
+                            userCommissionLeft = db.UserCommissions.Where(a => a.UserId.Value.Equals(userId)).ToList();
+                            bool? checkIfExists = userCommissionLeft.Exists(x => x.MatchingCommUserId.Value.Equals(usersLeft.UserId.Value));
+                            if (checkIfExists == false)
                             {
-                                UserId = item.UserId.Value,
-                                Username = item.Username,
-                                Country = item.Country,
-                                Phone = item.Phone,
-                                AccountNumber = item.AccountNumber,
-                                BankName = item.BankName,
-                                SponsorId = item.SponsorId.Value,
-                                PaidAmount = item.PaidAmount.Value,
-                                UserCode = item.UserCode
-                            });
+                                listDownlineMember.Add(new NewMembers()
+                                {
+                                    UserId = item.UserId.Value,
+                                    Username = item.Username,
+                                    Country = item.Country,
+                                    Phone = item.Phone,
+                                    AccountNumber = item.AccountNumber,
+                                    BankName = item.BankName,
+                                    SponsorId = item.SponsorId.Value,
+                                    PaidAmount = item.PaidAmount.Value,
+                                });
+                            }
+
+
                         }
                     }
                 }
-                return Ok(List);           
+                //return Json(new { data = listDownlineMember }, JsonRequestBehavior.AllowGet);            
+            return Ok(listDownlineMember);
+
+            // return Json(new { data = listDownlineMember }, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         [Route("maketablemembersright/{userId}")]
@@ -1026,58 +1036,46 @@ namespace ApiSleepingPatener.Controllers
         {
             SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             UserModel usrmodel = new UserModel();
+            string UserTypeUser = Common.Enum.UserType.User.ToString();
 
-            List<GetParentChildsRightSP_Result> List = new List<GetParentChildsRightSP_Result>();
+            List<GetParentChildsRightSP_Result> List = new List<GetParentChildsRightSP_Result>();          
+              List = db.GetParentChildsRightSP(userId).ToList();
 
-            List = db.GetParentChildsRightSP(userId)
-                .Select(x => new GetParentChildsRightSP_Result
-                //List = db.NewUserRegistrations.Select(x => new UserModel
+                List<NewMembers> listDownlineMember = new List<NewMembers>();
+                UserGenealogyTable usersRight = new UserGenealogyTable();
+                List<UserCommission> userCommissionRight = new List<UserCommission>();
+
+                foreach (var item in List)
                 {
-                    UserId = x.UserId.Value,
-                    Username = x.Username,
-                    Country = x.Country,
-                    Phone = x.Phone,
-                    AccountNumber = x.AccountNumber,
-                    BankName = x.BankName,
-                    SponsorId = x.SponsorId,
-                    PaidAmount = x.PaidAmount.Value,
-                    UserCode = x.UserCode
-                }).ToList();
-            //return Json(new { data = List }, JsonRequestBehavior.AllowGet);
-            return Ok(List);
-
-
-            List = db.GetParentChildsRightSP(userId).ToList();
-
-            List<NewUserRegistration> listDownlineMember = new List<NewUserRegistration>();
-            UserGenealogyTableRight usersRight = new UserGenealogyTableRight();
-
-            foreach (var item in List)
-            {
-                var userIdChild = Convert.ToInt32(item.UserId);
-                if (item.UserCode == Common.Enum.UserType.User)
-                {
-                    usersRight = db.UserGenealogyTableRights.Where(a => a.UserId.Value.Equals(userIdChild)
-                        && a.MatchingCommision.Value.Equals(false)).FirstOrDefault();
-                    if (usersRight != null) //both null
+                    var userIdChild = Convert.ToInt32(item.UserId);
+                    if (item.UserCode == Common.Enum.UserType.User)
                     {
-                        listDownlineMember.Add(new NewUserRegistration()
+                        usersRight = db.UserGenealogyTables.Where(a => a.UserId.Value.Equals(userIdChild)
+                            && a.MatchingCommision.Value.Equals(false)).FirstOrDefault();
+                        if (usersRight != null) //both null
                         {
-                            UserId = item.UserId.Value,
-                            Username = item.Username,
-                            Country = item.Country,
-                            Phone = item.Phone,
-                            AccountNumber = item.AccountNumber,
-                            BankName = item.BankName,
-                            SponsorId = item.SponsorId.Value,
-                            PaidAmount = item.PaidAmount.Value,
-                            UserCode = item.UserCode
-                        });
-                    }
-                }
+                            userCommissionRight = db.UserCommissions.Where(a => a.UserId.Value.Equals(userId)).ToList();
+                            bool? checkIfExists = userCommissionRight.Exists(x => x.MatchingCommUserId.Value.Equals(usersRight.UserId.Value));
+                            if (checkIfExists == false)
+                            {
+                                listDownlineMember.Add(new NewMembers()
+                                {
+                                    UserId = item.UserId.Value,
+                                    Username = item.Username,
+                                    Country = item.Country,
+                                    Phone = item.Phone,
+                                    AccountNumber = item.AccountNumber,
+                                    BankName = item.BankName,
+                                    SponsorId = item.SponsorId.Value,
+                                    PaidAmount = item.PaidAmount.Value,
+                                });
+                            }
+                        }
+
+                    }                
+                
             }
             return Ok(listDownlineMember);
-            // return Json(new { data = listDownlineMember }, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         [Route("getuserpaidmembersleftlist/{userId}")]

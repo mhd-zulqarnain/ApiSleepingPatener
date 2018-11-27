@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SleepingPartnermanagementTestingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SleepingPartnermanagementTestingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Advertisement">
           <Key>
             <PropertyRef Name="AdvertisementId" />
@@ -64,6 +64,7 @@
           <Property Name="AdminCredit" Type="bit" />
           <Property Name="AdminDebit" Type="bit" />
           <Property Name="AdminTransactionName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsWithdrawlRequestApproved" Type="bit" />
         </EntityType>
         <EntityType Name="EWalletWithdrawalFund">
           <Key>
@@ -88,6 +89,7 @@
           <Property Name="IsRejected" Type="bit" />
           <Property Name="UserId" Type="int" />
           <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EwalletTransId" Type="int" />
         </EntityType>
         <EntityType Name="HelpRequest">
           <Key>
@@ -450,6 +452,17 @@
           <Property Name="TotalRemainingRightUserAmount" Type="money" />
           <Property Name="LastModifiedDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="VideoPackTbl">
+          <Key>
+            <PropertyRef Name="VideoPackId" />
+          </Key>
+          <Property Name="VideoPackId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VideoPackPkgId" Type="int" Nullable="false" />
+          <Property Name="VideoPackName" Type="varchar(max)" />
+          <Property Name="VideoPackDesc" Type="varchar(max)" />
+          <Property Name="VideoPackVideos" Type="text" />
+          <Property Name="CreateDate" Type="date" Nullable="false" />
+        </EntityType>
         <Function Name="GetParentChildsLeftSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserId" Type="int" Mode="In" />
         </Function>
@@ -525,8 +538,10 @@
           <EntitySet Name="UserPosition" EntityType="Self.UserPosition" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRewards" EntityType="Self.UserRewards" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserTableLevel" EntityType="Self.UserTableLevel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoPackTbl" EntityType="Self.VideoPackTbl" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SleepingPartnermanagementTestingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -589,6 +604,7 @@
           <Property Name="AdminCredit" Type="Boolean" />
           <Property Name="AdminDebit" Type="Boolean" />
           <Property Name="AdminTransactionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsWithdrawlRequestApproved" Type="Boolean" />
         </EntityType>
         <EntityType Name="EWalletWithdrawalFund">
           <Key>
@@ -613,6 +629,7 @@
           <Property Name="IsRejected" Type="Boolean" />
           <Property Name="UserId" Type="Int32" />
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EwalletTransId" Type="Int32" />
         </EntityType>
         <EntityType Name="HelpRequest">
           <Key>
@@ -975,6 +992,17 @@
           <Property Name="TotalRemainingRightUserAmount" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="LastModifiedDate" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="VideoPackTbl">
+          <Key>
+            <PropertyRef Name="VideoPackId" />
+          </Key>
+          <Property Name="VideoPackId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VideoPackPkgId" Type="Int32" Nullable="false" />
+          <Property Name="VideoPackName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="VideoPackDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="VideoPackVideos" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
         <EntityContainer Name="SleepingPartnermanagementTestingEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Advertisements" EntityType="Self.Advertisement" />
           <EntitySet Name="BonusSettings" EntityType="Self.BonusSetting" />
@@ -1005,32 +1033,33 @@
           <EntitySet Name="UserPositions" EntityType="Self.UserPosition" />
           <EntitySet Name="UserRewards" EntityType="Self.UserReward" />
           <EntitySet Name="UserTableLevels" EntityType="Self.UserTableLevel" />
+          <EntitySet Name="VideoPackTbls" EntityType="Self.VideoPackTbl" />
           <FunctionImport Name="GetParentChildsLeftSP" ReturnType="Collection(SleepingPartnermanagementTestingModel.GetParentChildsLeftSP_Result)">
-          <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetParentChildsOuterLeftSP" ReturnType="Collection(SleepingPartnermanagementTestingModel.GetParentChildsOuterLeftSP_Result)">
-          <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetParentChildsOuterRightSP" ReturnType="Collection(SleepingPartnermanagementTestingModel.GetParentChildsOuterRightSP_Result)">
-          <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetParentChildsRightSP" ReturnType="Collection(SleepingPartnermanagementTestingModel.GetParentChildsRightSP_Result)">
-          <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetParentChildsSP" ReturnType="Collection(SleepingPartnermanagementTestingModel.GetParentChildsSP_Result)">
-          <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetUserParentsSP" ReturnType="Collection(SleepingPartnermanagementTestingModel.GetUserParentsSP_Result)">
-          <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetUserTree">
-          <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetUserTreeLeft">
-          <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetUserTreeRight">
-          <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="insert_tree_node">
             <Parameter Name="tree_name" Mode="In" Type="String" />
@@ -1040,13 +1069,13 @@
             <Parameter Name="UserPosition" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="move_node_down">
-          <Parameter Name="tree_id" Mode="In" Type="Int32" />
+            <Parameter Name="tree_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="move_node_up">
-          <Parameter Name="tree_id" Mode="In" Type="Int32" />
+            <Parameter Name="tree_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="remove_node">
-          <Parameter Name="tree_id" Mode="In" Type="Int32" />
+            <Parameter Name="tree_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="view_human_tree" />
           <FunctionImport Name="view_tree" />
@@ -1086,6 +1115,7 @@
           <Property Type="Boolean" Name="IsVerify" Nullable="true" />
           <Property Type="Boolean" Name="IsBlock" Nullable="true" />
           <Property Type="Binary" Name="NICImage1" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="IsReject" Nullable="true" />
         </ComplexType>
         <ComplexType Name="GetParentChildsOuterLeftSP_Result">
           <Property Type="Int32" Name="UserId" Nullable="true" />
@@ -1122,6 +1152,7 @@
           <Property Type="Boolean" Name="IsVerify" Nullable="true" />
           <Property Type="Boolean" Name="IsBlock" Nullable="true" />
           <Property Type="Binary" Name="NICImage1" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="IsReject" Nullable="true" />
         </ComplexType>
         <ComplexType Name="GetParentChildsOuterRightSP_Result">
           <Property Type="Int32" Name="UserId" Nullable="true" />
@@ -1158,6 +1189,7 @@
           <Property Type="Boolean" Name="IsVerify" Nullable="true" />
           <Property Type="Boolean" Name="IsBlock" Nullable="true" />
           <Property Type="Binary" Name="NICImage1" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="IsReject" Nullable="true" />
         </ComplexType>
         <ComplexType Name="GetParentChildsRightSP_Result">
           <Property Type="Int32" Name="UserId" Nullable="true" />
@@ -1194,6 +1226,7 @@
           <Property Type="Boolean" Name="IsVerify" Nullable="true" />
           <Property Type="Boolean" Name="IsBlock" Nullable="true" />
           <Property Type="Binary" Name="NICImage1" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="IsReject" Nullable="true" />
         </ComplexType>
         <ComplexType Name="GetParentChildsSP_Result">
           <Property Type="Int32" Name="UserId" Nullable="true" />
@@ -1230,6 +1263,7 @@
           <Property Type="Boolean" Name="IsVerify" Nullable="true" />
           <Property Type="Boolean" Name="IsBlock" Nullable="true" />
           <Property Type="Binary" Name="NICImage1" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="IsReject" Nullable="true" />
         </ComplexType>
         <ComplexType Name="GetUserParentsSP_Result">
           <Property Type="Int32" Name="UserId" Nullable="true" />
@@ -1266,6 +1300,7 @@
           <Property Type="Boolean" Name="IsVerify" Nullable="true" />
           <Property Type="Boolean" Name="IsBlock" Nullable="true" />
           <Property Type="Binary" Name="NICImage1" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="IsReject" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1335,6 +1370,7 @@
                 <ScalarProperty Name="AdminCredit" ColumnName="AdminCredit" />
                 <ScalarProperty Name="AdminDebit" ColumnName="AdminDebit" />
                 <ScalarProperty Name="AdminTransactionName" ColumnName="AdminTransactionName" />
+                <ScalarProperty Name="IsWithdrawlRequestApproved" ColumnName="IsWithdrawlRequestApproved" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1360,6 +1396,7 @@
                 <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="EwalletTransId" ColumnName="EwalletTransId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1392,7 +1429,6 @@
           <EntitySetMapping Name="NewUserRegistrations">
             <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.NewUserRegistration">
               <MappingFragment StoreEntitySet="NewUserRegistration">
-                <ScalarProperty Name="IsReject" ColumnName="IsReject" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
@@ -1427,6 +1463,7 @@
                 <ScalarProperty Name="IsVerify" ColumnName="IsVerify" />
                 <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
                 <ScalarProperty Name="NICImage1" ColumnName="NICImage1" />
+                <ScalarProperty Name="IsReject" ColumnName="IsReject" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1747,6 +1784,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="VideoPackTbls">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.VideoPackTbl">
+              <MappingFragment StoreEntitySet="VideoPackTbl">
+                <ScalarProperty Name="VideoPackId" ColumnName="VideoPackId" />
+                <ScalarProperty Name="VideoPackPkgId" ColumnName="VideoPackPkgId" />
+                <ScalarProperty Name="VideoPackName" ColumnName="VideoPackName" />
+                <ScalarProperty Name="VideoPackDesc" ColumnName="VideoPackDesc" />
+                <ScalarProperty Name="VideoPackVideos" ColumnName="VideoPackVideos" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="GetParentChildsLeftSP" FunctionName="SleepingPartnermanagementTestingModel.Store.GetParentChildsLeftSP">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SleepingPartnermanagementTestingModel.GetParentChildsLeftSP_Result">
@@ -1784,6 +1833,7 @@
                 <ScalarProperty Name="IsVerify" ColumnName="IsVerify" />
                 <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
                 <ScalarProperty Name="NICImage1" ColumnName="NICImage1" />
+                <ScalarProperty Name="IsReject" ColumnName="IsReject" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1824,6 +1874,7 @@
                 <ScalarProperty Name="IsVerify" ColumnName="IsVerify" />
                 <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
                 <ScalarProperty Name="NICImage1" ColumnName="NICImage1" />
+                <ScalarProperty Name="IsReject" ColumnName="IsReject" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1864,6 +1915,7 @@
                 <ScalarProperty Name="IsVerify" ColumnName="IsVerify" />
                 <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
                 <ScalarProperty Name="NICImage1" ColumnName="NICImage1" />
+                <ScalarProperty Name="IsReject" ColumnName="IsReject" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1904,6 +1956,7 @@
                 <ScalarProperty Name="IsVerify" ColumnName="IsVerify" />
                 <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
                 <ScalarProperty Name="NICImage1" ColumnName="NICImage1" />
+                <ScalarProperty Name="IsReject" ColumnName="IsReject" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1944,6 +1997,7 @@
                 <ScalarProperty Name="IsVerify" ColumnName="IsVerify" />
                 <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
                 <ScalarProperty Name="NICImage1" ColumnName="NICImage1" />
+                <ScalarProperty Name="IsReject" ColumnName="IsReject" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1984,6 +2038,7 @@
                 <ScalarProperty Name="IsVerify" ColumnName="IsVerify" />
                 <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
                 <ScalarProperty Name="NICImage1" ColumnName="NICImage1" />
+                <ScalarProperty Name="IsReject" ColumnName="IsReject" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

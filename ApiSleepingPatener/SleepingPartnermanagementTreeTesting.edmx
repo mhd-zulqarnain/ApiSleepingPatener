@@ -66,7 +66,7 @@
         </Function>
         <Function Name="update_tree_name" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserId" Type="int" Mode="In" />
-          <Parameter Name="Username" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="view_human_tree" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="view_tree" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -120,7 +120,7 @@
           </FunctionImport>
           <FunctionImport Name="update_tree_name">
             <Parameter Name="UserId" Mode="In" Type="Int32" />
-            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="view_human_tree" ReturnType="Collection(SleepingPartnermanagementTreeTestingModel.view_human_tree_Result)" />
           <FunctionImport Name="view_tree" ReturnType="Collection(SleepingPartnermanagementTreeTestingModel.view_tree_Result)" />

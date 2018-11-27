@@ -13,12 +13,12 @@ using ApiSleepingPatener.Models.Account;
 
 namespace ApiSleepingPatener.Controllers
 {
-    public class DasboardDetailController : ApiController
+    public class SponserSupportController : ApiController
     {
         //[Authorize]
         [HttpGet]
-        [Route("dashboard/{userId}")]
-        public IHttpActionResult DashBoard(int userId)
+        [Route("Sponser/{userId}")]
+        public IHttpActionResult Sponser(int userId)
         {
             Dashboarddetails dbd = new Dashboarddetails();
             string totaldirectcommission = GetUserTotalDirectCommission(userId);
@@ -194,28 +194,26 @@ namespace ApiSleepingPatener.Controllers
         public string GetAllTotalRightUserPV(int userId)
         {
             // var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
-            //using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
-            //{
-            //    var TotalAmountRightUsers = dc.GetParentChildsRightSP(userId).Where(a => a.IsPaidMember.Value.Equals(true)).ToList();
-            //    decimal TotalAmountRightUsersShow = TotalAmountRightUsers.Sum(x => x.PaidAmount.Value);
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
+            {
+                var TotalAmountRightUsers = dc.GetParentChildsRightSP(userId).Where(a => a.IsPaidMember.Value.Equals(true)).ToList();
+                decimal TotalAmountRightUsersShow = TotalAmountRightUsers.Sum(x => x.PaidAmount.Value);
 
-            //    return TotalAmountRightUsersShow.ToString();
-
-            return "";
+                return TotalAmountRightUsersShow.ToString();
+            }
         }
 
         public string GetUserDownlineMembers(int userId)
         {
-            string UserTypeUser = Common.Enum.UserType.User.ToString();
             using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
-            { 
-                    var totalLeft = dc.GetParentChildsLeftSP(userId).ToList();
-                    var totalRight = dc.GetParentChildsRightSP(userId).ToList();
-                    var query = totalLeft.Count() + totalRight.Count();
+            {               
+
+                    var CGP = dc.GetParentChildsSP(userId).ToList();
+                    var query = CGP.Count();
                 return query.ToString();
-                }
-            
-         
+                
+            }
+          
         }
 
         public string GetPayoutHistorySum(int userId)

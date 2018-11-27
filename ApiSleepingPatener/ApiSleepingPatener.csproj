@@ -280,6 +280,7 @@
     </Compile>
     <Compile Include="Common\Enum.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\SponserSupportController.cs" />
     <Compile Include="Controllers\DasboardDetailController.cs" />
     <Compile Include="Controllers\EwalletController.cs" />
     <Compile Include="Controllers\GenealogyTableController.cs" />
@@ -364,6 +365,7 @@
     <Compile Include="Models\GeneralHelp\HelpRequestModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\MakeTableData.cs" />
+    <Compile Include="Models\NewMembers.cs" />
     <Compile Include="Models\NewsTicker\NewsTickerModel.cs" />
     <Compile Include="Models\NotificationExtensions.cs" />
     <Compile Include="Models\Notification\NotificationModel.cs" />
@@ -486,6 +488,9 @@
     <Compile Include="UserTableLevel.cs">
       <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
     </Compile>
+    <Compile Include="VideoPackTbl.cs">
+      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+    </Compile>
     <Compile Include="view_human_tree_Result.cs">
       <DependentUpon>SleepingPartnermanagementTreeTesting.tt</DependentUpon>
     </Compile>
@@ -579,19 +584,19 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <EntityDeploy Include="SleepingPartnermanagementTreeTesting.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SleepingPartnermanagementTreeTesting.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="SleepingPartnermanagementTreeTesting.edmx.diagram">
-      <DependentUpon>SleepingPartnermanagementTreeTesting.edmx</DependentUpon>
-    </Content>
     <EntityDeploy Include="SleepingPartnermanagementTesting.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SleepingPartnermanagementTesting.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <Content Include="SleepingPartnermanagementTesting.edmx.diagram">
       <DependentUpon>SleepingPartnermanagementTesting.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="SleepingPartnermanagementTreeTesting.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SleepingPartnermanagementTreeTesting.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="SleepingPartnermanagementTreeTesting.edmx.diagram">
+      <DependentUpon>SleepingPartnermanagementTreeTesting.edmx</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>
