@@ -23,28 +23,28 @@ namespace ApiSleepingPatener.Controllers
         string SendSMSAccountSid = System.Configuration.ConfigurationManager.AppSettings["SendSMSAccountSid"];
         string SendSMSAuthToken = System.Configuration.ConfigurationManager.AppSettings["SendSMSAuthToken"];
         string SendSMSFromNumber = System.Configuration.ConfigurationManager.AppSettings["SendSMSFromNumber"];
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         [Route("maketabledetails/{userId}")]
         public IHttpActionResult getMaketableData(int userId)
         {
-            MakeTableData obj = new MakeTableData();
-            decimal TotalLeftUsers = GetTotalLeftUsers(userId);
-            decimal TotalRightUsers = GetTotalRightUsers(userId);
+            //MakeTableData obj = new MakeTableData();
+            //string TotalLeftUsers = GetAllTotalLeftUsers(userId);
+            //string TotalRightUsers = GetTotalRightUsers(userId);
+            
+            //string TotalAmountLeftUsers = GetTotalAmountLeftUsers(userId);
+            //string TotalAmountRightUsers = GetTotalAmountRightUsers(userId);
+            //string RightRemaingAmount = GetRightRemaingAmount(userId);
+            //string LeftRemaingAmount = GetLeftRemaingAmount(userId);
+            
+            //obj.totalLeftUsers = TotalLeftUsers;
+            //obj.totalRightUsers = TotalRightUsers;
+            //obj.totalAmountLeftUsers = TotalAmountLeftUsers;
+            //obj.totalAmountRightUsers = TotalAmountRightUsers;
+            //obj.rightRemaingAmount = RightRemaingAmount;
+            //obj.leftRemaingAmount = LeftRemaingAmount;
 
-            decimal TotalAmountLeftUsers = GetTotalAmountLeftUsers(userId);
-            decimal TotalAmountRightUsers = GetTotalAmountRightUsers(userId);
-            decimal RightRemaingAmount = GetRightRemaingAmount(userId);
-            decimal LeftRemaingAmount = GetLeftRemaingAmount(userId);
-
-            obj.totalLeftUsers = TotalLeftUsers;
-            obj.totalRightUsers = TotalRightUsers;
-            obj.totalAmountLeftUsers = TotalAmountLeftUsers;
-            obj.totalAmountRightUsers = TotalAmountRightUsers;
-            obj.rightRemaingAmount = RightRemaingAmount;
-            obj.leftRemaingAmount = LeftRemaingAmount;
-
-            return Ok(obj);
+            return Ok(0);
 
         }
 
@@ -55,7 +55,7 @@ namespace ApiSleepingPatener.Controllers
         {
             SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             SleepingPartnermanagementTreeTestingEntities dbTree = new SleepingPartnermanagementTreeTestingEntities();
-            IEnumerable<UserModel> usrmodel = new List<UserModel>();
+            IEnumerable<NewMembers> usrmodel = new List<NewMembers>();
             string UserTypeUser = Common.Enum.UserType.User.ToString();
 
             List<GetParentChildsSP_Result> List = new List<GetParentChildsSP_Result>();
@@ -65,7 +65,7 @@ namespace ApiSleepingPatener.Controllers
                         join c in db.NewUserRegistrations on n.SponsorId equals c.UserId
                         where n.IsUserActive.Value == true
                         //&& n.IsPaidMember.Value == true
-                        select new UserModel
+                        select new NewMembers
                         {
                             UserId = n.UserId.Value,
                             Username = n.Username,
@@ -85,22 +85,16 @@ namespace ApiSleepingPatener.Controllers
         public IHttpActionResult AllGetUserDownlineMembersRight(int userId)
         {
             SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
-            IEnumerable<UserModel> usrmodel = new List<UserModel>();
+            IEnumerable<NewMembers> usrmodel = new List<NewMembers>();
             string UserTypeUser = Common.Enum.UserType.User.ToString();
 
             List<GetParentChildsSP_Result> List = new List<GetParentChildsSP_Result>();
-            //List = db.NewUserRegistrations.Where(a => a.UserCode.Equals(UserTypeUser)
-            //    && a.DownlineMemberId.Equals(userId))
-            //List = db.NewUserRegistrations.Select(x => new UserModel
-
-            //List = db.GetParentChildsRightSP(userId)
-            //    .Select(x => new GetParentChildsSP_Result
 
             usrmodel = (from n in db.GetParentChildsRightSP(userId)
                         join c in db.NewUserRegistrations on n.SponsorId equals c.UserId
                         where n.IsUserActive.Value == true
                         //&& n.IsPaidMember.Value == true
-                        select new UserModel
+                        select new NewMembers
                         {
                             UserId = n.UserId.Value,
                             Username = n.Username,
@@ -142,32 +136,33 @@ namespace ApiSleepingPatener.Controllers
 
         //    return Ok(usrmodel);
         //}
-
-        public decimal GetLeftRemaingAmount(int userId)
+        [HttpGet]
+        [Route("getleftremaingzmount/{userId}")]
+        public IHttpActionResult GetLeftRemaingAmount(int userId)
         {
             decimal LeftPaidAmountShow = 0;
             decimal RightPaidAmountShow = 0;
-            decimal amountLeft = 0;
-            string UserTypeAdmin = ApiSleepingPatener.Common.Enum.UserType.Admin.ToString();
-            string UserTypeUser = ApiSleepingPatener.Common.Enum.UserType.User.ToString();
+            string UserTypeUser =Common.Enum.UserType.User.ToString();
             List<GetParentChildsLeftSP_Result> ListLeft = new List<GetParentChildsLeftSP_Result>();
             List<GetParentChildsRightSP_Result> ListRight = new List<GetParentChildsRightSP_Result>();
             using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
             {
                 ListLeft = dc.GetParentChildsLeftSP(userId).ToList();
                 ListRight = dc.GetParentChildsRightSP(userId).ToList();
-                List<UserGenealogyTableLeft> usersLeft = new List<UserGenealogyTableLeft>();
+                List<UserGenealogyTable> usersLeft = new List<UserGenealogyTable>();
                 List<NewUserRegistration> newUsersLeft = new List<NewUserRegistration>();
-                List<UserGenealogyTableRight> usersRight = new List<UserGenealogyTableRight>();
+                List<UserGenealogyTable> usersRight = new List<UserGenealogyTable>();
                 List<NewUserRegistration> newUsersRight = new List<NewUserRegistration>();
 
                 List<NewUserRegistration> listDownlineMemberLeft = new List<NewUserRegistration>();
                 List<NewUserRegistration> listDownlineMemberRight = new List<NewUserRegistration>();
+                List<UserCommission> userCommissionLeft = new List<UserCommission>();
+                List<UserCommission> userCommissionRight = new List<UserCommission>();
 
                 foreach (var itemLeft in ListLeft)
                 {
                     var userIdChild = Convert.ToInt32(itemLeft.UserId);
-                    usersLeft = dc.UserGenealogyTableLefts.Where(a => a.UserId.Value.Equals(userIdChild)
+                    usersLeft = dc.UserGenealogyTables.Where(a => a.UserId.Value.Equals(userIdChild)
                             && a.MatchingCommision.Value.Equals(false)).ToList();
                     foreach (var itemUser in usersLeft)
                     {
@@ -176,14 +171,20 @@ namespace ApiSleepingPatener.Controllers
                             && a.IsUserActive.Value.Equals(true)).ToList();
                         if (newUsersLeft != null)
                         {
-                            listDownlineMemberLeft.Add(new NewUserRegistration()
+                            userCommissionLeft = dc.UserCommissions.Where(a => a.UserId.Value.Equals(userId)).ToList();
+                            bool? checkIfExists = userCommissionLeft.Exists(x => x.MatchingCommUserId.Value.Equals(itemLeft.UserId.Value));
+                            if (checkIfExists == false)
                             {
-                                UserId = itemLeft.UserId.Value,
-                                Username = itemLeft.Username,
-                                Country = itemLeft.Country,
-                                Phone = itemLeft.Phone,
-                                PaidAmount = itemLeft.PaidAmount.Value
-                            });
+                                listDownlineMemberLeft.Add(new NewUserRegistration()
+                                {
+                                    UserId = itemLeft.UserId.Value,
+                                    Username = itemLeft.Username,
+                                    Country = itemLeft.Country,
+                                    Phone = itemLeft.Phone,
+                                    PaidAmount = itemLeft.PaidAmount.Value
+                                });
+                            }
+
                             LeftPaidAmountShow = listDownlineMemberLeft.Sum(x => x.PaidAmount.Value);
                         }
 
@@ -193,7 +194,7 @@ namespace ApiSleepingPatener.Controllers
                 foreach (var itemRight in ListRight)
                 {
                     var userIdChild = Convert.ToInt32(itemRight.UserId);
-                    usersRight = dc.UserGenealogyTableRights.Where(a => a.UserId.Value.Equals(userIdChild)
+                    usersRight = dc.UserGenealogyTables.Where(a => a.UserId.Value.Equals(userIdChild)
                             && a.MatchingCommision.Value.Equals(false)).ToList();
                     foreach (var itemUser in usersRight)
                     {
@@ -202,14 +203,20 @@ namespace ApiSleepingPatener.Controllers
                             && a.IsUserActive.Value.Equals(true)).ToList();
                         if (newUsersRight != null)
                         {
-                            listDownlineMemberRight.Add(new NewUserRegistration()
+                            userCommissionRight = dc.UserCommissions.Where(a => a.UserId.Value.Equals(userId)).ToList();
+                            bool? checkIfExists = userCommissionLeft.Exists(x => x.MatchingCommUserId.Value.Equals(itemRight.UserId.Value));
+                            if (checkIfExists == false)
                             {
-                                UserId = itemRight.UserId.Value,
-                                Username = itemRight.Username,
-                                Country = itemRight.Country,
-                                Phone = itemRight.Phone,
-                                PaidAmount = itemRight.PaidAmount.Value
-                            });
+                                listDownlineMemberRight.Add(new NewUserRegistration()
+                                {
+                                    UserId = itemRight.UserId.Value,
+                                    Username = itemRight.Username,
+                                    Country = itemRight.Country,
+                                    Phone = itemRight.Phone,
+                                    PaidAmount = itemRight.PaidAmount.Value
+                                });
+                            }
+
                             RightPaidAmountShow = listDownlineMemberRight.Sum(x => x.PaidAmount.Value);
                         }
 
@@ -229,84 +236,65 @@ namespace ApiSleepingPatener.Controllers
 
                 if (showAmount != 0)
                 {
-                    amountLeft = showAmount;
-
+                    return Ok(showAmount);
                 }
-
+                else
+                {
+                    return Ok(showAmount);
+                    //return showAmount.ToString();
+                }
             }
-            return amountLeft;
+            //return View();
 
         }
 
-
-        public decimal GetTotalLeftUsers(int userId)
+        [HttpGet]
+        [Route("getalltotaleftusers/{userId}")]
+        public IHttpActionResult GetAllTotalLeftUsers(int userId)
         {
-            int TotalLeftUsersShow = 0;
-            decimal TotalLeftUsers = 0;
-            List<GetParentChildsLeftSP_Result> List = new List<GetParentChildsLeftSP_Result>();
             using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
             {
-                List = dc.GetParentChildsLeftSP(userId).ToList();
-                List<NewUserRegistration> listDownlineMember = new List<NewUserRegistration>();
-                UserGenealogyTableLeft usersLeft = new UserGenealogyTableLeft();
-                foreach (var item in List)
-                {
-                    var userIdChild = Convert.ToInt32(item.UserId);
-                    usersLeft = dc.UserGenealogyTableLefts.Where(a => a.UserId.Value.Equals(userIdChild)
-                            && a.MatchingCommision.Value.Equals(false)).FirstOrDefault();
-                    if (usersLeft != null)
-                    {
-                        listDownlineMember.Add(new NewUserRegistration()
-                        {
-                            UserId = item.UserId.Value,
-                            Username = item.Username,
-                            Country = item.Country,
-                            Phone = item.Phone,
-                            AccountNumber = item.AccountNumber,
-                            BankName = item.BankName,
-                            SponsorId = item.SponsorId.Value,
-                            PaidAmount = item.PaidAmount.Value,
-                            UserCode = item.UserCode
-                        });
-                        TotalLeftUsersShow = listDownlineMember.Count();
-                    }
-
-                }
-
+                var TotalLeftUsers = dc.GetParentChildsLeftSP(userId).ToList();
+                int TotalLeftUsersShow = TotalLeftUsers.Count();
+                
                 if (TotalLeftUsersShow != 0)
                 {
-                    TotalLeftUsers = TotalLeftUsersShow;
-
+                    return Ok(TotalLeftUsersShow);
+                    //return TotalLeftUsersShow.ToString();
                 }
-
+                else
+                {
+                    return Ok(TotalLeftUsersShow);
+                    //return TotalLeftUsersShow.ToString();
+                }
             }
-            return TotalLeftUsersShow;
+            //return View();
 
         }
 
-
-        public decimal GetTotalAmountLeftUsers(int userId)
+        [HttpGet]
+        [Route("getalltotarightusers/{userId}")]
+        public IHttpActionResult GetTotalRightUsers(int userId)
         {
-            decimal TotalAmountLeftUsersShow = 0;
-
-            List<GetParentChildsLeftSP_Result> List = new List<GetParentChildsLeftSP_Result>();
+            int TotalRightUsersShow = 0;
+            List<GetParentChildsRightSP_Result> List = new List<GetParentChildsRightSP_Result>();
             using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
             {
-                List = dc.GetParentChildsLeftSP(userId).ToList();
-                List<UserGenealogyTableLeft> usersLeft = new List<UserGenealogyTableLeft>();
-                List<NewUserRegistration> newUsersLeft = new List<NewUserRegistration>();
+                List = dc.GetParentChildsRightSP(userId).ToList();            
                 List<NewUserRegistration> listDownlineMember = new List<NewUserRegistration>();
+                UserGenealogyTable usersRight = new UserGenealogyTable();
+                List<UserCommission> userCommissionRight = new List<UserCommission>();
+
                 foreach (var item in List)
                 {
                     var userIdChild = Convert.ToInt32(item.UserId);
-                    usersLeft = dc.UserGenealogyTableLefts.Where(a => a.UserId.Value.Equals(userIdChild)
-                            && a.MatchingCommision.Value.Equals(false)).ToList();
-                    foreach (var itemUser in usersLeft)
+                    usersRight = dc.UserGenealogyTables.Where(a => a.UserId.Value.Equals(userIdChild)
+                            && a.MatchingCommision.Value.Equals(false)).FirstOrDefault();
+                    if (usersRight != null)
                     {
-                        var userIdChildLeft = Convert.ToInt32(itemUser.UserId);
-                        newUsersLeft = dc.NewUserRegistrations.Where(a => a.UserId.Equals(userIdChildLeft)
-                            && a.IsUserActive.Value.Equals(true)).ToList();
-                        if (newUsersLeft != null)
+                        userCommissionRight = dc.UserCommissions.Where(a => a.UserId.Value.Equals(userId)).ToList();
+                        bool? checkIfExists = userCommissionRight.Exists(x => x.MatchingCommUserId.Value.Equals(usersRight.UserId.Value));
+                        if (checkIfExists == false)
                         {
                             listDownlineMember.Add(new NewUserRegistration()
                             {
@@ -320,47 +308,43 @@ namespace ApiSleepingPatener.Controllers
                                 PaidAmount = item.PaidAmount.Value,
                                 UserCode = item.UserCode
                             });
-                            TotalAmountLeftUsersShow = listDownlineMember.Sum(x => x.PaidAmount.Value);
                         }
 
+                        TotalRightUsersShow = listDownlineMember.Count();
                     }
 
                 }
 
-
-
+                if (TotalRightUsersShow != 0)
+                {
+                    return Ok(TotalRightUsersShow);
+                    //return TotalRightUsersShow.ToString();
+                }
+                else
+                {
+                    return Ok(TotalRightUsersShow);
+                    //return TotalRightUsersShow.ToString();
+                }
             }
-            return TotalAmountLeftUsersShow;
+            //return View();
 
         }
-
-
-        [HttpPost]
-        public decimal GetRightRemaingAmount(int userId)
+        public string GetTotalAmountLeftUsers(int userId)
         {
-            decimal LeftPaidAmountShow = 0;
-            decimal RightPaidAmountShow = 0;
-            decimal RightPaidAmount = 0;
-            string UserTypeAdmin = Common.Enum.UserType.Admin.ToString();
-            string UserTypeUser = Common.Enum.UserType.User.ToString();
-            List<GetParentChildsLeftSP_Result> ListLeft = new List<GetParentChildsLeftSP_Result>();
-            List<GetParentChildsRightSP_Result> ListRight = new List<GetParentChildsRightSP_Result>();
+            decimal TotalAmountLeftUsersShow = 0;
+            List<GetParentChildsLeftSP_Result> List = new List<GetParentChildsLeftSP_Result>();
             using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
             {
-                ListLeft = dc.GetParentChildsLeftSP(userId).ToList();
-                ListRight = dc.GetParentChildsRightSP(userId).ToList();
-                List<UserGenealogyTableLeft> usersLeft = new List<UserGenealogyTableLeft>();
+                List = dc.GetParentChildsLeftSP(userId).ToList();
+                List<UserGenealogyTable> usersLeft = new List<UserGenealogyTable>();
                 List<NewUserRegistration> newUsersLeft = new List<NewUserRegistration>();
-                List<UserGenealogyTableRight> usersRight = new List<UserGenealogyTableRight>();
-                List<NewUserRegistration> newUsersRight = new List<NewUserRegistration>();
+                List<NewUserRegistration> listDownlineMember = new List<NewUserRegistration>();
+                List<UserCommission> userCommissionLeft = new List<UserCommission>();
 
-                List<NewUserRegistration> listDownlineMemberLeft = new List<NewUserRegistration>();
-                List<NewUserRegistration> listDownlineMemberRight = new List<NewUserRegistration>();
-
-                foreach (var itemLeft in ListLeft)
+                foreach (var item in List)
                 {
-                    var userIdChild = Convert.ToInt32(itemLeft.UserId);
-                    usersLeft = dc.UserGenealogyTableLefts.Where(a => a.UserId.Value.Equals(userIdChild)
+                    var userIdChild = Convert.ToInt32(item.UserId);
+                    usersLeft = dc.UserGenealogyTables.Where(a => a.UserId.Value.Equals(userIdChild)
                             && a.MatchingCommision.Value.Equals(false)).ToList();
                     foreach (var itemUser in usersLeft)
                     {
@@ -369,14 +353,93 @@ namespace ApiSleepingPatener.Controllers
                             && a.IsUserActive.Value.Equals(true)).ToList();
                         if (newUsersLeft != null)
                         {
-                            listDownlineMemberLeft.Add(new NewUserRegistration()
+                            userCommissionLeft = dc.UserCommissions.Where(a => a.UserId.Value.Equals(userId)).ToList();
+                            bool? checkIfExists = userCommissionLeft.Exists(x => x.MatchingCommUserId.Value.Equals(item.UserId.Value));
+                            if (checkIfExists == false)
                             {
-                                UserId = itemLeft.UserId.Value,
-                                Username = itemLeft.Username,
-                                Country = itemLeft.Country,
-                                Phone = itemLeft.Phone,
-                                PaidAmount = itemLeft.PaidAmount.Value
-                            });
+                                listDownlineMember.Add(new NewUserRegistration()
+                                {
+                                    UserId = item.UserId.Value,
+                                    Username = item.Username,
+                                    Country = item.Country,
+                                    Phone = item.Phone,
+                                    AccountNumber = item.AccountNumber,
+                                    BankName = item.BankName,
+                                    SponsorId = item.SponsorId.Value,
+                                    PaidAmount = item.PaidAmount.Value,
+                                    UserCode = item.UserCode
+                                });
+                            }
+
+                            TotalAmountLeftUsersShow = listDownlineMember.Sum(x => x.PaidAmount.Value);
+                        }
+
+                    }
+
+                }
+
+                if (TotalAmountLeftUsersShow != 0)
+                {
+                    return TotalAmountLeftUsersShow.ToString();
+                }
+                else
+                {
+                    return TotalAmountLeftUsersShow.ToString();
+                }
+            }
+            //return View();
+
+        }
+
+
+        
+        public string GetRightRemaingAmount(int userId)
+        {
+            decimal LeftPaidAmountShow = 0;
+            decimal RightPaidAmountShow = 0;
+            string UserTypeUser = Common.Enum.UserType.User.ToString();
+            List<GetParentChildsLeftSP_Result> ListLeft = new List<GetParentChildsLeftSP_Result>();
+            List<GetParentChildsRightSP_Result> ListRight = new List<GetParentChildsRightSP_Result>();
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
+            {
+                ListLeft = dc.GetParentChildsLeftSP(userId).ToList();
+                ListRight = dc.GetParentChildsRightSP(userId).ToList();
+                List<UserGenealogyTable> usersLeft = new List<UserGenealogyTable>();
+                List<NewUserRegistration> newUsersLeft = new List<NewUserRegistration>();
+                List<UserGenealogyTable> usersRight = new List<UserGenealogyTable>();
+                List<NewUserRegistration> newUsersRight = new List<NewUserRegistration>();
+
+                List<NewUserRegistration> listDownlineMemberLeft = new List<NewUserRegistration>();
+                List<NewUserRegistration> listDownlineMemberRight = new List<NewUserRegistration>();
+                List<UserCommission> userCommissionLeft = new List<UserCommission>();
+                List<UserCommission> userCommissionRight = new List<UserCommission>();
+
+                foreach (var itemLeft in ListLeft)
+                {
+                    var userIdChild = Convert.ToInt32(itemLeft.UserId);
+                    usersLeft = dc.UserGenealogyTables.Where(a => a.UserId.Value.Equals(userIdChild)
+                            && a.MatchingCommision.Value.Equals(false)).ToList();
+                    foreach (var itemUser in usersLeft)
+                    {
+                        var userIdChildLeft = Convert.ToInt32(itemUser.UserId);
+                        newUsersLeft = dc.NewUserRegistrations.Where(a => a.UserId.Equals(userIdChildLeft)
+                            && a.IsUserActive.Value.Equals(true)).ToList();
+                        if (newUsersLeft != null)
+                        {
+                            userCommissionLeft = dc.UserCommissions.Where(a => a.UserId.Value.Equals(userId)).ToList();
+                            bool? checkIfExists = userCommissionLeft.Exists(x => x.MatchingCommUserId.Value.Equals(itemLeft.UserId.Value));
+                            if (checkIfExists == false)
+                            {
+                                listDownlineMemberLeft.Add(new NewUserRegistration()
+                                {
+                                    UserId = itemLeft.UserId.Value,
+                                    Username = itemLeft.Username,
+                                    Country = itemLeft.Country,
+                                    Phone = itemLeft.Phone,
+                                    PaidAmount = itemLeft.PaidAmount.Value
+                                });
+                            }
+
                             LeftPaidAmountShow = listDownlineMemberLeft.Sum(x => x.PaidAmount.Value);
                         }
 
@@ -386,7 +449,7 @@ namespace ApiSleepingPatener.Controllers
                 foreach (var itemRight in ListRight)
                 {
                     var userIdChild = Convert.ToInt32(itemRight.UserId);
-                    usersRight = dc.UserGenealogyTableRights.Where(a => a.UserId.Value.Equals(userIdChild)
+                    usersRight = dc.UserGenealogyTables.Where(a => a.UserId.Value.Equals(userIdChild)
                             && a.MatchingCommision.Value.Equals(false)).ToList();
                     foreach (var itemUser in usersRight)
                     {
@@ -395,14 +458,20 @@ namespace ApiSleepingPatener.Controllers
                             && a.IsUserActive.Value.Equals(true)).ToList();
                         if (newUsersRight != null)
                         {
-                            listDownlineMemberRight.Add(new NewUserRegistration()
+                            userCommissionRight = dc.UserCommissions.Where(a => a.UserId.Value.Equals(userId)).ToList();
+                            bool? checkIfExists = userCommissionLeft.Exists(x => x.MatchingCommUserId.Value.Equals(itemRight.UserId.Value));
+                            if (checkIfExists == false)
                             {
-                                UserId = itemRight.UserId.Value,
-                                Username = itemRight.Username,
-                                Country = itemRight.Country,
-                                Phone = itemRight.Phone,
-                                PaidAmount = itemRight.PaidAmount.Value
-                            });
+                                listDownlineMemberRight.Add(new NewUserRegistration()
+                                {
+                                    UserId = itemRight.UserId.Value,
+                                    Username = itemRight.Username,
+                                    Country = itemRight.Country,
+                                    Phone = itemRight.Phone,
+                                    PaidAmount = itemRight.PaidAmount.Value
+                                });
+                            }
+
                             RightPaidAmountShow = listDownlineMemberRight.Sum(x => x.PaidAmount.Value);
                         }
 
@@ -422,77 +491,37 @@ namespace ApiSleepingPatener.Controllers
 
                 if (showAmount != 0)
                 {
-                    RightPaidAmount = showAmount;
-
+                    return showAmount.ToString();
                 }
-
+                else
+                {
+                    return showAmount.ToString();
+                }
             }
-            return RightPaidAmount;
+            //return View();
 
         }
 
-        [HttpPost]
-        public decimal GetTotalRightUsers(int userId)
-        {
-            int TotalRightUsersShow = 0;
-            decimal TotalRightUsers = 0;
 
-            List<GetParentChildsRightSP_Result> List = new List<GetParentChildsRightSP_Result>();
-            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
-            {
-                List = dc.GetParentChildsRightSP(userId).ToList();
-                List<NewUserRegistration> listDownlineMember = new List<NewUserRegistration>();
-                UserGenealogyTableRight usersRight = new UserGenealogyTableRight();
-                foreach (var item in List)
-                {
-                    var userIdChild = Convert.ToInt32(item.UserId);
-                    usersRight = dc.UserGenealogyTableRights.Where(a => a.UserId.Value.Equals(userIdChild)
-                            && a.MatchingCommision.Value.Equals(false)).FirstOrDefault();
-                    if (usersRight != null)
-                    {
-                        listDownlineMember.Add(new NewUserRegistration()
-                        {
-                            UserId = item.UserId.Value,
-                            Username = item.Username,
-                            Country = item.Country,
-                            Phone = item.Phone,
-                            AccountNumber = item.AccountNumber,
-                            BankName = item.BankName,
-                            SponsorId = item.SponsorId.Value,
-                            PaidAmount = item.PaidAmount.Value,
-                            UserCode = item.UserCode
-                        });
-                        TotalRightUsersShow = listDownlineMember.Count();
-                    }
+       
 
-                }
-
-                if (TotalRightUsersShow != 0)
-                {
-                    TotalRightUsers = TotalRightUsersShow;
-                }
-
-            }
-            return TotalRightUsers;
-
-        }
-
-        [HttpPost]
-        public decimal GetTotalAmountRightUsers(int userId)
+        
+        public string GetTotalAmountRightUsers(int userId)
         {
             decimal TotalAmountRightUsersShow = 0;
-            decimal TotalAmountRightUsers = 0;
             List<GetParentChildsRightSP_Result> List = new List<GetParentChildsRightSP_Result>();
             using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
             {
                 List = dc.GetParentChildsRightSP(userId).ToList();
-                List<UserGenealogyTableRight> usersRight = new List<UserGenealogyTableRight>();
+                List<UserGenealogyTable> usersRight = new List<UserGenealogyTable>();
                 List<NewUserRegistration> newUsersRight = new List<NewUserRegistration>();
                 List<NewUserRegistration> listDownlineMember = new List<NewUserRegistration>();
+                List<UserCommission> userCommissionRight = new List<UserCommission>();
+
                 foreach (var item in List)
                 {
                     var userIdChild = Convert.ToInt32(item.UserId);
-                    usersRight = dc.UserGenealogyTableRights.Where(a => a.UserId.Value.Equals(userIdChild)
+                    usersRight = dc.UserGenealogyTables.Where(a => a.UserId.Value.Equals(userIdChild)
                             && a.MatchingCommision.Value.Equals(false)).ToList();
                     foreach (var itemUser in usersRight)
                     {
@@ -501,18 +530,24 @@ namespace ApiSleepingPatener.Controllers
                             && a.IsUserActive.Value.Equals(true)).ToList();
                         if (newUsersRight != null)
                         {
-                            listDownlineMember.Add(new NewUserRegistration()
+                            userCommissionRight = dc.UserCommissions.Where(a => a.UserId.Value.Equals(userId)).ToList();
+                            bool? checkIfExists = userCommissionRight.Exists(x => x.MatchingCommUserId.Value.Equals(item.UserId.Value));
+                            if (checkIfExists == false)
                             {
-                                UserId = item.UserId.Value,
-                                Username = item.Username,
-                                Country = item.Country,
-                                Phone = item.Phone,
-                                AccountNumber = item.AccountNumber,
-                                BankName = item.BankName,
-                                SponsorId = item.SponsorId.Value,
-                                PaidAmount = item.PaidAmount.Value,
-                                UserCode = item.UserCode
-                            });
+                                listDownlineMember.Add(new NewUserRegistration()
+                                {
+                                    UserId = item.UserId.Value,
+                                    Username = item.Username,
+                                    Country = item.Country,
+                                    Phone = item.Phone,
+                                    AccountNumber = item.AccountNumber,
+                                    BankName = item.BankName,
+                                    SponsorId = item.SponsorId.Value,
+                                    PaidAmount = item.PaidAmount.Value,
+                                    UserCode = item.UserCode
+                                });
+                            }
+
                             TotalAmountRightUsersShow = listDownlineMember.Sum(x => x.PaidAmount.Value);
                         }
 
@@ -522,11 +557,14 @@ namespace ApiSleepingPatener.Controllers
 
                 if (TotalAmountRightUsersShow != 0)
                 {
-                    TotalAmountRightUsers = TotalAmountRightUsersShow;
+                    return TotalAmountRightUsersShow.ToString();
                 }
-
+                else
+                {
+                    return TotalAmountRightUsersShow.ToString();
+                }
             }
-            return TotalAmountRightUsersShow;
+            //return View();
 
         }
         //add left members in network page
