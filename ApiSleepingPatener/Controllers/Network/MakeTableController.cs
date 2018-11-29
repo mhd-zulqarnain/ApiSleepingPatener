@@ -200,10 +200,30 @@ namespace ApiSleepingPatener.Controllers
             //return View();
 
         }
-        public string GetAllLeftRemaingAmount()
+        public string GetAllLeftRemaingAmount(int userId)
         {
+           
+            string UserTypeUser = Common.Enum.UserType.User.ToString();
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
+            {
+                var LeftPaidAmount = dc.GetParentChildsLeftSP(userId).ToList();
+                var RightPaidAmount = dc.GetParentChildsRightSP(userId).ToList();
+                decimal LeftPaidAmountShow = LeftPaidAmount.Sum(x => x.PaidAmount.Value);
+                decimal RightPaidAmountShow = RightPaidAmount.Sum(x => x.PaidAmount.Value);
 
-            return null;
+                //decimal minimumAmount = Math.Min(LeftPaidAmountShow, RightPaidAmountShow);
+                decimal maximumAmount = Math.Max(LeftPaidAmountShow, RightPaidAmountShow);
+                decimal showAmount = maximumAmount - LeftPaidAmountShow;
+
+                if (showAmount != 0)
+                {
+                    return showAmount.ToString();
+                }
+                else
+                {
+                    return showAmount.ToString();
+                }
+            }
             //return View();
 
         }
@@ -237,13 +257,33 @@ namespace ApiSleepingPatener.Controllers
 
         public string GetAllRightRemaingAmount(int userId)
         {
+            string UserTypeUser = Common.Enum.UserType.User.ToString();
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
+            {
+                var LeftPaidAmount = dc.GetParentChildsLeftSP(userId).ToList();
+                var RightPaidAmount = dc.GetParentChildsRightSP(userId).ToList();
+                decimal LeftPaidAmountShow = LeftPaidAmount.Sum(x => x.PaidAmount.Value);
+                decimal RightPaidAmountShow = RightPaidAmount.Sum(x => x.PaidAmount.Value);
 
-            return null;
+                decimal minimumAmount = Math.Min(LeftPaidAmountShow, RightPaidAmountShow);
+                decimal maximumAmount = Math.Max(LeftPaidAmountShow, RightPaidAmountShow);
+                decimal showAmount = maximumAmount - RightPaidAmountShow;
+
+                if (showAmount != 0)
+                {
+                    return showAmount.ToString();
+                    
+                }
+                else
+                {
+                    return showAmount.ToString();
+                }
+            }
             //return View();
 
         }
 
-       
+
         public string GetAllTotalEarningAmount(int userId)
         {
             string UserTypeUser =Common.Enum.UserType.User.ToString();
@@ -847,11 +887,11 @@ namespace ApiSleepingPatener.Controllers
         public IHttpActionResult GetUserUnPaidMembersLeftList(int userId)
         {
             SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
-            IEnumerable<UserModel> usrmodel = new List<UserModel>();
+            IEnumerable<NewMembers> usrmodel = new List<NewMembers>();
             usrmodel = (from n in db.GetParentChildsLeftSP(userId)
                         join c in db.NewUserRegistrations on n.SponsorId equals c.UserId
                         where n.IsPaidMember.Value == false
-                        select new UserModel
+                        select new NewMembers
                         {
                             UserId = n.UserId.Value,
                             Username = n.Username,
@@ -873,11 +913,11 @@ namespace ApiSleepingPatener.Controllers
         public IHttpActionResult GetUserPaidMembersRightList(int userId)
         {
             SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
-            IEnumerable<UserModel> usrmodel = new List<UserModel>();
+            IEnumerable<NewMembers> usrmodel = new List<NewMembers>();
             usrmodel = (from n in db.GetParentChildsRightSP(userId)
                         join c in db.NewUserRegistrations on n.SponsorId equals c.UserId
                         where n.IsPaidMember.Value == true
-                        select new UserModel
+                        select new NewMembers
                         {
                             UserId = n.UserId.Value,
                             Username = n.Username,
@@ -898,11 +938,11 @@ namespace ApiSleepingPatener.Controllers
         public IHttpActionResult GetUserUnPaidMembersRightList(int userId)
         {
             SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
-            IEnumerable<UserModel> usrmodel = new List<UserModel>();
+            IEnumerable<NewMembers> usrmodel = new List<NewMembers>();
             usrmodel = (from n in db.GetParentChildsRightSP(userId)
                         join c in db.NewUserRegistrations on n.SponsorId equals c.UserId
                         where n.IsPaidMember.Value == false
-                        select new UserModel
+                        select new NewMembers
                         {
                             UserId = n.UserId.Value,
                             Username = n.Username,
@@ -925,12 +965,12 @@ namespace ApiSleepingPatener.Controllers
             SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             string UserTypeUser = Common.Enum.UserType.User.ToString();
             UserModel usrmodel = new UserModel();
-            List<UserModel> List = new List<UserModel>();
+            List<NewMembers> List = new List<NewMembers>();
             List = db.NewUserRegistrations.Where(a => a.UserCode.Equals(UserTypeUser)
                 && a.SponsorId.Equals(userId))
-                .Select(x => new UserModel
-                    //List = db.NewUserRegistrations.Select(x => new UserModel
-                    {
+                .Select(x => new NewMembers
+                //List = db.NewUserRegistrations.Select(x => new UserModel
+                {
                     UserId = x.UserId,
                     Username = x.Username,
                     Country = x.Country,
