@@ -364,6 +364,7 @@
     <Compile Include="Models\GenealogyTable\UserGenealogyTableModel.cs" />
     <Compile Include="Models\GenealogyTable\UserGenealogyTableRightModel.cs" />
     <Compile Include="Models\GeneralHelp\HelpRequestModel.cs" />
+    <Compile Include="Models\GetUserDownlinMembers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\MakeTableData.cs" />
     <Compile Include="Models\NewMembers.cs" />
