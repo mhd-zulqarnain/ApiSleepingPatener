@@ -281,6 +281,7 @@
     <Compile Include="Common\Enum.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ItSupportController.cs" />
     <Compile Include="Controllers\SponserSupportController.cs" />
     <Compile Include="Controllers\DasboardDetailController.cs" />
     <Compile Include="Controllers\EwalletController.cs" />
@@ -364,7 +365,6 @@
     <Compile Include="Models\GenealogyTable\UserGenealogyTableModel.cs" />
     <Compile Include="Models\GenealogyTable\UserGenealogyTableRightModel.cs" />
     <Compile Include="Models\GeneralHelp\HelpRequestModel.cs" />
-    <Compile Include="Models\GetUserDownlinMembers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\MakeTableData.cs" />
     <Compile Include="Models\NewMembers.cs" />

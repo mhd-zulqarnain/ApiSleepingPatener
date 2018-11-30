@@ -16,5 +16,6 @@ namespace ApiSleepingPatener.Models
         public string Message { get; set; }
         public Nullable<bool> IsRead { get; set; }       
         public Nullable<System.DateTime> CreateDate { get; set; }
+
     }
 }

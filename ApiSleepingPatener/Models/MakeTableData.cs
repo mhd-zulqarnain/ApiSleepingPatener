@@ -15,5 +15,6 @@ namespace ApiSleepingPatener.Models
         public string rightRemaingAmount { get; set; }
         public string leftRemaingAmount { get; set; }
         public string getalltotalearningamount { get; set; }
+        public string usertablebalance { get; set; }
     }
 }

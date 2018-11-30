@@ -228,7 +228,7 @@ namespace ApiSleepingPatener.Controllers
 
         }
 
- 
+    
 
         public string GetAllRightRemaingAmount(int userId)
         {
@@ -957,7 +957,72 @@ namespace ApiSleepingPatener.Controllers
                 }).ToList();
             return Ok(List);
         }
+
+
+
         //userdownlinemembers object on add new member 
+        [HttpGet]
+        [Route("getuserdownlinmembers/{userId}")]
+        public IHttpActionResult GetUserDownlinMembers(int userId)
+        {
+            MakeTableData obj = new MakeTableData();
+            string gettotalleftusers = GetTotalLeftUsers(userId);
+            string gettotalamountleftusers = GetTotalAmountLeftUsers(userId);          
+            string getleftremaingamount = GetLeftRemaingAmount(userId);
+            string getrightremaingamount = GetRightRemaingAmount(userId);
+            string gettotalrightusers = GetTotalRightUsers(userId);
+            string gettotalamountrightusers = GetTotalAmountRightUsers(userId);
+            //string getalltotalearningamount = GetAllTotalEarningAmount(userId);
+            string getusertablebalance = GetUserTableBalance(userId);
+            obj.totalLeftUsers = gettotalamountleftusers;
+            obj.totalAmountLeftUsers = gettotalamountleftusers;
+            obj.leftRemaingAmount = getleftremaingamount;
+            obj.rightRemaingAmount = getrightremaingamount;
+            obj.totalRightUsers = gettotalrightusers;
+            obj.totalAmountRightUsers = gettotalamountrightusers;
+            obj.usertablebalance = getusertablebalance;
+
+
+
+            return Ok(obj);
+
+        }
+        //[HttpGet]
+        //[Route("getusertablebalance/{userId}")]
+        public string GetUserTableBalance(int userId)
+        {
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
+            {
+                UserCommissionBalance commBalance = new UserCommissionBalance();
+                commBalance = dc.UserCommissionBalances.Where(a => a.UserId.Value.Equals(userId)).FirstOrDefault();
+                if (commBalance != null)
+                {
+                    var Position = commBalance.UserCommPosition;
+                    var Balance = commBalance.UserCommBalance;
+
+                    if (Position != "")
+                    {
+                        return   Balance.ToString();
+                        //return Ok(new { success = true, position = Position, balance = Balance });
+                    }
+                    else
+                    {
+                        return Balance.ToString();
+                        //return Json(new { warning = true, position = "", balance = 0 }, JsonRequestBehavior.AllowGet);
+                    }
+                  
+                }
+                return "";
+                //else
+                //{
+                //    r;
+                //    return Json(new { warning = true, position = "", balance = 0 }, JsonRequestBehavior.AllowGet);
+                //}
+
+            }
+            //return View();
+
+        }
         public string GetTotalLeftUsers(int userId)
         {
             int TotalLeftUsersShow = 0;

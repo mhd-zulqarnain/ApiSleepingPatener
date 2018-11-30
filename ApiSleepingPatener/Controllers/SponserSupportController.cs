@@ -16,26 +16,26 @@ namespace ApiSleepingPatener.Controllers
     public class SponserSupportController : ApiController
     {
         [HttpPost]
-        [Route("inboxsponsersupport/{userId}/{username}")]
-        public IHttpActionResult Inbox(SentUserMessageModel sentmodel,int userId,string username)
+        [Route("inboxsponsersupport")]
+        public IHttpActionResult Inbox(SentUserMessageModel sentmodel)
         {
             //var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
             //string username = Session["LogedUserFullname"].ToString();
             SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             SentUserMessage sent_msg = new SentUserMessage();
-            sent_msg.Sender = sentmodel.Sender = userId;
-            sent_msg.UserId = sentmodel.UserId = userId;
+            sent_msg.Sender = sentmodel.Sender = sentmodel.UserId;
+            sent_msg.UserId = sentmodel.UserId = sentmodel.UserId;
             sent_msg.SponserId = sentmodel.SponserId;
-            sent_msg.Sender_Name = username;
+            sent_msg.Sender_Name = sentmodel.Sender_Name;
             sent_msg.Message = sentmodel.Message;
             sent_msg.IsRead = sentmodel.IsRead = true;
             sent_msg.CreateDate = sentmodel.CreateDate = DateTime.Today;
             db.SentUserMessages.Add(sent_msg);
             ReceiveUserMessage Recive_msg = new ReceiveUserMessage();
-            Recive_msg.Sender = sentmodel.Sender = userId;
-            Recive_msg.UserId = sentmodel.UserId = userId;
+            Recive_msg.Sender = sentmodel.Sender = sentmodel.UserId;
+            Recive_msg.UserId = sentmodel.UserId = sentmodel.UserId;
             Recive_msg.SponserId = sentmodel.SponserId;
-            Recive_msg.Sender_Name = username;
+            Recive_msg.Sender_Name = sentmodel.Sender_Name;
             Recive_msg.Message = sentmodel.Message;
             Recive_msg.IsRead = sentmodel.IsRead = true;
             Recive_msg.CreateDate = sentmodel.CreateDate = DateTime.Today;
@@ -149,9 +149,30 @@ namespace ApiSleepingPatener.Controllers
                     CreateDate = x.CreateDate
                 }).ToList();
             return Ok(List);
+            
         }
-    }    
+        //[HttpGet]
+        //[Route("deletereadmessage/{userId}")]
+        //public IHttpActionResult DeleteReadMessage(int Id)
+        //{
+        //    try
+        //    {
+        //        SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
+        //        SentUserMessage d = new SentUserMessage();
+        //        d.Id = Id;
+        //        db.Entry(d).State = ;
+        //        db.SaveChanges();
+        //        return Ok(new { success = true, message = "message delete successfully" });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Ok(new { success = true, message = "unable to delete this field", ex.Message });
+        //    }
+        //}
+
+
     }
+}
 
 
 
