@@ -21,42 +21,50 @@ namespace ApiSleepingPatener.Controllers
         public IHttpActionResult DashBoard(int userId)
         {
             Dashboarddetails dbd = new Dashboarddetails();
-            string totaldirectcommission = GetUserTotalDirectCommission(userId);
-            string totalewalletcredit = GetEWalletCreditSum(userId);
-            string totalGetPaymentsInProcessSum = GetPaymentsInProcessSum(userId);
             string totalGetUserTotalPackageCommission = GetUserTotalPackageCommission(userId);
-            string totalGetEWalletDebitSum = GetEWalletDebitSum(userId); 
+            string totaldirectcommission = GetUserTotalDirectCommission(userId);
+            string totalGetUserTotalMatchingCommission = GetUserTotalMatchingCommission(userId);         
             string totalGetUserCurrentPackage = GetUserCurrentPackage(userId);
-            string totalGetAllTotalLeftUserPV = GetAllTotalLeftUserPV(userId);
-            string totalGetAllTotalRightUserPV = GetAllTotalRightUserPV(userId);
             string totalGetUserDownlineMembers = GetUserDownlineMembers(userId);
+            //Cash WithDrawn
             string totalGetPayoutHistorySum = GetPayoutHistorySum(userId);
-            string totalGetUserTotalMatchingCommission = GetUserTotalMatchingCommission(userId);
-            // string totalGetAllCurrentRewardInfo = GetAllCurrentRewardInfo(userId);
+            string totalewalletcredit = GetEWalletCreditSum(userId);
+            string totalGetEWalletDebitSum = GetEWalletDebitSum(userId);
+            string totalGetPaymentsInProcessSum = GetPaymentsInProcessSum(userId);
             string totalGetEWalletSummarySponsorBonus = GetEWalletSummarySponsorBonus(userId);
+            //rewards
+            string totalGetAllTotalLeftUserPV = GetAllTotalLeftUserPV(userId);
+            //string totalGetAllTotalRightUserPV = GetAllTotalRightUserPV(userId);
+            EwalletModel ewm = GetAllCurrentRewardInfo(userId);
+            
 
-            //string totalGetleftamount = GetTotalleftamount(userId);
-            string totalGetrightamount = GetTotalrightamount(userId);
-            string totalGetremaningleftamount = GetTotalremainingleftamount(userId);
-            string totalGetremaningrightamount = GetTotalremainingrightamount(userId);
+
+
+
+            //string totalGetAllCurrentRewardInfo = GetAllCurrentRewardInfo(userId);
+
+
+            ////string totalGetleftamount = GetTotalleftamount(userId);
+            //string totalGetremaningleftamount = GetTotalremainingleftamount(userId);
+            //string totalGetremaningrightamount = GetTotalremainingrightamount(userId);
             //object
-            dbd.totaldirectcommission = totaldirectcommission;
-            dbd.GetEwalletCredit = totalewalletcredit;
-            dbd.GetPaymentsInProcessSum = totalGetPaymentsInProcessSum;
             dbd.GetUserTotalPackageCommission = totalGetUserTotalPackageCommission;
-            dbd.GetEWalletDebitSum = totalGetEWalletDebitSum;
+            dbd.totaldirectcommission = totaldirectcommission;
+            dbd.GetUserTotalMatchingCommission = totalGetUserTotalMatchingCommission;
             dbd.GetUserCurrentPackage = totalGetUserCurrentPackage;
-            //dbd.GetAllTotalLeftUserPV = totalGetAllTotalLeftUserPV;
-            dbd.GetAllTotalRightUserPV = totalGetAllTotalRightUserPV;
             dbd.GetUserDownlineMembers = totalGetUserDownlineMembers;
             dbd.GetPayoutHistorySum = totalGetPayoutHistorySum;
-            dbd.GetUserTotalMatchingCommission = totalGetUserTotalMatchingCommission;
+            dbd.GetEwalletCredit = totalewalletcredit;
+            dbd.GetEWalletDebitSum = totalGetEWalletDebitSum;
+            dbd.GetPaymentsInProcessSum = totalGetPaymentsInProcessSum;
             dbd.GetEWalletSummarySponsorBonus = totalGetEWalletSummarySponsorBonus;
-            //dbd.GetTotalleftamount = totalGetleftamount;
-            dbd.GetTotalrightamount = totalGetrightamount;
-            dbd.GetTotalremainingleftamount = totalGetremaningleftamount;
-            dbd.GetTotalremainingrightamount = totalGetremaningrightamount;
-            //  dbd.GetAllCurrentRewardInfo = totalGetAllCurrentRewardInfo; 
+
+            dbd.GetAllTotalLeftUserPV = totalGetAllTotalLeftUserPV;
+            //dbd.GetAllTotalRightUserPV = totalGetAllTotalRightUserPV;
+            //dbd.GetTotalremainingleftamount = totalGetremaningleftamount;
+            //dbd.GetTotalremainingrightamount = totalGetremaningrightamount;
+            dbd.GetTotalremainingleftamount = ewm.bonus;
+            dbd.GetTotalremainingrightamount = ewm.witdraw;
 
 
             return Ok(dbd);
@@ -82,7 +90,6 @@ namespace ApiSleepingPatener.Controllers
         {
             using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
             {
-                string UserTypeAdmin = Common.Enum.UserType.Admin.ToString();
                 string UserTypeUser = Common.Enum.UserType.User.ToString();
 
                 var CGP = (from a in dc.EWalletTransactions
@@ -177,8 +184,9 @@ namespace ApiSleepingPatener.Controllers
             using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
             {
               var TotalAmountLeftUsers = dc.GetParentChildsLeftSP(userId).Where(a => a.IsPaidMember.Value.Equals(true)).ToList();
-                decimal TotalAmountLeftUsersShow = TotalAmountLeftUsers.Sum(x => x.PaidAmount.Value);
-                return TotalAmountLeftUsers.ToString();
+                var TotalAmountLeftUsersShow = TotalAmountLeftUsers.Sum(x => x.PaidAmount.Value);
+                return TotalAmountLeftUsersShow.ToString();
+               // return Ok(TotalAmountLeftUsers);
 
              
             }
@@ -186,12 +194,14 @@ namespace ApiSleepingPatener.Controllers
 
         }
 
+        [HttpGet]
+        [Route("getalltotalrightuserpv/{userId}")]
         public string GetAllTotalRightUserPV(int userId)
         {
             using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
             {
                 var TotalAmountRightUsers = dc.GetParentChildsRightSP(userId).Where(a => a.IsPaidMember.Value.Equals(true)).ToList();
-                decimal TotalAmountRightUsersShow = TotalAmountRightUsers.Sum(x => x.PaidAmount.Value);
+                var TotalAmountRightUsersShow = TotalAmountRightUsers.Sum(x => x.PaidAmount.Value);
                 return TotalAmountRightUsers.ToString();
              
             }
@@ -266,22 +276,123 @@ namespace ApiSleepingPatener.Controllers
             }
             
         }
+        public EwalletModel GetAllCurrentRewardInfo(int userId)
+        {
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
+            {
+
+                UserReward usrReward = dc.UserRewards.Where(a => a.UserId.Value.Equals(userId)).OrderByDescending(o => o.RewardId.Value).FirstOrDefault();
+
+                int MinValueId = 0;
+
+                var TotalAmountLeftUsers = dc.GetParentChildsLeftSP(userId).Where(a => a.IsPaidMember.Value.Equals(true)).ToList();
+                var TotalAmountRightUsers = dc.GetParentChildsRightSP(userId).Where(a => a.IsPaidMember.Value.Equals(true)).ToList();
+
+                decimal TotalAmountLeftUsersShow = TotalAmountLeftUsers.Sum(x => x.PaidAmount.Value);
+                decimal TotalAmountRightUsersShow = TotalAmountRightUsers.Sum(x => x.PaidAmount.Value);
+
+                Reward rewardRightlimit = (from rwrd in dc.Rewards
+                                           where rwrd.Rightlimit >= TotalAmountRightUsersShow
+                                           select rwrd).FirstOrDefault();
+
+                Reward rewardLeftlimit = (from rwrd in dc.Rewards
+                                          where rwrd.Leftlimit >= TotalAmountLeftUsersShow
+                                          select rwrd).FirstOrDefault();
+
+                if (rewardLeftlimit == null && rewardRightlimit == null) //if all rewards complete
+                {
+                    Reward rewardRightIfComplete = (from rwrd in dc.Rewards
+                                                    where rwrd.Rightlimit <= TotalAmountRightUsersShow
+                                                    select rwrd).OrderByDescending(o => o.Id).FirstOrDefault();
+
+                    Reward rewardLeftIfComplete = (from rwrd in dc.Rewards
+                                                   where rwrd.Leftlimit <= TotalAmountLeftUsersShow
+                                                   select rwrd).OrderByDescending(o => o.Id).FirstOrDefault();
+
+                    int MaxValueId = Math.Max((int)rewardRightIfComplete.Id, (int)rewardLeftIfComplete.Id);
+                    if (usrReward != null)
+                    {
+                        if (usrReward.RewardId == MaxValueId)
+                        {
+                            EwalletModel obj1 = new EwalletModel();
+                            obj1.bonus = "Completed";
+                            obj1.witdraw = "Completed";
+                            return obj1;
+                        }
+                        else
+                        {
+                            MinValueId = Math.Min((int)rewardRightIfComplete.Id, (int)rewardLeftIfComplete.Id);
+                        }
+                    }
 
 
-      
 
-        public string GetTotalrightamount(int userId)
-        {
-            return null;
+                }
+                else if (rewardLeftlimit == null)
+                {
+                    rewardRightlimit = (from rwrd in dc.Rewards
+                                        where rwrd.Rightlimit <= TotalAmountRightUsersShow
+                                        select rwrd).OrderByDescending(o => o.Id).FirstOrDefault();
+
+                    rewardLeftlimit = (from rwrd in dc.Rewards
+                                       where rwrd.Leftlimit <= TotalAmountRightUsersShow
+                                       select rwrd).OrderByDescending(o => o.Id).FirstOrDefault();
+
+                    MinValueId = Math.Min((int)rewardRightlimit.Id, (int)rewardLeftlimit.Id);
+
+                }
+                else if (rewardRightlimit == null)
+                {
+                    rewardRightlimit = (from rwrd in dc.Rewards
+                                        where rwrd.Rightlimit <= TotalAmountRightUsersShow
+                                        select rwrd).OrderByDescending(o => o.Id).FirstOrDefault();
+
+                    rewardLeftlimit = (from rwrd in dc.Rewards
+                                       where rwrd.Leftlimit <= TotalAmountRightUsersShow
+                                       select rwrd).OrderByDescending(o => o.Id).FirstOrDefault();
+
+                    MinValueId = Math.Min((int)rewardRightlimit.Id, (int)rewardLeftlimit.Id);
+                }
+                else
+                {
+                    MinValueId = Math.Min((int)rewardRightlimit.Id, (int)rewardLeftlimit.Id);
+                }
+
+
+
+                Reward reward = dc.Rewards.Where(a => a.Id.Equals(MinValueId)).FirstOrDefault();
+
+                decimal LeftLimitPV = (decimal)reward.Leftlimit;
+                decimal TotalLeftUserPV = TotalAmountLeftUsersShow;
+                decimal MaxValueLeft = Math.Max(LeftLimitPV, TotalLeftUserPV);
+                decimal RemainingLeftUserPV = MaxValueLeft - TotalLeftUserPV;
+
+
+                decimal RightLimitPV = (decimal)reward.Rightlimit;
+                decimal TotalRightUserPV = TotalAmountRightUsersShow;
+                decimal MaxValueRight = Math.Max(RightLimitPV, TotalRightUserPV);
+                decimal RemainingRightUserPV = MaxValueRight - TotalRightUserPV;
+
+
+                if (reward != null)
+                {
+                    EwalletModel obj1 = new EwalletModel();
+                    obj1.bonus = RemainingLeftUserPV.ToString();
+                    obj1.witdraw = RemainingRightUserPV.ToString();
+                    return obj1;
+                }
+            }
+            EwalletModel obj = new EwalletModel();
+            obj.bonus = "0";
+            obj.witdraw = "0";
+
+            return obj;
+
         }
-        public string GetTotalremainingleftamount(int userId)
-        {
-            return null;
-        }
-        public string GetTotalremainingrightamount(int userId)
-        {
-            return null;
-        }
+
+
+
+
         //New user selection post on dashboard page 
         [HttpPost]
         [Route("approvesaleexecutive/{userId}")]
@@ -311,6 +422,7 @@ namespace ApiSleepingPatener.Controllers
             }
             return Ok(new { success = true });
         }
+     
 
     }
 
