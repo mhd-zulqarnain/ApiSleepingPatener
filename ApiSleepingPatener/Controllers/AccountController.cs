@@ -281,6 +281,23 @@ namespace ApiSleepingPatener.Controllers
             //return RedirectToAction("Index", "Dashboard", model);
         }
 
+        //Fcm update
+        [HttpPost]
+        [Route("updateFcm")]
+        public IHttpActionResult FcmUpdate(FcmModel model)
+        {
 
+            SleepingPartnermanagementTestingEntities dce = new SleepingPartnermanagementTestingEntities();
+            NewUserRegistration newuser = dce.NewUserRegistrations.SingleOrDefault(x => x.UserId == model.UserId);
+            if (newuser != null)
+            {
+                newuser.Fcm = model.Fcm;
+                dce.SaveChanges();
+                return Ok(new { success = true, message = "Update Successfully" });
+
+            }
+            return Ok(new { success = false, message = "user not found" });
+
+        }
     }
 }

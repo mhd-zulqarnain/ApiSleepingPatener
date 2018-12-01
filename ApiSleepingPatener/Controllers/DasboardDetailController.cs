@@ -35,7 +35,7 @@ namespace ApiSleepingPatener.Controllers
             // string totalGetAllCurrentRewardInfo = GetAllCurrentRewardInfo(userId);
             string totalGetEWalletSummarySponsorBonus = GetEWalletSummarySponsorBonus(userId);
 
-            string totalGetleftamount = GetTotalleftamount(userId);
+            //string totalGetleftamount = GetTotalleftamount(userId);
             string totalGetrightamount = GetTotalrightamount(userId);
             string totalGetremaningleftamount = GetTotalremainingleftamount(userId);
             string totalGetremaningrightamount = GetTotalremainingrightamount(userId);
@@ -46,13 +46,13 @@ namespace ApiSleepingPatener.Controllers
             dbd.GetUserTotalPackageCommission = totalGetUserTotalPackageCommission;
             dbd.GetEWalletDebitSum = totalGetEWalletDebitSum;
             dbd.GetUserCurrentPackage = totalGetUserCurrentPackage;
-            dbd.GetAllTotalLeftUserPV = totalGetAllTotalLeftUserPV;
+            //dbd.GetAllTotalLeftUserPV = totalGetAllTotalLeftUserPV;
             dbd.GetAllTotalRightUserPV = totalGetAllTotalRightUserPV;
             dbd.GetUserDownlineMembers = totalGetUserDownlineMembers;
             dbd.GetPayoutHistorySum = totalGetPayoutHistorySum;
             dbd.GetUserTotalMatchingCommission = totalGetUserTotalMatchingCommission;
             dbd.GetEWalletSummarySponsorBonus = totalGetEWalletSummarySponsorBonus;
-            dbd.GetTotalleftamount = totalGetleftamount;
+            //dbd.GetTotalleftamount = totalGetleftamount;
             dbd.GetTotalrightamount = totalGetrightamount;
             dbd.GetTotalremainingleftamount = totalGetremaningleftamount;
             dbd.GetTotalremainingrightamount = totalGetremaningrightamount;
@@ -169,6 +169,8 @@ namespace ApiSleepingPatener.Controllers
             //}
         }
 
+        //[HttpGet]
+        //[Route("getalltotalleftuserpv/{userId}")]
         public string GetAllTotalLeftUserPV(int userId)
         {
             //var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
@@ -178,14 +180,7 @@ namespace ApiSleepingPatener.Controllers
                 decimal TotalAmountLeftUsersShow = TotalAmountLeftUsers.Sum(x => x.PaidAmount.Value);
                 return TotalAmountLeftUsers.ToString();
 
-                //if (TotalAmountLeftUsersShow != 0)
-                //{
-                //    return Ok(new { success = true, result = TotalAmountLeftUsersShow });
-                //}
-                //else
-                //{
-                //    return Ok(new { success = true, result = 0 });
-                //}
+             
             }
 
 
@@ -193,15 +188,14 @@ namespace ApiSleepingPatener.Controllers
 
         public string GetAllTotalRightUserPV(int userId)
         {
-            // var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
-            //using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
-            //{
-            //    var TotalAmountRightUsers = dc.GetParentChildsRightSP(userId).Where(a => a.IsPaidMember.Value.Equals(true)).ToList();
-            //    decimal TotalAmountRightUsersShow = TotalAmountRightUsers.Sum(x => x.PaidAmount.Value);
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
+            {
+                var TotalAmountRightUsers = dc.GetParentChildsRightSP(userId).Where(a => a.IsPaidMember.Value.Equals(true)).ToList();
+                decimal TotalAmountRightUsersShow = TotalAmountRightUsers.Sum(x => x.PaidAmount.Value);
+                return TotalAmountRightUsers.ToString();
+             
+            }
 
-            //    return TotalAmountRightUsersShow.ToString();
-
-            return "";
         }
 
         public string GetUserDownlineMembers(int userId)
@@ -273,10 +267,8 @@ namespace ApiSleepingPatener.Controllers
             
         }
 
-        public string GetTotalleftamount(int userId)
-        {
-            return  null;
-            }
+
+      
 
         public string GetTotalrightamount(int userId)
         {

@@ -282,6 +282,7 @@
     <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ItSupportController.cs" />
+    <Compile Include="Controllers\TrainingVideoController .cs" />
     <Compile Include="Controllers\SponserSupportController.cs" />
     <Compile Include="Controllers\DasboardDetailController.cs" />
     <Compile Include="Controllers\EwalletController.cs" />
@@ -358,6 +359,7 @@
     <Compile Include="Models\EwalletWithDrawObjectModel.cs" />
     <Compile Include="Models\EWallet\EWalletPayoutConfigModel.cs" />
     <Compile Include="Models\EWallet\EWalletWithdrawalFundModel.cs" />
+    <Compile Include="Models\FcmModel.cs" />
     <Compile Include="Models\GenealogyTable\AdminViewUserDownlinersModel.cs" />
     <Compile Include="Models\GenealogyTable\SignUpUserModel.cs" />
     <Compile Include="Models\GenealogyTable\TreeModel.cs" />
@@ -385,6 +387,7 @@
     <Compile Include="Models\SentUserMessageModel.cs" />
     <Compile Include="Models\SponsorModel.cs" />
     <Compile Include="Models\TableLevel\TableLevelModel.cs" />
+    <Compile Include="Models\TrainingVideoModel.cs" />
     <Compile Include="NewsTicker.cs">
       <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
     </Compile>

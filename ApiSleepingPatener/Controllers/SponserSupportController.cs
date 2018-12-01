@@ -169,8 +169,52 @@ namespace ApiSleepingPatener.Controllers
         //        return Ok(new { success = true, message = "unable to delete this field", ex.Message });
         //    }
         //}
+        [HttpPost]
+        [Route("updatemessagestatus/{Id}")]
+        public IHttpActionResult updatemessagestatus(int Id)
+        {
+            try
+            {
+                SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
+                ReceiveUserMessage obj = db.ReceiveUserMessages.SingleOrDefault(x => x.Id == Id);
+
+                if (obj != null)
+                {
+                    obj.IsRead = true;
+                    db.SaveChanges();
+                    return Ok(new { success = true, message = "successfully" });
+                }
+                else
+                {
+                    return Ok(new { success = true, message = "Failed" });
+                }                
+
+            }
+            catch (Exception ex)
+            {
+                return Ok(new { success = true, message = "failed", ex.Message });
+            }
 
 
+        }
+
+        [HttpPost]
+        [Route("deletereadmessagesponsorsupport/{Id}")]
+        public IHttpActionResult DeleteReadMessage(int Id)
+        {
+            try
+            {
+                SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
+                SentUserMessage sum = db.SentUserMessages.Where(x => x.Id ==Id).FirstOrDefault();
+                db.SentUserMessages.Remove(sum);
+                db.SaveChanges();
+                return Ok(new { success = true, message = "message delete successfully" });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new { success = true, message = "unable to delete this field", ex.Message });
+            }
+        }
     }
 }
 

@@ -12,8 +12,8 @@ namespace ApiSleepingPatener.Controllers
 
     { 
         [HttpPost]
-        [Route("inboxitsupport/{userId}/{username}")]
-        public IHttpActionResult Inbox(SentAdminMessageModel sentmodel,int userId,string username)
+        [Route("inboxitsupport")]
+        public IHttpActionResult Inbox(SentAdminMessageModel sentmodel)
         {
             int admin_id = 1;
             var fileImage = sentmodel.MessageImage;
@@ -30,10 +30,10 @@ namespace ApiSleepingPatener.Controllers
            // var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
             SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             SentAdminMessage sent_msg = new SentAdminMessage();
-            sent_msg.Sender = sentmodel.Sender = userId;
-            sent_msg.UserId = sentmodel.UserId = userId;
+            sent_msg.Sender = sentmodel.Sender = sentmodel.UserId;
+            sent_msg.UserId = sentmodel.UserId = sentmodel.UserId;
             sent_msg.SponserId = admin_id;
-            sent_msg.Sender_Name = username;
+            sent_msg.Sender_Name = sentmodel.Sender_Name;
             sent_msg.Message = sentmodel.Message;
             sent_msg.IsRead = sentmodel.IsRead = true;
             sent_msg.CreateDate = sentmodel.CreateDate = DateTime.Today;
@@ -43,10 +43,10 @@ namespace ApiSleepingPatener.Controllers
             db.SentAdminMessages.Add(sent_msg);
             //db.SaveChanges();
             ReceiveAdminMessage Recive_msg = new ReceiveAdminMessage();
-            Recive_msg.Sender = sentmodel.Sender = userId;
-            Recive_msg.UserId = sentmodel.UserId = userId;
+            Recive_msg.Sender = sentmodel.Sender = sentmodel.UserId;
+            Recive_msg.UserId = sentmodel.UserId = sentmodel.UserId;
             Recive_msg.SponserId = admin_id;
-            Recive_msg.Sender_Name = username;
+            Recive_msg.Sender_Name = sentmodel.Sender_Name;
             Recive_msg.Message = sentmodel.Message;
             Recive_msg.IsRead = sentmodel.IsRead = true;
             Recive_msg.CreateDate = sentmodel.CreateDate = DateTime.Today;
@@ -110,6 +110,26 @@ namespace ApiSleepingPatener.Controllers
                     CreateDate = x.CreateDate
                 }).ToList();
             return Ok(List);
+        }
+        [HttpPost]
+        [Route("deletereadmessageitsupport/{Id}")]
+        public IHttpActionResult DeleteReadMessage(int Id)
+        {
+            try
+
+            {             
+                SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
+                SentAdminMessage sdm = db.SentAdminMessages.Where(x => x.Id == Id).FirstOrDefault<SentAdminMessage>();
+                db.SentAdminMessages.Remove(sdm);
+                //d.Id = Id;
+                //db.Entry(d).State = System.Data.EntityState.Deleted;
+                db.SaveChanges();
+                return Ok(new { success = true, message = "message delete successfully" });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new { success = true, message = "unable to delete this field", ex.Message });
+            }
         }
 
     }
