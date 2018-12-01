@@ -537,7 +537,9 @@
     <None Include="Properties\PublishProfiles\binarymlm1 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\binarymlm1 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\sleepingpartners - FTP %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\sleepingpartners - FTP %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\sleepingpartners - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\sleepingpartners - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />

@@ -95,14 +95,22 @@ namespace ApiSleepingPatener.Controllers
         }
 
         [HttpGet]
-        [Route("getsentmessagessponsorit/{userId}")]
-        public IHttpActionResult getsentmessagessponsorit(SentAdminMessageModel UMM, int userId)
+        [Route("getsentmessagesitsupport/{userId}")]
+        public IHttpActionResult GetSentMessages(int userId)
         {
-            //to be implement
-            List<ReceiveAdminMessageModel> List = new List<ReceiveAdminMessageModel>();
+            SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
+            List<SentAdminMessageModel> List = new List<SentAdminMessageModel>();
+            List = db.SentAdminMessages.Where(a => a.UserId == userId)
+                .Select(x => new SentAdminMessageModel
+                {
+                    Id = x.Id,
+                    Message = x.Message,
+                    Sender_Name = x.Sender_Name,
+                    IsRead = x.IsRead,
+                    CreateDate = x.CreateDate
+                }).ToList();
             return Ok(List);
         }
-
 
     }
 }
