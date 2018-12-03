@@ -34,7 +34,7 @@ namespace ApiSleepingPatener.Controllers
             string totalGetEWalletSummarySponsorBonus = GetEWalletSummarySponsorBonus(userId);
             //rewards
             string totalGetAllTotalLeftUserPV = GetAllTotalLeftUserPV(userId);
-            //string totalGetAllTotalRightUserPV = GetAllTotalRightUserPV(userId);
+            string totalGetAllTotalRightUserPV = GetAllTotalRightUserPV(userId);
             EwalletModel ewm = GetAllCurrentRewardInfo(userId);
             
 
@@ -58,11 +58,8 @@ namespace ApiSleepingPatener.Controllers
             dbd.GetEWalletDebitSum = totalGetEWalletDebitSum;
             dbd.GetPaymentsInProcessSum = totalGetPaymentsInProcessSum;
             dbd.GetEWalletSummarySponsorBonus = totalGetEWalletSummarySponsorBonus;
-
+            dbd.GetAllTotalRightUserPV = totalGetAllTotalRightUserPV;
             dbd.GetAllTotalLeftUserPV = totalGetAllTotalLeftUserPV;
-            //dbd.GetAllTotalRightUserPV = totalGetAllTotalRightUserPV;
-            //dbd.GetTotalremainingleftamount = totalGetremaningleftamount;
-            //dbd.GetTotalremainingrightamount = totalGetremaningrightamount;
             dbd.GetTotalremainingleftamount = ewm.bonus;
             dbd.GetTotalremainingrightamount = ewm.witdraw;
 
@@ -194,15 +191,15 @@ namespace ApiSleepingPatener.Controllers
 
         }
 
-        [HttpGet]
-        [Route("getalltotalrightuserpv/{userId}")]
+        //[HttpGet]
+        //[Route("getalltotalrightuserpv/{userId}")]
         public string GetAllTotalRightUserPV(int userId)
         {
             using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
             {
                 var TotalAmountRightUsers = dc.GetParentChildsRightSP(userId).Where(a => a.IsPaidMember.Value.Equals(true)).ToList();
                 var TotalAmountRightUsersShow = TotalAmountRightUsers.Sum(x => x.PaidAmount.Value);
-                return TotalAmountRightUsers.ToString();
+                return TotalAmountRightUsersShow.ToString();
              
             }
 

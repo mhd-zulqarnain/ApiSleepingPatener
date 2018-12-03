@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Http;
 
@@ -54,8 +57,43 @@ namespace ApiSleepingPatener.Controllers
                 string uname = sdr["Username"].ToString();
                 string pass = sdr["Password"].ToString();
                 string Email = sdr["Email"].ToString();
+                //var  client = new WebClient();
+                //client.Encoding = System.Text.Encoding.UTF8;
+                //client.DownloadString("http://binarymlm.epizy.com/messageNotifyApi.php?send_notification&sname=acccepted_your_status&uid=1&sid=2&message=Verification&token=crFqGndflQA:APA91bE9mEQjjerEp1GGOalbPehcZqXg8goxyeUBG__l1WhF_51nrPsGRmWa-GFVwDlDetN-vbpKVgGvu1mam5D7GjDFAodX-uB98RS7tc-A1U_t4MYcRf_Kfp3mfmVGfzLYCFZM_5PE&i=1");
+
+                //Uri myUri = new Uri("http://binarymlm.epizy.com/messageNotifyApi.php?send_notification&sname=acccepted_your_status&uid=1&sid=2&message=Verification&token=crFqGndflQA:APA91bE9mEQjjerEp1GGOalbPehcZqXg8goxyeUBG__l1WhF_51nrPsGRmWa-GFVwDlDetN-vbpKVgGvu1mam5D7GjDFAodX-uB98RS7tc-A1U_t4MYcRf_Kfp3mfmVGfzLYCFZM_5PE&i=1");
+                //// Create a new request to the above mentioned URL.	
+                //WebRequest myWebRequest = WebRequest.Create(myUri);
+                //// Assign the response object of 'WebRequest' to a 'WebResponse' variable.
+                //WebResponse myWebResponse = myWebRequest.GetResponse();
+
+                //string rep = myWebResponse.ResponseUri.UserInfo;
+
+                //var request = (HttpWebRequest)WebRequest.Create("http://binarymlm.epizy.com/messageNotifyApi.php?send_notification&sname=acccepted_your_status&uid=1&sid=2&message=Verification&token=crFqGndflQA:APA91bE9mEQjjerEp1GGOalbPehcZqXg8goxyeUBG__l1WhF_51nrPsGRmWa-GFVwDlDetN-vbpKVgGvu1mam5D7GjDFAodX-uB98RS7tc-A1U_t4MYcRf_Kfp3mfmVGfzLYCFZM_5PE&i=1");
+                //request.Method = "HEAD";
+                //var response = request.GetResponse();
+                //var location = response.Headers[HttpResponseHeader.Location];
+
+                WebClient client = new WebClient();
+                string content = client.DownloadString("http://redcodetechnologies.com/MLMAPI/messageNotifyApi.php?send_notification&sname=acccepted_your_status&uid=1&sid=2&message=Verification&token=crFqGndflQA:APA91bE9mEQjjerEp1GGOalbPehcZqXg8goxyeUBG__l1WhF_51nrPsGRmWa-GFVwDlDetN-vbpKVgGvu1mam5D7GjDFAodX-uB98RS7tc-A1U_t4MYcRf_Kfp3mfmVGfzLYCFZM_5PE&i=1");
+
+                //HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create("http://www.yoursite.com/resource/file.htm");
+
+                //using (StreamWriter streamWriter = new StreamWriter(webRequest.GetRequestStream(), Encoding.UTF8))
+                //{
+                //    streamWriter.Write(requestData);
+                //}
+
+                //string responseData = string.Empty;
+                //HttpWebResponse httpResponse = (HttpWebResponse)webRequest.GetResponse();
+                //using (StreamReader responseReader = new StreamReader(httpResponse.GetResponseStream()))
+                //{
+                //    responseData = responseReader.ReadToEnd();
+                //}
+
                 sdr.Close();
                 connect.Close();
+               
                 return Ok(0);
             }
             catch (Exception n)
@@ -298,6 +336,18 @@ namespace ApiSleepingPatener.Controllers
             }
             return Ok(new { success = false, message = "user not found" });
 
+        }
+
+        [HttpGet]
+        [Route("getprofileimage/{userId}")]
+        public IHttpActionResult profileimage( int userId)
+        {
+            SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
+
+            var image = db.NewUserRegistrations.Where(x => x.UserId == userId).Select(x => x.ProfileImage).FirstOrDefault();
+            
+                return Ok(new { success = true, message = image});
+            
         }
     }
 }

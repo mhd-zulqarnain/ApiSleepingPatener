@@ -40,7 +40,17 @@ namespace ApiSleepingPatener.Controllers
             Recive_msg.IsRead = sentmodel.IsRead = true;
             Recive_msg.CreateDate = sentmodel.CreateDate = DateTime.Today;
             db.ReceiveUserMessages.Add(Recive_msg);
-            db.SaveChanges();
+            db.SaveChanges();      
+            var fcm = db.NewUserRegistrations.Where(x => x.UserId == sentmodel.SponserId).Select(x => x.Fcm).FirstOrDefault();
+            if (fcm != null)
+            {
+                WebClient client = new WebClient();
+                client.DownloadString("http://redcodetechnologies.com/MLMAPI/messageNotifyApi.php?send_notification&sname=" +
+                    sentmodel.Sender_Name + "&uid=" + sentmodel.UserId + "&sid=" + sentmodel.SponserId + "&message=" + sentmodel.Message
+                   + "&token=" + fcm);
+
+            }
+          
             return Ok(new { success = true, message = "messsage sent successfully" });
         }
         [HttpGet]
@@ -109,6 +119,15 @@ namespace ApiSleepingPatener.Controllers
             Recive_msg.CreateDate = DateTime.Today;
             db.ReceiveUserMessages.Add(Recive_msg);
             db.SaveChanges();
+            var fcm = db.NewUserRegistrations.Where(x => x.UserId == u_id).Select(x => x.Fcm).FirstOrDefault();
+            if (fcm != null)
+            {
+                WebClient client = new WebClient();
+                client.DownloadString("http://redcodetechnologies.com/MLMAPI/messageNotifyApi.php?send_notification&sname=" +
+                    username + "&uid=" + userId + "&sid=" + u_id + "&message=" + msg
+                   + "&token=" + fcm);
+
+            }
             return Ok(new { success = true, message = "messsage sent successfully" });
         }
         [HttpPost]

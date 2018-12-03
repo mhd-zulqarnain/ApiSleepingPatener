@@ -53,10 +53,15 @@ namespace ApiSleepingPatener.Controllers
             Recive_msg.MessageImage = img;
             db.ReceiveAdminMessages.Add(Recive_msg);
             db.SaveChanges();
-            var webClient = new WebClient();
-            webClient.DownloadString("http://binarymlm.epizy.com/messageNotifyApi?send_notification&sname=" +
-                sentmodel.Sender_Name + "&uid=" + sentmodel.UserId + "&sid=" + sentmodel.SponserId + "&message=" + sentmodel.Message
-                + "&token=" + "d1yYrM3JImM:APA91bHNpvQFDGKGFRyQAc6RuFsG744rFl5QdUSNYIBOngRVBrQS3iqV1eAXiPN5vZ9Knm4534Smn_I7GYdq3Y_4kbwxe7yKJ4DUOBzXxeB5V-BiqkzgybepbyI8vmMC1QtvbcCC2H-p");
+            //var fcm = db.NewUserRegistrations.Where(x => x.UserId == sentmodel.SponserId).Select(x => x.Fcm).FirstOrDefault();
+            //if (fcm != null)
+            //{
+            //    WebClient client = new WebClient();
+            //    client.DownloadString("http://redcodetechnologies.com/MLMAPI/messageNotifyApi.php?send_notification&sname=" +
+            //        sentmodel.Sender_Name + "&uid=" + sentmodel.UserId + "&sid=" + sentmodel.SponserId + "&message=" + sentmodel.Message
+            //       + "&token=" + fcm);
+
+            //}
             return Ok(new { success = true, message = "messsage sent successfully" });
         }
         [HttpGet]
