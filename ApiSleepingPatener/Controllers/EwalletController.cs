@@ -411,13 +411,19 @@ namespace ApiSleepingPatener.Controllers
         [Route("getalluserwithdrawfund/{userId}")]
         public IHttpActionResult EWalletWithDrawFund(int userId)
         {
+            SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities();
+            UserPackage userPackages = dc.UserPackages.Where(a => a.UserId.Value.Equals(userId)).FirstOrDefault();
+
             Models.EWallet.EWalletPayoutConfigModel obj = EWalletPayoutConfigDetail();
             EwalletWithDrawObjectModel obj_ewdf = new EwalletWithDrawObjectModel();
-            string getuserpackagecommissionAmount = GetUserPackageCommissionAmount(userId);
-            string getuserpackageamountLimitforwithdrawal = GetUserPackageAmountLimitForWithdrawal(userId);
-            string getuserewalletamountinprocess = GetUserEWalletAmountInProcess(userId);
-            string PayoutChargesPercent = obj.PayoutChargesPercent.ToString();
-            string MinimumPayout = obj.MinimumPayout.ToString();
+            string getuserpackagecommissionAmount = GetUserPackageCommissionAmount(userId);//2: Your total current package commision
+            string getuserpackageamountLimitforwithdrawal = GetUserPackageAmountLimitForWithdrawal(userId);//3:Package amount limit for withdrawal
+            string getuserewalletamountinprocess = GetUserEWalletAmountInProcess(userId);//4:E-wallet amount already in payout process
+            string PayoutChargesPercent = obj.PayoutChargesPercent.ToString();//6:Processing Charges - Bank Account
+            string MinimumPayout = obj.MinimumPayout.ToString();//7:Minimum withdrawal Amount
+            string packagename = userPackages.PackageName;
+
+            obj_ewdf.PackageName = packagename;
             obj_ewdf.GetUserPackageCommissionAmount = getuserpackagecommissionAmount;
             obj_ewdf.GetUserPackageAmountLimitForWithdrawal = getuserpackageamountLimitforwithdrawal;
             obj_ewdf.GetUserEWalletAmountInProcess = getuserewalletamountinprocess;
@@ -434,6 +440,7 @@ namespace ApiSleepingPatener.Controllers
         {
             using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
             {
+                EwalletModel obj = new EwalletModel();
                 UserPackage userPackages = dc.UserPackages.Where(a => a.UserId.Value.Equals(userId)).FirstOrDefault();
 
                 var EWalletTransactionAmount = (from eWallTr in dc.EWalletTransactions
@@ -441,6 +448,8 @@ namespace ApiSleepingPatener.Controllers
                                                 && eWallTr.IsPackageBonus == true && eWallTr.PackageId == userPackages.PackageId.Value
                                                 select eWallTr).ToList();
                 var EWalletTransactionAmountValue = EWalletTransactionAmount.Sum(x => x.Amount);
+                obj.bonus = EWalletTransactionAmountValue.ToString();
+                
 
                 return EWalletTransactionAmountValue.ToString();
             }
@@ -499,8 +508,8 @@ namespace ApiSleepingPatener.Controllers
             return obj;
         }
         [HttpPost]
-        [Route("ewalletwithdrawalfund/{userId}/{amount}")]
-        public string EWalletWithdrawalFund(EWalletWithdrawalFundModel model, int userId,int amount)
+        [Route("ewalletwithdrawalfund/{userId}")]
+        public IHttpActionResult EWalletWithdrawalFund(EWalletWithdrawalFundModel model, int userId)
         {
             try
             {
@@ -574,7 +583,7 @@ namespace ApiSleepingPatener.Controllers
                                     dc.SaveChanges();
                                     ModelState.Clear();
                                     //    ViewBag.Message = "Successfully Done";
-                                    return "Successfully Done";
+                                      return Ok(new { success = true, message = "Successfully Done" });
 
                                 }
                                 //else
@@ -589,28 +598,28 @@ namespace ApiSleepingPatener.Controllers
                             }
                             else
                             {
-                                return "Amount must be smaller than the eligible amount";
+                                return Ok(new { success =false, message = "Amount must be smaller than the eligible amount" });
                             }
                         }
                         else
                         {
                             //this.AddNotification("Amount payable is less then minimum range", NotificationType.WARNING);
-                            return "Amount must be greater than the processing charges";
+                            return Ok(new { success = false, message = "Amount must be greater than the processing charges" });
                             //return RedirectToAction("EWalletWithdrawalFund");
                         }
                     }
                     else
                     {
-                        return "You are not eligible for withdrawal. Kindly purchase your package.";
+                        return Ok(new { success = false, message = "You are not eligible for withdrawal. Kindly purchase your package." });
                     }
 
                 }
                 //this.AddNotification("Value has bees saved", NotificationType.SUCCESS);
-                return "Successfully Done";
+                return Ok(new { success = true, message = "Successfully Done" });
             }
             catch (Exception ex)
             {
-                throw ex;
+                return Ok(new { success = false, message = "exception" });
             }
             //return View();
         }

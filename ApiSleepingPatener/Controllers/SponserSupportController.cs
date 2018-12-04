@@ -37,7 +37,7 @@ namespace ApiSleepingPatener.Controllers
             Recive_msg.SponserId = sentmodel.SponserId;
             Recive_msg.Sender_Name = sentmodel.Sender_Name;
             Recive_msg.Message = sentmodel.Message;
-            Recive_msg.IsRead = sentmodel.IsRead = true;
+            Recive_msg.IsRead = sentmodel.IsRead = false;
             Recive_msg.CreateDate = sentmodel.CreateDate = DateTime.Today;
             db.ReceiveUserMessages.Add(Recive_msg);
             db.SaveChanges();      
@@ -80,7 +80,7 @@ namespace ApiSleepingPatener.Controllers
             //var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
             SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             List<ReciveUserMessageModel> List = new List<ReciveUserMessageModel>();
-            List = db.ReceiveUserMessages.Where(a => a.SponserId == userId)
+            List = db.ReceiveUserMessages.OrderByDescending(id => id.Id).Where(a => a.SponserId == userId)
                 .Select(x => new ReciveUserMessageModel
                 {
                     Id = x.Id,

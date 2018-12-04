@@ -12,6 +12,7 @@ namespace ApiSleepingPatener.Models
         public string GetUserEWalletAmountInProcess { get; set; }
         public string PayoutChargesPercent { get; set; }
         public string MinimumPayout { get; set; }
+        public string PackageName { get; set; }
         //public string EWalletWithdrawalFund { get; set; }
     }
 }

@@ -35,7 +35,7 @@ namespace ApiSleepingPatener.Controllers
             sent_msg.SponserId = admin_id;
             sent_msg.Sender_Name = sentmodel.Sender_Name;
             sent_msg.Message = sentmodel.Message;
-            sent_msg.IsRead = sentmodel.IsRead = true;
+            sent_msg.IsRead = sentmodel.IsRead = false;
             sent_msg.CreateDate = sentmodel.CreateDate = DateTime.Today;
             sent_msg.MessageImage = img;
             //sent_msg.MessageImage = fileImage.InputStream; //imageByte;
@@ -70,7 +70,7 @@ namespace ApiSleepingPatener.Controllers
         {
             SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             List<ReceiveAdminMessageModel> List = new List<ReceiveAdminMessageModel>();
-            List = db.ReceiveAdminMessages.Where(a =>  a.SponserId == userId)
+            List = db.ReceiveAdminMessages.OrderByDescending(id => id.Id).Where(a =>  a.SponserId == userId)
                 .Select(x => new ReceiveAdminMessageModel
                 {
                     Id = x.Id,
