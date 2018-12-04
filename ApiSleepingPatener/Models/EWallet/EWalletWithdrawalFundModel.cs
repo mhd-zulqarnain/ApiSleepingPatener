@@ -44,7 +44,7 @@ namespace ApiSleepingPatener.Models.EWallet
 
         public bool IsRejected { get; set; }
 
-        public string UserName { get; set; }
+        public string Username { get; set; }
 
     }
 }

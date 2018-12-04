@@ -16,10 +16,10 @@ namespace ApiSleepingPatener.Providers
         {
             return Task.Factory.StartNew(() =>
             {
-                var userName = context.UserName;
+                var Username = context.UserName;
                 var password = context.Password;
                 var userService = new UserService(); // our created one
-                var user = userService.ValidateUser(userName, password);
+                var user = userService.ValidateUser(Username, password);
                 if (user != null)
                 {
                     var claims = new List<Claim>()
@@ -66,11 +66,11 @@ namespace ApiSleepingPatener.Providers
         #endregion
 
         #region[CreateProperties]
-        public static AuthenticationProperties CreateProperties(string userName)
+        public static AuthenticationProperties CreateProperties(string Username)
         {
             IDictionary<string, string> data = new Dictionary<string, string>
             {
-                { "userName", userName }
+                { "Username", Username }
             };
             return new AuthenticationProperties(data);
         }

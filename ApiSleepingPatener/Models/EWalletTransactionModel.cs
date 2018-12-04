@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ApiSleepingPatener.Models
+namespace ApiSleepingPatener.Models.GenealogyTable
 {
-    public class EWalletTransactionModel
-    {
+	public class EWalletTransactionModel
+	{
         public int TransactionId { get; set; }
 
         public string TransactionSource { get; set; }
@@ -25,6 +25,8 @@ namespace ApiSleepingPatener.Models
 
         public int UserId { get; set; }
 
+        public string Username { get; set; }
+
         public bool IsPackageBonus { get; set; }
 
         public int PackageId { get; set; }
@@ -42,5 +44,7 @@ namespace ApiSleepingPatener.Models
         public bool AdminDebit { get; set; }
 
         public string AdminTransactionName { get; set; }
+
+        public bool isWithdrawalOpen { get; set; }
     }
 }

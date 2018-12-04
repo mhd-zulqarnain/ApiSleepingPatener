@@ -14,14 +14,14 @@ namespace ApiSleepingPatener.Models
             Name = name;
             Email = email;
             Password = pass;
-            UserName = uname;
+            Username = uname;
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public string UserName { get; set; }
+        public string Username { get; set; }
       
     }
     public class User1

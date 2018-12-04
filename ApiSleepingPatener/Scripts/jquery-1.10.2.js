@@ -1,17 +1,3 @@
-/* NUGET: BEGIN LICENSE TEXT
- *
- * Microsoft grants you the right to use these script files for the sole
- * purpose of either: (i) interacting through your browser with the Microsoft
- * website or online service, subject to the applicable licensing or use
- * terms; or (ii) using the files as included with a Microsoft product subject
- * to that product's license terms. Microsoft reserves all other rights to the
- * files not expressly granted by Microsoft, whether by implication, estoppel
- * or otherwise. Insofar as a script file is dual licensed under GPL,
- * Microsoft neither took the code under GPL nor distributes it thereunder but
- * under the terms set out in this paragraph. All notices and licenses
- * below are for informational purposes only.
- *
- * NUGET: END LICENSE TEXT */
 /*!
  * jQuery JavaScript Library v1.10.2
  * http://jquery.com/
@@ -7813,7 +7799,7 @@ jQuery.extend({
 		timeout: 0,
 		data: null,
 		dataType: null,
-		username: null,
+		Username: null,
 		password: null,
 		cache: null,
 		throws: false,
@@ -8679,9 +8665,9 @@ if ( xhrSupported ) {
 						xhr = s.xhr();
 
 					// Open the socket
-					// Passing null username, generates a login popup on Opera (#2865)
-					if ( s.username ) {
-						xhr.open( s.type, s.url, s.async, s.username, s.password );
+					// Passing null Username, generates a login popup on Opera (#2865)
+					if ( s.Username ) {
+						xhr.open( s.type, s.url, s.async, s.Username, s.password );
 					} else {
 						xhr.open( s.type, s.url, s.async );
 					}

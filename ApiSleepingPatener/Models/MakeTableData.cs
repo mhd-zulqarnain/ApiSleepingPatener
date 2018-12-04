@@ -8,11 +8,13 @@ namespace ApiSleepingPatener.Models
 {
     public class MakeTableData
     {
-        public decimal totalLeftUsers  { get; set; }
-        public decimal totalRightUsers  { get; set; }
-        public decimal totalAmountLeftUsers { get; set; }
-        public decimal totalAmountRightUsers { get; set; }
-        public decimal rightRemaingAmount { get; set; }
-        public decimal leftRemaingAmount { get; set; }
+        public string totalLeftUsers  { get; set; }
+        public string totalRightUsers  { get; set; }
+        public string totalAmountLeftUsers { get; set; }
+        public string totalAmountRightUsers { get; set; }
+        public string rightRemaingAmount { get; set; }
+        public string leftRemaingAmount { get; set; }
+        public string getalltotalearningamount { get; set; }
+        public string usertablebalance { get; set; }
     }
 }

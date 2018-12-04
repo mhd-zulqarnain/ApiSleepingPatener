@@ -24,7 +24,7 @@ namespace ApiSleepingPatener.Models
         //public byte[] MessageImage { get; set; }
         //public HttpPostedFileWrapper MessageImage { get; set; }
 
-        public HttpPostedFileBase MessageImage { get; set; }
+        public byte[] MessageImage { get; set; }
 
         public Nullable<bool> IsRead { get; set; }
 

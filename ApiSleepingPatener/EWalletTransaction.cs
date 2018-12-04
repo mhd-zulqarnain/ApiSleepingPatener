@@ -32,5 +32,6 @@ namespace ApiSleepingPatener
         public Nullable<bool> AdminCredit { get; set; }
         public Nullable<bool> AdminDebit { get; set; }
         public string AdminTransactionName { get; set; }
+        public Nullable<bool> IsWithdrawlRequestApproved { get; set; }
     }
 }

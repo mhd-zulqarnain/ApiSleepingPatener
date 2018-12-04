@@ -7,42 +7,34 @@ using System.Web.Http;
 
 namespace ApiSleepingPatener.Controllers
 {
-   // [Authorize]
+    [Authorize]
     public class ValuesController : ApiController
     {
-
-        static List<String> list = new List<string>()
-        {
-            "name1","name2","name2"
-        };
         // GET api/values
         public IEnumerable<string> Get()
         {
-            return list;
+            return new string[] { "value1", "value2" };
         }
-      
-        // GET api/values/
+
+        // GET api/values/5
         public string Get(int id)
         {
-            return list[id];
+            return "value";
         }
 
         // POST api/values
         public void Post([FromBody]string value)
         {
-            list.Add(value);
         }
 
         // PUT api/values/5
         public void Put(int id, [FromBody]string value)
         {
-            list[id] = value;
         }
 
         // DELETE api/values/5
         public void Delete(int id)
         {
-            list.RemoveAt(id);
         }
     }
 }

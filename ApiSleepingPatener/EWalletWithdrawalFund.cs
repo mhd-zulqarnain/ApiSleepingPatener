@@ -33,5 +33,6 @@ namespace ApiSleepingPatener
         public Nullable<bool> IsRejected { get; set; }
         public Nullable<int> UserId { get; set; }
         public string UserName { get; set; }
+        public Nullable<int> EwalletTransId { get; set; }
     }
 }

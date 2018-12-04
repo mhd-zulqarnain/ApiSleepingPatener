@@ -21,42 +21,47 @@ namespace ApiSleepingPatener.Controllers
         public IHttpActionResult DashBoard(int userId)
         {
             Dashboarddetails dbd = new Dashboarddetails();
-            string totaldirectcommission = GetUserTotalDirectCommission(userId);
-            string totalewalletcredit = GetEWalletCreditSum(userId);
-            string totalGetPaymentsInProcessSum = GetPaymentsInProcessSum(userId);
             string totalGetUserTotalPackageCommission = GetUserTotalPackageCommission(userId);
-            string totalGetEWalletDebitSum = GetEWalletDebitSum(userId); 
+            string totaldirectcommission = GetUserTotalDirectCommission(userId);
+            string totalGetUserTotalMatchingCommission = GetUserTotalMatchingCommission(userId);         
             string totalGetUserCurrentPackage = GetUserCurrentPackage(userId);
-        //  string totalGetAllTotalLeftUserPV = GetAllTotalLeftUserPV(userId);
-            //string totalGetAllTotalRightUserPV = GetAllTotalRightUserPV(userId);
             string totalGetUserDownlineMembers = GetUserDownlineMembers(userId);
+            //Cash WithDrawn
             string totalGetPayoutHistorySum = GetPayoutHistorySum(userId);
-            string totalGetUserTotalMatchingCommission = GetUserTotalMatchingCommission(userId);
-            // string totalGetAllCurrentRewardInfo = GetAllCurrentRewardInfo(userId);
+            string totalewalletcredit = GetEWalletCreditSum(userId);
+            string totalGetEWalletDebitSum = GetEWalletDebitSum(userId);
+            string totalGetPaymentsInProcessSum = GetPaymentsInProcessSum(userId);
             string totalGetEWalletSummarySponsorBonus = GetEWalletSummarySponsorBonus(userId);
+            //rewards
+            string totalGetAllTotalLeftUserPV = GetAllTotalLeftUserPV(userId);
+            string totalGetAllTotalRightUserPV = GetAllTotalRightUserPV(userId);
+            EwalletModel ewm = GetAllCurrentRewardInfo(userId);
+            
 
-            string totalGetleftamount = GetTotalleftamount(userId);
-            string totalGetrightamount = GetTotalrightamount(userId);
-            string totalGetremaningleftamount = GetTotalremainingleftamount(userId);
-            string totalGetremaningrightamount = GetTotalremainingrightamount(userId);
+
+
+
+            //string totalGetAllCurrentRewardInfo = GetAllCurrentRewardInfo(userId);
+
+
+            ////string totalGetleftamount = GetTotalleftamount(userId);
+            //string totalGetremaningleftamount = GetTotalremainingleftamount(userId);
+            //string totalGetremaningrightamount = GetTotalremainingrightamount(userId);
             //object
-            dbd.totaldirectcommission = totaldirectcommission;
-            dbd.GetEwalletCredit = totalewalletcredit;
-            dbd.GetPaymentsInProcessSum = totalGetPaymentsInProcessSum;
             dbd.GetUserTotalPackageCommission = totalGetUserTotalPackageCommission;
-            dbd.GetEWalletDebitSum = totalGetEWalletDebitSum;
+            dbd.totaldirectcommission = totaldirectcommission;
+            dbd.GetUserTotalMatchingCommission = totalGetUserTotalMatchingCommission;
             dbd.GetUserCurrentPackage = totalGetUserCurrentPackage;
-            //dbd.GetAllTotalLeftUserPV = totalGetAllTotalLeftUserPV;
-            //dbd.GetAllTotalRightUserPV = totalGetAllTotalRightUserPV;
             dbd.GetUserDownlineMembers = totalGetUserDownlineMembers;
             dbd.GetPayoutHistorySum = totalGetPayoutHistorySum;
-            dbd.GetUserTotalMatchingCommission = totalGetUserTotalMatchingCommission;
+            dbd.GetEwalletCredit = totalewalletcredit;
+            dbd.GetEWalletDebitSum = totalGetEWalletDebitSum;
+            dbd.GetPaymentsInProcessSum = totalGetPaymentsInProcessSum;
             dbd.GetEWalletSummarySponsorBonus = totalGetEWalletSummarySponsorBonus;
-            dbd.GetTotalleftamount = totalGetleftamount;
-            dbd.GetTotalrightamount = totalGetrightamount;
-            dbd.GetTotalremainingleftamount = totalGetremaningleftamount;
-            dbd.GetTotalremainingrightamount = totalGetremaningrightamount;
-            //  dbd.GetAllCurrentRewardInfo = totalGetAllCurrentRewardInfo; 
+            dbd.GetAllTotalRightUserPV = totalGetAllTotalRightUserPV;
+            dbd.GetAllTotalLeftUserPV = totalGetAllTotalLeftUserPV;
+            dbd.GetTotalremainingleftamount = ewm.bonus;
+            dbd.GetTotalremainingrightamount = ewm.witdraw;
 
 
             return Ok(dbd);
@@ -64,7 +69,7 @@ namespace ApiSleepingPatener.Controllers
         public string GetUserTotalDirectCommission(int userId)
         {
             //var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
-            using (sleepingtestEntities dc = new sleepingtestEntities())
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
             {
                 var CGP = (from a in dc.EWalletTransactions
                            where a.UserId.Value == userId
@@ -80,9 +85,8 @@ namespace ApiSleepingPatener.Controllers
 
         public string GetEWalletCreditSum(int userId)
         {
-            using (sleepingtestEntities dc = new sleepingtestEntities())
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
             {
-                string UserTypeAdmin = Common.Enum.UserType.Admin.ToString();
                 string UserTypeUser = Common.Enum.UserType.User.ToString();
 
                 var CGP = (from a in dc.EWalletTransactions
@@ -101,7 +105,7 @@ namespace ApiSleepingPatener.Controllers
 
         public string GetEWalletDebitSum(int userId)
         {
-            using (sleepingtestEntities dc = new sleepingtestEntities())
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
             {
 
                 var Debit = (from a in dc.EWalletTransactions
@@ -126,7 +130,7 @@ namespace ApiSleepingPatener.Controllers
 
         public string GetPaymentsInProcessSum(int userId)
         {
-            using (sleepingtestEntities dc = new sleepingtestEntities())
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
             {
                 var CGP = (from a in dc.EWalletWithdrawalFunds
                            where a.IsActive.Value == true
@@ -141,7 +145,7 @@ namespace ApiSleepingPatener.Controllers
         public string GetUserTotalPackageCommission(int userId)
         {
 
-            using (sleepingtestEntities dc = new sleepingtestEntities())
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
             {
                 var CGP = (from a in dc.EWalletTransactions
                            where a.UserId.Value == userId
@@ -156,75 +160,69 @@ namespace ApiSleepingPatener.Controllers
 
         public string GetUserCurrentPackage(int userId)
         {
-            using (sleepingtestEntities dc = new sleepingtestEntities())
-            {
-                NewUserRegistration newpckg = dc.NewUserRegistrations.Where(a => a.UserId.Equals(userId)).FirstOrDefault();
+            return "";
+            //using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
+            //{
+            //    NewUserRegistration newpckg = dc.NewUserRegistrations.Where(a => a.UserId.Equals(userId)).FirstOrDefault();
 
-                Package pkge = dc.Packages.Where(a => a.PackageId.Equals(newpckg.UserPackage.Value)).FirstOrDefault();
+            //    Package pkge = dc.Packages.Where(a => a.PackageId.Equals(newpckg.UserPackage.Value)).FirstOrDefault();
 
-                var PackageName = pkge.PackageName;
-                var PackagePrice = pkge.PackagePrice.Value;
-                return PackagePrice.ToString();
-            }
+            //    var PackageName = pkge.PackageName;
+            //    var PackagePrice = pkge.PackagePrice.Value;
+            //    return PackagePrice.ToString();
+            //}
         }
 
-        ////public string GetAllTotalLeftUserPV(int userId)
-        ////{
-        ////    using (sleepingtestEntities dc = new sleepingtestEntities())
-        ////    {
-        ////        var TotalAmountLeftUsers = dc.GetParentChildsLeftSP(userId).ToList();
-        ////        decimal TotalAmountLeftUsersShow = TotalAmountLeftUsers.Sum(x => x.PaidAmount.Value);
-        ////        return TotalAmountLeftUsersShow.ToString();
+        //[HttpGet]
+        //[Route("getalltotalleftuserpv/{userId}")]
+        public string GetAllTotalLeftUserPV(int userId)
+        {
+            //var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
+            {
+              var TotalAmountLeftUsers = dc.GetParentChildsLeftSP(userId).Where(a => a.IsPaidMember.Value.Equals(true)).ToList();
+                var TotalAmountLeftUsersShow = TotalAmountLeftUsers.Sum(x => x.PaidAmount.Value);
+                return TotalAmountLeftUsersShow.ToString();
+               // return Ok(TotalAmountLeftUsers);
 
-        ////        //if (TotalAmountLeftUsersShow != 0)
-        ////        //{
-        ////        //    return TotalAmountLeftUsers.ToString();
-        ////        //}
-        ////        //else
-        ////        //{
-        ////        //    return Json(new { success = true, result = 0 }, JsonRequestBehavior.AllowGet);
-        ////        //}
-
-        ////    }
+             
+            }
 
 
-        ////}
+        }
 
-        //public string GetAllTotalRightUserPV(int userId)
-        //{
-        //    using (sleepingtestEntities dc = new sleepingtestEntities())
-        //    {
-        //        var TotalAmountRightUsers = dc.GetParentChildsRightSP(userId).ToList();
-        //        decimal TotalAmountRightUsersShow = TotalAmountRightUsers.Sum(x => x.PaidAmount.Value);
-        //        //if (TotalAmountRightUsersShow != 0)
-        //        //{
-        //        //    return Json(new { success = true, result = TotalAmountRightUsersShow }, JsonRequestBehavior.AllowGet);
-        //        //}
-        //        //else
-        //        //{
-        //        //    return Json(new { success = true, result = 0 }, JsonRequestBehavior.AllowGet);
-        //        //}
-        //        return TotalAmountRightUsersShow.ToString();
-        //    }
-        //}
+        //[HttpGet]
+        //[Route("getalltotalrightuserpv/{userId}")]
+        public string GetAllTotalRightUserPV(int userId)
+        {
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
+            {
+                var TotalAmountRightUsers = dc.GetParentChildsRightSP(userId).Where(a => a.IsPaidMember.Value.Equals(true)).ToList();
+                var TotalAmountRightUsersShow = TotalAmountRightUsers.Sum(x => x.PaidAmount.Value);
+                return TotalAmountRightUsersShow.ToString();
+             
+            }
+
+        }
 
         public string GetUserDownlineMembers(int userId)
         {
-            using (sleepingtestEntities dc = new sleepingtestEntities())
-            {               
-
-                    var CGP = dc.GetParentChildsSP(userId).ToList();
-                    var query = CGP.Count();
+            string UserTypeUser = Common.Enum.UserType.User.ToString();
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
+            { 
+                    var totalLeft = dc.GetParentChildsLeftSP(userId).ToList();
+                    var totalRight = dc.GetParentChildsRightSP(userId).ToList();
+                    var query = totalLeft.Count() + totalRight.Count();
                 return query.ToString();
-                
-            }
-          
+                }
+            
+         
         }
 
         public string GetPayoutHistorySum(int userId)
         {
 
-            using (sleepingtestEntities dc = new sleepingtestEntities())
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
             {               
 
                     var CGP = (from a in dc.EWalletWithdrawalFunds
@@ -238,7 +236,7 @@ namespace ApiSleepingPatener.Controllers
         }
         public string GetUserTotalMatchingCommission(int userId)
         {
-            using (sleepingtestEntities dc = new sleepingtestEntities())
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
             {               
                
                     var CGP = (from a in dc.EWalletTransactions
@@ -253,7 +251,7 @@ namespace ApiSleepingPatener.Controllers
         }
         public string GetEWalletSummarySponsorBonus(int userId)
         {
-            using (sleepingtestEntities dc = new sleepingtestEntities())
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
             {
                 var Debit = (from eWallTr in dc.EWalletTransactions
                              where eWallTr.UserId == userId && eWallTr.Credit == false && eWallTr.Debit == true
@@ -275,24 +273,153 @@ namespace ApiSleepingPatener.Controllers
             }
             
         }
-
-        public string GetTotalleftamount(int userId)
+        public EwalletModel GetAllCurrentRewardInfo(int userId)
         {
-            return  null;
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
+            {
+
+                UserReward usrReward = dc.UserRewards.Where(a => a.UserId.Value.Equals(userId)).OrderByDescending(o => o.RewardId.Value).FirstOrDefault();
+
+                int MinValueId = 0;
+
+                var TotalAmountLeftUsers = dc.GetParentChildsLeftSP(userId).Where(a => a.IsPaidMember.Value.Equals(true)).ToList();
+                var TotalAmountRightUsers = dc.GetParentChildsRightSP(userId).Where(a => a.IsPaidMember.Value.Equals(true)).ToList();
+
+                decimal TotalAmountLeftUsersShow = TotalAmountLeftUsers.Sum(x => x.PaidAmount.Value);
+                decimal TotalAmountRightUsersShow = TotalAmountRightUsers.Sum(x => x.PaidAmount.Value);
+
+                Reward rewardRightlimit = (from rwrd in dc.Rewards
+                                           where rwrd.Rightlimit >= TotalAmountRightUsersShow
+                                           select rwrd).FirstOrDefault();
+
+                Reward rewardLeftlimit = (from rwrd in dc.Rewards
+                                          where rwrd.Leftlimit >= TotalAmountLeftUsersShow
+                                          select rwrd).FirstOrDefault();
+
+                if (rewardLeftlimit == null && rewardRightlimit == null) //if all rewards complete
+                {
+                    Reward rewardRightIfComplete = (from rwrd in dc.Rewards
+                                                    where rwrd.Rightlimit <= TotalAmountRightUsersShow
+                                                    select rwrd).OrderByDescending(o => o.Id).FirstOrDefault();
+
+                    Reward rewardLeftIfComplete = (from rwrd in dc.Rewards
+                                                   where rwrd.Leftlimit <= TotalAmountLeftUsersShow
+                                                   select rwrd).OrderByDescending(o => o.Id).FirstOrDefault();
+
+                    int MaxValueId = Math.Max((int)rewardRightIfComplete.Id, (int)rewardLeftIfComplete.Id);
+                    if (usrReward != null)
+                    {
+                        if (usrReward.RewardId == MaxValueId)
+                        {
+                            EwalletModel obj1 = new EwalletModel();
+                            obj1.bonus = "Completed";
+                            obj1.witdraw = "Completed";
+                            return obj1;
+                        }
+                        else
+                        {
+                            MinValueId = Math.Min((int)rewardRightIfComplete.Id, (int)rewardLeftIfComplete.Id);
+                        }
+                    }
+
+
+
+                }
+                else if (rewardLeftlimit == null)
+                {
+                    rewardRightlimit = (from rwrd in dc.Rewards
+                                        where rwrd.Rightlimit <= TotalAmountRightUsersShow
+                                        select rwrd).OrderByDescending(o => o.Id).FirstOrDefault();
+
+                    rewardLeftlimit = (from rwrd in dc.Rewards
+                                       where rwrd.Leftlimit <= TotalAmountRightUsersShow
+                                       select rwrd).OrderByDescending(o => o.Id).FirstOrDefault();
+
+                    MinValueId = Math.Min((int)rewardRightlimit.Id, (int)rewardLeftlimit.Id);
+
+                }
+                else if (rewardRightlimit == null)
+                {
+                    rewardRightlimit = (from rwrd in dc.Rewards
+                                        where rwrd.Rightlimit <= TotalAmountRightUsersShow
+                                        select rwrd).OrderByDescending(o => o.Id).FirstOrDefault();
+
+                    rewardLeftlimit = (from rwrd in dc.Rewards
+                                       where rwrd.Leftlimit <= TotalAmountRightUsersShow
+                                       select rwrd).OrderByDescending(o => o.Id).FirstOrDefault();
+
+                    MinValueId = Math.Min((int)rewardRightlimit.Id, (int)rewardLeftlimit.Id);
+                }
+                else
+                {
+                    MinValueId = Math.Min((int)rewardRightlimit.Id, (int)rewardLeftlimit.Id);
+                }
+
+
+
+                Reward reward = dc.Rewards.Where(a => a.Id.Equals(MinValueId)).FirstOrDefault();
+
+                decimal LeftLimitPV = (decimal)reward.Leftlimit;
+                decimal TotalLeftUserPV = TotalAmountLeftUsersShow;
+                decimal MaxValueLeft = Math.Max(LeftLimitPV, TotalLeftUserPV);
+                decimal RemainingLeftUserPV = MaxValueLeft - TotalLeftUserPV;
+
+
+                decimal RightLimitPV = (decimal)reward.Rightlimit;
+                decimal TotalRightUserPV = TotalAmountRightUsersShow;
+                decimal MaxValueRight = Math.Max(RightLimitPV, TotalRightUserPV);
+                decimal RemainingRightUserPV = MaxValueRight - TotalRightUserPV;
+
+
+                if (reward != null)
+                {
+                    EwalletModel obj1 = new EwalletModel();
+                    obj1.bonus = RemainingLeftUserPV.ToString();
+                    obj1.witdraw = RemainingRightUserPV.ToString();
+                    return obj1;
+                }
             }
+            EwalletModel obj = new EwalletModel();
+            obj.bonus = "0";
+            obj.witdraw = "0";
 
-        public string GetTotalrightamount(int userId)
-        {
-            return null;
+            return obj;
+
         }
-        public string GetTotalremainingleftamount(int userId)
+
+
+
+
+        //New user selection post on dashboard page 
+        [HttpPost]
+        [Route("approvesaleexecutive/{userId}")]
+        public IHttpActionResult ApproveSalesExecutiveContinue(int userId)
         {
-            return null;
+            SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities();
+            NewUserRegistration newuserdata = dc.NewUserRegistrations.Where(a => a.UserId.Equals(userId)).FirstOrDefault();
+            if (newuserdata != null)
+            {
+                newuserdata.IsSalesExecutive = true;
+                newuserdata.UserDesignation = Common.Enum.UserAsSPorSM.SalesExecutive;
+                dc.SaveChanges();
+            }
+            return Ok(new { success = true });
         }
-        public string GetTotalremainingrightamount(int userId)
+        [HttpPost]
+        [Route("approvesleepingpartner/{userId}")]
+        public IHttpActionResult ApproveSleepingPartnerContinue(int userId)
         {
-            return null;
+            SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities();
+            NewUserRegistration newuserdata = dc.NewUserRegistrations.Where(a => a.UserId.Equals(userId)).FirstOrDefault();
+            if (newuserdata != null)
+            {
+                newuserdata.IsSleepingPartner = true;
+                newuserdata.UserDesignation = Common.Enum.UserAsSPorSM.SleepingPartner;
+                dc.SaveChanges();
+            }
+            return Ok(new { success = true });
         }
+     
 
     }
 
@@ -301,7 +428,7 @@ namespace ApiSleepingPatener.Controllers
 
         //public string GetAllCurrentRewardInfo(int userId)
         //{
-        //    using (sleepingtestEntities dc = new sleepingtestEntities())
+        //    using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
         //    {
 
         //        UserReward usrReward = dc.UserRewards.Where(a => a.UserId.Value.Equals(userId)).OrderByDescending(o => o.RewardId.Value).FirstOrDefault();
@@ -425,7 +552,7 @@ namespace ApiSleepingPatener.Controllers
 
         //public void GetCalculateCurrentReward(int userId)
         //{
-        //    using (sleepingtestEntities dc = new sleepingtestEntities())
+        //    using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
         //    {
         //        UserReward usrReward = dc.UserRewards.Where(a => a.UserId.Value.Equals(userId)).OrderByDescending(o => o.RewardId.Value).FirstOrDefault();
 
@@ -461,7 +588,7 @@ namespace ApiSleepingPatener.Controllers
         //                    usrRwrd.UserLeftAmount = TotalAmountLeftUsersShow;
         //                    usrRwrd.UserRightAmount = TotalAmountRightUsersShow;
         //                    usrRwrd.UserId = userId;
-        //                    usrRwrd.UserName = user.Username;
+        //                    usrRwrd.Username = user.Username;
         //                    usrRwrd.CreateDate = DateTime.Now;
         //                    usrRwrd.RewardId = reward.Id;
         //                    usrRwrd.IsClaimByUser = false;
@@ -482,7 +609,7 @@ namespace ApiSleepingPatener.Controllers
         //                usrRwrd.UserLeftAmount = TotalAmountLeftUsersShow;
         //                usrRwrd.UserRightAmount = TotalAmountRightUsersShow;
         //                usrRwrd.UserId = userId;
-        //                usrRwrd.UserName = user.Username;
+        //                usrRwrd.Username = user.Username;
         //                usrRwrd.CreateDate = DateTime.Now;
         //                usrRwrd.RewardId = reward.Id;
         //                usrRwrd.IsClaimByUser = false;

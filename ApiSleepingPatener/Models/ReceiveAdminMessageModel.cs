@@ -10,11 +10,9 @@ namespace ApiSleepingPatener.Models
     {
         public int Id { get; set; }
         public Nullable<int> Sender { get; set; }
-        public Nullable<int> UserId { get; set; }
-        [Required(ErrorMessage = "select sponser", AllowEmptyStrings = false)]
+        public Nullable<int> UserId { get; set; }        
         public Nullable<int> SponserId { get; set; }
         public string Sender_Name { get; set; }
-        [Required(ErrorMessage = "enter message", AllowEmptyStrings = false)]
         public string Message { get; set; }
         public byte[] MessageImage { get; set; }
         public Nullable<bool> IsRead { get; set; }
