@@ -374,7 +374,6 @@
     <Compile Include="Models\NewsTicker\NewsTickerModel.cs" />
     <Compile Include="Models\NotificationExtensions.cs" />
     <Compile Include="Models\Notification\NotificationModel.cs" />
-    <Compile Include="Models\Packages\PackageModel.cs" />
     <Compile Include="Models\PrivacySettingModel.cs" />
     <Compile Include="Models\ProfileSettingModel.cs" />
     <Compile Include="Models\ProfileSetup.cs" />
@@ -542,13 +541,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <None Include="Properties\PublishProfiles\binarymlm1 - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\binarymlm1 - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\sleepingpartners - FTP %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\sleepingpartners - FTP %283%29.pubxml" />
-    <None Include="Properties\PublishProfiles\sleepingpartners - FTP %284%29.pubxml" />
     <None Include="Properties\PublishProfiles\sleepingpartners - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\sleepingpartners - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\sleepingpartners - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
@@ -585,7 +578,9 @@
       <DependentUpon>SleepingPartnermanagementTreeTesting.edmx</DependentUpon>
       <LastGenOutput>SleepingPartnermanagementTreeTesting.cs</LastGenOutput>
     </Content>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -618,6 +613,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\NewFolder1\" />
+    <Folder Include="Models\Packages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
