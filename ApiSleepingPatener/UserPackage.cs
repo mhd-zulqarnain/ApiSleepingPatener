@@ -28,5 +28,10 @@ namespace ApiSleepingPatener
         public string PackagePurchaseMethod { get; set; }
         public byte[] BankSlipImage { get; set; }
         public Nullable<System.DateTime> LastCommisionDate { get; set; }
+        public Nullable<bool> IsBuyFromEWallet { get; set; }
+        public Nullable<bool> IsBuyFromBankAcnt { get; set; }
+        public Nullable<bool> IsRequestedForBuy { get; set; }
+        public Nullable<bool> IsApprovedForBuy { get; set; }
+        public Nullable<bool> IsRejectedForBuy { get; set; }
     }
 }

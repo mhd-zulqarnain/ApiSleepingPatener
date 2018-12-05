@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d28b8d64932847e09470d325c9135a23" Name="Diagram1">
+      <Diagram DiagramId="08c12e20e3d041e4a62d7c7d40849732" Name="Diagram1">
         <EntityTypeShape EntityType="SleepingPartnermanagementTestingModel.Advertisement" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SleepingPartnermanagementTestingModel.BonusSetting" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SleepingPartnermanagementTestingModel.Country" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
@@ -34,7 +34,8 @@
         <EntityTypeShape EntityType="SleepingPartnermanagementTestingModel.UserPosition" Width="1.5" PointX="14.75" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SleepingPartnermanagementTestingModel.UserReward" Width="1.5" PointX="10.75" PointY="14.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SleepingPartnermanagementTestingModel.UserTableLevel" Width="1.5" PointX="12.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTestingModel.VideoPackTbl" Width="1.5" PointX="14.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepingPartnermanagementTestingModel.VideoPackCatTbl" Width="1.5" PointX="14.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepingPartnermanagementTestingModel.VideoPackTbl" Width="1.5" PointX="2.75" PointY="15.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

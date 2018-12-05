@@ -493,6 +493,9 @@
     <Compile Include="UserTableLevel.cs">
       <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
     </Compile>
+    <Compile Include="VideoPackCatTbl.cs">
+      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+    </Compile>
     <Compile Include="VideoPackTbl.cs">
       <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
     </Compile>
