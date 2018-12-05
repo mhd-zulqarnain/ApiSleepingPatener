@@ -22,3 +22,10 @@ show error
     <httpErrors errorMode="Detailed" />
 </system.webServer>
 
+After adding new entity
+Need to create project from scratch
+-add libraries
+-copy the controller and model 
+-add the entitiees
+-add mising frameworks
+
