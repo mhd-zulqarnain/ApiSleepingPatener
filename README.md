@@ -30,4 +30,4 @@ Need to create project from scratch
 -add mising frameworks
 
 # If the error cause "SleepingPartnermanagementTestingEntities" already been added publishing .net
-After the <connectionString> and before the first <add....> node, add <clear />
+After the <connectionString> and before the first <add....> node, add <clear/>
