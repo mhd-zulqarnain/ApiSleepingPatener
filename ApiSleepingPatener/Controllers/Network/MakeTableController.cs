@@ -974,7 +974,9 @@ namespace ApiSleepingPatener.Controllers
             string gettotalamountrightusers = GetTotalAmountRightUsers(userId);
             //string getalltotalearningamount = GetAllTotalEarningAmount(userId);
             string getusertablebalance = GetUserTableBalance(userId);
-            obj.totalLeftUsers = gettotalamountleftusers;
+
+
+            obj.totalLeftUsers = gettotalleftusers;
             obj.totalAmountLeftUsers = gettotalamountleftusers;
             obj.leftRemaingAmount = getleftremaingamount;
             obj.rightRemaingAmount = getrightremaingamount;
@@ -1026,7 +1028,6 @@ namespace ApiSleepingPatener.Controllers
         public string GetTotalLeftUsers(int userId)
         {
             int TotalLeftUsersShow = 0;
-            
             List<GetParentChildsLeftSP_Result> List = new List<GetParentChildsLeftSP_Result>();
             using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
             {
