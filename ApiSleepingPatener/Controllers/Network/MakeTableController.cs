@@ -290,7 +290,6 @@ namespace ApiSleepingPatener.Controllers
         {
             try
             {
-                // var userId = Convert.ToInt32(Session["LogedUserID"].ToString());
                 SleepingPartnermanagementTreeTestingEntities dbTree = new SleepingPartnermanagementTreeTestingEntities();
                 using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
                 {
@@ -300,11 +299,11 @@ namespace ApiSleepingPatener.Controllers
                     //var usercheckCNIC = dc.NewUserRegistrations.Where(a => a.CNIC.Equals(model.CNICNumber)).FirstOrDefault();
                     if (usercheckEmail != null)
                     {
-                        return Ok(new { success = false, message = "User email already exist" });
+                        return Ok(new { error = true, message = "User email already exist" });
                     }
                     else if (usercheckPhone != null)
                     {
-                        return Ok(new { success = false, message = "User phone number already exist" });
+                        return Ok(new { error = true, message = "User phone number already exist" });
                     }
                     //else if (usercheckAccountNumber != null)
                     //{
@@ -357,14 +356,15 @@ namespace ApiSleepingPatener.Controllers
                         var fileImage = model.DocumentImage;
                         if (fileImage != null)
                         {
-                            // byte[] img = ConvertToBytes(fileImage);
-                            newuser.DocumentImage = fileImage;
+                            byte[] img = fileImage;
+                            newuser.DocumentImage = img;
                         }
                         newuser.IsSleepingPartner = false;
                         newuser.IsSalesExecutive = false;
                         newuser.IsWithdrawalOpen = false;
                         newuser.IsBlock = false;
                         newuser.IsVerify = false;
+                        newuser.IsReject = false;
                         dc.NewUserRegistrations.Add(newuser);
                         #region send sms
 
@@ -375,13 +375,38 @@ namespace ApiSleepingPatener.Controllers
                             body: "Welcome to Sleeping partner portal. "
                             + " Please make sure to pay your amount with in 5 bussiness days"
                             + " to avoid your account deactivation. "
-                            + " Your Username is : " + model.Username
+                            + " Your username is : " + model.Username
                             + " and password is : " + model.Password + "."
                             + " Click on http://sleepingpartnermanagementportalrct.com ",
                             from: new Twilio.Types.PhoneNumber(SendSMSFromNumber),
                             to: new Twilio.Types.PhoneNumber(model.Phone)
                         );
 
+
+                        #endregion
+                        #region user email
+
+                        System.Net.Mail.MailMessage mail1 = new System.Net.Mail.MailMessage();
+                        mail1.From = new MailAddress("noreply@sleepingpartnermanagementportalrct.com");
+                        mail1.To.Add(model.Email);
+                        mail1.Subject = "Sleeping partner management portal";
+                        mail1.Body = "User accept by admin. " +
+                            " Your username is " + model.Username + " and password : " + model.Password + "</br></br>" +
+                            "<table style='font-family:Verdana, Helvetica, sans-serif;' cellpadding='0' cellspacing='0'><tbody><tr><td style='font-family:Verdana; border-right:2px solid #BD272D; padding-right:15px; text-align: right; vertical-align:top; ' valign='top'><table style='font-family:Verdana; margin-right:0; margin-left:auto;' cellpadding='0' cellspacing='0'><tbody><tr><td style='font-family:Verdana; height:55px; vertical-align:top; text-align:right;' valign='top' align='right'><span style='font-family:Verdana; font-size:14pt; font-weight:bold'>Sleeping partner management<span><br></span></span></td></tr><tr><td style='font-family:Verdana; height:40px; vertical-align:top; padding:0; text-align:right;' valign='top' align='right'><span style='font-family:Verdana; font-size:10pt;'>phone: 123456<span><br></span></span><span style='font-family:Verdana; font-size:10pt;'>mobile: 0123456</span></td></tr><tr><td><a href='http://sleepingpartnermanagementportalrct.com'>sleepingpartnermanagementportal</a></td></tr></tbody></table></td><td style='padding-left:15px;font-size:1pt; vertical-align:top; font-family:Verdana;' valign='top'><table style='font-family:Verdana;' cellpadding='0' cellspacing='0'><tbody><tr><td style='height:55px; font-family:Verdana; vertical-align:top;' valign='top'><a href='{Logo URL}' target='_blank'><img alt='Logo' style='height:40px; width:auto; border:0; ' height='40' border='0'  src='~/Content/images/newsleepinglogo.png'></a></td></tr><tr><td style='height:40px; font-family:Verdana; vertical-align:top; padding:0;' valign='top'><span style='font-family:Verdana; font-size:10pt;'>{Address 1}<span><br></span></span> <span style='font-family:Verdana; font-size:10pt;'>{Address 2}</span> </td></tr><tr><td style='height:20px; font-family:Verdana; vertical-align:middle;' valign='middle'><a href='http://{Web page}' target='_blank' style='color:#BD272D; font-size:10pt; font-family:Verdana;'>{Web page}</a></td></tr></tbody></table></td></tr></tbody></table>";
+                        mail1.IsBodyHtml = true;
+                        SmtpClient smtp1 = new SmtpClient();
+                        smtp1.Host = "sleepingpartnermanagementportalrct.com";
+                        smtp1.EnableSsl = true;
+                        smtp1.UseDefaultCredentials = false;
+                        smtp1.Credentials = new NetworkCredential("noreply@sleepingpartnermanagementportalrct.com", "Yly21#p8");
+                        smtp1.DeliveryMethod = SmtpDeliveryMethod.Network;
+                        smtp1.Port = 25;
+                        ServicePointManager.ServerCertificateValidationCallback =
+                        delegate (object s, X509Certificate certificate,
+                                 X509Chain chain, SslPolicyErrors sslPolicyErrors)
+                        { return true; };
+                        smtp1.Send(mail1);
+                        //await SendEmailToSponsor(newuserdata.Email, "sleeping patners", Body);
 
                         #endregion
                         dc.SaveChanges();
@@ -397,6 +422,12 @@ namespace ApiSleepingPatener.Controllers
                         userpackage.UserId = newuser.UserId;
                         userpackage.IsInCurrentUse = true;
                         userpackage.PurchaseDate = DateTime.Now;
+                        userpackage.IsBuyFromEWallet = false;
+                        userpackage.IsBuyFromBankAcnt = false;
+                        userpackage.IsRequestedForBuy = false;
+                        userpackage.IsApprovedForBuy = false;
+                        userpackage.IsRejectedForBuy = false;
+
                         dc.UserPackages.Add(userpackage);
 
 
@@ -432,38 +463,13 @@ namespace ApiSleepingPatener.Controllers
 
                         #endregion
 
-                        
+                     
 
-                        #region user email
-
-                        System.Net.Mail.MailMessage mail1 = new System.Net.Mail.MailMessage();
-                        mail1.From = new MailAddress("noreply@sleepingpartnermanagementportalrct.com");
-                        mail1.To.Add(model.Email);
-                        mail1.Subject = "Sleeping partner management portal";
-                        mail1.Body = "User accept by admin. " +
-                            " Your Username is " + model.Username + " and password : " + model.Password + "</br></br>" +
-                            "<table style='font-family:Verdana, Helvetica, sans-serif;' cellpadding='0' cellspacing='0'><tbody><tr><td style='font-family:Verdana; border-right:2px solid #BD272D; padding-right:15px; text-align: right; vertical-align:top; ' valign='top'><table style='font-family:Verdana; margin-right:0; margin-left:auto;' cellpadding='0' cellspacing='0'><tbody><tr><td style='font-family:Verdana; height:55px; vertical-align:top; text-align:right;' valign='top' align='right'><span style='font-family:Verdana; font-size:14pt; font-weight:bold'>Sleeping partner management<span><br></span></span></td></tr><tr><td style='font-family:Verdana; height:40px; vertical-align:top; padding:0; text-align:right;' valign='top' align='right'><span style='font-family:Verdana; font-size:10pt;'>phone: 123456<span><br></span></span><span style='font-family:Verdana; font-size:10pt;'>mobile: 0123456</span></td></tr><tr><td><a href='http://sleepingpartnermanagementportalrct.com'>sleepingpartnermanagementportal</a></td></tr></tbody></table></td><td style='padding-left:15px;font-size:1pt; vertical-align:top; font-family:Verdana;' valign='top'><table style='font-family:Verdana;' cellpadding='0' cellspacing='0'><tbody><tr><td style='height:55px; font-family:Verdana; vertical-align:top;' valign='top'><a href='{Logo URL}' target='_blank'><img alt='Logo' style='height:40px; width:auto; border:0; ' height='40' border='0'  src='~/Content/images/newsleepinglogo.png'></a></td></tr><tr><td style='height:40px; font-family:Verdana; vertical-align:top; padding:0;' valign='top'><span style='font-family:Verdana; font-size:10pt;'>{Address 1}<span><br></span></span> <span style='font-family:Verdana; font-size:10pt;'>{Address 2}</span> </td></tr><tr><td style='height:20px; font-family:Verdana; vertical-align:middle;' valign='middle'><a href='http://{Web page}' target='_blank' style='color:#BD272D; font-size:10pt; font-family:Verdana;'>{Web page}</a></td></tr></tbody></table></td></tr></tbody></table>";
-                        mail1.IsBodyHtml = true;
-                        SmtpClient smtp1 = new SmtpClient();
-                        smtp1.Host = "sleepingpartnermanagementportalrct.com";
-                        smtp1.EnableSsl = true;
-                        smtp1.UseDefaultCredentials = false;
-                        //smtp1.Credentials = new NetworkCredential("noreply@sleepingpartnermanagementportalrct.com", "Yly21#p8");
-                        smtp1.Credentials = new NetworkCredential("noreply@sleepingpartnermanagementportalrct.com", "Yly21#p8");
-                        smtp1.DeliveryMethod = SmtpDeliveryMethod.Network;
-                        smtp1.Port = 25;
-                        ServicePointManager.ServerCertificateValidationCallback =
-                        delegate (object s, X509Certificate certificate,
-                                 X509Chain chain, SslPolicyErrors sslPolicyErrors)
-                        { return true; };
-                        smtp1.Send(mail1);
-                       // await SendEmailToSponsor(newuserdata.Email, "sleeping patners", Body);
-
-                        #endregion
+                     
 
                         ModelState.Clear();
                         model = null;
-                        // ViewBag.MessageAddNewMemeberLeft = "Successfully Registration Done";
+                      //  ViewBag.MessageAddNewMemeberLeft = "Successfully Registration Done";
                     }
 
                 }
@@ -471,7 +477,7 @@ namespace ApiSleepingPatener.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(new { success = false, message = ex.Message });
+                return Ok(new { error = true, message = ex.Message });
             }
 
         }
@@ -491,11 +497,11 @@ namespace ApiSleepingPatener.Controllers
                     //var usercheckCNIC = dc.NewUserRegistrations.Where(a => a.CNIC.Equals(model.CNICNumber)).FirstOrDefault();
                     if (usercheckEmail != null)
                     {
-                        return Ok(new { success = false, message = "User email already exist" });
+                        return Ok(new { error = true, message = "User email already exist" });
                     }
                     else if (usercheckPhone != null)
                     {
-                        return Ok(new { success = false, message = "User phone number already exist" });
+                        return Ok(new { error = true, message = "User phone number already exist" });
                     }
                     //else if (usercheckAccountNumber != null)
                     //{
@@ -541,7 +547,7 @@ namespace ApiSleepingPatener.Controllers
                         newuser.UpperId = model.UpperId;
                         newuser.PaidAmount = package.PackagePrice;
                         newuser.CreateDate = DateTime.Now;
-                        newuser.UserCode =Common.Enum.UserType.User.ToString();
+                        newuser.UserCode = Common.Enum.UserType.User.ToString();
                         newuser.IsPaidMember = false;
                         //newuser.UserPackage = model.UserPackage;
                         newuser.UserPackage = package.PackageId;
@@ -549,14 +555,15 @@ namespace ApiSleepingPatener.Controllers
                         var fileImage = model.DocumentImage;
                         if (fileImage != null)
                         {
-                            //byte[] img = ConvertToBytes(fileImage);
-                            newuser.DocumentImage = fileImage;
+                            byte[] img = fileImage;
+                            newuser.DocumentImage = img;
                         }
                         newuser.IsSleepingPartner = false;
                         newuser.IsSalesExecutive = false;
                         newuser.IsWithdrawalOpen = false;
                         newuser.IsBlock = false;
                         newuser.IsVerify = false;
+                        newuser.IsReject = false;
                         dc.NewUserRegistrations.Add(newuser);
                         #region send sms
 
@@ -567,13 +574,37 @@ namespace ApiSleepingPatener.Controllers
                             body: "Welcome to Sleeping partner portal. "
                             + " Please make sure to pay your amount with in 5 bussiness days"
                             + " to avoid your account deactivation. "
-                            + " Your Username is : " + model.Username
+                            + " Your username is : " + model.Username
                             + " and password is : " + model.Password + "."
                             + " Click on http://sleepingpartnermanagementportalrct.com ",
                             from: new Twilio.Types.PhoneNumber(SendSMSFromNumber),
                             to: new Twilio.Types.PhoneNumber(model.Phone)
                         );
+                        #region user email
 
+                        System.Net.Mail.MailMessage mail1 = new System.Net.Mail.MailMessage();
+                        mail1.From = new MailAddress("noreply@sleepingpartnermanagementportalrct.com");
+                        mail1.To.Add(model.Email);
+                        mail1.Subject = "Sleeping partner management portal";
+                        mail1.Body = "User accept by admin. " +
+                            " Your username is " + model.Username + " and password : " + model.Password + "</br></br>" +
+                            "<table style='font-family:Verdana, Helvetica, sans-serif;' cellpadding='0' cellspacing='0'><tbody><tr><td style='font-family:Verdana; border-right:2px solid #BD272D; padding-right:15px; text-align: right; vertical-align:top; ' valign='top'><table style='font-family:Verdana; margin-right:0; margin-left:auto;' cellpadding='0' cellspacing='0'><tbody><tr><td style='font-family:Verdana; height:55px; vertical-align:top; text-align:right;' valign='top' align='right'><span style='font-family:Verdana; font-size:14pt; font-weight:bold'>Sleeping partner management<span><br></span></span></td></tr><tr><td style='font-family:Verdana; height:40px; vertical-align:top; padding:0; text-align:right;' valign='top' align='right'><span style='font-family:Verdana; font-size:10pt;'>phone: 123456<span><br></span></span><span style='font-family:Verdana; font-size:10pt;'>mobile: 0123456</span></td></tr><tr><td><a href='http://sleepingpartnermanagementportalrct.com'>sleepingpartnermanagementportal</a></td></tr></tbody></table></td><td style='padding-left:15px;font-size:1pt; vertical-align:top; font-family:Verdana;' valign='top'><table style='font-family:Verdana;' cellpadding='0' cellspacing='0'><tbody><tr><td style='height:55px; font-family:Verdana; vertical-align:top;' valign='top'><a href='{Logo URL}' target='_blank'><img alt='Logo' style='height:40px; width:auto; border:0; ' height='40' border='0'  src='~/Content/images/newsleepinglogo.png'></a></td></tr><tr><td style='height:40px; font-family:Verdana; vertical-align:top; padding:0;' valign='top'><span style='font-family:Verdana; font-size:10pt;'>{Address 1}<span><br></span></span> <span style='font-family:Verdana; font-size:10pt;'>{Address 2}</span> </td></tr><tr><td style='height:20px; font-family:Verdana; vertical-align:middle;' valign='middle'><a href='http://{Web page}' target='_blank' style='color:#BD272D; font-size:10pt; font-family:Verdana;'>{Web page}</a></td></tr></tbody></table></td></tr></tbody></table>";
+                        mail1.IsBodyHtml = true;
+                        SmtpClient smtp1 = new SmtpClient();
+                        smtp1.Host = "sleepingpartnermanagementportalrct.com";
+                        smtp1.EnableSsl = true;
+                        smtp1.UseDefaultCredentials = false;
+                        smtp1.Credentials = new NetworkCredential("noreply@sleepingpartnermanagementportalrct.com", "Yly21#p8");
+                        smtp1.DeliveryMethod = SmtpDeliveryMethod.Network;
+                        smtp1.Port = 25;
+                        ServicePointManager.ServerCertificateValidationCallback =
+                        delegate (object s, X509Certificate certificate,
+                                 X509Chain chain, SslPolicyErrors sslPolicyErrors)
+                        { return true; };
+                        smtp1.Send(mail1);
+                        //await SendEmailToSponsor(newuserdata.Email, "sleeping patners", Body);
+
+                        #endregion
 
                         #endregion
                         dc.SaveChanges();
@@ -589,6 +620,11 @@ namespace ApiSleepingPatener.Controllers
                         userpackage.UserId = newuser.UserId;
                         userpackage.IsInCurrentUse = true;
                         userpackage.PurchaseDate = DateTime.Now;
+                        userpackage.IsBuyFromEWallet = false;
+                        userpackage.IsBuyFromBankAcnt = false;
+                        userpackage.IsRequestedForBuy = false;
+                        userpackage.IsApprovedForBuy = false;
+                        userpackage.IsRejectedForBuy = false;
 
                         dc.UserPackages.Add(userpackage);
 
@@ -602,7 +638,6 @@ namespace ApiSleepingPatener.Controllers
                         userTableLevel.UserId = newuser.UserId;
                         userTableLevel.LastModifiedDate = DateTime.Now;
                         dc.UserTableLevels.Add(userTableLevel);
-                        
 
                         dc.SaveChanges();
 
@@ -625,35 +660,14 @@ namespace ApiSleepingPatener.Controllers
 
 
                         #endregion
-                        #region user email
 
-                        System.Net.Mail.MailMessage mail1 = new System.Net.Mail.MailMessage();
-                        mail1.From = new MailAddress("noreply@sleepingpartnermanagementportalrct.com");
-                        mail1.To.Add(model.Email);
-                        mail1.Subject = "Sleeping partner management portal";
-                        mail1.Body = "User accept by admin. " +
-                            " Your Username is " + model.Username + " and password : " + model.Password + "</br></br>" +
-                            "<table style='font-family:Verdana, Helvetica, sans-serif;' cellpadding='0' cellspacing='0'><tbody><tr><td style='font-family:Verdana; border-right:2px solid #BD272D; padding-right:15px; text-align: right; vertical-align:top; ' valign='top'><table style='font-family:Verdana; margin-right:0; margin-left:auto;' cellpadding='0' cellspacing='0'><tbody><tr><td style='font-family:Verdana; height:55px; vertical-align:top; text-align:right;' valign='top' align='right'><span style='font-family:Verdana; font-size:14pt; font-weight:bold'>Sleeping partner management<span><br></span></span></td></tr><tr><td style='font-family:Verdana; height:40px; vertical-align:top; padding:0; text-align:right;' valign='top' align='right'><span style='font-family:Verdana; font-size:10pt;'>phone: 123456<span><br></span></span><span style='font-family:Verdana; font-size:10pt;'>mobile: 0123456</span></td></tr><tr><td><a href='http://sleepingpartnermanagementportalrct.com'>sleepingpartnermanagementportal</a></td></tr></tbody></table></td><td style='padding-left:15px;font-size:1pt; vertical-align:top; font-family:Verdana;' valign='top'><table style='font-family:Verdana;' cellpadding='0' cellspacing='0'><tbody><tr><td style='height:55px; font-family:Verdana; vertical-align:top;' valign='top'><a href='{Logo URL}' target='_blank'><img alt='Logo' style='height:40px; width:auto; border:0; ' height='40' border='0'  src='~/Content/images/newsleepinglogo.png'></a></td></tr><tr><td style='height:40px; font-family:Verdana; vertical-align:top; padding:0;' valign='top'><span style='font-family:Verdana; font-size:10pt;'>{Address 1}<span><br></span></span> <span style='font-family:Verdana; font-size:10pt;'>{Address 2}</span> </td></tr><tr><td style='height:20px; font-family:Verdana; vertical-align:middle;' valign='middle'><a href='http://{Web page}' target='_blank' style='color:#BD272D; font-size:10pt; font-family:Verdana;'>{Web page}</a></td></tr></tbody></table></td></tr></tbody></table>";
-                        mail1.IsBodyHtml = true;
-                        SmtpClient smtp1 = new SmtpClient();
-                        smtp1.Host = "sleepingpartnermanagementportalrct.com";
-                        smtp1.EnableSsl = true;
-                        smtp1.UseDefaultCredentials = false;
-                        smtp1.Credentials = new NetworkCredential("noreply@sleepingpartnermanagementportalrct.com", "Yly21#p8");
-                        smtp1.DeliveryMethod = SmtpDeliveryMethod.Network;
-                        smtp1.Port = 25;
-                        ServicePointManager.ServerCertificateValidationCallback =
-                        delegate (object s, X509Certificate certificate,
-                                 X509Chain chain, SslPolicyErrors sslPolicyErrors)
-                        { return true; };
-                        smtp1.Send(mail1);
-                        //await SendEmailToSponsor(newuserdata.Email, "sleeping patners", Body);
+                     
 
-                        #endregion
+                   
 
                         ModelState.Clear();
                         model = null;
-                        //ViewBag.MessageAddNewMemeberRight = "Successfully Registration Done";
+                       // ViewBag.MessageAddNewMemeberRight = "Successfully Registration Done";
 
                     }
                 }
@@ -661,12 +675,125 @@ namespace ApiSleepingPatener.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(new { success = false, message = ex.Message });
+                return Ok(new { error = true, message = ex.Message });
             }
 
         }
+        [HttpGet]
+        [Route("checkifnewmemeberleft/{userId}")]
+        public IHttpActionResult CheckIfNewMemeberLeft(int userId)
+        {
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
+            {
+                var usercheck = dc.NewUserRegistrations.Where(a => a.DownlineMemberId.Equals(userId)
+                    && a.IsUserActive.Value.Equals(false) && a.IsNewRequest.Value.Equals(true)
+                    && a.UserPosition.Equals(Common.Enum.UserPosition.Left)).FirstOrDefault();
+                if (usercheck != null)
+                {
+                    if (usercheck.UserPosition == Common.Enum.UserPosition.Left.ToString())
+                    {
+                        return Ok(new { success = false, message = "Left" });
+                    }
+                    if (usercheck.UserPosition == Common.Enum.UserPosition.Right.ToString())
+                    {
+                        return Ok(new { success = true, message = "Right" });
+                    }
+                }
+                if (usercheck == null)
+                {
+                    return Ok(new { success = true, message = "none" });
+                }
+            }
+            //return Json(new { success = true, message = "User has been saved" }, JsonRequestBehavior.AllowGet);
+            return Ok(new { success = true, message = "Success" });
+        }
+        [HttpGet]
+        [Route("checkIfnewmemeberleftchild/{userId}")]
+        public IHttpActionResult CheckIfNewMemeberLeftChild(int userId)
+        {
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
+            {
+                var usercheck = dc.NewUserRegistrations.Where(a => a.DownlineMemberId.Equals(userId)
+                    && a.IsUserActive.Value.Equals(false) && a.IsNewRequest.Value.Equals(true)
+                    && a.UserPosition.Equals(Common.Enum.UserPosition.Left)).FirstOrDefault();
+                if (usercheck != null)
+                {
+                    if (usercheck.UserPosition == Common.Enum.UserPosition.Left.ToString())
+                    {
+                        return Ok(new { success = false, message = "Left" });
+                    }
+                    if (usercheck.UserPosition == Common.Enum.UserPosition.Right.ToString())
+                    {
+                        return Ok(new { success = true, message = "Right" });
+                    }
+                }
+                if (usercheck == null)
+                {
+                    return Ok(new { success = true, message = "none" });
+                }
+            }
+            //return Json(new { success = true, message = "User has been saved" }, JsonRequestBehavior.AllowGet);
+            return Ok(new { success = true, message = "Success" });
+        }
+       
+        [HttpGet]
+        [Route("checkifnewmemeberright/{userId}")]
+        public IHttpActionResult CheckIfNewMemeberRight(int userId)
+        {
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
+            {
+                var usercheck = dc.NewUserRegistrations.Where(a => a.DownlineMemberId.Equals(userId)
+                    && a.IsUserActive.Value.Equals(false) && a.IsNewRequest.Value.Equals(true)
+                    && a.UserPosition.Equals(Common.Enum.UserPosition.Right)).FirstOrDefault();
+                if (usercheck != null)
+                {
+                    if (usercheck.UserPosition == Common.Enum.UserPosition.Left.ToString())
+                    {
+                        return Ok(new { success = false, message = "Left" });
+                    }
+                    if (usercheck.UserPosition == Common.Enum.UserPosition.Right.ToString())
+                    {
+                        return Ok(new { success = true, message = "Right" });
+                    }
+                }
+                if (usercheck == null)
+                {
+                    return Ok(new { success = true, message = "none" });
+                }
+            }
+            //return Json(new { success = true, message = "User has been saved" }, JsonRequestBehavior.AllowGet);
+            return Ok(new { success = true, message = "Success" });
+        }
+        [HttpGet]
+        [Route("checkifnewmemeberrightchild/{userId}")]
+        public IHttpActionResult CheckIfNewMemeberRightChild(int userId)
+        {
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
+            {
+                var usercheck = dc.NewUserRegistrations.Where(a => a.DownlineMemberId.Equals(userId)
+                    && a.IsUserActive.Value.Equals(false) && a.IsNewRequest.Value.Equals(true)
+                    && a.UserPosition.Equals(Common.Enum.UserPosition.Right)).FirstOrDefault();
+                if (usercheck != null)
+                {
+                    if (usercheck.UserPosition == Common.Enum.UserPosition.Left.ToString())
+                    {
+                        return Ok(new { success = true, message= "Left" });
+                    }
+                    if (usercheck.UserPosition == Common.Enum.UserPosition.Right.ToString())
+                    {
+                        return Ok(new { success = false, position = "Right" });
+                    }
+                }
+                if (usercheck == null)
+                {
+                    return Ok(new { success = true, position = "none" });
+                }
+            }
+            //return Json(new { success = true, message = "User has been saved" }, JsonRequestBehavior.AllowGet);
+            return Ok(new { success = false, message = "Success" });
+        }
         //dropdown for left downliner memebers
-      //  [Authorize]
+        //  [Authorize]
         [HttpGet]
         [Route("dropdownleft/{userId}")]
         public IHttpActionResult GetUserForDownlineMemberByUserOnlyLeft(int userId)
@@ -974,7 +1101,9 @@ namespace ApiSleepingPatener.Controllers
             string gettotalamountrightusers = GetTotalAmountRightUsers(userId);
             //string getalltotalearningamount = GetAllTotalEarningAmount(userId);
             string getusertablebalance = GetUserTableBalance(userId);
-            obj.totalLeftUsers = gettotalamountleftusers;
+
+
+            obj.totalLeftUsers = gettotalleftusers;
             obj.totalAmountLeftUsers = gettotalamountleftusers;
             obj.leftRemaingAmount = getleftremaingamount;
             obj.rightRemaingAmount = getrightremaingamount;
@@ -1026,7 +1155,6 @@ namespace ApiSleepingPatener.Controllers
         public string GetTotalLeftUsers(int userId)
         {
             int TotalLeftUsersShow = 0;
-            
             List<GetParentChildsLeftSP_Result> List = new List<GetParentChildsLeftSP_Result>();
             using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
             {

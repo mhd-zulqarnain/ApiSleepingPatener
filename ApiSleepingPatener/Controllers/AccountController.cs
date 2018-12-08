@@ -41,8 +41,18 @@ namespace ApiSleepingPatener.Controllers
 
             //    }
 
-            //};
-
+            ////};
+            //List = db.VideoPackTbls.Where(a => a.VideoPackCatId == cat_id && a.VideoPackPkgId == userpackageid)
+            //  .Select(x => new VideoPackTblModelCopy
+            //  {
+            //      VideoPackId = x.VideoPackId,
+            //      VideoPackCatId = x.VideoPackCatId,
+            //      VideoPackName = x.VideoPackName,
+            //      VideoPackDesc = x.VideoPackDesc,
+            //      VideoPackVideos = x.VideoPackVideos
+            //  }).ToList();
+            ////ViewBag.VideoList = List;
+            //NewUserRegistration newuser = new NewUserRegistration();
             //  List<NewUserRegistration> list = new List<NewUserRegistration>();
             SqlConnection connect = new SqlConnection(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
 

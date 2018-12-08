@@ -27,10 +27,25 @@ namespace ApiSleepingPatener.Models.Account
 
         public int? UserId { get; set; }
 
+        public string UserName { get; set; }
+
         public bool? IsInCurrentUse { get; set; }
 
         public DateTime PurchaseDate { get; set; }
 
         public DateTime? LastCommisionDate { get; set; }
+
+        public byte[] BankSlipImage { get; set; }
+
+        public bool? IsBuyFromEWallet { get; set; }
+
+        public bool? IsBuyFromBankAcnt { get; set; }
+
+        public bool? IsRequestedForBuy { get; set; }
+
+        public bool? IsApprovedForBuy { get; set; }
+
+        public bool? IsRejectedForBuy { get; set; }
+
     }
 }

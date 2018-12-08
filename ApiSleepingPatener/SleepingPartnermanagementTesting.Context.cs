@@ -56,6 +56,7 @@ namespace ApiSleepingPatener
         public virtual DbSet<UserPosition> UserPositions { get; set; }
         public virtual DbSet<UserReward> UserRewards { get; set; }
         public virtual DbSet<UserTableLevel> UserTableLevels { get; set; }
+        public virtual DbSet<VideoPackCatTbl> VideoPackCatTbls { get; set; }
         public virtual DbSet<VideoPackTbl> VideoPackTbls { get; set; }
     
         public virtual ObjectResult<GetParentChildsLeftSP_Result> GetParentChildsLeftSP(Nullable<int> userId)
@@ -101,6 +102,19 @@ namespace ApiSleepingPatener
                 new ObjectParameter("UserId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetParentChildsSP_Result>("GetParentChildsSP", userIdParameter);
+        }
+    
+        public virtual int GetUserLoginInfo(string userName, string password)
+        {
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetUserLoginInfo", userNameParameter, passwordParameter);
         }
     
         public virtual ObjectResult<GetUserParentsSP_Result> GetUserParentsSP(Nullable<int> userId)

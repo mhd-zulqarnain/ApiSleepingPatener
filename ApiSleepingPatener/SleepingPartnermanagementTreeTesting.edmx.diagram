@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bb0daa0ff8ea461599ff75c380295319" Name="Diagram1">
+      <Diagram DiagramId="438b53974bcd4597bc38368701390e9d" Name="Diagram1">
         <EntityTypeShape EntityType="SleepingPartnermanagementTreeTestingModel.TreeDataTbl" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>

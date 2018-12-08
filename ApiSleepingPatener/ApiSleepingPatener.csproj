@@ -282,6 +282,7 @@
     <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ItSupportController.cs" />
+    <Compile Include="Controllers\VideoPackController.cs" />
     <Compile Include="Controllers\TrainingVideoController .cs" />
     <Compile Include="Controllers\SponserSupportController.cs" />
     <Compile Include="Controllers\DasboardDetailController.cs" />
@@ -388,6 +389,7 @@
     <Compile Include="Models\SponsorModel.cs" />
     <Compile Include="Models\TableLevel\TableLevelModel.cs" />
     <Compile Include="Models\TrainingVideoModel.cs" />
+    <Compile Include="Models\VideoPackTblModelCopy.cs" />
     <Compile Include="NewsTicker.cs">
       <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
     </Compile>
@@ -493,6 +495,9 @@
     <Compile Include="UserTableLevel.cs">
       <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
     </Compile>
+    <Compile Include="VideoPackCatTbl.cs">
+      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+    </Compile>
     <Compile Include="VideoPackTbl.cs">
       <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
     </Compile>
@@ -537,12 +542,9 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <None Include="Properties\PublishProfiles\binarymlm1 - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\binarymlm1 - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\sleepingpartners - FTP %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\sleepingpartners - FTP %283%29.pubxml" />
-    <None Include="Properties\PublishProfiles\sleepingpartners - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\sleepingpartners - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\redcodetechnologies.com - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\sleepingbinary - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\sleepingbinary - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
