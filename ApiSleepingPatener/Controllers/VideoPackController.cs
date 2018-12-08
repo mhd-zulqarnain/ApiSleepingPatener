@@ -22,6 +22,7 @@ namespace ApiSleepingPatener.Controllers
         {
             SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             List<VideoPackCatTbl> videocategory = db.VideoPackCatTbls.ToList();
+           
             return Ok(videocategory);
 
         }
@@ -38,7 +39,8 @@ namespace ApiSleepingPatener.Controllers
                     VideoPackCatId = x.VideoPackCatId,
                     VideoPackName = x.VideoPackName,
                     VideoPackDesc = x.VideoPackDesc,
-                    VideoPackVideos = x.VideoPackVideos
+                    VideoPackVideos = x.VideoPackVideos,
+                    VideoPackImage=x.VideoPackImage
                 }).ToList();
             //ViewBag.VideoList = List;
             return Ok(List);
@@ -49,7 +51,7 @@ namespace ApiSleepingPatener.Controllers
         {
             SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
             List<VideoPackTblModelCopy> List = new List<VideoPackTblModelCopy>();
-            List = db.VideoPackTbls.Where(a => a.VideoPackId == VideoPackId)
+            List = db.VideoPackTbls.Where(a =>  a.VideoPackId == VideoPackId)
                 .Select(x => new VideoPackTblModelCopy
                 {
                     VideoPackId = x.VideoPackId,

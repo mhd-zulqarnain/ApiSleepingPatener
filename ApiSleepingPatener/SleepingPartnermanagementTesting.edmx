@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SleepingPartnermanagementTestingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SleepingPartnermanagementTestingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Advertisement">
           <Key>
             <PropertyRef Name="AdvertisementId" />
@@ -466,6 +466,7 @@
           <Property Name="Category_Name" Type="varchar(max)" />
           <Property Name="Category_Desc" Type="varchar(max)" />
           <Property Name="create_date" Type="date" />
+          <Property Name="Category_Image" Type="image" />
         </EntityType>
         <EntityType Name="VideoPackTbl">
           <Key>
@@ -478,6 +479,7 @@
           <Property Name="VideoPackDesc" Type="varchar(max)" />
           <Property Name="VideoPackVideos" Type="text" />
           <Property Name="CreateDate" Type="date" Nullable="false" />
+          <Property Name="VideoPackImage" Type="image" />
         </EntityType>
         <Function Name="check_parent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
           <Parameter Name="node_id" Type="int" Mode="In" />
@@ -582,8 +584,7 @@
           <EntitySet Name="VideoPackCatTbl" EntityType="Self.VideoPackCatTbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VideoPackTbl" EntityType="Self.VideoPackTbl" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SleepingPartnermanagementTestingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1048,6 +1049,7 @@
           <Property Name="Category_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Category_Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="create_date" Type="DateTime" Precision="0" />
+          <Property Name="Category_Image" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="VideoPackTbl">
           <Key>
@@ -1060,6 +1062,7 @@
           <Property Name="VideoPackDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="VideoPackVideos" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="VideoPackImage" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityContainer Name="SleepingPartnermanagementTestingEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Advertisements" EntityType="Self.Advertisement" />
@@ -1094,35 +1097,35 @@
           <EntitySet Name="VideoPackCatTbls" EntityType="Self.VideoPackCatTbl" />
           <EntitySet Name="VideoPackTbls" EntityType="Self.VideoPackTbl" />
           <FunctionImport Name="GetParentChildsLeftSP" ReturnType="Collection(SleepingPartnermanagementTestingModel.GetParentChildsLeftSP_Result)">
-            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetParentChildsOuterLeftSP" ReturnType="Collection(SleepingPartnermanagementTestingModel.GetParentChildsOuterLeftSP_Result)">
-            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetParentChildsOuterRightSP" ReturnType="Collection(SleepingPartnermanagementTestingModel.GetParentChildsOuterRightSP_Result)">
-            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetParentChildsRightSP" ReturnType="Collection(SleepingPartnermanagementTestingModel.GetParentChildsRightSP_Result)">
-            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetParentChildsSP" ReturnType="Collection(SleepingPartnermanagementTestingModel.GetParentChildsSP_Result)">
-            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetUserLoginInfo">
             <Parameter Name="UserName" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetUserParentsSP" ReturnType="Collection(SleepingPartnermanagementTestingModel.GetUserParentsSP_Result)">
-            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetUserTree">
-            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetUserTreeLeft">
-            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetUserTreeRight">
-            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="insert_tree_node">
             <Parameter Name="tree_name" Mode="In" Type="String" />
@@ -1132,13 +1135,13 @@
             <Parameter Name="UserPosition" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="move_node_down">
-            <Parameter Name="tree_id" Mode="In" Type="Int32" />
+          <Parameter Name="tree_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="move_node_up">
-            <Parameter Name="tree_id" Mode="In" Type="Int32" />
+          <Parameter Name="tree_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="remove_node">
-            <Parameter Name="tree_id" Mode="In" Type="Int32" />
+          <Parameter Name="tree_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="view_human_tree" />
           <FunctionImport Name="view_tree" />
@@ -1862,6 +1865,7 @@
           <EntitySetMapping Name="VideoPackCatTbls">
             <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.VideoPackCatTbl">
               <MappingFragment StoreEntitySet="VideoPackCatTbl">
+                <ScalarProperty Name="Category_Image" ColumnName="Category_Image" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
                 <ScalarProperty Name="Category_Desc" ColumnName="Category_Desc" />
@@ -1872,6 +1876,7 @@
           <EntitySetMapping Name="VideoPackTbls">
             <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.VideoPackTbl">
               <MappingFragment StoreEntitySet="VideoPackTbl">
+                <ScalarProperty Name="VideoPackImage" ColumnName="VideoPackImage" />
                 <ScalarProperty Name="VideoPackId" ColumnName="VideoPackId" />
                 <ScalarProperty Name="VideoPackPkgId" ColumnName="VideoPackPkgId" />
                 <ScalarProperty Name="VideoPackCatId" ColumnName="VideoPackCatId" />

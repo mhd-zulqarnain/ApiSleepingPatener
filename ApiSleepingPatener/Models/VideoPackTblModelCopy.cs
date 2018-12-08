@@ -14,5 +14,6 @@ namespace ApiSleepingPatener.Models
         public string VideoPackDesc { get; set; }
         public string VideoPackVideos { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public byte[] VideoPackImage { get; set; }
     }
 }

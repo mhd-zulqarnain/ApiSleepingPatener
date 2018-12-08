@@ -18,5 +18,6 @@ namespace ApiSleepingPatener
         public string Category_Name { get; set; }
         public string Category_Desc { get; set; }
         public Nullable<System.DateTime> create_date { get; set; }
+        public byte[] Category_Image { get; set; }
     }
 }
