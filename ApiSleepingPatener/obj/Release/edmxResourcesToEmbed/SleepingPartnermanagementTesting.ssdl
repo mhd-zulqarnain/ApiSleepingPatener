@@ -1,0 +1,582 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SleepingPartnermanagementTestingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Advertisement">
+    <Key>
+      <PropertyRef Name="AdvertisementId" />
+    </Key>
+    <Property Name="AdvertisementId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AdvertisementName" Type="nvarchar" MaxLength="50" />
+    <Property Name="AdvertisementDescription" Type="nvarchar(max)" />
+    <Property Name="AdvertisementImage" Type="image" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="BonusSetting">
+    <Key>
+      <PropertyRef Name="BonusSettingId" />
+    </Key>
+    <Property Name="BonusSettingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BonusSettingName" Type="nvarchar" MaxLength="50" />
+    <Property Name="BonusSettingPercent" Type="int" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CountryID" />
+    </Key>
+    <Property Name="CountryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountryName" Type="varchar" MaxLength="50" />
+    <Property Name="TwoCharCountryCode" Type="char" MaxLength="2" />
+    <Property Name="ThreeCharCountryCode" Type="char" MaxLength="3" />
+  </EntityType>
+  <EntityType Name="EWalletPayoutConfig">
+    <Key>
+      <PropertyRef Name="ConfigId" />
+    </Key>
+    <Property Name="ConfigId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TimePeriod" Type="nvarchar" MaxLength="50" />
+    <Property Name="MinimumPayout" Type="money" />
+    <Property Name="PayoutChargesPercent" Type="int" />
+  </EntityType>
+  <EntityType Name="EWalletTransaction">
+    <Key>
+      <PropertyRef Name="TransactionId" />
+    </Key>
+    <Property Name="TransactionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TransactionSource" Type="nvarchar(max)" />
+    <Property Name="TransactionName" Type="nvarchar" MaxLength="50" />
+    <Property Name="AsscociatedMember" Type="int" />
+    <Property Name="Amount" Type="money" />
+    <Property Name="TransactionDate" Type="datetime" />
+    <Property Name="Credit" Type="bit" />
+    <Property Name="Debit" Type="bit" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="IsPackageBonus" Type="bit" />
+    <Property Name="PackageId" Type="int" />
+    <Property Name="IsMatchingBonus" Type="bit" />
+    <Property Name="IsParentBonus" Type="bit" />
+    <Property Name="IsWithdrawlRequestByUser" Type="bit" />
+    <Property Name="IsWithdrawlPaidByAdmin" Type="bit" />
+    <Property Name="AdminCredit" Type="bit" />
+    <Property Name="AdminDebit" Type="bit" />
+    <Property Name="AdminTransactionName" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsWithdrawlRequestApproved" Type="bit" />
+  </EntityType>
+  <EntityType Name="EWalletWithdrawalFund">
+    <Key>
+      <PropertyRef Name="WithdrawalFundId" />
+    </Key>
+    <Property Name="WithdrawalFundId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="BankName" Type="nvarchar" MaxLength="50" />
+    <Property Name="WithdrawalFundMethod" Type="nvarchar" MaxLength="50" />
+    <Property Name="AmountPayble" Type="money" />
+    <Property Name="WithdrawalFundDescription" Type="nvarchar(max)" />
+    <Property Name="WithdrawalFundCharge" Type="money" />
+    <Property Name="Country" Type="int" />
+    <Property Name="RequestedDate" Type="datetime" />
+    <Property Name="ApprovedDate" Type="datetime" />
+    <Property Name="PaidDate" Type="datetime" />
+    <Property Name="RejectedDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsPending" Type="bit" />
+    <Property Name="IsApproved" Type="bit" />
+    <Property Name="IsPaid" Type="bit" />
+    <Property Name="IsRejected" Type="bit" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="EwalletTransId" Type="int" />
+  </EntityType>
+  <EntityType Name="HelpRequest">
+    <Key>
+      <PropertyRef Name="HelpRequestId" />
+    </Key>
+    <Property Name="HelpRequestId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HelpRequestName" Type="nvarchar" MaxLength="50" />
+    <Property Name="HelpRequestDescription" Type="nvarchar(max)" />
+    <Property Name="HelpRequestImage" Type="image" />
+    <Property Name="HelpRequestPriority" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="IsCheckByAdmin" Type="bit" />
+  </EntityType>
+  <EntityType Name="NewsTicker">
+    <Key>
+      <PropertyRef Name="NewsTickerId" />
+    </Key>
+    <Property Name="NewsTickerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NewsTickerName" Type="nvarchar" MaxLength="200" />
+    <Property Name="NewsTickerDescription" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="NewUserRegistration">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Username" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="Country" Type="int" />
+    <Property Name="Address" Type="nvarchar" MaxLength="200" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="CNIC" Type="nvarchar" MaxLength="200" />
+    <Property Name="AccountNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="BankName" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsThisFirstUser" Type="bit" />
+    <Property Name="SponsorId" Type="int" Nullable="false" />
+    <Property Name="DownlineMemberId" Type="int" Nullable="false" />
+    <Property Name="UpperId" Type="int" />
+    <Property Name="PaidAmount" Type="money" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="UserCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsUserActive" Type="bit" />
+    <Property Name="IsNewRequest" Type="bit" />
+    <Property Name="UserPosition" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsPaidMember" Type="bit" />
+    <Property Name="UserPackage" Type="int" />
+    <Property Name="DocumentImage" Type="image" />
+    <Property Name="IsSleepingPartner" Type="bit" />
+    <Property Name="IsSalesExecutive" Type="bit" />
+    <Property Name="UserDesignation" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsWithdrawalOpen" Type="bit" />
+    <Property Name="NICImage" Type="image" />
+    <Property Name="ProfileImage" Type="image" />
+    <Property Name="AccountTitle" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsVerify" Type="bit" />
+    <Property Name="IsBlock" Type="bit" />
+    <Property Name="NICImage1" Type="image" />
+    <Property Name="IsReject" Type="bit" />
+    <Property Name="Fcm" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Packages">
+    <Key>
+      <PropertyRef Name="PackageId" />
+    </Key>
+    <Property Name="PackageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PackageName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PackagePercent" Type="int" />
+    <Property Name="PackagePrice" Type="money" />
+    <Property Name="PackageValidity" Type="nvarchar" MaxLength="50" />
+    <Property Name="PackageMinWithdrawalAmount" Type="money" />
+    <Property Name="PackageMaxWithdrawalAmount" Type="money" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="AddMemberLimit" Type="int" />
+    <Property Name="MaximumMatchingBonusAmount" Type="money" />
+  </EntityType>
+  <EntityType Name="ReceiveAdminMessages">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sender" Type="int" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="SponserId" Type="int" />
+    <Property Name="Sender_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Message" Type="text" />
+    <Property Name="MessageImage" Type="image" />
+    <Property Name="IsRead" Type="bit" />
+    <Property Name="CreateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ReceiveUserMessages">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sender" Type="int" />
+    <Property Name="Sender_Name" Type="varchar" MaxLength="50" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="SponserId" Type="int" />
+    <Property Name="Message" Type="text" />
+    <Property Name="IsRead" Type="bit" />
+    <Property Name="CreateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Rewards">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Designation" Type="nvarchar" MaxLength="50" />
+    <Property Name="RewardName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Leftlimit" Type="money" />
+    <Property Name="Rightlimit" Type="money" />
+    <Property Name="Rewardimage" Type="image" />
+    <Property Name="Isactive" Type="bit" />
+  </EntityType>
+  <EntityType Name="SentAdminMessages">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sender" Type="int" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="SponserId" Type="int" />
+    <Property Name="Sender_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Message" Type="text" />
+    <Property Name="MessageImage" Type="image" />
+    <Property Name="IsRead" Type="bit" />
+    <Property Name="CreateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="SentUserMessages">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sender" Type="int" />
+    <Property Name="Sender_Name" Type="varchar" MaxLength="50" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="SponserId" Type="int" />
+    <Property Name="Message" Type="text" />
+    <Property Name="IsRead" Type="bit" />
+    <Property Name="CreateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="SignUpUsers">
+    <Key>
+      <PropertyRef Name="SignUpId" />
+    </Key>
+    <Property Name="SignUpId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateOfBirth" Type="datetime" />
+    <Property Name="NICnumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="Package" Type="nvarchar" MaxLength="50" />
+    <Property Name="AmountRange" Type="money" />
+    <Property Name="PhoneNumber" Type="int" />
+    <Property Name="Message" Type="nvarchar(max)" />
+    <Property Name="CreateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TableLevel">
+    <Key>
+      <PropertyRef Name="TableLevelId" />
+    </Key>
+    <Property Name="TableLevelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TableLevelName" Type="nvarchar" MaxLength="50" />
+    <Property Name="TableLevelLimit" Type="int" />
+    <Property Name="TableLevelNum" Type="int" />
+  </EntityType>
+  <EntityType Name="TrainingVideos">
+    <Key>
+      <PropertyRef Name="TrainingVideoId" />
+    </Key>
+    <Property Name="TrainingVideoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TrainingVideoName" Type="nvarchar(max)" />
+    <Property Name="TrainingVideoURL" Type="nvarchar(max)" />
+    <Property Name="TrainingVideoDescription" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="UserCommission">
+    <Key>
+      <PropertyRef Name="UserCommissionId" />
+    </Key>
+    <Property Name="UserCommissionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DownlineMemberId" Type="int" />
+    <Property Name="MatchingCommUserId" Type="int" />
+    <Property Name="MatchingCommUserPosition" Type="nvarchar" MaxLength="50" />
+    <Property Name="MatchingCommUserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UserCommissionBalance">
+    <Key>
+      <PropertyRef Name="UserCommBalanceId" />
+    </Key>
+    <Property Name="UserCommBalanceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserCommBalance" Type="money" />
+    <Property Name="UserCommPosition" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserCommIsLeft" Type="bit" />
+    <Property Name="UserCommIsRight" Type="bit" />
+    <Property Name="UpdateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UserGenealogyTable">
+    <Key>
+      <PropertyRef Name="GenealogyTableId" />
+    </Key>
+    <Property Name="GenealogyTableId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NoOfPerson" Type="nvarchar" MaxLength="50" />
+    <Property Name="CommissionDescription" Type="nvarchar(max)" />
+    <Property Name="CommissionAmount" Type="money" />
+    <Property Name="UserPositionName" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserPositionLeft" Type="bit" />
+    <Property Name="UserPositionRight" Type="bit" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="SponsorId" Type="int" />
+    <Property Name="SponsorName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DownlineMemberId" Type="int" />
+    <Property Name="DownlineMemberName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="TableLevel" Type="int" />
+    <Property Name="DirectCommision" Type="bit" />
+    <Property Name="MatchingCommision" Type="bit" />
+  </EntityType>
+  <EntityType Name="UserGenealogyTableLeft">
+    <Key>
+      <PropertyRef Name="GenealogyTableLeftId" />
+    </Key>
+    <Property Name="GenealogyTableLeftId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NoOfPerson" Type="nvarchar" MaxLength="50" />
+    <Property Name="CommissionDescription" Type="nvarchar(max)" />
+    <Property Name="CommissionAmount" Type="money" />
+    <Property Name="UserPositionName" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserPositionLeft" Type="bit" />
+    <Property Name="UserPositionRight" Type="bit" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="SponsorId" Type="int" />
+    <Property Name="SponsorName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DownlineMemberId" Type="int" />
+    <Property Name="DownlineMemberName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="TableLevel" Type="int" />
+    <Property Name="DirectCommision" Type="bit" />
+    <Property Name="MatchingCommision" Type="bit" />
+  </EntityType>
+  <EntityType Name="UserGenealogyTableRight">
+    <Key>
+      <PropertyRef Name="GenealogyTableRightId" />
+    </Key>
+    <Property Name="GenealogyTableRightId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NoOfPerson" Type="nvarchar" MaxLength="50" />
+    <Property Name="CommissionDescription" Type="nvarchar(max)" />
+    <Property Name="CommissionAmount" Type="money" />
+    <Property Name="UserPositionName" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserPositionLeft" Type="bit" />
+    <Property Name="UserPositionRight" Type="bit" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="SponsorId" Type="int" />
+    <Property Name="SponsorName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DownlineMemberId" Type="int" />
+    <Property Name="DownlineMemberName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="TableLevel" Type="int" />
+    <Property Name="DirectCommision" Type="bit" />
+    <Property Name="MatchingCommision" Type="bit" />
+  </EntityType>
+  <EntityType Name="UserLoginInfo">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="20" />
+    <Property Name="Password" Type="nvarchar" MaxLength="20" />
+    <Property Name="LastLoginDate" Type="datetime" />
+    <Property Name="LoginFailedCount" Type="int" />
+    <Property Name="LoginIPAddress" Type="nvarchar" MaxLength="20" />
+    <Property Name="CustomerTimeZone" Type="nvarchar" MaxLength="20" />
+    <Property Name="LastAccessedDate" Type="datetime" />
+    <Property Name="AccountLocked" Type="bit" />
+  </EntityType>
+  <EntityType Name="UserNotification">
+    <Key>
+      <PropertyRef Name="NotificationId" />
+    </Key>
+    <Property Name="NotificationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NotificationName" Type="nvarchar" MaxLength="50" />
+    <Property Name="NotificationDescription" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="IsSaveByUser" Type="bit" />
+  </EntityType>
+  <EntityType Name="UserPackages">
+    <Key>
+      <PropertyRef Name="UserPackageId" />
+    </Key>
+    <Property Name="UserPackageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PackageName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PackagePercent" Type="int" />
+    <Property Name="PackagePrice" Type="money" />
+    <Property Name="PackageValidity" Type="nvarchar" MaxLength="50" />
+    <Property Name="PackageMinWithdrawalAmount" Type="money" />
+    <Property Name="PackageMaxWithdrawalAmount" Type="money" />
+    <Property Name="PackageId" Type="int" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="IsInCurrentUse" Type="bit" />
+    <Property Name="PurchaseDate" Type="datetime" />
+    <Property Name="PackagePurchaseMethod" Type="nvarchar" MaxLength="50" />
+    <Property Name="BankSlipImage" Type="image" />
+    <Property Name="LastCommisionDate" Type="datetime" />
+    <Property Name="IsBuyFromEWallet" Type="bit" />
+    <Property Name="IsBuyFromBankAcnt" Type="bit" />
+    <Property Name="IsRequestedForBuy" Type="bit" />
+    <Property Name="IsApprovedForBuy" Type="bit" />
+    <Property Name="IsRejectedForBuy" Type="bit" />
+  </EntityType>
+  <EntityType Name="UserPosition">
+    <Key>
+      <PropertyRef Name="UserPositionId" />
+    </Key>
+    <Property Name="UserPositionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserPositionName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="UserRewards">
+    <Key>
+      <PropertyRef Name="UserRewardId" />
+    </Key>
+    <Property Name="UserRewardId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserRewardName" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserRewardDesignation" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserLeftAmount" Type="money" />
+    <Property Name="UserRightAmount" Type="money" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="RewardId" Type="int" />
+    <Property Name="IsClaimByUser" Type="bit" />
+    <Property Name="IsRewardedByAdmin" Type="bit" />
+    <Property Name="ClaimDate" Type="datetime" />
+    <Property Name="RewardedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UserTableLevel">
+    <Key>
+      <PropertyRef Name="UserTableLevelId" />
+    </Key>
+    <Property Name="UserTableLevelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="TableLevel" Type="int" />
+    <Property Name="NoOfUsers" Type="int" />
+    <Property Name="LeftUsers" Type="int" />
+    <Property Name="RightUsers" Type="int" />
+    <Property Name="TableLevelLimit" Type="int" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="TotalLeftUserAmount" Type="money" />
+    <Property Name="TotalRightUserAmount" Type="money" />
+    <Property Name="TotalRemainingLeftUserAmount" Type="money" />
+    <Property Name="TotalRemainingRightUserAmount" Type="money" />
+    <Property Name="LastModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="VideoPackCatTbl">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Category_Name" Type="varchar(max)" />
+    <Property Name="Category_Desc" Type="varchar(max)" />
+    <Property Name="create_date" Type="date" />
+    <Property Name="Category_Image" Type="image" />
+  </EntityType>
+  <EntityType Name="VideoPackTbl">
+    <Key>
+      <PropertyRef Name="VideoPackId" />
+    </Key>
+    <Property Name="VideoPackId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VideoPackPkgId" Type="int" Nullable="false" />
+    <Property Name="VideoPackCatId" Type="int" Nullable="false" />
+    <Property Name="VideoPackName" Type="varchar(max)" />
+    <Property Name="VideoPackDesc" Type="varchar(max)" />
+    <Property Name="VideoPackVideos" Type="text" />
+    <Property Name="CreateDate" Type="date" Nullable="false" />
+    <Property Name="VideoPackImage" Type="image" />
+  </EntityType>
+  <Function Name="check_parent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="node_id" Type="int" Mode="In" />
+    <Parameter Name="parent_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="convert_integer_to_roma" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+    <Parameter Name="i" Type="int" Mode="In" />
+  </Function>
+  <Function Name="count_tree_full_index" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+    <Parameter Name="tree_node_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="count_tree_level" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="tree_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="get_reverse_ascii" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="Ascii_pattern" Type="nvarchar" Mode="In" />
+    <Parameter Name="seq_to_convert" Type="int" Mode="In" />
+  </Function>
+  <Function Name="get_seq_by_level" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="treelevel" Type="int" Mode="In" />
+    <Parameter Name="seq_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetParentChildsLeftSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetParentChildsOuterLeftSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetParentChildsOuterRightSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetParentChildsRightSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetParentChildsSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetUserLoginInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserName" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="GetUserParentsSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetUserTree" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetUserTreeLeft" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetUserTreeRight" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="insert_tree_node" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tree_name" Type="nvarchar" Mode="In" />
+    <Parameter Name="parent_ID" Type="int" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="DownlineMemberId" Type="int" Mode="In" />
+    <Parameter Name="UserPosition" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="move_node_down" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tree_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="move_node_up" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tree_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="remove_node" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tree_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="view_human_tree" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="view_tree" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="SleepingPartnermanagementTestingModelStoreContainer">
+    <EntitySet Name="Advertisement" EntityType="Self.Advertisement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BonusSetting" EntityType="Self.BonusSetting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EWalletPayoutConfig" EntityType="Self.EWalletPayoutConfig" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EWalletTransaction" EntityType="Self.EWalletTransaction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EWalletWithdrawalFund" EntityType="Self.EWalletWithdrawalFund" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HelpRequest" EntityType="Self.HelpRequest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NewsTicker" EntityType="Self.NewsTicker" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NewUserRegistration" EntityType="Self.NewUserRegistration" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Packages" EntityType="Self.Packages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReceiveAdminMessages" EntityType="Self.ReceiveAdminMessages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReceiveUserMessages" EntityType="Self.ReceiveUserMessages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rewards" EntityType="Self.Rewards" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SentAdminMessages" EntityType="Self.SentAdminMessages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SentUserMessages" EntityType="Self.SentUserMessages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SignUpUsers" EntityType="Self.SignUpUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TableLevel" EntityType="Self.TableLevel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TrainingVideos" EntityType="Self.TrainingVideos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserCommission" EntityType="Self.UserCommission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserCommissionBalance" EntityType="Self.UserCommissionBalance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserGenealogyTable" EntityType="Self.UserGenealogyTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserGenealogyTableLeft" EntityType="Self.UserGenealogyTableLeft" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserGenealogyTableRight" EntityType="Self.UserGenealogyTableRight" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserLoginInfo" EntityType="Self.UserLoginInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserNotification" EntityType="Self.UserNotification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserPackages" EntityType="Self.UserPackages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserPosition" EntityType="Self.UserPosition" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRewards" EntityType="Self.UserRewards" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserTableLevel" EntityType="Self.UserTableLevel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VideoPackCatTbl" EntityType="Self.VideoPackCatTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VideoPackTbl" EntityType="Self.VideoPackTbl" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

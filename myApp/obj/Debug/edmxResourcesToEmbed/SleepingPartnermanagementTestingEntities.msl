@@ -1,0 +1,772 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SleepingPartnermanagementTestingModelStoreContainer" CdmEntityContainer="SleepingPartnermanagementTestingEntities">
+    <EntitySetMapping Name="Advertisements">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.Advertisement">
+        <MappingFragment StoreEntitySet="Advertisement">
+          <ScalarProperty Name="AdvertisementId" ColumnName="AdvertisementId" />
+          <ScalarProperty Name="AdvertisementName" ColumnName="AdvertisementName" />
+          <ScalarProperty Name="AdvertisementDescription" ColumnName="AdvertisementDescription" />
+          <ScalarProperty Name="AdvertisementImage" ColumnName="AdvertisementImage" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BonusSettings">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.BonusSetting">
+        <MappingFragment StoreEntitySet="BonusSetting">
+          <ScalarProperty Name="BonusSettingId" ColumnName="BonusSettingId" />
+          <ScalarProperty Name="BonusSettingName" ColumnName="BonusSettingName" />
+          <ScalarProperty Name="BonusSettingPercent" ColumnName="BonusSettingPercent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+          <ScalarProperty Name="TwoCharCountryCode" ColumnName="TwoCharCountryCode" />
+          <ScalarProperty Name="ThreeCharCountryCode" ColumnName="ThreeCharCountryCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EWalletPayoutConfigs">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.EWalletPayoutConfig">
+        <MappingFragment StoreEntitySet="EWalletPayoutConfig">
+          <ScalarProperty Name="ConfigId" ColumnName="ConfigId" />
+          <ScalarProperty Name="TimePeriod" ColumnName="TimePeriod" />
+          <ScalarProperty Name="MinimumPayout" ColumnName="MinimumPayout" />
+          <ScalarProperty Name="PayoutChargesPercent" ColumnName="PayoutChargesPercent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EWalletTransactions">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.EWalletTransaction">
+        <MappingFragment StoreEntitySet="EWalletTransaction">
+          <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+          <ScalarProperty Name="TransactionSource" ColumnName="TransactionSource" />
+          <ScalarProperty Name="TransactionName" ColumnName="TransactionName" />
+          <ScalarProperty Name="AsscociatedMember" ColumnName="AsscociatedMember" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="Credit" ColumnName="Credit" />
+          <ScalarProperty Name="Debit" ColumnName="Debit" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="IsPackageBonus" ColumnName="IsPackageBonus" />
+          <ScalarProperty Name="PackageId" ColumnName="PackageId" />
+          <ScalarProperty Name="IsMatchingBonus" ColumnName="IsMatchingBonus" />
+          <ScalarProperty Name="IsParentBonus" ColumnName="IsParentBonus" />
+          <ScalarProperty Name="IsWithdrawlRequestByUser" ColumnName="IsWithdrawlRequestByUser" />
+          <ScalarProperty Name="IsWithdrawlPaidByAdmin" ColumnName="IsWithdrawlPaidByAdmin" />
+          <ScalarProperty Name="AdminCredit" ColumnName="AdminCredit" />
+          <ScalarProperty Name="AdminDebit" ColumnName="AdminDebit" />
+          <ScalarProperty Name="AdminTransactionName" ColumnName="AdminTransactionName" />
+          <ScalarProperty Name="IsWithdrawlRequestApproved" ColumnName="IsWithdrawlRequestApproved" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EWalletWithdrawalFunds">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.EWalletWithdrawalFund">
+        <MappingFragment StoreEntitySet="EWalletWithdrawalFund">
+          <ScalarProperty Name="WithdrawalFundId" ColumnName="WithdrawalFundId" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="WithdrawalFundMethod" ColumnName="WithdrawalFundMethod" />
+          <ScalarProperty Name="AmountPayble" ColumnName="AmountPayble" />
+          <ScalarProperty Name="WithdrawalFundDescription" ColumnName="WithdrawalFundDescription" />
+          <ScalarProperty Name="WithdrawalFundCharge" ColumnName="WithdrawalFundCharge" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="RequestedDate" ColumnName="RequestedDate" />
+          <ScalarProperty Name="ApprovedDate" ColumnName="ApprovedDate" />
+          <ScalarProperty Name="PaidDate" ColumnName="PaidDate" />
+          <ScalarProperty Name="RejectedDate" ColumnName="RejectedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsPending" ColumnName="IsPending" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+          <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="EwalletTransId" ColumnName="EwalletTransId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HelpRequests">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.HelpRequest">
+        <MappingFragment StoreEntitySet="HelpRequest">
+          <ScalarProperty Name="HelpRequestId" ColumnName="HelpRequestId" />
+          <ScalarProperty Name="HelpRequestName" ColumnName="HelpRequestName" />
+          <ScalarProperty Name="HelpRequestDescription" ColumnName="HelpRequestDescription" />
+          <ScalarProperty Name="HelpRequestImage" ColumnName="HelpRequestImage" />
+          <ScalarProperty Name="HelpRequestPriority" ColumnName="HelpRequestPriority" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="IsCheckByAdmin" ColumnName="IsCheckByAdmin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewsTickers">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.NewsTicker">
+        <MappingFragment StoreEntitySet="NewsTicker">
+          <ScalarProperty Name="NewsTickerId" ColumnName="NewsTickerId" />
+          <ScalarProperty Name="NewsTickerName" ColumnName="NewsTickerName" />
+          <ScalarProperty Name="NewsTickerDescription" ColumnName="NewsTickerDescription" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewUserRegistrations">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.NewUserRegistration">
+        <MappingFragment StoreEntitySet="NewUserRegistration">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="IsThisFirstUser" ColumnName="IsThisFirstUser" />
+          <ScalarProperty Name="SponsorId" ColumnName="SponsorId" />
+          <ScalarProperty Name="DownlineMemberId" ColumnName="DownlineMemberId" />
+          <ScalarProperty Name="UpperId" ColumnName="UpperId" />
+          <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+          <ScalarProperty Name="IsUserActive" ColumnName="IsUserActive" />
+          <ScalarProperty Name="IsNewRequest" ColumnName="IsNewRequest" />
+          <ScalarProperty Name="UserPosition" ColumnName="UserPosition" />
+          <ScalarProperty Name="IsPaidMember" ColumnName="IsPaidMember" />
+          <ScalarProperty Name="UserPackage" ColumnName="UserPackage" />
+          <ScalarProperty Name="DocumentImage" ColumnName="DocumentImage" />
+          <ScalarProperty Name="IsSleepingPartner" ColumnName="IsSleepingPartner" />
+          <ScalarProperty Name="IsSalesExecutive" ColumnName="IsSalesExecutive" />
+          <ScalarProperty Name="UserDesignation" ColumnName="UserDesignation" />
+          <ScalarProperty Name="IsWithdrawalOpen" ColumnName="IsWithdrawalOpen" />
+          <ScalarProperty Name="NICImage" ColumnName="NICImage" />
+          <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+          <ScalarProperty Name="AccountTitle" ColumnName="AccountTitle" />
+          <ScalarProperty Name="IsVerify" ColumnName="IsVerify" />
+          <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
+          <ScalarProperty Name="NICImage1" ColumnName="NICImage1" />
+          <ScalarProperty Name="IsReject" ColumnName="IsReject" />
+          <ScalarProperty Name="Fcm" ColumnName="Fcm" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Packages">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.Package">
+        <MappingFragment StoreEntitySet="Packages">
+          <ScalarProperty Name="PackageId" ColumnName="PackageId" />
+          <ScalarProperty Name="PackageName" ColumnName="PackageName" />
+          <ScalarProperty Name="PackagePercent" ColumnName="PackagePercent" />
+          <ScalarProperty Name="PackagePrice" ColumnName="PackagePrice" />
+          <ScalarProperty Name="PackageValidity" ColumnName="PackageValidity" />
+          <ScalarProperty Name="PackageMinWithdrawalAmount" ColumnName="PackageMinWithdrawalAmount" />
+          <ScalarProperty Name="PackageMaxWithdrawalAmount" ColumnName="PackageMaxWithdrawalAmount" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="AddMemberLimit" ColumnName="AddMemberLimit" />
+          <ScalarProperty Name="MaximumMatchingBonusAmount" ColumnName="MaximumMatchingBonusAmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReceiveAdminMessages">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.ReceiveAdminMessage">
+        <MappingFragment StoreEntitySet="ReceiveAdminMessages">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Sender" ColumnName="Sender" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="SponserId" ColumnName="SponserId" />
+          <ScalarProperty Name="Sender_Name" ColumnName="Sender_Name" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="MessageImage" ColumnName="MessageImage" />
+          <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReceiveUserMessages">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.ReceiveUserMessage">
+        <MappingFragment StoreEntitySet="ReceiveUserMessages">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Sender" ColumnName="Sender" />
+          <ScalarProperty Name="Sender_Name" ColumnName="Sender_Name" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="SponserId" ColumnName="SponserId" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rewards">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.Reward">
+        <MappingFragment StoreEntitySet="Rewards">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="RewardName" ColumnName="RewardName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Leftlimit" ColumnName="Leftlimit" />
+          <ScalarProperty Name="Rightlimit" ColumnName="Rightlimit" />
+          <ScalarProperty Name="Rewardimage" ColumnName="Rewardimage" />
+          <ScalarProperty Name="Isactive" ColumnName="Isactive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SentAdminMessages">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.SentAdminMessage">
+        <MappingFragment StoreEntitySet="SentAdminMessages">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Sender" ColumnName="Sender" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="SponserId" ColumnName="SponserId" />
+          <ScalarProperty Name="Sender_Name" ColumnName="Sender_Name" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="MessageImage" ColumnName="MessageImage" />
+          <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SentUserMessages">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.SentUserMessage">
+        <MappingFragment StoreEntitySet="SentUserMessages">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Sender" ColumnName="Sender" />
+          <ScalarProperty Name="Sender_Name" ColumnName="Sender_Name" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="SponserId" ColumnName="SponserId" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SignUpUsers">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.SignUpUser">
+        <MappingFragment StoreEntitySet="SignUpUsers">
+          <ScalarProperty Name="SignUpId" ColumnName="SignUpId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="NICnumber" ColumnName="NICnumber" />
+          <ScalarProperty Name="Package" ColumnName="Package" />
+          <ScalarProperty Name="AmountRange" ColumnName="AmountRange" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TableLevels">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.TableLevel">
+        <MappingFragment StoreEntitySet="TableLevel">
+          <ScalarProperty Name="TableLevelId" ColumnName="TableLevelId" />
+          <ScalarProperty Name="TableLevelName" ColumnName="TableLevelName" />
+          <ScalarProperty Name="TableLevelLimit" ColumnName="TableLevelLimit" />
+          <ScalarProperty Name="TableLevelNum" ColumnName="TableLevelNum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrainingVideos">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.TrainingVideo">
+        <MappingFragment StoreEntitySet="TrainingVideos">
+          <ScalarProperty Name="TrainingVideoId" ColumnName="TrainingVideoId" />
+          <ScalarProperty Name="TrainingVideoName" ColumnName="TrainingVideoName" />
+          <ScalarProperty Name="TrainingVideoURL" ColumnName="TrainingVideoURL" />
+          <ScalarProperty Name="TrainingVideoDescription" ColumnName="TrainingVideoDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserCommissions">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.UserCommission">
+        <MappingFragment StoreEntitySet="UserCommission">
+          <ScalarProperty Name="UserCommissionId" ColumnName="UserCommissionId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="DownlineMemberId" ColumnName="DownlineMemberId" />
+          <ScalarProperty Name="MatchingCommUserId" ColumnName="MatchingCommUserId" />
+          <ScalarProperty Name="MatchingCommUserPosition" ColumnName="MatchingCommUserPosition" />
+          <ScalarProperty Name="MatchingCommUserName" ColumnName="MatchingCommUserName" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserCommissionBalances">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.UserCommissionBalance">
+        <MappingFragment StoreEntitySet="UserCommissionBalance">
+          <ScalarProperty Name="UserCommBalanceId" ColumnName="UserCommBalanceId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserCommBalance" ColumnName="UserCommBalance" />
+          <ScalarProperty Name="UserCommPosition" ColumnName="UserCommPosition" />
+          <ScalarProperty Name="UserCommIsLeft" ColumnName="UserCommIsLeft" />
+          <ScalarProperty Name="UserCommIsRight" ColumnName="UserCommIsRight" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserGenealogyTables">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.UserGenealogyTable">
+        <MappingFragment StoreEntitySet="UserGenealogyTable">
+          <ScalarProperty Name="GenealogyTableId" ColumnName="GenealogyTableId" />
+          <ScalarProperty Name="NoOfPerson" ColumnName="NoOfPerson" />
+          <ScalarProperty Name="CommissionDescription" ColumnName="CommissionDescription" />
+          <ScalarProperty Name="CommissionAmount" ColumnName="CommissionAmount" />
+          <ScalarProperty Name="UserPositionName" ColumnName="UserPositionName" />
+          <ScalarProperty Name="UserPositionLeft" ColumnName="UserPositionLeft" />
+          <ScalarProperty Name="UserPositionRight" ColumnName="UserPositionRight" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="SponsorId" ColumnName="SponsorId" />
+          <ScalarProperty Name="SponsorName" ColumnName="SponsorName" />
+          <ScalarProperty Name="DownlineMemberId" ColumnName="DownlineMemberId" />
+          <ScalarProperty Name="DownlineMemberName" ColumnName="DownlineMemberName" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="TableLevel" ColumnName="TableLevel" />
+          <ScalarProperty Name="DirectCommision" ColumnName="DirectCommision" />
+          <ScalarProperty Name="MatchingCommision" ColumnName="MatchingCommision" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserGenealogyTableLefts">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.UserGenealogyTableLeft">
+        <MappingFragment StoreEntitySet="UserGenealogyTableLeft">
+          <ScalarProperty Name="GenealogyTableLeftId" ColumnName="GenealogyTableLeftId" />
+          <ScalarProperty Name="NoOfPerson" ColumnName="NoOfPerson" />
+          <ScalarProperty Name="CommissionDescription" ColumnName="CommissionDescription" />
+          <ScalarProperty Name="CommissionAmount" ColumnName="CommissionAmount" />
+          <ScalarProperty Name="UserPositionName" ColumnName="UserPositionName" />
+          <ScalarProperty Name="UserPositionLeft" ColumnName="UserPositionLeft" />
+          <ScalarProperty Name="UserPositionRight" ColumnName="UserPositionRight" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="SponsorId" ColumnName="SponsorId" />
+          <ScalarProperty Name="SponsorName" ColumnName="SponsorName" />
+          <ScalarProperty Name="DownlineMemberId" ColumnName="DownlineMemberId" />
+          <ScalarProperty Name="DownlineMemberName" ColumnName="DownlineMemberName" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="TableLevel" ColumnName="TableLevel" />
+          <ScalarProperty Name="DirectCommision" ColumnName="DirectCommision" />
+          <ScalarProperty Name="MatchingCommision" ColumnName="MatchingCommision" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserGenealogyTableRights">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.UserGenealogyTableRight">
+        <MappingFragment StoreEntitySet="UserGenealogyTableRight">
+          <ScalarProperty Name="GenealogyTableRightId" ColumnName="GenealogyTableRightId" />
+          <ScalarProperty Name="NoOfPerson" ColumnName="NoOfPerson" />
+          <ScalarProperty Name="CommissionDescription" ColumnName="CommissionDescription" />
+          <ScalarProperty Name="CommissionAmount" ColumnName="CommissionAmount" />
+          <ScalarProperty Name="UserPositionName" ColumnName="UserPositionName" />
+          <ScalarProperty Name="UserPositionLeft" ColumnName="UserPositionLeft" />
+          <ScalarProperty Name="UserPositionRight" ColumnName="UserPositionRight" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="SponsorId" ColumnName="SponsorId" />
+          <ScalarProperty Name="SponsorName" ColumnName="SponsorName" />
+          <ScalarProperty Name="DownlineMemberId" ColumnName="DownlineMemberId" />
+          <ScalarProperty Name="DownlineMemberName" ColumnName="DownlineMemberName" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="TableLevel" ColumnName="TableLevel" />
+          <ScalarProperty Name="DirectCommision" ColumnName="DirectCommision" />
+          <ScalarProperty Name="MatchingCommision" ColumnName="MatchingCommision" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserLoginInfoes">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.UserLoginInfo">
+        <MappingFragment StoreEntitySet="UserLoginInfo">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+          <ScalarProperty Name="LoginFailedCount" ColumnName="LoginFailedCount" />
+          <ScalarProperty Name="LoginIPAddress" ColumnName="LoginIPAddress" />
+          <ScalarProperty Name="CustomerTimeZone" ColumnName="CustomerTimeZone" />
+          <ScalarProperty Name="LastAccessedDate" ColumnName="LastAccessedDate" />
+          <ScalarProperty Name="AccountLocked" ColumnName="AccountLocked" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserNotifications">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.UserNotification">
+        <MappingFragment StoreEntitySet="UserNotification">
+          <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
+          <ScalarProperty Name="NotificationName" ColumnName="NotificationName" />
+          <ScalarProperty Name="NotificationDescription" ColumnName="NotificationDescription" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="IsSaveByUser" ColumnName="IsSaveByUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserPackages">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.UserPackage">
+        <MappingFragment StoreEntitySet="UserPackages">
+          <ScalarProperty Name="UserPackageId" ColumnName="UserPackageId" />
+          <ScalarProperty Name="PackageName" ColumnName="PackageName" />
+          <ScalarProperty Name="PackagePercent" ColumnName="PackagePercent" />
+          <ScalarProperty Name="PackagePrice" ColumnName="PackagePrice" />
+          <ScalarProperty Name="PackageValidity" ColumnName="PackageValidity" />
+          <ScalarProperty Name="PackageMinWithdrawalAmount" ColumnName="PackageMinWithdrawalAmount" />
+          <ScalarProperty Name="PackageMaxWithdrawalAmount" ColumnName="PackageMaxWithdrawalAmount" />
+          <ScalarProperty Name="PackageId" ColumnName="PackageId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="IsInCurrentUse" ColumnName="IsInCurrentUse" />
+          <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+          <ScalarProperty Name="PackagePurchaseMethod" ColumnName="PackagePurchaseMethod" />
+          <ScalarProperty Name="BankSlipImage" ColumnName="BankSlipImage" />
+          <ScalarProperty Name="LastCommisionDate" ColumnName="LastCommisionDate" />
+          <ScalarProperty Name="IsBuyFromEWallet" ColumnName="IsBuyFromEWallet" />
+          <ScalarProperty Name="IsBuyFromBankAcnt" ColumnName="IsBuyFromBankAcnt" />
+          <ScalarProperty Name="IsRequestedForBuy" ColumnName="IsRequestedForBuy" />
+          <ScalarProperty Name="IsApprovedForBuy" ColumnName="IsApprovedForBuy" />
+          <ScalarProperty Name="IsRejectedForBuy" ColumnName="IsRejectedForBuy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserPositions">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.UserPosition">
+        <MappingFragment StoreEntitySet="UserPosition">
+          <ScalarProperty Name="UserPositionId" ColumnName="UserPositionId" />
+          <ScalarProperty Name="UserPositionName" ColumnName="UserPositionName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRewards">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.UserReward">
+        <MappingFragment StoreEntitySet="UserRewards">
+          <ScalarProperty Name="UserRewardId" ColumnName="UserRewardId" />
+          <ScalarProperty Name="UserRewardName" ColumnName="UserRewardName" />
+          <ScalarProperty Name="UserRewardDesignation" ColumnName="UserRewardDesignation" />
+          <ScalarProperty Name="UserLeftAmount" ColumnName="UserLeftAmount" />
+          <ScalarProperty Name="UserRightAmount" ColumnName="UserRightAmount" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="RewardId" ColumnName="RewardId" />
+          <ScalarProperty Name="IsClaimByUser" ColumnName="IsClaimByUser" />
+          <ScalarProperty Name="IsRewardedByAdmin" ColumnName="IsRewardedByAdmin" />
+          <ScalarProperty Name="ClaimDate" ColumnName="ClaimDate" />
+          <ScalarProperty Name="RewardedDate" ColumnName="RewardedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserTableLevels">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.UserTableLevel">
+        <MappingFragment StoreEntitySet="UserTableLevel">
+          <ScalarProperty Name="UserTableLevelId" ColumnName="UserTableLevelId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="TableLevel" ColumnName="TableLevel" />
+          <ScalarProperty Name="NoOfUsers" ColumnName="NoOfUsers" />
+          <ScalarProperty Name="LeftUsers" ColumnName="LeftUsers" />
+          <ScalarProperty Name="RightUsers" ColumnName="RightUsers" />
+          <ScalarProperty Name="TableLevelLimit" ColumnName="TableLevelLimit" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="TotalLeftUserAmount" ColumnName="TotalLeftUserAmount" />
+          <ScalarProperty Name="TotalRightUserAmount" ColumnName="TotalRightUserAmount" />
+          <ScalarProperty Name="TotalRemainingLeftUserAmount" ColumnName="TotalRemainingLeftUserAmount" />
+          <ScalarProperty Name="TotalRemainingRightUserAmount" ColumnName="TotalRemainingRightUserAmount" />
+          <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VideoPackCatTbls">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.VideoPackCatTbl">
+        <MappingFragment StoreEntitySet="VideoPackCatTbl">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+          <ScalarProperty Name="Category_Desc" ColumnName="Category_Desc" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VideoPackTbls">
+      <EntityTypeMapping TypeName="SleepingPartnermanagementTestingModel.VideoPackTbl">
+        <MappingFragment StoreEntitySet="VideoPackTbl">
+          <ScalarProperty Name="VideoPackId" ColumnName="VideoPackId" />
+          <ScalarProperty Name="VideoPackPkgId" ColumnName="VideoPackPkgId" />
+          <ScalarProperty Name="VideoPackCatId" ColumnName="VideoPackCatId" />
+          <ScalarProperty Name="VideoPackName" ColumnName="VideoPackName" />
+          <ScalarProperty Name="VideoPackDesc" ColumnName="VideoPackDesc" />
+          <ScalarProperty Name="VideoPackVideos" ColumnName="VideoPackVideos" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetParentChildsLeftSP" FunctionName="SleepingPartnermanagementTestingModel.Store.GetParentChildsLeftSP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SleepingPartnermanagementTestingModel.GetParentChildsLeftSP_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="IsThisFirstUser" ColumnName="IsThisFirstUser" />
+          <ScalarProperty Name="SponsorId" ColumnName="SponsorId" />
+          <ScalarProperty Name="DownlineMemberId" ColumnName="DownlineMemberId" />
+          <ScalarProperty Name="UpperId" ColumnName="UpperId" />
+          <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+          <ScalarProperty Name="IsUserActive" ColumnName="IsUserActive" />
+          <ScalarProperty Name="IsNewRequest" ColumnName="IsNewRequest" />
+          <ScalarProperty Name="UserPosition" ColumnName="UserPosition" />
+          <ScalarProperty Name="IsPaidMember" ColumnName="IsPaidMember" />
+          <ScalarProperty Name="UserPackage" ColumnName="UserPackage" />
+          <ScalarProperty Name="DocumentImage" ColumnName="DocumentImage" />
+          <ScalarProperty Name="IsSleepingPartner" ColumnName="IsSleepingPartner" />
+          <ScalarProperty Name="IsSalesExecutive" ColumnName="IsSalesExecutive" />
+          <ScalarProperty Name="UserDesignation" ColumnName="UserDesignation" />
+          <ScalarProperty Name="IsWithdrawalOpen" ColumnName="IsWithdrawalOpen" />
+          <ScalarProperty Name="NICImage" ColumnName="NICImage" />
+          <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+          <ScalarProperty Name="AccountTitle" ColumnName="AccountTitle" />
+          <ScalarProperty Name="IsVerify" ColumnName="IsVerify" />
+          <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
+          <ScalarProperty Name="NICImage1" ColumnName="NICImage1" />
+          <ScalarProperty Name="IsReject" ColumnName="IsReject" />
+          <ScalarProperty Name="Fcm" ColumnName="Fcm" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetParentChildsOuterLeftSP" FunctionName="SleepingPartnermanagementTestingModel.Store.GetParentChildsOuterLeftSP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SleepingPartnermanagementTestingModel.GetParentChildsOuterLeftSP_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="IsThisFirstUser" ColumnName="IsThisFirstUser" />
+          <ScalarProperty Name="SponsorId" ColumnName="SponsorId" />
+          <ScalarProperty Name="DownlineMemberId" ColumnName="DownlineMemberId" />
+          <ScalarProperty Name="UpperId" ColumnName="UpperId" />
+          <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+          <ScalarProperty Name="IsUserActive" ColumnName="IsUserActive" />
+          <ScalarProperty Name="IsNewRequest" ColumnName="IsNewRequest" />
+          <ScalarProperty Name="UserPosition" ColumnName="UserPosition" />
+          <ScalarProperty Name="IsPaidMember" ColumnName="IsPaidMember" />
+          <ScalarProperty Name="UserPackage" ColumnName="UserPackage" />
+          <ScalarProperty Name="DocumentImage" ColumnName="DocumentImage" />
+          <ScalarProperty Name="IsSleepingPartner" ColumnName="IsSleepingPartner" />
+          <ScalarProperty Name="IsSalesExecutive" ColumnName="IsSalesExecutive" />
+          <ScalarProperty Name="UserDesignation" ColumnName="UserDesignation" />
+          <ScalarProperty Name="IsWithdrawalOpen" ColumnName="IsWithdrawalOpen" />
+          <ScalarProperty Name="NICImage" ColumnName="NICImage" />
+          <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+          <ScalarProperty Name="AccountTitle" ColumnName="AccountTitle" />
+          <ScalarProperty Name="IsVerify" ColumnName="IsVerify" />
+          <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
+          <ScalarProperty Name="NICImage1" ColumnName="NICImage1" />
+          <ScalarProperty Name="IsReject" ColumnName="IsReject" />
+          <ScalarProperty Name="Fcm" ColumnName="Fcm" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetParentChildsOuterRightSP" FunctionName="SleepingPartnermanagementTestingModel.Store.GetParentChildsOuterRightSP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SleepingPartnermanagementTestingModel.GetParentChildsOuterRightSP_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="IsThisFirstUser" ColumnName="IsThisFirstUser" />
+          <ScalarProperty Name="SponsorId" ColumnName="SponsorId" />
+          <ScalarProperty Name="DownlineMemberId" ColumnName="DownlineMemberId" />
+          <ScalarProperty Name="UpperId" ColumnName="UpperId" />
+          <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+          <ScalarProperty Name="IsUserActive" ColumnName="IsUserActive" />
+          <ScalarProperty Name="IsNewRequest" ColumnName="IsNewRequest" />
+          <ScalarProperty Name="UserPosition" ColumnName="UserPosition" />
+          <ScalarProperty Name="IsPaidMember" ColumnName="IsPaidMember" />
+          <ScalarProperty Name="UserPackage" ColumnName="UserPackage" />
+          <ScalarProperty Name="DocumentImage" ColumnName="DocumentImage" />
+          <ScalarProperty Name="IsSleepingPartner" ColumnName="IsSleepingPartner" />
+          <ScalarProperty Name="IsSalesExecutive" ColumnName="IsSalesExecutive" />
+          <ScalarProperty Name="UserDesignation" ColumnName="UserDesignation" />
+          <ScalarProperty Name="IsWithdrawalOpen" ColumnName="IsWithdrawalOpen" />
+          <ScalarProperty Name="NICImage" ColumnName="NICImage" />
+          <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+          <ScalarProperty Name="AccountTitle" ColumnName="AccountTitle" />
+          <ScalarProperty Name="IsVerify" ColumnName="IsVerify" />
+          <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
+          <ScalarProperty Name="NICImage1" ColumnName="NICImage1" />
+          <ScalarProperty Name="IsReject" ColumnName="IsReject" />
+          <ScalarProperty Name="Fcm" ColumnName="Fcm" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetParentChildsRightSP" FunctionName="SleepingPartnermanagementTestingModel.Store.GetParentChildsRightSP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SleepingPartnermanagementTestingModel.GetParentChildsRightSP_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="IsThisFirstUser" ColumnName="IsThisFirstUser" />
+          <ScalarProperty Name="SponsorId" ColumnName="SponsorId" />
+          <ScalarProperty Name="DownlineMemberId" ColumnName="DownlineMemberId" />
+          <ScalarProperty Name="UpperId" ColumnName="UpperId" />
+          <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+          <ScalarProperty Name="IsUserActive" ColumnName="IsUserActive" />
+          <ScalarProperty Name="IsNewRequest" ColumnName="IsNewRequest" />
+          <ScalarProperty Name="UserPosition" ColumnName="UserPosition" />
+          <ScalarProperty Name="IsPaidMember" ColumnName="IsPaidMember" />
+          <ScalarProperty Name="UserPackage" ColumnName="UserPackage" />
+          <ScalarProperty Name="DocumentImage" ColumnName="DocumentImage" />
+          <ScalarProperty Name="IsSleepingPartner" ColumnName="IsSleepingPartner" />
+          <ScalarProperty Name="IsSalesExecutive" ColumnName="IsSalesExecutive" />
+          <ScalarProperty Name="UserDesignation" ColumnName="UserDesignation" />
+          <ScalarProperty Name="IsWithdrawalOpen" ColumnName="IsWithdrawalOpen" />
+          <ScalarProperty Name="NICImage" ColumnName="NICImage" />
+          <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+          <ScalarProperty Name="AccountTitle" ColumnName="AccountTitle" />
+          <ScalarProperty Name="IsVerify" ColumnName="IsVerify" />
+          <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
+          <ScalarProperty Name="NICImage1" ColumnName="NICImage1" />
+          <ScalarProperty Name="IsReject" ColumnName="IsReject" />
+          <ScalarProperty Name="Fcm" ColumnName="Fcm" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetParentChildsSP" FunctionName="SleepingPartnermanagementTestingModel.Store.GetParentChildsSP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SleepingPartnermanagementTestingModel.GetParentChildsSP_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="IsThisFirstUser" ColumnName="IsThisFirstUser" />
+          <ScalarProperty Name="SponsorId" ColumnName="SponsorId" />
+          <ScalarProperty Name="DownlineMemberId" ColumnName="DownlineMemberId" />
+          <ScalarProperty Name="UpperId" ColumnName="UpperId" />
+          <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+          <ScalarProperty Name="IsUserActive" ColumnName="IsUserActive" />
+          <ScalarProperty Name="IsNewRequest" ColumnName="IsNewRequest" />
+          <ScalarProperty Name="UserPosition" ColumnName="UserPosition" />
+          <ScalarProperty Name="IsPaidMember" ColumnName="IsPaidMember" />
+          <ScalarProperty Name="UserPackage" ColumnName="UserPackage" />
+          <ScalarProperty Name="DocumentImage" ColumnName="DocumentImage" />
+          <ScalarProperty Name="IsSleepingPartner" ColumnName="IsSleepingPartner" />
+          <ScalarProperty Name="IsSalesExecutive" ColumnName="IsSalesExecutive" />
+          <ScalarProperty Name="UserDesignation" ColumnName="UserDesignation" />
+          <ScalarProperty Name="IsWithdrawalOpen" ColumnName="IsWithdrawalOpen" />
+          <ScalarProperty Name="NICImage" ColumnName="NICImage" />
+          <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+          <ScalarProperty Name="AccountTitle" ColumnName="AccountTitle" />
+          <ScalarProperty Name="IsVerify" ColumnName="IsVerify" />
+          <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
+          <ScalarProperty Name="NICImage1" ColumnName="NICImage1" />
+          <ScalarProperty Name="IsReject" ColumnName="IsReject" />
+          <ScalarProperty Name="Fcm" ColumnName="Fcm" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetUserLoginInfo" FunctionName="SleepingPartnermanagementTestingModel.Store.GetUserLoginInfo" />
+    <FunctionImportMapping FunctionImportName="GetUserParentsSP" FunctionName="SleepingPartnermanagementTestingModel.Store.GetUserParentsSP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SleepingPartnermanagementTestingModel.GetUserParentsSP_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="IsThisFirstUser" ColumnName="IsThisFirstUser" />
+          <ScalarProperty Name="SponsorId" ColumnName="SponsorId" />
+          <ScalarProperty Name="DownlineMemberId" ColumnName="DownlineMemberId" />
+          <ScalarProperty Name="UpperId" ColumnName="UpperId" />
+          <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+          <ScalarProperty Name="IsUserActive" ColumnName="IsUserActive" />
+          <ScalarProperty Name="IsNewRequest" ColumnName="IsNewRequest" />
+          <ScalarProperty Name="UserPosition" ColumnName="UserPosition" />
+          <ScalarProperty Name="IsPaidMember" ColumnName="IsPaidMember" />
+          <ScalarProperty Name="UserPackage" ColumnName="UserPackage" />
+          <ScalarProperty Name="DocumentImage" ColumnName="DocumentImage" />
+          <ScalarProperty Name="IsSleepingPartner" ColumnName="IsSleepingPartner" />
+          <ScalarProperty Name="IsSalesExecutive" ColumnName="IsSalesExecutive" />
+          <ScalarProperty Name="UserDesignation" ColumnName="UserDesignation" />
+          <ScalarProperty Name="IsWithdrawalOpen" ColumnName="IsWithdrawalOpen" />
+          <ScalarProperty Name="NICImage" ColumnName="NICImage" />
+          <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+          <ScalarProperty Name="AccountTitle" ColumnName="AccountTitle" />
+          <ScalarProperty Name="IsVerify" ColumnName="IsVerify" />
+          <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
+          <ScalarProperty Name="NICImage1" ColumnName="NICImage1" />
+          <ScalarProperty Name="IsReject" ColumnName="IsReject" />
+          <ScalarProperty Name="Fcm" ColumnName="Fcm" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetUserTree" FunctionName="SleepingPartnermanagementTestingModel.Store.GetUserTree" />
+    <FunctionImportMapping FunctionImportName="GetUserTreeLeft" FunctionName="SleepingPartnermanagementTestingModel.Store.GetUserTreeLeft" />
+    <FunctionImportMapping FunctionImportName="GetUserTreeRight" FunctionName="SleepingPartnermanagementTestingModel.Store.GetUserTreeRight" />
+    <FunctionImportMapping FunctionImportName="insert_tree_node" FunctionName="SleepingPartnermanagementTestingModel.Store.insert_tree_node" />
+    <FunctionImportMapping FunctionImportName="move_node_down" FunctionName="SleepingPartnermanagementTestingModel.Store.move_node_down" />
+    <FunctionImportMapping FunctionImportName="move_node_up" FunctionName="SleepingPartnermanagementTestingModel.Store.move_node_up" />
+    <FunctionImportMapping FunctionImportName="remove_node" FunctionName="SleepingPartnermanagementTestingModel.Store.remove_node" />
+    <FunctionImportMapping FunctionImportName="view_human_tree" FunctionName="SleepingPartnermanagementTestingModel.Store.view_human_tree" />
+    <FunctionImportMapping FunctionImportName="view_tree" FunctionName="SleepingPartnermanagementTestingModel.Store.view_tree" />
+  </EntityContainerMapping>
+</Mapping>

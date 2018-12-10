@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SleepingPartnermanagementTreeTestingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="TreeDataTbl">
+    <Key>
+      <PropertyRef Name="Tree_ID" />
+    </Key>
+    <Property Name="Tree_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tree_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="DownlineMemberId" Type="Int32" />
+    <Property Name="Parent_ID" Type="Int32" Nullable="false" />
+    <Property Name="Seq_index" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Full_index" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserPosition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="SleepingPartnermanagementTreeTestingEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TreeDataTbls" EntityType="Self.TreeDataTbl" />
+    <FunctionImport Name="GetUserTree" ReturnType="Collection(SleepingPartnermanagementTreeTestingModel.GetUserTree_Result)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetUserTreeLeft" ReturnType="Collection(SleepingPartnermanagementTreeTestingModel.GetUserTreeLeft_Result)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetUserTreeRight" ReturnType="Collection(SleepingPartnermanagementTreeTestingModel.GetUserTreeRight_Result)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="insert_tree_node">
+      <Parameter Name="tree_name" Mode="In" Type="String" />
+      <Parameter Name="parent_ID" Mode="In" Type="Int32" />
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="DownlineMemberId" Mode="In" Type="Int32" />
+      <Parameter Name="UserPosition" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="move_node_down">
+      <Parameter Name="tree_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="move_node_up">
+      <Parameter Name="tree_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="remove_node">
+      <Parameter Name="tree_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="update_tree_name">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="UserName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="view_human_tree" ReturnType="Collection(SleepingPartnermanagementTreeTestingModel.view_human_tree_Result)" />
+    <FunctionImport Name="view_tree" ReturnType="Collection(SleepingPartnermanagementTreeTestingModel.view_tree_Result)" />
+  </EntityContainer>
+  <ComplexType Name="GetUserTree_Result">
+    <Property Type="Int32" Name="Tree_ID" Nullable="true" />
+    <Property Type="String" Name="Tree_name" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+    <Property Type="Int32" Name="DownlineMemberId" Nullable="true" />
+    <Property Type="Int32" Name="Parent_ID" Nullable="true" />
+    <Property Type="String" Name="Seq_index" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="Full_index" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="UserPosition" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Tree_level" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetUserTreeLeft_Result">
+    <Property Type="Int32" Name="Tree_ID" Nullable="true" />
+    <Property Type="String" Name="Tree_name" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+    <Property Type="Int32" Name="DownlineMemberId" Nullable="true" />
+    <Property Type="Int32" Name="Parent_ID" Nullable="true" />
+    <Property Type="String" Name="Seq_index" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="Full_index" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="UserPosition" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Tree_level" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetUserTreeRight_Result">
+    <Property Type="Int32" Name="Tree_ID" Nullable="true" />
+    <Property Type="String" Name="Tree_name" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+    <Property Type="Int32" Name="DownlineMemberId" Nullable="true" />
+    <Property Type="Int32" Name="Parent_ID" Nullable="true" />
+    <Property Type="String" Name="Seq_index" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="Full_index" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="UserPosition" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Tree_level" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="view_human_tree_Result">
+    <Property Type="String" Name="Full_index" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="TreeDes" Nullable="true" MaxLength="4000" />
+  </ComplexType>
+  <ComplexType Name="view_tree_Result">
+    <Property Type="String" Name="Full_index" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Tree_Name" Nullable="false" MaxLength="100" />
+  </ComplexType>
+</Schema>
