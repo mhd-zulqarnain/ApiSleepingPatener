@@ -14,14 +14,14 @@ Update-Package -Reinstall
 
 
 show error
-
+```
 <system.web>
     <customErrors mode="Off"/>
 </system.web>
 <system.webServer>
     <httpErrors errorMode="Detailed" />
 </system.webServer>
-
+```
 After adding new entity
 Need to create project from scratch
 -add libraries
@@ -30,4 +30,7 @@ Need to create project from scratch
 -add mising frameworks
 
 # If the error cause "SleepingPartnermanagementTestingEntities" already been added publishing .net
-After the <connectionString> and before the first <add....> node, add <clear/>
+After the <connectionString> and before the first <add....> node, add
+ ``` 
+   <clear/>
+```
