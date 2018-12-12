@@ -374,7 +374,6 @@
     <Compile Include="Models\NewsTicker\NewsTickerModel.cs" />
     <Compile Include="Models\NotificationExtensions.cs" />
     <Compile Include="Models\Notification\NotificationModel.cs" />
-    <Compile Include="Models\Packages\PackageModel.cs" />
     <Compile Include="Models\PrivacySettingModel.cs" />
     <Compile Include="Models\ProfileSettingModel.cs" />
     <Compile Include="Models\ProfileSetup.cs" />
@@ -613,6 +612,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\NewFolder1\" />
+    <Folder Include="Models\Packages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
