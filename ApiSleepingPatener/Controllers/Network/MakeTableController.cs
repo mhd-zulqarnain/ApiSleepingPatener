@@ -1116,8 +1116,8 @@ namespace ApiSleepingPatener.Controllers
             return Ok(obj);
 
         }
-        //[HttpGet]
-        //[Route("getusertablebalance/{userId}")]
+        [HttpGet]
+        [Route("getusertablebalance/{userId}")]
         public string GetUserTableBalance(int userId)
         {
             using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
