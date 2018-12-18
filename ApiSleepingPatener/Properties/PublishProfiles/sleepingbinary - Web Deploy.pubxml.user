@@ -78,7 +78,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/22/2013 08:43:40</publishTime>
     </File>
     <File Include="bin/ApiSleepingPatener.dll">
-      <publishTime>12/11/2018 13:19:18</publishTime>
+      <publishTime>12/12/2018 16:48:01</publishTime>
     </File>
     <File Include="bin/ApplicationInsights.config">
       <publishTime>12/10/2018 17:15:54</publishTime>

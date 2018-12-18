@@ -389,6 +389,34 @@ namespace ApiSleepingPatener.Controllers
 
 
 
+        //get ewallet summery 
+        [HttpGet]
+        [Route("eWalletSummary/{userId}")]
+        public IHttpActionResult eWalletSummary(int userId)
+        {
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
+            {
+                var Debit = (from eWallTr in dc.EWalletTransactions
+                             where eWallTr.UserId == userId && eWallTr.Credit == false && eWallTr.Debit == true
+                             select eWallTr).ToList();
+                var DebitValue = Debit.Sum(x => x.Amount);
+
+                var Credit = (from eWallTr in dc.EWalletTransactions
+                              where eWallTr.UserId == userId && eWallTr.Credit == true && eWallTr.Debit == false
+                              select eWallTr).ToList();
+                var CreditValue = Credit.Sum(x => x.Amount);
+
+                var Sum = DebitValue - CreditValue;
+
+                //if (Sum != null)
+                //{
+                //    return Json(new { success = true, result = Sum }, JsonRequestBehavior.AllowGet);
+                //}
+                return Ok(new { success = true, message = Sum.ToString() });
+             
+            }
+
+        }
 
         //New user selection post on dashboard page 
         [HttpPost]
