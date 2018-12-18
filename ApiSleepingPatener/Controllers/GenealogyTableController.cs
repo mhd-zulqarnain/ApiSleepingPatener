@@ -140,39 +140,39 @@ namespace ApiSleepingPatener.Controllers
                         }
                         else
                         {
-                            TwilioClient.Init(SendSMSAccountSid, SendSMSAuthToken);
-                            var message = MessageResource.Create(
-                                body: "Sleeping partner portal alert. "
-                                + " You Sent Withdrawal Request To Admin"
-                                + " Your Withdrawal Amount is : " + ewallet.Amount
-                                + " and request Date is : " + DateTime.Now + "."
-                                + " Click on http://sleepingpartnermanagementportalrct.com ",
-                                from: new Twilio.Types.PhoneNumber(SendSMSFromNumber),
-                                to: new Twilio.Types.PhoneNumber(user.Phone)
-                            );
+                            //TwilioClient.Init(SendSMSAccountSid, SendSMSAuthToken);
+                            //var message = MessageResource.Create(
+                            //    body: "Sleeping partner portal alert. "
+                            //    + " You Sent Withdrawal Request To Admin"
+                            //    + " Your Withdrawal Amount is : " + ewallet.Amount
+                            //    + " and request Date is : " + DateTime.Now + "."
+                            //    + " Click on http://sleepingpartnermanagementportalrct.com ",
+                            //    from: new Twilio.Types.PhoneNumber(SendSMSFromNumber),
+                            //    to: new Twilio.Types.PhoneNumber(user.Phone)
+                            //);
 
-                            System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
-                            mail.From = new MailAddress("noreply@sleepingpartnermanagementportalrct.com");
-                            mail.To.Add(user.Email);
-                            mail.Subject = "Sleeping partner management portal";
-                            mail.Body += "Sleeping partner portal alert." +
-                                        " You Sent Withdrawal Request To Admin" +
-                                        " Your Withdrawal Amount is : " + ewallet.Amount +
-                                        " and request Date is : " + DateTime.Now + "."
-                                        + " Click on http://sleepingpartnermanagementportalrct.com ";
-                            mail.IsBodyHtml = true;
-                            SmtpClient smtp = new SmtpClient();
-                            smtp.Host = "sleepingpartnermanagementportalrct.com";
-                            smtp.EnableSsl = true;
-                            smtp.UseDefaultCredentials = false;
-                            smtp.Credentials = new NetworkCredential("noreply@sleepingpartnermanagementportalrct.com", "Yly21#p8");
-                            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                            smtp.Port = 25;
-                            ServicePointManager.ServerCertificateValidationCallback =
-                            delegate (object s, X509Certificate certificate,
-                                     X509Chain chain, SslPolicyErrors sslPolicyErrors)
-                            { return true; };
-                            smtp.Send(mail);
+                            //System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
+                            //mail.From = new MailAddress("noreply@sleepingpartnermanagementportalrct.com");
+                            //mail.To.Add(user.Email);
+                            //mail.Subject = "Sleeping partner management portal";
+                            //mail.Body += "Sleeping partner portal alert." +
+                            //            " You Sent Withdrawal Request To Admin" +
+                            //            " Your Withdrawal Amount is : " + ewallet.Amount +
+                            //            " and request Date is : " + DateTime.Now + "."
+                            //            + " Click on http://sleepingpartnermanagementportalrct.com ";
+                            //mail.IsBodyHtml = true;
+                            //SmtpClient smtp = new SmtpClient();
+                            //smtp.Host = "sleepingpartnermanagementportalrct.com";
+                            //smtp.EnableSsl = true;
+                            //smtp.UseDefaultCredentials = false;
+                            //smtp.Credentials = new NetworkCredential("noreply@sleepingpartnermanagementportalrct.com", "Yly21#p8");
+                            //smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                            //smtp.Port = 25;
+                            //ServicePointManager.ServerCertificateValidationCallback =
+                            //delegate (object s, X509Certificate certificate,
+                            //         X509Chain chain, SslPolicyErrors sslPolicyErrors)
+                            //{ return true; };
+                            //smtp.Send(mail);
 
                             ewallet.IsWithdrawlRequestByUser = true;
                             ewallet.IsWithdrawlPaidByAdmin = false;
@@ -242,40 +242,40 @@ namespace ApiSleepingPatener.Controllers
                         }
                         else
                         {
-                            TwilioClient.Init(SendSMSAccountSid, SendSMSAuthToken);
-                            var message = MessageResource.Create(
-                                body: "Sleeping partner portal alert. "
-                                + " You Sent Withdrawal Request To Admin"
-                                + " Your Withdrawal Amount is : " + ewallet.Amount
-                                + " and request Date is : " + DateTime.Now + "."
-                                + " Click on http://sleepingpartnermanagementportalrct.com ",
-                                from: new Twilio.Types.PhoneNumber(SendSMSFromNumber),
-                                to: new Twilio.Types.PhoneNumber(user.Phone)
-                            );
+                        //    TwilioClient.Init(SendSMSAccountSid, SendSMSAuthToken);
+                        //    var message = MessageResource.Create(
+                        //        body: "Sleeping partner portal alert. "
+                        //        + " You Sent Withdrawal Request To Admin"
+                        //        + " Your Withdrawal Amount is : " + ewallet.Amount
+                        //        + " and request Date is : " + DateTime.Now + "."
+                        //        + " Click on http://sleepingpartnermanagementportalrct.com ",
+                        //        from: new Twilio.Types.PhoneNumber(SendSMSFromNumber),
+                        //        to: new Twilio.Types.PhoneNumber(user.Phone)
+                        //    );
 
 
-                            System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
-                            mail.From = new MailAddress("noreply@sleepingpartnermanagementportalrct.com");
-                            mail.To.Add(user.Email);
-                            mail.Subject = "Sleeping partner management portal";
-                            mail.Body += "Sleeping partner portal alert." +
-                                        " You Sent Withdrawal Request To Admin" +
-                                        " Your Withdrawal Amount is : " + ewallet.Amount +
-                                        " and request Date is : " + DateTime.Now + "."
-                                        + " Click on http://sleepingpartnermanagementportalrct.com ";
-                            mail.IsBodyHtml = true;
-                            SmtpClient smtp = new SmtpClient();
-                            smtp.Host = "sleepingpartnermanagementportalrct.com";
-                            smtp.EnableSsl = true;
-                            smtp.UseDefaultCredentials = false;
-                            smtp.Credentials = new NetworkCredential("noreply@sleepingpartnermanagementportalrct.com", "Yly21#p8");
-                            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                            smtp.Port = 25;
-                            ServicePointManager.ServerCertificateValidationCallback =
-                            delegate (object s, X509Certificate certificate,
-                                     X509Chain chain, SslPolicyErrors sslPolicyErrors)
-                            { return true; };
-                            smtp.Send(mail);
+                        //    System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
+                        //    mail.From = new MailAddress("noreply@sleepingpartnermanagementportalrct.com");
+                        //    mail.To.Add(user.Email);
+                        //    mail.Subject = "Sleeping partner management portal";
+                        //    mail.Body += "Sleeping partner portal alert." +
+                        //                " You Sent Withdrawal Request To Admin" +
+                        //                " Your Withdrawal Amount is : " + ewallet.Amount +
+                        //                " and request Date is : " + DateTime.Now + "."
+                        //                + " Click on http://sleepingpartnermanagementportalrct.com ";
+                        //    mail.IsBodyHtml = true;
+                        //    SmtpClient smtp = new SmtpClient();
+                        //    smtp.Host = "sleepingpartnermanagementportalrct.com";
+                        //    smtp.EnableSsl = true;
+                        //    smtp.UseDefaultCredentials = false;
+                        //    smtp.Credentials = new NetworkCredential("noreply@sleepingpartnermanagementportalrct.com", "Yly21#p8");
+                        //    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                        //    smtp.Port = 25;
+                        //    ServicePointManager.ServerCertificateValidationCallback =
+                        //    delegate (object s, X509Certificate certificate,
+                        //             X509Chain chain, SslPolicyErrors sslPolicyErrors)
+                        //    { return true; };
+                        //    smtp.Send(mail);
 
                             ewallet.IsWithdrawlRequestByUser = true;
                             ewallet.IsWithdrawlPaidByAdmin = false;
