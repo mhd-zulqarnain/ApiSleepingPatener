@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SleepingPartnermanagementTreeTestingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="TestingTreeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="TreeDataTbl">
           <Key>
             <PropertyRef Name="Tree_ID" />
@@ -70,14 +70,14 @@
         </Function>
         <Function Name="view_human_tree" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="view_tree" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <EntityContainer Name="SleepingPartnermanagementTreeTestingModelStoreContainer">
+        <EntityContainer Name="TestingTreeModelStoreContainer">
           <EntitySet Name="TreeDataTbl" EntityType="Self.TreeDataTbl" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="SleepingPartnermanagementTreeTestingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="TestingTreeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="TreeDataTbl">
           <Key>
             <PropertyRef Name="Tree_ID" />
@@ -93,13 +93,13 @@
         </EntityType>
         <EntityContainer Name="SleepingPartnermanagementTreeTestingEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="TreeDataTbls" EntityType="Self.TreeDataTbl" />
-          <FunctionImport Name="GetUserTree" ReturnType="Collection(SleepingPartnermanagementTreeTestingModel.GetUserTree_Result)">
+          <FunctionImport Name="GetUserTree" ReturnType="Collection(TestingTreeModel.GetUserTree_Result)">
             <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="GetUserTreeLeft" ReturnType="Collection(SleepingPartnermanagementTreeTestingModel.GetUserTreeLeft_Result)">
+          <FunctionImport Name="GetUserTreeLeft" ReturnType="Collection(TestingTreeModel.GetUserTreeLeft_Result)">
             <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="GetUserTreeRight" ReturnType="Collection(SleepingPartnermanagementTreeTestingModel.GetUserTreeRight_Result)">
+          <FunctionImport Name="GetUserTreeRight" ReturnType="Collection(TestingTreeModel.GetUserTreeRight_Result)">
             <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="insert_tree_node">
@@ -122,8 +122,8 @@
             <Parameter Name="UserId" Mode="In" Type="Int32" />
             <Parameter Name="UserName" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="view_human_tree" ReturnType="Collection(SleepingPartnermanagementTreeTestingModel.view_human_tree_Result)" />
-          <FunctionImport Name="view_tree" ReturnType="Collection(SleepingPartnermanagementTreeTestingModel.view_tree_Result)" />
+          <FunctionImport Name="view_human_tree" ReturnType="Collection(TestingTreeModel.view_human_tree_Result)" />
+          <FunctionImport Name="view_tree" ReturnType="Collection(TestingTreeModel.view_tree_Result)" />
         </EntityContainer>
         <ComplexType Name="GetUserTree_Result">
           <Property Type="Int32" Name="Tree_ID" Nullable="true" />
@@ -171,9 +171,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SleepingPartnermanagementTreeTestingModelStoreContainer" CdmEntityContainer="SleepingPartnermanagementTreeTestingEntities">
+        <EntityContainerMapping StorageEntityContainer="TestingTreeModelStoreContainer" CdmEntityContainer="SleepingPartnermanagementTreeTestingEntities">
           <EntitySetMapping Name="TreeDataTbls">
-            <EntityTypeMapping TypeName="SleepingPartnermanagementTreeTestingModel.TreeDataTbl">
+            <EntityTypeMapping TypeName="TestingTreeModel.TreeDataTbl">
               <MappingFragment StoreEntitySet="TreeDataTbl">
                 <ScalarProperty Name="Tree_ID" ColumnName="Tree_ID" />
                 <ScalarProperty Name="Tree_Name" ColumnName="Tree_Name" />
@@ -186,9 +186,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="GetUserTree" FunctionName="SleepingPartnermanagementTreeTestingModel.Store.GetUserTree">
+          <FunctionImportMapping FunctionImportName="GetUserTree" FunctionName="TestingTreeModel.Store.GetUserTree">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="SleepingPartnermanagementTreeTestingModel.GetUserTree_Result">
+              <ComplexTypeMapping TypeName="TestingTreeModel.GetUserTree_Result">
                 <ScalarProperty Name="Tree_ID" ColumnName="Tree_ID" />
                 <ScalarProperty Name="Tree_name" ColumnName="Tree_name" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -201,9 +201,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetUserTreeLeft" FunctionName="SleepingPartnermanagementTreeTestingModel.Store.GetUserTreeLeft">
+          <FunctionImportMapping FunctionImportName="GetUserTreeLeft" FunctionName="TestingTreeModel.Store.GetUserTreeLeft">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="SleepingPartnermanagementTreeTestingModel.GetUserTreeLeft_Result">
+              <ComplexTypeMapping TypeName="TestingTreeModel.GetUserTreeLeft_Result">
                 <ScalarProperty Name="Tree_ID" ColumnName="Tree_ID" />
                 <ScalarProperty Name="Tree_name" ColumnName="Tree_name" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -216,9 +216,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetUserTreeRight" FunctionName="SleepingPartnermanagementTreeTestingModel.Store.GetUserTreeRight">
+          <FunctionImportMapping FunctionImportName="GetUserTreeRight" FunctionName="TestingTreeModel.Store.GetUserTreeRight">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="SleepingPartnermanagementTreeTestingModel.GetUserTreeRight_Result">
+              <ComplexTypeMapping TypeName="TestingTreeModel.GetUserTreeRight_Result">
                 <ScalarProperty Name="Tree_ID" ColumnName="Tree_ID" />
                 <ScalarProperty Name="Tree_name" ColumnName="Tree_name" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -231,22 +231,22 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="insert_tree_node" FunctionName="SleepingPartnermanagementTreeTestingModel.Store.insert_tree_node" />
-          <FunctionImportMapping FunctionImportName="move_node_down" FunctionName="SleepingPartnermanagementTreeTestingModel.Store.move_node_down" />
-          <FunctionImportMapping FunctionImportName="move_node_up" FunctionName="SleepingPartnermanagementTreeTestingModel.Store.move_node_up" />
-          <FunctionImportMapping FunctionImportName="remove_node" FunctionName="SleepingPartnermanagementTreeTestingModel.Store.remove_node" />
-          <FunctionImportMapping FunctionImportName="update_tree_name" FunctionName="SleepingPartnermanagementTreeTestingModel.Store.update_tree_name" />
-          <FunctionImportMapping FunctionImportName="view_human_tree" FunctionName="SleepingPartnermanagementTreeTestingModel.Store.view_human_tree">
+          <FunctionImportMapping FunctionImportName="insert_tree_node" FunctionName="TestingTreeModel.Store.insert_tree_node" />
+          <FunctionImportMapping FunctionImportName="move_node_down" FunctionName="TestingTreeModel.Store.move_node_down" />
+          <FunctionImportMapping FunctionImportName="move_node_up" FunctionName="TestingTreeModel.Store.move_node_up" />
+          <FunctionImportMapping FunctionImportName="remove_node" FunctionName="TestingTreeModel.Store.remove_node" />
+          <FunctionImportMapping FunctionImportName="update_tree_name" FunctionName="TestingTreeModel.Store.update_tree_name" />
+          <FunctionImportMapping FunctionImportName="view_human_tree" FunctionName="TestingTreeModel.Store.view_human_tree">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="SleepingPartnermanagementTreeTestingModel.view_human_tree_Result">
+              <ComplexTypeMapping TypeName="TestingTreeModel.view_human_tree_Result">
                 <ScalarProperty Name="Full_index" ColumnName="Full_index" />
                 <ScalarProperty Name="TreeDes" ColumnName="TreeDes" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="view_tree" FunctionName="SleepingPartnermanagementTreeTestingModel.Store.view_tree">
+          <FunctionImportMapping FunctionImportName="view_tree" FunctionName="TestingTreeModel.Store.view_tree">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="SleepingPartnermanagementTreeTestingModel.view_tree_Result">
+              <ComplexTypeMapping TypeName="TestingTreeModel.view_tree_Result">
                 <ScalarProperty Name="Full_index" ColumnName="Full_index" />
                 <ScalarProperty Name="Tree_Name" ColumnName="Tree_Name" />
               </ComplexTypeMapping>

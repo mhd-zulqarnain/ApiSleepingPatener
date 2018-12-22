@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="SleepingPartnermanagementTreeTestingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="TestingTreeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="TreeDataTbl">
     <Key>
       <PropertyRef Name="Tree_ID" />
@@ -15,13 +15,13 @@
   </EntityType>
   <EntityContainer Name="SleepingPartnermanagementTreeTestingEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="TreeDataTbls" EntityType="Self.TreeDataTbl" />
-    <FunctionImport Name="GetUserTree" ReturnType="Collection(SleepingPartnermanagementTreeTestingModel.GetUserTree_Result)">
+    <FunctionImport Name="GetUserTree" ReturnType="Collection(TestingTreeModel.GetUserTree_Result)">
       <Parameter Name="UserId" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="GetUserTreeLeft" ReturnType="Collection(SleepingPartnermanagementTreeTestingModel.GetUserTreeLeft_Result)">
+    <FunctionImport Name="GetUserTreeLeft" ReturnType="Collection(TestingTreeModel.GetUserTreeLeft_Result)">
       <Parameter Name="UserId" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="GetUserTreeRight" ReturnType="Collection(SleepingPartnermanagementTreeTestingModel.GetUserTreeRight_Result)">
+    <FunctionImport Name="GetUserTreeRight" ReturnType="Collection(TestingTreeModel.GetUserTreeRight_Result)">
       <Parameter Name="UserId" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="insert_tree_node">
@@ -44,8 +44,8 @@
       <Parameter Name="UserId" Mode="In" Type="Int32" />
       <Parameter Name="UserName" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="view_human_tree" ReturnType="Collection(SleepingPartnermanagementTreeTestingModel.view_human_tree_Result)" />
-    <FunctionImport Name="view_tree" ReturnType="Collection(SleepingPartnermanagementTreeTestingModel.view_tree_Result)" />
+    <FunctionImport Name="view_human_tree" ReturnType="Collection(TestingTreeModel.view_human_tree_Result)" />
+    <FunctionImport Name="view_tree" ReturnType="Collection(TestingTreeModel.view_tree_Result)" />
   </EntityContainer>
   <ComplexType Name="GetUserTree_Result">
     <Property Type="Int32" Name="Tree_ID" Nullable="true" />

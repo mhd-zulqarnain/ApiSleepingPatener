@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="SleepingPartnermanagementTestingStoreContainer" CdmEntityContainer="SleepingPartnermanagementTestingEntities">
+  <EntityContainerMapping StorageEntityContainer="TestingManagementModelStoreContainer" CdmEntityContainer="SleepingPartnermanagementTestingEntities">
     <EntitySetMapping Name="Advertisements">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.Advertisement">
+      <EntityTypeMapping TypeName="TestingManagementModel.Advertisement">
         <MappingFragment StoreEntitySet="Advertisement">
           <ScalarProperty Name="AdvertisementId" ColumnName="AdvertisementId" />
           <ScalarProperty Name="AdvertisementName" ColumnName="AdvertisementName" />
@@ -14,7 +14,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="AdvertiserPackages">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.AdvertiserPackage">
+      <EntityTypeMapping TypeName="TestingManagementModel.AdvertiserPackage">
         <MappingFragment StoreEntitySet="AdvertiserPackages">
           <ScalarProperty Name="AdvertiserPackageId" ColumnName="AdvertiserPackageId" />
           <ScalarProperty Name="PackageName" ColumnName="PackageName" />
@@ -41,7 +41,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="AdvertiserRegistrations">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.AdvertiserRegistration">
+      <EntityTypeMapping TypeName="TestingManagementModel.AdvertiserRegistration">
         <MappingFragment StoreEntitySet="AdvertiserRegistration">
           <ScalarProperty Name="AdvertiserId" ColumnName="AdvertiserId" />
           <ScalarProperty Name="FullName" ColumnName="FullName" />
@@ -70,7 +70,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="BonusSettings">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.BonusSetting">
+      <EntityTypeMapping TypeName="TestingManagementModel.BonusSetting">
         <MappingFragment StoreEntitySet="BonusSetting">
           <ScalarProperty Name="BonusSettingId" ColumnName="BonusSettingId" />
           <ScalarProperty Name="BonusSettingName" ColumnName="BonusSettingName" />
@@ -79,7 +79,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Countries">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.Country">
+      <EntityTypeMapping TypeName="TestingManagementModel.Country">
         <MappingFragment StoreEntitySet="Country">
           <ScalarProperty Name="CountryID" ColumnName="CountryID" />
           <ScalarProperty Name="CountryName" ColumnName="CountryName" />
@@ -89,7 +89,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="EWalletPayoutConfigs">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.EWalletPayoutConfig">
+      <EntityTypeMapping TypeName="TestingManagementModel.EWalletPayoutConfig">
         <MappingFragment StoreEntitySet="EWalletPayoutConfig">
           <ScalarProperty Name="ConfigId" ColumnName="ConfigId" />
           <ScalarProperty Name="TimePeriod" ColumnName="TimePeriod" />
@@ -99,7 +99,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="EWalletTransactions">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.EWalletTransaction">
+      <EntityTypeMapping TypeName="TestingManagementModel.EWalletTransaction">
         <MappingFragment StoreEntitySet="EWalletTransaction">
           <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
           <ScalarProperty Name="TransactionSource" ColumnName="TransactionSource" />
@@ -124,7 +124,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="EWalletWithdrawalFunds">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.EWalletWithdrawalFund">
+      <EntityTypeMapping TypeName="TestingManagementModel.EWalletWithdrawalFund">
         <MappingFragment StoreEntitySet="EWalletWithdrawalFund">
           <ScalarProperty Name="WithdrawalFundId" ColumnName="WithdrawalFundId" />
           <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
@@ -150,7 +150,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="HelpRequests">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.HelpRequest">
+      <EntityTypeMapping TypeName="TestingManagementModel.HelpRequest">
         <MappingFragment StoreEntitySet="HelpRequest">
           <ScalarProperty Name="HelpRequestId" ColumnName="HelpRequestId" />
           <ScalarProperty Name="HelpRequestName" ColumnName="HelpRequestName" />
@@ -165,7 +165,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="NewsTickers">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.NewsTicker">
+      <EntityTypeMapping TypeName="TestingManagementModel.NewsTicker">
         <MappingFragment StoreEntitySet="NewsTicker">
           <ScalarProperty Name="NewsTickerId" ColumnName="NewsTickerId" />
           <ScalarProperty Name="NewsTickerName" ColumnName="NewsTickerName" />
@@ -176,7 +176,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="NewUserRegistrations">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.NewUserRegistration">
+      <EntityTypeMapping TypeName="TestingManagementModel.NewUserRegistration">
         <MappingFragment StoreEntitySet="NewUserRegistration">
           <ScalarProperty Name="fcm" ColumnName="fcm" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -218,7 +218,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Packages">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.Package">
+      <EntityTypeMapping TypeName="TestingManagementModel.Package">
         <MappingFragment StoreEntitySet="Packages">
           <ScalarProperty Name="PackageId" ColumnName="PackageId" />
           <ScalarProperty Name="PackageName" ColumnName="PackageName" />
@@ -236,7 +236,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ReceiveAdminMessages">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.ReceiveAdminMessage">
+      <EntityTypeMapping TypeName="TestingManagementModel.ReceiveAdminMessage">
         <MappingFragment StoreEntitySet="ReceiveAdminMessages">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Sender" ColumnName="Sender" />
@@ -251,7 +251,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ReceiveUserMessages">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.ReceiveUserMessage">
+      <EntityTypeMapping TypeName="TestingManagementModel.ReceiveUserMessage">
         <MappingFragment StoreEntitySet="ReceiveUserMessages">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Sender" ColumnName="Sender" />
@@ -265,7 +265,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Rewards">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.Reward">
+      <EntityTypeMapping TypeName="TestingManagementModel.Reward">
         <MappingFragment StoreEntitySet="Rewards">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Designation" ColumnName="Designation" />
@@ -279,7 +279,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SentAdminMessages">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.SentAdminMessage">
+      <EntityTypeMapping TypeName="TestingManagementModel.SentAdminMessage">
         <MappingFragment StoreEntitySet="SentAdminMessages">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Sender" ColumnName="Sender" />
@@ -294,7 +294,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SentUserMessages">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.SentUserMessage">
+      <EntityTypeMapping TypeName="TestingManagementModel.SentUserMessage">
         <MappingFragment StoreEntitySet="SentUserMessages">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Sender" ColumnName="Sender" />
@@ -308,7 +308,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SignUpUsers">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.SignUpUser">
+      <EntityTypeMapping TypeName="TestingManagementModel.SignUpUser">
         <MappingFragment StoreEntitySet="SignUpUsers">
           <ScalarProperty Name="SignUpId" ColumnName="SignUpId" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -325,7 +325,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TableLevels">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.TableLevel">
+      <EntityTypeMapping TypeName="TestingManagementModel.TableLevel">
         <MappingFragment StoreEntitySet="TableLevel">
           <ScalarProperty Name="TableLevelId" ColumnName="TableLevelId" />
           <ScalarProperty Name="TableLevelName" ColumnName="TableLevelName" />
@@ -335,7 +335,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TrainingVideos">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.TrainingVideo">
+      <EntityTypeMapping TypeName="TestingManagementModel.TrainingVideo">
         <MappingFragment StoreEntitySet="TrainingVideos">
           <ScalarProperty Name="TrainingVideoId" ColumnName="TrainingVideoId" />
           <ScalarProperty Name="TrainingVideoName" ColumnName="TrainingVideoName" />
@@ -345,7 +345,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserCommissions">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.UserCommission">
+      <EntityTypeMapping TypeName="TestingManagementModel.UserCommission">
         <MappingFragment StoreEntitySet="UserCommission">
           <ScalarProperty Name="UserCommissionId" ColumnName="UserCommissionId" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -359,7 +359,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserCommissionBalances">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.UserCommissionBalance">
+      <EntityTypeMapping TypeName="TestingManagementModel.UserCommissionBalance">
         <MappingFragment StoreEntitySet="UserCommissionBalance">
           <ScalarProperty Name="UserCommBalanceId" ColumnName="UserCommBalanceId" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -373,7 +373,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserGenealogyTables">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.UserGenealogyTable">
+      <EntityTypeMapping TypeName="TestingManagementModel.UserGenealogyTable">
         <MappingFragment StoreEntitySet="UserGenealogyTable">
           <ScalarProperty Name="GenealogyTableId" ColumnName="GenealogyTableId" />
           <ScalarProperty Name="NoOfPerson" ColumnName="NoOfPerson" />
@@ -396,7 +396,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserGenealogyTableLefts">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.UserGenealogyTableLeft">
+      <EntityTypeMapping TypeName="TestingManagementModel.UserGenealogyTableLeft">
         <MappingFragment StoreEntitySet="UserGenealogyTableLeft">
           <ScalarProperty Name="GenealogyTableLeftId" ColumnName="GenealogyTableLeftId" />
           <ScalarProperty Name="NoOfPerson" ColumnName="NoOfPerson" />
@@ -419,7 +419,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserGenealogyTableRights">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.UserGenealogyTableRight">
+      <EntityTypeMapping TypeName="TestingManagementModel.UserGenealogyTableRight">
         <MappingFragment StoreEntitySet="UserGenealogyTableRight">
           <ScalarProperty Name="GenealogyTableRightId" ColumnName="GenealogyTableRightId" />
           <ScalarProperty Name="NoOfPerson" ColumnName="NoOfPerson" />
@@ -442,7 +442,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserLoginInfoes">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.UserLoginInfo">
+      <EntityTypeMapping TypeName="TestingManagementModel.UserLoginInfo">
         <MappingFragment StoreEntitySet="UserLoginInfo">
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -457,7 +457,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserNotifications">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.UserNotification">
+      <EntityTypeMapping TypeName="TestingManagementModel.UserNotification">
         <MappingFragment StoreEntitySet="UserNotification">
           <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
           <ScalarProperty Name="NotificationName" ColumnName="NotificationName" />
@@ -470,7 +470,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserPackages">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.UserPackage">
+      <EntityTypeMapping TypeName="TestingManagementModel.UserPackage">
         <MappingFragment StoreEntitySet="UserPackages">
           <ScalarProperty Name="UserPackageId" ColumnName="UserPackageId" />
           <ScalarProperty Name="PackageName" ColumnName="PackageName" />
@@ -496,7 +496,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserPositions">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.UserPosition">
+      <EntityTypeMapping TypeName="TestingManagementModel.UserPosition">
         <MappingFragment StoreEntitySet="UserPosition">
           <ScalarProperty Name="UserPositionId" ColumnName="UserPositionId" />
           <ScalarProperty Name="UserPositionName" ColumnName="UserPositionName" />
@@ -504,7 +504,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserRewards">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.UserReward">
+      <EntityTypeMapping TypeName="TestingManagementModel.UserReward">
         <MappingFragment StoreEntitySet="UserRewards">
           <ScalarProperty Name="UserRewardId" ColumnName="UserRewardId" />
           <ScalarProperty Name="UserRewardName" ColumnName="UserRewardName" />
@@ -523,7 +523,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserTableLevels">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.UserTableLevel">
+      <EntityTypeMapping TypeName="TestingManagementModel.UserTableLevel">
         <MappingFragment StoreEntitySet="UserTableLevel">
           <ScalarProperty Name="UserTableLevelId" ColumnName="UserTableLevelId" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -542,7 +542,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="VideoPackCatTbls">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.VideoPackCatTbl">
+      <EntityTypeMapping TypeName="TestingManagementModel.VideoPackCatTbl">
         <MappingFragment StoreEntitySet="VideoPackCatTbl">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
@@ -553,7 +553,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="VideoPackTbls">
-      <EntityTypeMapping TypeName="SleepingPartnermanagementTesting.VideoPackTbl">
+      <EntityTypeMapping TypeName="TestingManagementModel.VideoPackTbl">
         <MappingFragment StoreEntitySet="VideoPackTbl">
           <ScalarProperty Name="VideoPackId" ColumnName="VideoPackId" />
           <ScalarProperty Name="VideoPackPkgId" ColumnName="VideoPackPkgId" />
@@ -573,9 +573,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="GetParentChildsLeftSP" FunctionName="SleepingPartnermanagementTesting.Store.GetParentChildsLeftSP">
+    <FunctionImportMapping FunctionImportName="GetParentChildsOuterRightSP" FunctionName="TestingManagementModel.Store.GetParentChildsOuterRightSP">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="SleepingPartnermanagementTesting.GetParentChildsLeftSP_Result">
+        <ComplexTypeMapping TypeName="TestingManagementModel.GetParentChildsOuterRightSP_Result">
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Username" ColumnName="Username" />
@@ -614,9 +614,9 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="GetParentChildsOuterLeftSP" FunctionName="SleepingPartnermanagementTesting.Store.GetParentChildsOuterLeftSP">
+    <FunctionImportMapping FunctionImportName="GetParentChildsRightSP" FunctionName="TestingManagementModel.Store.GetParentChildsRightSP">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="SleepingPartnermanagementTesting.GetParentChildsOuterLeftSP_Result">
+        <ComplexTypeMapping TypeName="TestingManagementModel.GetParentChildsRightSP_Result">
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Username" ColumnName="Username" />
@@ -655,9 +655,9 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="GetParentChildsOuterRightSP" FunctionName="SleepingPartnermanagementTesting.Store.GetParentChildsOuterRightSP">
+    <FunctionImportMapping FunctionImportName="GetParentChildsSP" FunctionName="TestingManagementModel.Store.GetParentChildsSP">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="SleepingPartnermanagementTesting.GetParentChildsOuterRightSP_Result">
+        <ComplexTypeMapping TypeName="TestingManagementModel.GetParentChildsSP_Result">
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Username" ColumnName="Username" />
@@ -696,9 +696,10 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="GetParentChildsRightSP" FunctionName="SleepingPartnermanagementTesting.Store.GetParentChildsRightSP">
+    <FunctionImportMapping FunctionImportName="GetUserLoginInfo" FunctionName="TestingManagementModel.Store.GetUserLoginInfo" />
+    <FunctionImportMapping FunctionImportName="GetUserParentsSP" FunctionName="TestingManagementModel.Store.GetUserParentsSP">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="SleepingPartnermanagementTesting.GetParentChildsRightSP_Result">
+        <ComplexTypeMapping TypeName="TestingManagementModel.GetUserParentsSP_Result">
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Username" ColumnName="Username" />
@@ -737,9 +738,18 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="GetParentChildsSP" FunctionName="SleepingPartnermanagementTesting.Store.GetParentChildsSP">
+    <FunctionImportMapping FunctionImportName="GetUserTree" FunctionName="TestingManagementModel.Store.GetUserTree" />
+    <FunctionImportMapping FunctionImportName="GetUserTreeLeft" FunctionName="TestingManagementModel.Store.GetUserTreeLeft" />
+    <FunctionImportMapping FunctionImportName="GetUserTreeRight" FunctionName="TestingManagementModel.Store.GetUserTreeRight" />
+    <FunctionImportMapping FunctionImportName="insert_tree_node" FunctionName="TestingManagementModel.Store.insert_tree_node" />
+    <FunctionImportMapping FunctionImportName="move_node_down" FunctionName="TestingManagementModel.Store.move_node_down" />
+    <FunctionImportMapping FunctionImportName="move_node_up" FunctionName="TestingManagementModel.Store.move_node_up" />
+    <FunctionImportMapping FunctionImportName="remove_node" FunctionName="TestingManagementModel.Store.remove_node" />
+    <FunctionImportMapping FunctionImportName="view_human_tree" FunctionName="TestingManagementModel.Store.view_human_tree" />
+    <FunctionImportMapping FunctionImportName="view_tree" FunctionName="TestingManagementModel.Store.view_tree" />
+    <FunctionImportMapping FunctionImportName="GetParentChildsLeftSP" FunctionName="TestingManagementModel.Store.GetParentChildsLeftSP">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="SleepingPartnermanagementTesting.GetParentChildsSP_Result">
+        <ComplexTypeMapping TypeName="TestingManagementModel.GetParentChildsLeftSP_Result">
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Username" ColumnName="Username" />
@@ -778,10 +788,9 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="GetUserLoginInfo" FunctionName="SleepingPartnermanagementTesting.Store.GetUserLoginInfo" />
-    <FunctionImportMapping FunctionImportName="GetUserParentsSP" FunctionName="SleepingPartnermanagementTesting.Store.GetUserParentsSP">
+    <FunctionImportMapping FunctionImportName="GetParentChildsOuterLeftSP" FunctionName="TestingManagementModel.Store.GetParentChildsOuterLeftSP">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="SleepingPartnermanagementTesting.GetUserParentsSP_Result">
+        <ComplexTypeMapping TypeName="TestingManagementModel.GetParentChildsOuterLeftSP_Result">
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Username" ColumnName="Username" />
@@ -820,14 +829,5 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="GetUserTree" FunctionName="SleepingPartnermanagementTesting.Store.GetUserTree" />
-    <FunctionImportMapping FunctionImportName="GetUserTreeLeft" FunctionName="SleepingPartnermanagementTesting.Store.GetUserTreeLeft" />
-    <FunctionImportMapping FunctionImportName="GetUserTreeRight" FunctionName="SleepingPartnermanagementTesting.Store.GetUserTreeRight" />
-    <FunctionImportMapping FunctionImportName="insert_tree_node" FunctionName="SleepingPartnermanagementTesting.Store.insert_tree_node" />
-    <FunctionImportMapping FunctionImportName="move_node_down" FunctionName="SleepingPartnermanagementTesting.Store.move_node_down" />
-    <FunctionImportMapping FunctionImportName="move_node_up" FunctionName="SleepingPartnermanagementTesting.Store.move_node_up" />
-    <FunctionImportMapping FunctionImportName="remove_node" FunctionName="SleepingPartnermanagementTesting.Store.remove_node" />
-    <FunctionImportMapping FunctionImportName="view_human_tree" FunctionName="SleepingPartnermanagementTesting.Store.view_human_tree" />
-    <FunctionImportMapping FunctionImportName="view_tree" FunctionName="SleepingPartnermanagementTesting.Store.view_tree" />
   </EntityContainerMapping>
 </Mapping>

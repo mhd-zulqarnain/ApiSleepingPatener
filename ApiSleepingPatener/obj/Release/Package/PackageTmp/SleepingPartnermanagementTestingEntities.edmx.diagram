@@ -4,40 +4,40 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f06130daaf3645cb850f07bc84a4071a" Name="Diagram1">
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.Advertisement" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.AdvertiserPackage" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.AdvertiserRegistration" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.BonusSetting" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.Country" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.EWalletPayoutConfig" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.EWalletTransaction" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.EWalletWithdrawalFund" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.HelpRequest" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.NewsTicker" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.NewUserRegistration" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.Package" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.ReceiveAdminMessage" Width="1.5" PointX="10.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.ReceiveUserMessage" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.Reward" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.SentAdminMessage" Width="1.5" PointX="12.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.SentUserMessage" Width="1.5" PointX="4.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.SignUpUser" Width="1.5" PointX="12.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.TableLevel" Width="1.5" PointX="12.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.TrainingVideo" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.UserCommission" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.UserCommissionBalance" Width="1.5" PointX="14.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.UserGenealogyTable" Width="1.5" PointX="14.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.UserGenealogyTableLeft" Width="1.5" PointX="14.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.UserGenealogyTableRight" Width="1.5" PointX="10.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.UserLoginInfo" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.UserNotification" Width="1.5" PointX="0.75" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.UserPackage" Width="1.5" PointX="2.75" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.UserPosition" Width="1.5" PointX="16.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.UserReward" Width="1.5" PointX="4.75" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.UserTableLevel" Width="1.5" PointX="6.75" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.VideoPackCatTbl" Width="1.5" PointX="16.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SleepingPartnermanagementTesting.VideoPackTbl" Width="1.5" PointX="16.75" PointY="10.75" IsExpanded="true" />
+      <Diagram DiagramId="73a82532762649a8bbd5a200bbf9da12" Name="Diagram1">
+        <EntityTypeShape EntityType="TestingManagementModel.Advertisement" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.AdvertiserPackage" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.AdvertiserRegistration" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.BonusSetting" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.Country" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.EWalletPayoutConfig" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.EWalletTransaction" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.EWalletWithdrawalFund" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.HelpRequest" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.NewsTicker" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.NewUserRegistration" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.Package" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.ReceiveAdminMessage" Width="1.5" PointX="10.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.ReceiveUserMessage" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.Reward" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.SentAdminMessage" Width="1.5" PointX="12.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.SentUserMessage" Width="1.5" PointX="4.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.SignUpUser" Width="1.5" PointX="12.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.TableLevel" Width="1.5" PointX="12.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.TrainingVideo" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.UserCommission" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.UserCommissionBalance" Width="1.5" PointX="14.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.UserGenealogyTable" Width="1.5" PointX="14.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.UserGenealogyTableLeft" Width="1.5" PointX="14.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.UserGenealogyTableRight" Width="1.5" PointX="10.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.UserLoginInfo" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.UserNotification" Width="1.5" PointX="0.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.UserPackage" Width="1.5" PointX="2.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.UserPosition" Width="1.5" PointX="16.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.UserReward" Width="1.5" PointX="4.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.UserTableLevel" Width="1.5" PointX="6.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.VideoPackCatTbl" Width="1.5" PointX="16.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingManagementModel.VideoPackTbl" Width="1.5" PointX="16.75" PointY="10.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

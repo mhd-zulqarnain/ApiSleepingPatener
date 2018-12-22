@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="SleepingPartnermanagementTesting" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="TestingManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="Advertisement">
     <Key>
       <PropertyRef Name="AdvertisementId" />
@@ -573,26 +573,20 @@
     <EntitySet Name="UserTableLevels" EntityType="Self.UserTableLevel" />
     <EntitySet Name="VideoPackCatTbls" EntityType="Self.VideoPackCatTbl" />
     <EntitySet Name="VideoPackTbls" EntityType="Self.VideoPackTbl" />
-    <FunctionImport Name="GetParentChildsLeftSP" ReturnType="Collection(SleepingPartnermanagementTesting.GetParentChildsLeftSP_Result)">
+    <FunctionImport Name="GetParentChildsOuterRightSP" ReturnType="Collection(TestingManagementModel.GetParentChildsOuterRightSP_Result)">
       <Parameter Name="UserId" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="GetParentChildsOuterLeftSP" ReturnType="Collection(SleepingPartnermanagementTesting.GetParentChildsOuterLeftSP_Result)">
+    <FunctionImport Name="GetParentChildsRightSP" ReturnType="Collection(TestingManagementModel.GetParentChildsRightSP_Result)">
       <Parameter Name="UserId" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="GetParentChildsOuterRightSP" ReturnType="Collection(SleepingPartnermanagementTesting.GetParentChildsOuterRightSP_Result)">
-      <Parameter Name="UserId" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="GetParentChildsRightSP" ReturnType="Collection(SleepingPartnermanagementTesting.GetParentChildsRightSP_Result)">
-      <Parameter Name="UserId" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="GetParentChildsSP" ReturnType="Collection(SleepingPartnermanagementTesting.GetParentChildsSP_Result)">
+    <FunctionImport Name="GetParentChildsSP" ReturnType="Collection(TestingManagementModel.GetParentChildsSP_Result)">
       <Parameter Name="UserId" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="GetUserLoginInfo">
       <Parameter Name="UserName" Mode="In" Type="String" />
       <Parameter Name="Password" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="GetUserParentsSP" ReturnType="Collection(SleepingPartnermanagementTesting.GetUserParentsSP_Result)">
+    <FunctionImport Name="GetUserParentsSP" ReturnType="Collection(TestingManagementModel.GetUserParentsSP_Result)">
       <Parameter Name="UserId" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="GetUserTree">
@@ -622,81 +616,13 @@
     </FunctionImport>
     <FunctionImport Name="view_human_tree" />
     <FunctionImport Name="view_tree" />
+    <FunctionImport Name="GetParentChildsLeftSP" ReturnType="Collection(TestingManagementModel.GetParentChildsLeftSP_Result)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetParentChildsOuterLeftSP" ReturnType="Collection(TestingManagementModel.GetParentChildsOuterLeftSP_Result)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
-  <ComplexType Name="GetParentChildsLeftSP_Result">
-    <Property Type="Int32" Name="UserId" Nullable="true" />
-    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Username" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
-    <Property Type="Int32" Name="Country" Nullable="true" />
-    <Property Type="String" Name="Address" Nullable="true" MaxLength="200" />
-    <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="CNIC" Nullable="true" MaxLength="200" />
-    <Property Type="String" Name="AccountNumber" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="BankName" Nullable="true" MaxLength="50" />
-    <Property Type="Boolean" Name="IsThisFirstUser" Nullable="true" />
-    <Property Type="Int32" Name="SponsorId" Nullable="true" />
-    <Property Type="Int32" Name="DownlineMemberId" Nullable="true" />
-    <Property Type="Int32" Name="UpperId" Nullable="true" />
-    <Property Type="Decimal" Name="PaidAmount" Nullable="true" Precision="19" />
-    <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
-    <Property Type="String" Name="UserCode" Nullable="true" MaxLength="50" />
-    <Property Type="Boolean" Name="IsUserActive" Nullable="true" />
-    <Property Type="Boolean" Name="IsNewRequest" Nullable="true" />
-    <Property Type="String" Name="UserPosition" Nullable="true" MaxLength="50" />
-    <Property Type="Boolean" Name="IsPaidMember" Nullable="true" />
-    <Property Type="Int32" Name="UserPackage" Nullable="true" />
-    <Property Type="Binary" Name="DocumentImage" Nullable="true" MaxLength="Max" />
-    <Property Type="Boolean" Name="IsSleepingPartner" Nullable="true" />
-    <Property Type="Boolean" Name="IsSalesExecutive" Nullable="true" />
-    <Property Type="String" Name="UserDesignation" Nullable="true" MaxLength="50" />
-    <Property Type="Boolean" Name="IsWithdrawalOpen" Nullable="true" />
-    <Property Type="Binary" Name="NICImage" Nullable="true" MaxLength="Max" />
-    <Property Type="Binary" Name="ProfileImage" Nullable="true" MaxLength="Max" />
-    <Property Type="String" Name="AccountTitle" Nullable="true" MaxLength="50" />
-    <Property Type="Boolean" Name="IsVerify" Nullable="true" />
-    <Property Type="Boolean" Name="IsBlock" Nullable="true" />
-    <Property Type="Binary" Name="NICImage1" Nullable="true" MaxLength="Max" />
-    <Property Type="Boolean" Name="IsReject" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="GetParentChildsOuterLeftSP_Result">
-    <Property Type="Int32" Name="UserId" Nullable="true" />
-    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Username" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
-    <Property Type="Int32" Name="Country" Nullable="true" />
-    <Property Type="String" Name="Address" Nullable="true" MaxLength="200" />
-    <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="CNIC" Nullable="true" MaxLength="200" />
-    <Property Type="String" Name="AccountNumber" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="BankName" Nullable="true" MaxLength="50" />
-    <Property Type="Boolean" Name="IsThisFirstUser" Nullable="true" />
-    <Property Type="Int32" Name="SponsorId" Nullable="true" />
-    <Property Type="Int32" Name="DownlineMemberId" Nullable="true" />
-    <Property Type="Int32" Name="UpperId" Nullable="true" />
-    <Property Type="Decimal" Name="PaidAmount" Nullable="true" Precision="19" />
-    <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
-    <Property Type="String" Name="UserCode" Nullable="true" MaxLength="50" />
-    <Property Type="Boolean" Name="IsUserActive" Nullable="true" />
-    <Property Type="Boolean" Name="IsNewRequest" Nullable="true" />
-    <Property Type="String" Name="UserPosition" Nullable="true" MaxLength="50" />
-    <Property Type="Boolean" Name="IsPaidMember" Nullable="true" />
-    <Property Type="Int32" Name="UserPackage" Nullable="true" />
-    <Property Type="Binary" Name="DocumentImage" Nullable="true" MaxLength="Max" />
-    <Property Type="Boolean" Name="IsSleepingPartner" Nullable="true" />
-    <Property Type="Boolean" Name="IsSalesExecutive" Nullable="true" />
-    <Property Type="String" Name="UserDesignation" Nullable="true" MaxLength="50" />
-    <Property Type="Boolean" Name="IsWithdrawalOpen" Nullable="true" />
-    <Property Type="Binary" Name="NICImage" Nullable="true" MaxLength="Max" />
-    <Property Type="Binary" Name="ProfileImage" Nullable="true" MaxLength="Max" />
-    <Property Type="String" Name="AccountTitle" Nullable="true" MaxLength="50" />
-    <Property Type="Boolean" Name="IsVerify" Nullable="true" />
-    <Property Type="Boolean" Name="IsBlock" Nullable="true" />
-    <Property Type="Binary" Name="NICImage1" Nullable="true" MaxLength="Max" />
-    <Property Type="Boolean" Name="IsReject" Nullable="true" />
-  </ComplexType>
   <ComplexType Name="GetParentChildsOuterRightSP_Result">
     <Property Type="Int32" Name="UserId" Nullable="true" />
     <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
@@ -809,6 +735,80 @@
     <Property Type="Boolean" Name="IsReject" Nullable="true" />
   </ComplexType>
   <ComplexType Name="GetUserParentsSP_Result">
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Username" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Country" Nullable="true" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CNIC" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="AccountNumber" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BankName" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="IsThisFirstUser" Nullable="true" />
+    <Property Type="Int32" Name="SponsorId" Nullable="true" />
+    <Property Type="Int32" Name="DownlineMemberId" Nullable="true" />
+    <Property Type="Int32" Name="UpperId" Nullable="true" />
+    <Property Type="Decimal" Name="PaidAmount" Nullable="true" Precision="19" />
+    <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="UserCode" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="IsUserActive" Nullable="true" />
+    <Property Type="Boolean" Name="IsNewRequest" Nullable="true" />
+    <Property Type="String" Name="UserPosition" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="IsPaidMember" Nullable="true" />
+    <Property Type="Int32" Name="UserPackage" Nullable="true" />
+    <Property Type="Binary" Name="DocumentImage" Nullable="true" MaxLength="Max" />
+    <Property Type="Boolean" Name="IsSleepingPartner" Nullable="true" />
+    <Property Type="Boolean" Name="IsSalesExecutive" Nullable="true" />
+    <Property Type="String" Name="UserDesignation" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="IsWithdrawalOpen" Nullable="true" />
+    <Property Type="Binary" Name="NICImage" Nullable="true" MaxLength="Max" />
+    <Property Type="Binary" Name="ProfileImage" Nullable="true" MaxLength="Max" />
+    <Property Type="String" Name="AccountTitle" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="IsVerify" Nullable="true" />
+    <Property Type="Boolean" Name="IsBlock" Nullable="true" />
+    <Property Type="Binary" Name="NICImage1" Nullable="true" MaxLength="Max" />
+    <Property Type="Boolean" Name="IsReject" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetParentChildsLeftSP_Result">
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Username" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Country" Nullable="true" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CNIC" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="AccountNumber" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BankName" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="IsThisFirstUser" Nullable="true" />
+    <Property Type="Int32" Name="SponsorId" Nullable="true" />
+    <Property Type="Int32" Name="DownlineMemberId" Nullable="true" />
+    <Property Type="Int32" Name="UpperId" Nullable="true" />
+    <Property Type="Decimal" Name="PaidAmount" Nullable="true" Precision="19" />
+    <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="UserCode" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="IsUserActive" Nullable="true" />
+    <Property Type="Boolean" Name="IsNewRequest" Nullable="true" />
+    <Property Type="String" Name="UserPosition" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="IsPaidMember" Nullable="true" />
+    <Property Type="Int32" Name="UserPackage" Nullable="true" />
+    <Property Type="Binary" Name="DocumentImage" Nullable="true" MaxLength="Max" />
+    <Property Type="Boolean" Name="IsSleepingPartner" Nullable="true" />
+    <Property Type="Boolean" Name="IsSalesExecutive" Nullable="true" />
+    <Property Type="String" Name="UserDesignation" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="IsWithdrawalOpen" Nullable="true" />
+    <Property Type="Binary" Name="NICImage" Nullable="true" MaxLength="Max" />
+    <Property Type="Binary" Name="ProfileImage" Nullable="true" MaxLength="Max" />
+    <Property Type="String" Name="AccountTitle" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="IsVerify" Nullable="true" />
+    <Property Type="Boolean" Name="IsBlock" Nullable="true" />
+    <Property Type="Binary" Name="NICImage1" Nullable="true" MaxLength="Max" />
+    <Property Type="Boolean" Name="IsReject" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetParentChildsOuterLeftSP_Result">
     <Property Type="Int32" Name="UserId" Nullable="true" />
     <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="Username" Nullable="true" MaxLength="50" />

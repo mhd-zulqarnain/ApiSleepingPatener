@@ -371,7 +371,7 @@ namespace ApiSleepingPatener.Controllers
                         newuser.IsVerify = false;
                         newuser.IsReject = false;
                         dc.NewUserRegistrations.Add(newuser);
-                        dc.SaveChanges();
+                        
 
 
                         userpackage.PackageId = package.PackageId;
@@ -458,18 +458,18 @@ namespace ApiSleepingPatener.Controllers
                         #region send sms
 
 
-                        TwilioClient.Init(SendSMSAccountSid, SendSMSAuthToken);
+                        //TwilioClient.Init(SendSMSAccountSid, SendSMSAuthToken);
 
-                        var message = MessageResource.Create(
-                            body: "Welcome to Sleeping partner portal. "
-                            + " Please make sure to pay your amount with in 5 bussiness days"
-                            + " to avoid your account deactivation. "
-                            + " Your username is : " + model.Username
-                            + " and password is : " + model.Password + "."
-                            + " Click on http://sleepingpartnermanagementportalrct.com ",
-                            from: new Twilio.Types.PhoneNumber(SendSMSFromNumber),
-                            to: new Twilio.Types.PhoneNumber(model.Phone)
-                        );
+                        //var message = MessageResource.Create(
+                        //    body: "Welcome to Sleeping partner portal. "
+                        //    + " Please make sure to pay your amount with in 5 bussiness days"
+                        //    + " to avoid your account deactivation. "
+                        //    + " Your username is : " + model.Username
+                        //    + " and password is : " + model.Password + "."
+                        //    + " Click on http://sleepingpartnermanagementportalrct.com ",
+                        //    from: new Twilio.Types.PhoneNumber(SendSMSFromNumber),
+                        //    to: new Twilio.Types.PhoneNumber(model.Phone)
+                        //);
 
 
                         #endregion
@@ -483,20 +483,20 @@ namespace ApiSleepingPatener.Controllers
                             " Your username is " + model.Username + " and password : " + model.Password + "</br></br>" +
                             "<table style='font-family:Verdana, Helvetica, sans-serif;' cellpadding='0' cellspacing='0'><tbody><tr><td style='font-family:Verdana; border-right:2px solid #BD272D; padding-right:15px; text-align: right; vertical-align:top; ' valign='top'><table style='font-family:Verdana; margin-right:0; margin-left:auto;' cellpadding='0' cellspacing='0'><tbody><tr><td style='font-family:Verdana; height:55px; vertical-align:top; text-align:right;' valign='top' align='right'><span style='font-family:Verdana; font-size:14pt; font-weight:bold'>Sleeping partner management<span><br></span></span></td></tr><tr><td style='font-family:Verdana; height:40px; vertical-align:top; padding:0; text-align:right;' valign='top' align='right'><span style='font-family:Verdana; font-size:10pt;'>phone: 123456<span><br></span></span><span style='font-family:Verdana; font-size:10pt;'>mobile: 0123456</span></td></tr><tr><td><a href='http://sleepingpartnermanagementportalrct.com'>sleepingpartnermanagementportal</a></td></tr></tbody></table></td><td style='padding-left:15px;font-size:1pt; vertical-align:top; font-family:Verdana;' valign='top'><table style='font-family:Verdana;' cellpadding='0' cellspacing='0'><tbody><tr><td style='height:55px; font-family:Verdana; vertical-align:top;' valign='top'><a href='{Logo URL}' target='_blank'><img alt='Logo' style='height:40px; width:auto; border:0; ' height='40' border='0'  src='~/Content/images/newsleepinglogo.png'></a></td></tr><tr><td style='height:40px; font-family:Verdana; vertical-align:top; padding:0;' valign='top'><span style='font-family:Verdana; font-size:10pt;'>{Address 1}<span><br></span></span> <span style='font-family:Verdana; font-size:10pt;'>{Address 2}</span> </td></tr><tr><td style='height:20px; font-family:Verdana; vertical-align:middle;' valign='middle'><a href='http://{Web page}' target='_blank' style='color:#BD272D; font-size:10pt; font-family:Verdana;'>{Web page}</a></td></tr></tbody></table></td></tr></tbody></table>";
                         mail1.IsBodyHtml = true;
-                        SmtpClient smtp1 = new SmtpClient();
-                        smtp1.Host = "sleepingpartnermanagementportalrct.com";
-                        smtp1.EnableSsl = true;
-                        smtp1.UseDefaultCredentials = false;
-                        smtp1.Credentials = new NetworkCredential("noreply@sleepingpartnermanagementportalrct.com", "Yly21#p8");
-                        smtp1.DeliveryMethod = SmtpDeliveryMethod.Network;
-                        smtp1.Port = 25;
+                        SmtpClient smtp = new SmtpClient();
+                        smtp.Host = "sleepingpartnermanagementportalrct.com";
+                        smtp.EnableSsl = true;
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = new NetworkCredential("noreply@sleepingpartnermanagementportalrct.com", "Yly21#p8");
+                        smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                        smtp.Port = 25;
                         ServicePointManager.ServerCertificateValidationCallback =
                         delegate (object s, X509Certificate certificate,
                                  X509Chain chain, SslPolicyErrors sslPolicyErrors)
                         { return true; };
-                        smtp1.Send(mail1);
+                        smtp.Send(mail1);
 
-                      //  await SendEmailToSponsor(newuserdata.Email, "sleeping patners", Body);
+                        //  await SendEmailToSponsor(newuserdata.Email, "sleeping patners", Body);
 
                         #endregion
                         dc.SaveChanges();
@@ -564,7 +564,7 @@ namespace ApiSleepingPatener.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(new { error = true, message = ex.Message });
+                return Ok(new { success = false, message = ex.Message });
             }
 
         }
@@ -655,18 +655,18 @@ namespace ApiSleepingPatener.Controllers
                         #region send sms
 
 
-                        TwilioClient.Init(SendSMSAccountSid, SendSMSAuthToken);
+                        //TwilioClient.Init(SendSMSAccountSid, SendSMSAuthToken);
 
-                        var message = MessageResource.Create(
-                            body: "Welcome to Sleeping partner portal. "
-                            + " Please make sure to pay your amount with in 5 bussiness days"
-                            + " to avoid your account deactivation. "
-                            + " Your username is : " + model.Username
-                            + " and password is : " + model.Password + "."
-                            + " Click on http://sleepingpartnermanagementportalrct.com ",
-                            from: new Twilio.Types.PhoneNumber(SendSMSFromNumber),
-                            to: new Twilio.Types.PhoneNumber(model.Phone)
-                        );
+                        //var message = MessageResource.Create(
+                        //    body: "Welcome to Sleeping partner portal. "
+                        //    + " Please make sure to pay your amount with in 5 bussiness days"
+                        //    + " to avoid your account deactivation. "
+                        //    + " Your username is : " + model.Username
+                        //    + " and password is : " + model.Password + "."
+                        //    + " Click on http://sleepingpartnermanagementportalrct.com ",
+                        //    from: new Twilio.Types.PhoneNumber(SendSMSFromNumber),
+                        //    to: new Twilio.Types.PhoneNumber(model.Phone)
+                        //);
                         #region user email
 
                         System.Net.Mail.MailMessage mail1 = new System.Net.Mail.MailMessage();
