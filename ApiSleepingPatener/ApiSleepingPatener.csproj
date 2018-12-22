@@ -239,7 +239,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Advertisement.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AdvertiserPackage.cs">
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AdvertiserRegistration.cs">
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -276,7 +282,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="BonusSetting.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Common\Enum.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
@@ -298,49 +304,49 @@
     <Compile Include="Controllers\UserDetailController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Country.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="EWalletPayoutConfig.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="EWalletTransaction.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="EWalletWithdrawalFund.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="GetParentChildsLeftSP_Result.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="GetParentChildsOuterLeftSP_Result.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="GetParentChildsOuterRightSP_Result.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="GetParentChildsRightSP_Result.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="GetParentChildsSP_Result.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="GetUserParentsSP_Result.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="GetUserTreeLeft_Result.cs">
-      <DependentUpon>SleepingPartnermanagementTreeTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTreeTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="GetUserTreeRight_Result.cs">
-      <DependentUpon>SleepingPartnermanagementTreeTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTreeTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="GetUserTree_Result.cs">
-      <DependentUpon>SleepingPartnermanagementTreeTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTreeTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HelpRequest.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -390,121 +396,121 @@
     <Compile Include="Models\TrainingVideoModel.cs" />
     <Compile Include="Models\VideoPackTblModelCopy.cs" />
     <Compile Include="NewsTicker.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="NewUserRegistration.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Package.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\OAuthProvider.cs" />
     <Compile Include="ReceiveAdminMessage.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ReceiveUserMessage.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Reward.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="SentAdminMessage.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="SentUserMessage.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Service\UserService.cs" />
     <Compile Include="SignUpUser.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="SleepingPartnermanagementTesting.Context.cs">
+    <Compile Include="SleepingPartnermanagementTestingEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SleepingPartnermanagementTesting.Context.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="SleepingPartnermanagementTesting.cs">
+    <Compile Include="SleepingPartnermanagementTestingEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="SleepingPartnermanagementTesting.Designer.cs">
+    <Compile Include="SleepingPartnermanagementTestingEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SleepingPartnermanagementTesting.edmx</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.edmx</DependentUpon>
     </Compile>
-    <Compile Include="SleepingPartnermanagementTreeTesting.Context.cs">
+    <Compile Include="SleepingPartnermanagementTreeTestingEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SleepingPartnermanagementTreeTesting.Context.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTreeTestingEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="SleepingPartnermanagementTreeTesting.cs">
+    <Compile Include="SleepingPartnermanagementTreeTestingEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SleepingPartnermanagementTreeTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTreeTestingEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="SleepingPartnermanagementTreeTesting.Designer.cs">
+    <Compile Include="SleepingPartnermanagementTreeTestingEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SleepingPartnermanagementTreeTesting.edmx</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTreeTestingEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="TableLevel.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="TrainingVideo.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="TreeDataTbl.cs">
-      <DependentUpon>SleepingPartnermanagementTreeTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTreeTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="UserCommission.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="UserCommissionBalance.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="UserGenealogyTable.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="UserGenealogyTableLeft.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="UserGenealogyTableRight.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="UserLoginInfo.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="UserNotification.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="UserPackage.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="UserPosition.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="UserReward.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="UserTableLevel.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="VideoPackCatTbl.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="VideoPackTbl.cs">
-      <DependentUpon>SleepingPartnermanagementTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="view_human_tree_Result.cs">
-      <DependentUpon>SleepingPartnermanagementTreeTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTreeTestingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="view_tree_Result.cs">
-      <DependentUpon>SleepingPartnermanagementTreeTesting.tt</DependentUpon>
+      <DependentUpon>SleepingPartnermanagementTreeTestingEntities.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -543,7 +549,9 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <None Include="Properties\PublishProfiles\binarymlm - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\binarymlm - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\binarymlm1 - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\binarymlm1 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\binarymlm1 - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\binarymlm1 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\redcodetechnologies.com - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\sleepingbinary - FTP.pubxml" />
@@ -563,25 +571,25 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="SleepingPartnermanagementTesting.Context.tt">
+    <Content Include="SleepingPartnermanagementTestingEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SleepingPartnermanagementTesting.edmx</DependentUpon>
-      <LastGenOutput>SleepingPartnermanagementTesting.Context.cs</LastGenOutput>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.edmx</DependentUpon>
+      <LastGenOutput>SleepingPartnermanagementTestingEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="SleepingPartnermanagementTesting.tt">
+    <Content Include="SleepingPartnermanagementTestingEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SleepingPartnermanagementTesting.edmx</DependentUpon>
-      <LastGenOutput>SleepingPartnermanagementTesting.cs</LastGenOutput>
+      <DependentUpon>SleepingPartnermanagementTestingEntities.edmx</DependentUpon>
+      <LastGenOutput>SleepingPartnermanagementTestingEntities.cs</LastGenOutput>
     </Content>
-    <Content Include="SleepingPartnermanagementTreeTesting.Context.tt">
+    <Content Include="SleepingPartnermanagementTreeTestingEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SleepingPartnermanagementTreeTesting.edmx</DependentUpon>
-      <LastGenOutput>SleepingPartnermanagementTreeTesting.Context.cs</LastGenOutput>
+      <DependentUpon>SleepingPartnermanagementTreeTestingEntities.edmx</DependentUpon>
+      <LastGenOutput>SleepingPartnermanagementTreeTestingEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="SleepingPartnermanagementTreeTesting.tt">
+    <Content Include="SleepingPartnermanagementTreeTestingEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SleepingPartnermanagementTreeTesting.edmx</DependentUpon>
-      <LastGenOutput>SleepingPartnermanagementTreeTesting.cs</LastGenOutput>
+      <DependentUpon>SleepingPartnermanagementTreeTestingEntities.edmx</DependentUpon>
+      <LastGenOutput>SleepingPartnermanagementTreeTestingEntities.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -598,19 +606,19 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <EntityDeploy Include="SleepingPartnermanagementTesting.edmx">
+    <EntityDeploy Include="SleepingPartnermanagementTestingEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SleepingPartnermanagementTesting.Designer.cs</LastGenOutput>
+      <LastGenOutput>SleepingPartnermanagementTestingEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="SleepingPartnermanagementTesting.edmx.diagram">
-      <DependentUpon>SleepingPartnermanagementTesting.edmx</DependentUpon>
+    <Content Include="SleepingPartnermanagementTestingEntities.edmx.diagram">
+      <DependentUpon>SleepingPartnermanagementTestingEntities.edmx</DependentUpon>
     </Content>
-    <EntityDeploy Include="SleepingPartnermanagementTreeTesting.edmx">
+    <EntityDeploy Include="SleepingPartnermanagementTreeTestingEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SleepingPartnermanagementTreeTesting.Designer.cs</LastGenOutput>
+      <LastGenOutput>SleepingPartnermanagementTreeTestingEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="SleepingPartnermanagementTreeTesting.edmx.diagram">
-      <DependentUpon>SleepingPartnermanagementTreeTesting.edmx</DependentUpon>
+    <Content Include="SleepingPartnermanagementTreeTestingEntities.edmx.diagram">
+      <DependentUpon>SleepingPartnermanagementTreeTestingEntities.edmx</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>

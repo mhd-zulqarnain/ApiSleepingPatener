@@ -49,6 +49,6 @@ namespace ApiSleepingPatener
         public Nullable<bool> IsBlock { get; set; }
         public byte[] NICImage1 { get; set; }
         public Nullable<bool> IsReject { get; set; }
-        public string Fcm { get; set; }
+        public string fcm { get; set; }
     }
 }

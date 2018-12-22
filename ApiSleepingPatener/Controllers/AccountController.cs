@@ -339,7 +339,7 @@ namespace ApiSleepingPatener.Controllers
             NewUserRegistration newuser = dce.NewUserRegistrations.SingleOrDefault(x => x.UserId == model.UserId);
             if (newuser != null)
             {
-                newuser.Fcm = model.Fcm;
+                newuser.fcm = model.Fcm;
                 dce.SaveChanges();
                 return Ok(new { success = true, message = "Update Successfully" });
 

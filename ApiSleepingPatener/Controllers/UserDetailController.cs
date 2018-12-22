@@ -26,8 +26,7 @@ namespace ApiSleepingPatener.Controllers
                 {
                    
                     NewUserRegistration v = dce.NewUserRegistrations.Where(a => a.Username == Username).FirstOrDefault();
-                  
-                    return Ok(v);
+                     return Ok(v);
                 }
 
             }catch(Exception e)

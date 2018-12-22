@@ -25,5 +25,6 @@ namespace ApiSleepingPatener
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<int> AddMemberLimit { get; set; }
         public Nullable<decimal> MaximumMatchingBonusAmount { get; set; }
+        public Nullable<int> MaxVideoLimit { get; set; }
     }
 }

@@ -33,5 +33,6 @@ namespace ApiSleepingPatener
         public Nullable<bool> IsRequestedForBuy { get; set; }
         public Nullable<bool> IsApprovedForBuy { get; set; }
         public Nullable<bool> IsRejectedForBuy { get; set; }
+        public Nullable<int> EwalletTransId { get; set; }
     }
 }
