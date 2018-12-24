@@ -22,5 +22,12 @@ namespace ApiSleepingPatener
         public string VideoPackVideos { get; set; }
         public System.DateTime CreateDate { get; set; }
         public byte[] VideoPackImage { get; set; }
+        public Nullable<int> AdvertiserId { get; set; }
+        public string AdvertiserName { get; set; }
+        public Nullable<bool> IsRequested { get; set; }
+        public Nullable<bool> IsApproved { get; set; }
+        public Nullable<bool> IsRejected { get; set; }
+        public Nullable<int> NumberOfViews { get; set; }
+        public Nullable<bool> IsYoutubeURL { get; set; }
     }
 }

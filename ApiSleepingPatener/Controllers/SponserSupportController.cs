@@ -41,7 +41,7 @@ namespace ApiSleepingPatener.Controllers
             Recive_msg.CreateDate = sentmodel.CreateDate = DateTime.Today;
             db.ReceiveUserMessages.Add(Recive_msg);
             db.SaveChanges();      
-            var fcm = db.NewUserRegistrations.Where(x => x.UserId == sentmodel.SponserId).Select(x => x.Fcm).FirstOrDefault();
+            var fcm = db.NewUserRegistrations.Where(x => x.UserId == sentmodel.SponserId).Select(x => x.fcm).FirstOrDefault();
             if (fcm != null)
             {
                 WebClient client = new WebClient();
@@ -119,7 +119,7 @@ namespace ApiSleepingPatener.Controllers
             Recive_msg.CreateDate = DateTime.Today;
             db.ReceiveUserMessages.Add(Recive_msg);
             db.SaveChanges();
-            var fcm = db.NewUserRegistrations.Where(x => x.UserId == u_id).Select(x => x.Fcm).FirstOrDefault();
+            var fcm = db.NewUserRegistrations.Where(x => x.UserId == u_id).Select(x => x.fcm).FirstOrDefault();
             if (fcm != null)
             {
                 WebClient client = new WebClient();

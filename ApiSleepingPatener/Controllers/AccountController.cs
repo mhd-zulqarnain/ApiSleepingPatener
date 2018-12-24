@@ -339,7 +339,7 @@ namespace ApiSleepingPatener.Controllers
             NewUserRegistration newuser = dce.NewUserRegistrations.SingleOrDefault(x => x.UserId == model.UserId);
             if (newuser != null)
             {
-                newuser.Fcm = model.Fcm;
+                newuser.fcm = model.Fcm;
                 dce.SaveChanges();
                 return Ok(new { success = true, message = "Update Successfully" });
 
@@ -347,6 +347,27 @@ namespace ApiSleepingPatener.Controllers
             return Ok(new { success = false, message = "user not found" });
 
         }
+
+
+        //Fcm update
+        [HttpPost]
+        [Route("updatePassword/{passord}/{uid}")]
+        public IHttpActionResult updatePassword(string passord,int uid)
+        {
+
+            SleepingPartnermanagementTestingEntities dce = new SleepingPartnermanagementTestingEntities();
+            NewUserRegistration newuser = dce.NewUserRegistrations.SingleOrDefault(x => x.UserId == uid);
+            if (newuser != null)
+            {
+                newuser.Password = passord;
+                dce.SaveChanges();
+                return Ok(new { success = true, message = "Update Successfully" });
+
+            }
+            return Ok(new { success = false, message = "user not found" });
+
+        }
+
 
         [HttpGet]
         [Route("getprofileimage/{userId}")]
