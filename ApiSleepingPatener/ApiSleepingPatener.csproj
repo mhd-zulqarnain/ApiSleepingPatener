@@ -358,6 +358,7 @@
     <Compile Include="Models\Advertisement\AdvertisementModel.cs" />
     <Compile Include="Models\CountryModel.cs" />
     <Compile Include="Models\Dashboarddetails.cs" />
+    <Compile Include="Models\DetailModel.cs" />
     <Compile Include="Models\DownlineMemberModel.cs" />
     <Compile Include="Models\DropDownMembers.cs" />
     <Compile Include="Models\EwalletModel.cs" />
