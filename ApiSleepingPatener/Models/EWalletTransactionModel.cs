@@ -39,6 +39,8 @@ namespace ApiSleepingPatener.Models.GenealogyTable
 
         public bool IsWithdrawlPaidByAdmin { get; set; }
 
+        public bool IsWithdrawlRequestApproved { get; set; }
+
         public bool AdminCredit { get; set; }
 
         public bool AdminDebit { get; set; }

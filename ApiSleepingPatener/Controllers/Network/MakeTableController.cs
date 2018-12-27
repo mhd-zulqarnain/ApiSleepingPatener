@@ -295,9 +295,7 @@ namespace ApiSleepingPatener.Controllers
                 {
                     var usercheckEmail = dc.NewUserRegistrations.Where(a => a.Email.Equals(model.Email)).FirstOrDefault();
                     var usercheckPhone = dc.NewUserRegistrations.Where(a => a.Phone.Equals(model.Phone)).FirstOrDefault();
-                    //var usercheckAccountNumber = dc.NewUserRegistrations.Where(a => a.AccountNumber.Equals(model.AccountNumber)).FirstOrDefault();
-                    //var usercheckCNIC = dc.NewUserRegistrations.Where(a => a.CNIC.Equals(model.CNICNumber)).FirstOrDefault();
-                    if (usercheckEmail != null)
+                   if (usercheckEmail != null)
                     {
                         return Ok(new { error = true, message = "User email already exist" });
                     }
@@ -305,15 +303,7 @@ namespace ApiSleepingPatener.Controllers
                     {
                         return Ok(new { error = true, message = "User phone number already exist" });
                     }
-                    //else if (usercheckAccountNumber != null)
-                    //{
-                    //    return Json(new { error = true, message = "User Account Number already exist" }, JsonRequestBehavior.AllowGet);
-                    //}
-                    //else if (usercheckCNIC != null)
-                    //{
-                    //    return Json(new { error = true, message = "User CNIC already exist" }, JsonRequestBehavior.AllowGet);
-                    //}
-                    else
+                  else
                     {
 
 
@@ -329,12 +319,8 @@ namespace ApiSleepingPatener.Controllers
                         newuser.Username = model.Username;
                         newuser.Password = model.Password;
                         newuser.Country = model.Country;
-                        //newuser.Address = model.Address;
                         newuser.Phone = model.Phone;
                         newuser.Email = model.Email;
-                        //newuser.AccountNumber = model.AccountNumber;
-                        //newuser.BankName = model.BankName;
-                        //newuser.CNIC = model.CNICNumber;
                         newuser.IsThisFirstUser = model.IsThisFirstUser;
                         if (model.DownlineMemberId == 0 || model.DownlineMemberId == null)
                         {
@@ -353,11 +339,8 @@ namespace ApiSleepingPatener.Controllers
                         newuser.CreateDate = DateTime.Now;
                         newuser.UserCode = Common.Enum.UserType.User.ToString();
                         newuser.IsPaidMember = false;
-                        //newuser.UserPackage = model.UserPackage;
                         newuser.UserPackage = package.PackageId;
-                        //file = Request.Files["AddNewMemberLeftImageData"];
-                        
-                 
+                       
                         var fileImage = model.DocumentImage;
                         if (fileImage != null)
                         {
@@ -762,7 +745,7 @@ namespace ApiSleepingPatener.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(new { error = true, message = ex.Message });
+                return Ok(new { success = false, message = ex.Message });
             }
 
         }
