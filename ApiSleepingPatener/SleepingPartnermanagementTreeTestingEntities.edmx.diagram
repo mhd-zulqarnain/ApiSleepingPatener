@@ -4,8 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a394782f869c442281c1ad8b08f99a67" Name="Diagram1">
-        <EntityTypeShape EntityType="TestingTreeModel.TreeDataTbl" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="7fcab366de1d4a42ac0dce8612ad3d56" Name="Diagram1">
+        <EntityTypeShape EntityType="SleepingPartnerTreeModel.TreeDataTbl" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepingPartnerTreeModel.ViewTreeUserDetailData" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

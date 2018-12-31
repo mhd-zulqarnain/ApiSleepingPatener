@@ -61,6 +61,24 @@ namespace ApiSleepingPatener
         public virtual DbSet<VideoPackCatTbl> VideoPackCatTbls { get; set; }
         public virtual DbSet<VideoPackTbl> VideoPackTbls { get; set; }
     
+        public virtual ObjectResult<GetParentChildsLeftSP_Result> GetParentChildsLeftSP(Nullable<int> userId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetParentChildsLeftSP_Result>("GetParentChildsLeftSP", userIdParameter);
+        }
+    
+        public virtual ObjectResult<GetParentChildsOuterLeftSP_Result> GetParentChildsOuterLeftSP(Nullable<int> userId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetParentChildsOuterLeftSP_Result>("GetParentChildsOuterLeftSP", userIdParameter);
+        }
+    
         public virtual ObjectResult<GetParentChildsOuterRightSP_Result> GetParentChildsOuterRightSP(Nullable<int> userId)
         {
             var userIdParameter = userId.HasValue ?
@@ -197,24 +215,6 @@ namespace ApiSleepingPatener
         public virtual int view_tree()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("view_tree");
-        }
-    
-        public virtual ObjectResult<GetParentChildsLeftSP_Result> GetParentChildsLeftSP(Nullable<int> userId)
-        {
-            var userIdParameter = userId.HasValue ?
-                new ObjectParameter("UserId", userId) :
-                new ObjectParameter("UserId", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetParentChildsLeftSP_Result>("GetParentChildsLeftSP", userIdParameter);
-        }
-    
-        public virtual ObjectResult<GetParentChildsOuterLeftSP_Result> GetParentChildsOuterLeftSP(Nullable<int> userId)
-        {
-            var userIdParameter = userId.HasValue ?
-                new ObjectParameter("UserId", userId) :
-                new ObjectParameter("UserId", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetParentChildsOuterLeftSP_Result>("GetParentChildsOuterLeftSP", userIdParameter);
         }
     }
 }

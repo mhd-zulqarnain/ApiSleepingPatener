@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TestingManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SleepingPartnermanagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Advertisement">
           <Key>
             <PropertyRef Name="AdvertisementId" />
@@ -324,8 +324,8 @@
             <PropertyRef Name="TrainingVideoId" />
           </Key>
           <Property Name="TrainingVideoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TrainingVideoName" Type="nvarchar" MaxLength="50" />
-          <Property Name="TrainingVideoURL" Type="nvarchar" MaxLength="50" />
+          <Property Name="TrainingVideoName" Type="nvarchar(max)" />
+          <Property Name="TrainingVideoURL" Type="nvarchar(max)" />
           <Property Name="TrainingVideoDescription" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="UserCommission">
@@ -614,7 +614,7 @@
         </Function>
         <Function Name="view_human_tree" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="view_tree" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <EntityContainer Name="TestingManagementModelStoreContainer">
+        <EntityContainer Name="SleepingPartnermanagementModelStoreContainer">
           <EntitySet Name="Advertisement" EntityType="Self.Advertisement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdvertiserPackages" EntityType="Self.AdvertiserPackages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdvertiserRegistration" EntityType="Self.AdvertiserRegistration" Schema="dbo" store:Type="Tables" />
@@ -649,10 +649,11 @@
           <EntitySet Name="VideoPackCatTbl" EntityType="Self.VideoPackCatTbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VideoPackTbl" EntityType="Self.VideoPackTbl" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="TestingManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="SleepingPartnermanagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Advertisement">
           <Key>
             <PropertyRef Name="AdvertisementId" />
@@ -972,8 +973,8 @@
             <PropertyRef Name="TrainingVideoId" />
           </Key>
           <Property Name="TrainingVideoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TrainingVideoName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TrainingVideoURL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TrainingVideoName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TrainingVideoURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TrainingVideoDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="UserCommission">
@@ -1226,30 +1227,36 @@
           <EntitySet Name="UserTableLevels" EntityType="Self.UserTableLevel" />
           <EntitySet Name="VideoPackCatTbls" EntityType="Self.VideoPackCatTbl" />
           <EntitySet Name="VideoPackTbls" EntityType="Self.VideoPackTbl" />
-          <FunctionImport Name="GetParentChildsOuterRightSP" ReturnType="Collection(TestingManagementModel.GetParentChildsOuterRightSP_Result)">
-          <Parameter Name="UserId" Mode="In" Type="Int32" />
+          <FunctionImport Name="GetParentChildsLeftSP" ReturnType="Collection(SleepingPartnermanagementModel.GetParentChildsLeftSP_Result)">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="GetParentChildsRightSP" ReturnType="Collection(TestingManagementModel.GetParentChildsRightSP_Result)">
-          <Parameter Name="UserId" Mode="In" Type="Int32" />
+          <FunctionImport Name="GetParentChildsOuterLeftSP" ReturnType="Collection(SleepingPartnermanagementModel.GetParentChildsOuterLeftSP_Result)">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="GetParentChildsSP" ReturnType="Collection(TestingManagementModel.GetParentChildsSP_Result)">
-          <Parameter Name="UserId" Mode="In" Type="Int32" />
+          <FunctionImport Name="GetParentChildsOuterRightSP" ReturnType="Collection(SleepingPartnermanagementModel.GetParentChildsOuterRightSP_Result)">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetParentChildsRightSP" ReturnType="Collection(SleepingPartnermanagementModel.GetParentChildsRightSP_Result)">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetParentChildsSP" ReturnType="Collection(SleepingPartnermanagementModel.GetParentChildsSP_Result)">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetUserLoginInfo">
             <Parameter Name="UserName" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="GetUserParentsSP" ReturnType="Collection(TestingManagementModel.GetUserParentsSP_Result)">
-          <Parameter Name="UserId" Mode="In" Type="Int32" />
+          <FunctionImport Name="GetUserParentsSP" ReturnType="Collection(SleepingPartnermanagementModel.GetUserParentsSP_Result)">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetUserTree">
-          <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetUserTreeLeft">
-          <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetUserTreeRight">
-          <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="insert_tree_node">
             <Parameter Name="tree_name" Mode="In" Type="String" />
@@ -1259,171 +1266,17 @@
             <Parameter Name="UserPosition" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="move_node_down">
-          <Parameter Name="tree_id" Mode="In" Type="Int32" />
+            <Parameter Name="tree_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="move_node_up">
-          <Parameter Name="tree_id" Mode="In" Type="Int32" />
+            <Parameter Name="tree_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="remove_node">
-          <Parameter Name="tree_id" Mode="In" Type="Int32" />
+            <Parameter Name="tree_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="view_human_tree" />
           <FunctionImport Name="view_tree" />
-          <FunctionImport Name="GetParentChildsLeftSP" ReturnType="Collection(TestingManagementModel.GetParentChildsLeftSP_Result)">
-          <Parameter Name="UserId" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="GetParentChildsOuterLeftSP" ReturnType="Collection(TestingManagementModel.GetParentChildsOuterLeftSP_Result)">
-          <Parameter Name="UserId" Mode="In" Type="Int32" />
-          </FunctionImport>
         </EntityContainer>
-        <ComplexType Name="GetParentChildsOuterRightSP_Result">
-          <Property Type="Int32" Name="UserId" Nullable="true" />
-          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Username" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="Country" Nullable="true" />
-          <Property Type="String" Name="Address" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="CNIC" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="AccountNumber" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="BankName" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="IsThisFirstUser" Nullable="true" />
-          <Property Type="Int32" Name="SponsorId" Nullable="true" />
-          <Property Type="Int32" Name="DownlineMemberId" Nullable="true" />
-          <Property Type="Int32" Name="UpperId" Nullable="true" />
-          <Property Type="Decimal" Name="PaidAmount" Nullable="true" Precision="19" />
-          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
-          <Property Type="String" Name="UserCode" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="IsUserActive" Nullable="true" />
-          <Property Type="Boolean" Name="IsNewRequest" Nullable="true" />
-          <Property Type="String" Name="UserPosition" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="IsPaidMember" Nullable="true" />
-          <Property Type="Int32" Name="UserPackage" Nullable="true" />
-          <Property Type="Binary" Name="DocumentImage" Nullable="true" MaxLength="Max" />
-          <Property Type="Boolean" Name="IsSleepingPartner" Nullable="true" />
-          <Property Type="Boolean" Name="IsSalesExecutive" Nullable="true" />
-          <Property Type="String" Name="UserDesignation" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="IsWithdrawalOpen" Nullable="true" />
-          <Property Type="Binary" Name="NICImage" Nullable="true" MaxLength="Max" />
-          <Property Type="Binary" Name="ProfileImage" Nullable="true" MaxLength="Max" />
-          <Property Type="String" Name="AccountTitle" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="IsVerify" Nullable="true" />
-          <Property Type="Boolean" Name="IsBlock" Nullable="true" />
-          <Property Type="Binary" Name="NICImage1" Nullable="true" MaxLength="Max" />
-          <Property Type="Boolean" Name="IsReject" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="GetParentChildsRightSP_Result">
-          <Property Type="Int32" Name="UserId" Nullable="true" />
-          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Username" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="Country" Nullable="true" />
-          <Property Type="String" Name="Address" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="CNIC" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="AccountNumber" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="BankName" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="IsThisFirstUser" Nullable="true" />
-          <Property Type="Int32" Name="SponsorId" Nullable="true" />
-          <Property Type="Int32" Name="DownlineMemberId" Nullable="true" />
-          <Property Type="Int32" Name="UpperId" Nullable="true" />
-          <Property Type="Decimal" Name="PaidAmount" Nullable="true" Precision="19" />
-          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
-          <Property Type="String" Name="UserCode" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="IsUserActive" Nullable="true" />
-          <Property Type="Boolean" Name="IsNewRequest" Nullable="true" />
-          <Property Type="String" Name="UserPosition" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="IsPaidMember" Nullable="true" />
-          <Property Type="Int32" Name="UserPackage" Nullable="true" />
-          <Property Type="Binary" Name="DocumentImage" Nullable="true" MaxLength="Max" />
-          <Property Type="Boolean" Name="IsSleepingPartner" Nullable="true" />
-          <Property Type="Boolean" Name="IsSalesExecutive" Nullable="true" />
-          <Property Type="String" Name="UserDesignation" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="IsWithdrawalOpen" Nullable="true" />
-          <Property Type="Binary" Name="NICImage" Nullable="true" MaxLength="Max" />
-          <Property Type="Binary" Name="ProfileImage" Nullable="true" MaxLength="Max" />
-          <Property Type="String" Name="AccountTitle" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="IsVerify" Nullable="true" />
-          <Property Type="Boolean" Name="IsBlock" Nullable="true" />
-          <Property Type="Binary" Name="NICImage1" Nullable="true" MaxLength="Max" />
-          <Property Type="Boolean" Name="IsReject" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="GetParentChildsSP_Result">
-          <Property Type="Int32" Name="UserId" Nullable="true" />
-          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Username" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="Country" Nullable="true" />
-          <Property Type="String" Name="Address" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="CNIC" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="AccountNumber" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="BankName" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="IsThisFirstUser" Nullable="true" />
-          <Property Type="Int32" Name="SponsorId" Nullable="true" />
-          <Property Type="Int32" Name="DownlineMemberId" Nullable="true" />
-          <Property Type="Int32" Name="UpperId" Nullable="true" />
-          <Property Type="Decimal" Name="PaidAmount" Nullable="true" Precision="19" />
-          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
-          <Property Type="String" Name="UserCode" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="IsUserActive" Nullable="true" />
-          <Property Type="Boolean" Name="IsNewRequest" Nullable="true" />
-          <Property Type="String" Name="UserPosition" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="IsPaidMember" Nullable="true" />
-          <Property Type="Int32" Name="UserPackage" Nullable="true" />
-          <Property Type="Binary" Name="DocumentImage" Nullable="true" MaxLength="Max" />
-          <Property Type="Boolean" Name="IsSleepingPartner" Nullable="true" />
-          <Property Type="Boolean" Name="IsSalesExecutive" Nullable="true" />
-          <Property Type="String" Name="UserDesignation" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="IsWithdrawalOpen" Nullable="true" />
-          <Property Type="Binary" Name="NICImage" Nullable="true" MaxLength="Max" />
-          <Property Type="Binary" Name="ProfileImage" Nullable="true" MaxLength="Max" />
-          <Property Type="String" Name="AccountTitle" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="IsVerify" Nullable="true" />
-          <Property Type="Boolean" Name="IsBlock" Nullable="true" />
-          <Property Type="Binary" Name="NICImage1" Nullable="true" MaxLength="Max" />
-          <Property Type="Boolean" Name="IsReject" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="GetUserParentsSP_Result">
-          <Property Type="Int32" Name="UserId" Nullable="true" />
-          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Username" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="Country" Nullable="true" />
-          <Property Type="String" Name="Address" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="CNIC" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="AccountNumber" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="BankName" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="IsThisFirstUser" Nullable="true" />
-          <Property Type="Int32" Name="SponsorId" Nullable="true" />
-          <Property Type="Int32" Name="DownlineMemberId" Nullable="true" />
-          <Property Type="Int32" Name="UpperId" Nullable="true" />
-          <Property Type="Decimal" Name="PaidAmount" Nullable="true" Precision="19" />
-          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
-          <Property Type="String" Name="UserCode" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="IsUserActive" Nullable="true" />
-          <Property Type="Boolean" Name="IsNewRequest" Nullable="true" />
-          <Property Type="String" Name="UserPosition" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="IsPaidMember" Nullable="true" />
-          <Property Type="Int32" Name="UserPackage" Nullable="true" />
-          <Property Type="Binary" Name="DocumentImage" Nullable="true" MaxLength="Max" />
-          <Property Type="Boolean" Name="IsSleepingPartner" Nullable="true" />
-          <Property Type="Boolean" Name="IsSalesExecutive" Nullable="true" />
-          <Property Type="String" Name="UserDesignation" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="IsWithdrawalOpen" Nullable="true" />
-          <Property Type="Binary" Name="NICImage" Nullable="true" MaxLength="Max" />
-          <Property Type="Binary" Name="ProfileImage" Nullable="true" MaxLength="Max" />
-          <Property Type="String" Name="AccountTitle" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="IsVerify" Nullable="true" />
-          <Property Type="Boolean" Name="IsBlock" Nullable="true" />
-          <Property Type="Binary" Name="NICImage1" Nullable="true" MaxLength="Max" />
-          <Property Type="Boolean" Name="IsReject" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="GetParentChildsLeftSP_Result">
           <Property Type="Int32" Name="UserId" Nullable="true" />
           <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
@@ -1460,6 +1313,7 @@
           <Property Type="Boolean" Name="IsBlock" Nullable="true" />
           <Property Type="Binary" Name="NICImage1" Nullable="true" MaxLength="Max" />
           <Property Type="Boolean" Name="IsReject" Nullable="true" />
+          <Property Type="String" Name="fcm" Nullable="true" MaxLength="250" />
         </ComplexType>
         <ComplexType Name="GetParentChildsOuterLeftSP_Result">
           <Property Type="Int32" Name="UserId" Nullable="true" />
@@ -1497,15 +1351,168 @@
           <Property Type="Boolean" Name="IsBlock" Nullable="true" />
           <Property Type="Binary" Name="NICImage1" Nullable="true" MaxLength="Max" />
           <Property Type="Boolean" Name="IsReject" Nullable="true" />
+          <Property Type="String" Name="fcm" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="GetParentChildsOuterRightSP_Result">
+          <Property Type="Int32" Name="UserId" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Username" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Country" Nullable="true" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CNIC" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="AccountNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BankName" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsThisFirstUser" Nullable="true" />
+          <Property Type="Int32" Name="SponsorId" Nullable="true" />
+          <Property Type="Int32" Name="DownlineMemberId" Nullable="true" />
+          <Property Type="Int32" Name="UpperId" Nullable="true" />
+          <Property Type="Decimal" Name="PaidAmount" Nullable="true" Precision="19" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UserCode" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsUserActive" Nullable="true" />
+          <Property Type="Boolean" Name="IsNewRequest" Nullable="true" />
+          <Property Type="String" Name="UserPosition" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsPaidMember" Nullable="true" />
+          <Property Type="Int32" Name="UserPackage" Nullable="true" />
+          <Property Type="Binary" Name="DocumentImage" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="IsSleepingPartner" Nullable="true" />
+          <Property Type="Boolean" Name="IsSalesExecutive" Nullable="true" />
+          <Property Type="String" Name="UserDesignation" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsWithdrawalOpen" Nullable="true" />
+          <Property Type="Binary" Name="NICImage" Nullable="true" MaxLength="Max" />
+          <Property Type="Binary" Name="ProfileImage" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="AccountTitle" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsVerify" Nullable="true" />
+          <Property Type="Boolean" Name="IsBlock" Nullable="true" />
+          <Property Type="Binary" Name="NICImage1" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="IsReject" Nullable="true" />
+          <Property Type="String" Name="fcm" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="GetParentChildsRightSP_Result">
+          <Property Type="Int32" Name="UserId" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Username" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Country" Nullable="true" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CNIC" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="AccountNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BankName" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsThisFirstUser" Nullable="true" />
+          <Property Type="Int32" Name="SponsorId" Nullable="true" />
+          <Property Type="Int32" Name="DownlineMemberId" Nullable="true" />
+          <Property Type="Int32" Name="UpperId" Nullable="true" />
+          <Property Type="Decimal" Name="PaidAmount" Nullable="true" Precision="19" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UserCode" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsUserActive" Nullable="true" />
+          <Property Type="Boolean" Name="IsNewRequest" Nullable="true" />
+          <Property Type="String" Name="UserPosition" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsPaidMember" Nullable="true" />
+          <Property Type="Int32" Name="UserPackage" Nullable="true" />
+          <Property Type="Binary" Name="DocumentImage" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="IsSleepingPartner" Nullable="true" />
+          <Property Type="Boolean" Name="IsSalesExecutive" Nullable="true" />
+          <Property Type="String" Name="UserDesignation" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsWithdrawalOpen" Nullable="true" />
+          <Property Type="Binary" Name="NICImage" Nullable="true" MaxLength="Max" />
+          <Property Type="Binary" Name="ProfileImage" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="AccountTitle" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsVerify" Nullable="true" />
+          <Property Type="Boolean" Name="IsBlock" Nullable="true" />
+          <Property Type="Binary" Name="NICImage1" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="IsReject" Nullable="true" />
+          <Property Type="String" Name="fcm" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="GetParentChildsSP_Result">
+          <Property Type="Int32" Name="UserId" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Username" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Country" Nullable="true" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CNIC" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="AccountNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BankName" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsThisFirstUser" Nullable="true" />
+          <Property Type="Int32" Name="SponsorId" Nullable="true" />
+          <Property Type="Int32" Name="DownlineMemberId" Nullable="true" />
+          <Property Type="Int32" Name="UpperId" Nullable="true" />
+          <Property Type="Decimal" Name="PaidAmount" Nullable="true" Precision="19" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UserCode" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsUserActive" Nullable="true" />
+          <Property Type="Boolean" Name="IsNewRequest" Nullable="true" />
+          <Property Type="String" Name="UserPosition" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsPaidMember" Nullable="true" />
+          <Property Type="Int32" Name="UserPackage" Nullable="true" />
+          <Property Type="Binary" Name="DocumentImage" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="IsSleepingPartner" Nullable="true" />
+          <Property Type="Boolean" Name="IsSalesExecutive" Nullable="true" />
+          <Property Type="String" Name="UserDesignation" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsWithdrawalOpen" Nullable="true" />
+          <Property Type="Binary" Name="NICImage" Nullable="true" MaxLength="Max" />
+          <Property Type="Binary" Name="ProfileImage" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="AccountTitle" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsVerify" Nullable="true" />
+          <Property Type="Boolean" Name="IsBlock" Nullable="true" />
+          <Property Type="Binary" Name="NICImage1" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="IsReject" Nullable="true" />
+          <Property Type="String" Name="fcm" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="GetUserParentsSP_Result">
+          <Property Type="Int32" Name="UserId" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Username" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Country" Nullable="true" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CNIC" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="AccountNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BankName" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsThisFirstUser" Nullable="true" />
+          <Property Type="Int32" Name="SponsorId" Nullable="true" />
+          <Property Type="Int32" Name="DownlineMemberId" Nullable="true" />
+          <Property Type="Int32" Name="UpperId" Nullable="true" />
+          <Property Type="Decimal" Name="PaidAmount" Nullable="true" Precision="19" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UserCode" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsUserActive" Nullable="true" />
+          <Property Type="Boolean" Name="IsNewRequest" Nullable="true" />
+          <Property Type="String" Name="UserPosition" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsPaidMember" Nullable="true" />
+          <Property Type="Int32" Name="UserPackage" Nullable="true" />
+          <Property Type="Binary" Name="DocumentImage" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="IsSleepingPartner" Nullable="true" />
+          <Property Type="Boolean" Name="IsSalesExecutive" Nullable="true" />
+          <Property Type="String" Name="UserDesignation" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsWithdrawalOpen" Nullable="true" />
+          <Property Type="Binary" Name="NICImage" Nullable="true" MaxLength="Max" />
+          <Property Type="Binary" Name="ProfileImage" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="AccountTitle" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsVerify" Nullable="true" />
+          <Property Type="Boolean" Name="IsBlock" Nullable="true" />
+          <Property Type="Binary" Name="NICImage1" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="IsReject" Nullable="true" />
+          <Property Type="String" Name="fcm" Nullable="true" MaxLength="250" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TestingManagementModelStoreContainer" CdmEntityContainer="SleepingPartnermanagementTestingEntities">
+        <EntityContainerMapping StorageEntityContainer="SleepingPartnermanagementModelStoreContainer" CdmEntityContainer="SleepingPartnermanagementTestingEntities">
           <EntitySetMapping Name="Advertisements">
-            <EntityTypeMapping TypeName="TestingManagementModel.Advertisement">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.Advertisement">
               <MappingFragment StoreEntitySet="Advertisement">
                 <ScalarProperty Name="AdvertisementId" ColumnName="AdvertisementId" />
                 <ScalarProperty Name="AdvertisementName" ColumnName="AdvertisementName" />
@@ -1517,7 +1524,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AdvertiserPackages">
-            <EntityTypeMapping TypeName="TestingManagementModel.AdvertiserPackage">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.AdvertiserPackage">
               <MappingFragment StoreEntitySet="AdvertiserPackages">
                 <ScalarProperty Name="AdvertiserPackageId" ColumnName="AdvertiserPackageId" />
                 <ScalarProperty Name="PackageName" ColumnName="PackageName" />
@@ -1544,7 +1551,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AdvertiserRegistrations">
-            <EntityTypeMapping TypeName="TestingManagementModel.AdvertiserRegistration">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.AdvertiserRegistration">
               <MappingFragment StoreEntitySet="AdvertiserRegistration">
                 <ScalarProperty Name="AdvertiserId" ColumnName="AdvertiserId" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
@@ -1573,7 +1580,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BonusSettings">
-            <EntityTypeMapping TypeName="TestingManagementModel.BonusSetting">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.BonusSetting">
               <MappingFragment StoreEntitySet="BonusSetting">
                 <ScalarProperty Name="BonusSettingId" ColumnName="BonusSettingId" />
                 <ScalarProperty Name="BonusSettingName" ColumnName="BonusSettingName" />
@@ -1582,7 +1589,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Countries">
-            <EntityTypeMapping TypeName="TestingManagementModel.Country">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.Country">
               <MappingFragment StoreEntitySet="Country">
                 <ScalarProperty Name="CountryID" ColumnName="CountryID" />
                 <ScalarProperty Name="CountryName" ColumnName="CountryName" />
@@ -1592,7 +1599,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EWalletPayoutConfigs">
-            <EntityTypeMapping TypeName="TestingManagementModel.EWalletPayoutConfig">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.EWalletPayoutConfig">
               <MappingFragment StoreEntitySet="EWalletPayoutConfig">
                 <ScalarProperty Name="ConfigId" ColumnName="ConfigId" />
                 <ScalarProperty Name="TimePeriod" ColumnName="TimePeriod" />
@@ -1602,7 +1609,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EWalletTransactions">
-            <EntityTypeMapping TypeName="TestingManagementModel.EWalletTransaction">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.EWalletTransaction">
               <MappingFragment StoreEntitySet="EWalletTransaction">
                 <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
                 <ScalarProperty Name="TransactionSource" ColumnName="TransactionSource" />
@@ -1627,7 +1634,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EWalletWithdrawalFunds">
-            <EntityTypeMapping TypeName="TestingManagementModel.EWalletWithdrawalFund">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.EWalletWithdrawalFund">
               <MappingFragment StoreEntitySet="EWalletWithdrawalFund">
                 <ScalarProperty Name="WithdrawalFundId" ColumnName="WithdrawalFundId" />
                 <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
@@ -1653,7 +1660,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HelpRequests">
-            <EntityTypeMapping TypeName="TestingManagementModel.HelpRequest">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.HelpRequest">
               <MappingFragment StoreEntitySet="HelpRequest">
                 <ScalarProperty Name="HelpRequestId" ColumnName="HelpRequestId" />
                 <ScalarProperty Name="HelpRequestName" ColumnName="HelpRequestName" />
@@ -1668,7 +1675,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NewsTickers">
-            <EntityTypeMapping TypeName="TestingManagementModel.NewsTicker">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.NewsTicker">
               <MappingFragment StoreEntitySet="NewsTicker">
                 <ScalarProperty Name="NewsTickerId" ColumnName="NewsTickerId" />
                 <ScalarProperty Name="NewsTickerName" ColumnName="NewsTickerName" />
@@ -1679,9 +1686,8 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NewUserRegistrations">
-            <EntityTypeMapping TypeName="TestingManagementModel.NewUserRegistration">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.NewUserRegistration">
               <MappingFragment StoreEntitySet="NewUserRegistration">
-                <ScalarProperty Name="fcm" ColumnName="fcm" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
@@ -1717,11 +1723,12 @@
                 <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
                 <ScalarProperty Name="NICImage1" ColumnName="NICImage1" />
                 <ScalarProperty Name="IsReject" ColumnName="IsReject" />
+                <ScalarProperty Name="fcm" ColumnName="fcm" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Packages">
-            <EntityTypeMapping TypeName="TestingManagementModel.Package">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.Package">
               <MappingFragment StoreEntitySet="Packages">
                 <ScalarProperty Name="PackageId" ColumnName="PackageId" />
                 <ScalarProperty Name="PackageName" ColumnName="PackageName" />
@@ -1739,7 +1746,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ReceiveAdminMessages">
-            <EntityTypeMapping TypeName="TestingManagementModel.ReceiveAdminMessage">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.ReceiveAdminMessage">
               <MappingFragment StoreEntitySet="ReceiveAdminMessages">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Sender" ColumnName="Sender" />
@@ -1754,7 +1761,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ReceiveUserMessages">
-            <EntityTypeMapping TypeName="TestingManagementModel.ReceiveUserMessage">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.ReceiveUserMessage">
               <MappingFragment StoreEntitySet="ReceiveUserMessages">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Sender" ColumnName="Sender" />
@@ -1768,7 +1775,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Rewards">
-            <EntityTypeMapping TypeName="TestingManagementModel.Reward">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.Reward">
               <MappingFragment StoreEntitySet="Rewards">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Designation" ColumnName="Designation" />
@@ -1782,7 +1789,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SentAdminMessages">
-            <EntityTypeMapping TypeName="TestingManagementModel.SentAdminMessage">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.SentAdminMessage">
               <MappingFragment StoreEntitySet="SentAdminMessages">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Sender" ColumnName="Sender" />
@@ -1797,7 +1804,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SentUserMessages">
-            <EntityTypeMapping TypeName="TestingManagementModel.SentUserMessage">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.SentUserMessage">
               <MappingFragment StoreEntitySet="SentUserMessages">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Sender" ColumnName="Sender" />
@@ -1811,7 +1818,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SignUpUsers">
-            <EntityTypeMapping TypeName="TestingManagementModel.SignUpUser">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.SignUpUser">
               <MappingFragment StoreEntitySet="SignUpUsers">
                 <ScalarProperty Name="SignUpId" ColumnName="SignUpId" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -1828,7 +1835,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TableLevels">
-            <EntityTypeMapping TypeName="TestingManagementModel.TableLevel">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.TableLevel">
               <MappingFragment StoreEntitySet="TableLevel">
                 <ScalarProperty Name="TableLevelId" ColumnName="TableLevelId" />
                 <ScalarProperty Name="TableLevelName" ColumnName="TableLevelName" />
@@ -1838,7 +1845,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TrainingVideos">
-            <EntityTypeMapping TypeName="TestingManagementModel.TrainingVideo">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.TrainingVideo">
               <MappingFragment StoreEntitySet="TrainingVideos">
                 <ScalarProperty Name="TrainingVideoId" ColumnName="TrainingVideoId" />
                 <ScalarProperty Name="TrainingVideoName" ColumnName="TrainingVideoName" />
@@ -1848,7 +1855,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserCommissions">
-            <EntityTypeMapping TypeName="TestingManagementModel.UserCommission">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.UserCommission">
               <MappingFragment StoreEntitySet="UserCommission">
                 <ScalarProperty Name="UserCommissionId" ColumnName="UserCommissionId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -1862,7 +1869,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserCommissionBalances">
-            <EntityTypeMapping TypeName="TestingManagementModel.UserCommissionBalance">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.UserCommissionBalance">
               <MappingFragment StoreEntitySet="UserCommissionBalance">
                 <ScalarProperty Name="UserCommBalanceId" ColumnName="UserCommBalanceId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -1876,7 +1883,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserGenealogyTables">
-            <EntityTypeMapping TypeName="TestingManagementModel.UserGenealogyTable">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.UserGenealogyTable">
               <MappingFragment StoreEntitySet="UserGenealogyTable">
                 <ScalarProperty Name="GenealogyTableId" ColumnName="GenealogyTableId" />
                 <ScalarProperty Name="NoOfPerson" ColumnName="NoOfPerson" />
@@ -1899,7 +1906,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserGenealogyTableLefts">
-            <EntityTypeMapping TypeName="TestingManagementModel.UserGenealogyTableLeft">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.UserGenealogyTableLeft">
               <MappingFragment StoreEntitySet="UserGenealogyTableLeft">
                 <ScalarProperty Name="GenealogyTableLeftId" ColumnName="GenealogyTableLeftId" />
                 <ScalarProperty Name="NoOfPerson" ColumnName="NoOfPerson" />
@@ -1922,7 +1929,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserGenealogyTableRights">
-            <EntityTypeMapping TypeName="TestingManagementModel.UserGenealogyTableRight">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.UserGenealogyTableRight">
               <MappingFragment StoreEntitySet="UserGenealogyTableRight">
                 <ScalarProperty Name="GenealogyTableRightId" ColumnName="GenealogyTableRightId" />
                 <ScalarProperty Name="NoOfPerson" ColumnName="NoOfPerson" />
@@ -1945,7 +1952,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserLoginInfoes">
-            <EntityTypeMapping TypeName="TestingManagementModel.UserLoginInfo">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.UserLoginInfo">
               <MappingFragment StoreEntitySet="UserLoginInfo">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -1960,7 +1967,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserNotifications">
-            <EntityTypeMapping TypeName="TestingManagementModel.UserNotification">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.UserNotification">
               <MappingFragment StoreEntitySet="UserNotification">
                 <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
                 <ScalarProperty Name="NotificationName" ColumnName="NotificationName" />
@@ -1973,7 +1980,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserPackages">
-            <EntityTypeMapping TypeName="TestingManagementModel.UserPackage">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.UserPackage">
               <MappingFragment StoreEntitySet="UserPackages">
                 <ScalarProperty Name="UserPackageId" ColumnName="UserPackageId" />
                 <ScalarProperty Name="PackageName" ColumnName="PackageName" />
@@ -1999,7 +2006,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserPositions">
-            <EntityTypeMapping TypeName="TestingManagementModel.UserPosition">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.UserPosition">
               <MappingFragment StoreEntitySet="UserPosition">
                 <ScalarProperty Name="UserPositionId" ColumnName="UserPositionId" />
                 <ScalarProperty Name="UserPositionName" ColumnName="UserPositionName" />
@@ -2007,7 +2014,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserRewards">
-            <EntityTypeMapping TypeName="TestingManagementModel.UserReward">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.UserReward">
               <MappingFragment StoreEntitySet="UserRewards">
                 <ScalarProperty Name="UserRewardId" ColumnName="UserRewardId" />
                 <ScalarProperty Name="UserRewardName" ColumnName="UserRewardName" />
@@ -2026,7 +2033,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserTableLevels">
-            <EntityTypeMapping TypeName="TestingManagementModel.UserTableLevel">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.UserTableLevel">
               <MappingFragment StoreEntitySet="UserTableLevel">
                 <ScalarProperty Name="UserTableLevelId" ColumnName="UserTableLevelId" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -2045,7 +2052,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="VideoPackCatTbls">
-            <EntityTypeMapping TypeName="TestingManagementModel.VideoPackCatTbl">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.VideoPackCatTbl">
               <MappingFragment StoreEntitySet="VideoPackCatTbl">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
@@ -2056,7 +2063,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="VideoPackTbls">
-            <EntityTypeMapping TypeName="TestingManagementModel.VideoPackTbl">
+            <EntityTypeMapping TypeName="SleepingPartnermanagementModel.VideoPackTbl">
               <MappingFragment StoreEntitySet="VideoPackTbl">
                 <ScalarProperty Name="VideoPackId" ColumnName="VideoPackId" />
                 <ScalarProperty Name="VideoPackPkgId" ColumnName="VideoPackPkgId" />
@@ -2076,9 +2083,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="GetParentChildsOuterRightSP" FunctionName="TestingManagementModel.Store.GetParentChildsOuterRightSP">
+          <FunctionImportMapping FunctionImportName="GetParentChildsLeftSP" FunctionName="SleepingPartnermanagementModel.Store.GetParentChildsLeftSP">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="TestingManagementModel.GetParentChildsOuterRightSP_Result">
+              <ComplexTypeMapping TypeName="SleepingPartnermanagementModel.GetParentChildsLeftSP_Result">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
@@ -2114,12 +2121,13 @@
                 <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
                 <ScalarProperty Name="NICImage1" ColumnName="NICImage1" />
                 <ScalarProperty Name="IsReject" ColumnName="IsReject" />
+                <ScalarProperty Name="fcm" ColumnName="fcm" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetParentChildsRightSP" FunctionName="TestingManagementModel.Store.GetParentChildsRightSP">
+          <FunctionImportMapping FunctionImportName="GetParentChildsOuterLeftSP" FunctionName="SleepingPartnermanagementModel.Store.GetParentChildsOuterLeftSP">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="TestingManagementModel.GetParentChildsRightSP_Result">
+              <ComplexTypeMapping TypeName="SleepingPartnermanagementModel.GetParentChildsOuterLeftSP_Result">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
@@ -2155,12 +2163,13 @@
                 <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
                 <ScalarProperty Name="NICImage1" ColumnName="NICImage1" />
                 <ScalarProperty Name="IsReject" ColumnName="IsReject" />
+                <ScalarProperty Name="fcm" ColumnName="fcm" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetParentChildsSP" FunctionName="TestingManagementModel.Store.GetParentChildsSP">
+          <FunctionImportMapping FunctionImportName="GetParentChildsOuterRightSP" FunctionName="SleepingPartnermanagementModel.Store.GetParentChildsOuterRightSP">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="TestingManagementModel.GetParentChildsSP_Result">
+              <ComplexTypeMapping TypeName="SleepingPartnermanagementModel.GetParentChildsOuterRightSP_Result">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
@@ -2196,13 +2205,13 @@
                 <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
                 <ScalarProperty Name="NICImage1" ColumnName="NICImage1" />
                 <ScalarProperty Name="IsReject" ColumnName="IsReject" />
+                <ScalarProperty Name="fcm" ColumnName="fcm" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetUserLoginInfo" FunctionName="TestingManagementModel.Store.GetUserLoginInfo" />
-          <FunctionImportMapping FunctionImportName="GetUserParentsSP" FunctionName="TestingManagementModel.Store.GetUserParentsSP">
+          <FunctionImportMapping FunctionImportName="GetParentChildsRightSP" FunctionName="SleepingPartnermanagementModel.Store.GetParentChildsRightSP">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="TestingManagementModel.GetUserParentsSP_Result">
+              <ComplexTypeMapping TypeName="SleepingPartnermanagementModel.GetParentChildsRightSP_Result">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
@@ -2238,21 +2247,13 @@
                 <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
                 <ScalarProperty Name="NICImage1" ColumnName="NICImage1" />
                 <ScalarProperty Name="IsReject" ColumnName="IsReject" />
+                <ScalarProperty Name="fcm" ColumnName="fcm" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetUserTree" FunctionName="TestingManagementModel.Store.GetUserTree" />
-          <FunctionImportMapping FunctionImportName="GetUserTreeLeft" FunctionName="TestingManagementModel.Store.GetUserTreeLeft" />
-          <FunctionImportMapping FunctionImportName="GetUserTreeRight" FunctionName="TestingManagementModel.Store.GetUserTreeRight" />
-          <FunctionImportMapping FunctionImportName="insert_tree_node" FunctionName="TestingManagementModel.Store.insert_tree_node" />
-          <FunctionImportMapping FunctionImportName="move_node_down" FunctionName="TestingManagementModel.Store.move_node_down" />
-          <FunctionImportMapping FunctionImportName="move_node_up" FunctionName="TestingManagementModel.Store.move_node_up" />
-          <FunctionImportMapping FunctionImportName="remove_node" FunctionName="TestingManagementModel.Store.remove_node" />
-          <FunctionImportMapping FunctionImportName="view_human_tree" FunctionName="TestingManagementModel.Store.view_human_tree" />
-          <FunctionImportMapping FunctionImportName="view_tree" FunctionName="TestingManagementModel.Store.view_tree" />
-          <FunctionImportMapping FunctionImportName="GetParentChildsLeftSP" FunctionName="TestingManagementModel.Store.GetParentChildsLeftSP">
+          <FunctionImportMapping FunctionImportName="GetParentChildsSP" FunctionName="SleepingPartnermanagementModel.Store.GetParentChildsSP">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="TestingManagementModel.GetParentChildsLeftSP_Result">
+              <ComplexTypeMapping TypeName="SleepingPartnermanagementModel.GetParentChildsSP_Result">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
@@ -2288,12 +2289,14 @@
                 <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
                 <ScalarProperty Name="NICImage1" ColumnName="NICImage1" />
                 <ScalarProperty Name="IsReject" ColumnName="IsReject" />
+                <ScalarProperty Name="fcm" ColumnName="fcm" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetParentChildsOuterLeftSP" FunctionName="TestingManagementModel.Store.GetParentChildsOuterLeftSP">
+          <FunctionImportMapping FunctionImportName="GetUserLoginInfo" FunctionName="SleepingPartnermanagementModel.Store.GetUserLoginInfo" />
+          <FunctionImportMapping FunctionImportName="GetUserParentsSP" FunctionName="SleepingPartnermanagementModel.Store.GetUserParentsSP">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="TestingManagementModel.GetParentChildsOuterLeftSP_Result">
+              <ComplexTypeMapping TypeName="SleepingPartnermanagementModel.GetUserParentsSP_Result">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
@@ -2329,9 +2332,19 @@
                 <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
                 <ScalarProperty Name="NICImage1" ColumnName="NICImage1" />
                 <ScalarProperty Name="IsReject" ColumnName="IsReject" />
+                <ScalarProperty Name="fcm" ColumnName="fcm" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetUserTree" FunctionName="SleepingPartnermanagementModel.Store.GetUserTree" />
+          <FunctionImportMapping FunctionImportName="GetUserTreeLeft" FunctionName="SleepingPartnermanagementModel.Store.GetUserTreeLeft" />
+          <FunctionImportMapping FunctionImportName="GetUserTreeRight" FunctionName="SleepingPartnermanagementModel.Store.GetUserTreeRight" />
+          <FunctionImportMapping FunctionImportName="insert_tree_node" FunctionName="SleepingPartnermanagementModel.Store.insert_tree_node" />
+          <FunctionImportMapping FunctionImportName="move_node_down" FunctionName="SleepingPartnermanagementModel.Store.move_node_down" />
+          <FunctionImportMapping FunctionImportName="move_node_up" FunctionName="SleepingPartnermanagementModel.Store.move_node_up" />
+          <FunctionImportMapping FunctionImportName="remove_node" FunctionName="SleepingPartnermanagementModel.Store.remove_node" />
+          <FunctionImportMapping FunctionImportName="view_human_tree" FunctionName="SleepingPartnermanagementModel.Store.view_human_tree" />
+          <FunctionImportMapping FunctionImportName="view_tree" FunctionName="SleepingPartnermanagementModel.Store.view_tree" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
