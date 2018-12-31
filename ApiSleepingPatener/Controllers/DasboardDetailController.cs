@@ -448,6 +448,87 @@ namespace ApiSleepingPatener.Controllers
             return Ok(new { success = true });
         }
 
+        [HttpGet]
+        [Route("getdata")]
+        public IHttpActionResult getdatauser()
+        {
+            SleepingPartnermanagementTestingEntities db = new SleepingPartnermanagementTestingEntities();
+
+            List<EWalletWithdrawalFundModel> List = new List<EWalletWithdrawalFundModel>();
+            List = db.EWalletWithdrawalFunds.Where(a => a.IsActive.Value.Equals(true)
+                    && a.IsPending.Value.Equals(false) && a.IsApproved.Value.Equals(true)
+                    && a.IsPaid.Value.Equals(false) && a.IsRejected.Value.Equals(false))
+                .Select(x => new EWalletWithdrawalFundModel
+                {
+                    WithdrawalFundId = x.WithdrawalFundId,
+                    Username = x.UserName,
+                    WithdrawalFundMethod = x.WithdrawalFundMethod,
+                    AmountPayble = x.AmountPayble.Value,
+                    WithdrawalFundCharge = x.WithdrawalFundCharge.Value,
+                    ApprovedDate = x.ApprovedDate.Value
+                }).ToList();
+
+            return Ok(List);
+           
+        }
+
+        [HttpPost]
+        [Route("verifyuser/{userId}/{id}")]
+        public IHttpActionResult changestatus(int userId , int id)
+        {
+          
+            using (SleepingPartnermanagementTestingEntities dc = new SleepingPartnermanagementTestingEntities())
+            {
+                EWalletTransaction data = new EWalletTransaction();
+
+                EWalletWithdrawalFund newuserdata = dc.EWalletWithdrawalFunds
+                    .Where(a => a.WithdrawalFundId.Equals(id)).FirstOrDefault();
+
+                var ewalletTransId = Convert.ToInt32(newuserdata.EwalletTransId.Value);
+                EWalletTransaction ewalletCheck = dc.EWalletTransactions.Where(a => a.TransactionId.Equals(ewalletTransId)).FirstOrDefault();
+
+                if (newuserdata != null)
+                {
+                    newuserdata.PaidDate = DateTime.Now;
+                    newuserdata.IsActive = false;
+                    newuserdata.IsPaid = true;
+
+                    data.TransactionSource = newuserdata.UserName + " : "
+                        + Common.Enum.AmountSource.Withdrawal.ToString() + " : " + newuserdata.WithdrawalFundDescription;
+                    data.TransactionName = Common.Enum.AmountDebitOrCredit.Credit.ToString();
+                    data.AsscociatedMember = newuserdata.UserId;
+                    data.Amount = newuserdata.AmountPayble;
+                    data.TransactionDate = DateTime.Now;
+                    data.Credit = true;
+                    data.Debit = false;
+                    data.UserId = newuserdata.UserId;
+                    data.IsPackageBonus = ewalletCheck.IsPackageBonus.Value;
+                    data.PackageId = ewalletCheck.PackageId.Value;
+                    data.IsMatchingBonus = ewalletCheck.IsMatchingBonus.Value;
+                    data.IsParentBonus = ewalletCheck.IsParentBonus.Value;
+                    data.IsWithdrawlRequestByUser = false;
+                    data.IsWithdrawlPaidByAdmin = false;
+                    data.IsWithdrawlRequestApproved = false;
+                    data.AdminCredit = false;
+                    data.AdminDebit = false;
+                    data.AdminTransactionName = Common.Enum.AmountSource.Withdrawal.ToString();
+                    dc.EWalletTransactions.Add(data);
+                    dc.SaveChanges();
+                    
+                    ewalletCheck.IsWithdrawlRequestApproved = true;
+                    ewalletCheck.IsWithdrawlPaidByAdmin = true;
+                    dc.SaveChanges();
+
+                    ModelState.Clear();
+                    return Ok(new { success = true, message = "success" });
+                }
+                else
+                {
+                    return Json(new { error = true, message = "failed" });
+                }
+
+            }
+        }
 
     }
 

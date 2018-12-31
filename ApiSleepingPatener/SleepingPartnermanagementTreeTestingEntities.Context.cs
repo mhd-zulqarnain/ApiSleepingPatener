@@ -28,6 +28,7 @@ namespace ApiSleepingPatener
         }
     
         public virtual DbSet<TreeDataTbl> TreeDataTbls { get; set; }
+        public virtual DbSet<ViewTreeUserDetailData> ViewTreeUserDetailDatas { get; set; }
     
         public virtual ObjectResult<GetUserTree_Result> GetUserTree(Nullable<int> userId)
         {

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="TestingManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="SleepingPartnermanagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Advertisement">
     <Key>
       <PropertyRef Name="AdvertisementId" />
@@ -319,8 +319,8 @@
       <PropertyRef Name="TrainingVideoId" />
     </Key>
     <Property Name="TrainingVideoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TrainingVideoName" Type="nvarchar" MaxLength="50" />
-    <Property Name="TrainingVideoURL" Type="nvarchar" MaxLength="50" />
+    <Property Name="TrainingVideoName" Type="nvarchar(max)" />
+    <Property Name="TrainingVideoURL" Type="nvarchar(max)" />
     <Property Name="TrainingVideoDescription" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="UserCommission">
@@ -609,7 +609,7 @@
   </Function>
   <Function Name="view_human_tree" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="view_tree" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-  <EntityContainer Name="TestingManagementModelStoreContainer">
+  <EntityContainer Name="SleepingPartnermanagementModelStoreContainer">
     <EntitySet Name="Advertisement" EntityType="Self.Advertisement" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AdvertiserPackages" EntityType="Self.AdvertiserPackages" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AdvertiserRegistration" EntityType="Self.AdvertiserRegistration" Schema="dbo" store:Type="Tables" />

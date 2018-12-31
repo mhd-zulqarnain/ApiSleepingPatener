@@ -79,13 +79,13 @@ namespace ApiSleepingPatener.Controllers
 
                 //string rep = myWebResponse.ResponseUri.UserInfo;
 
-                //var request = (HttpWebRequest)WebRequest.Create("http://binarymlm.epizy.com/messageNotifyApi.php?send_notification&sname=acccepted_your_status&uid=1&sid=2&message=Verification&token=crFqGndflQA:APA91bE9mEQjjerEp1GGOalbPehcZqXg8goxyeUBG__l1WhF_51nrPsGRmWa-GFVwDlDetN-vbpKVgGvu1mam5D7GjDFAodX-uB98RS7tc-A1U_t4MYcRf_Kfp3mfmVGfzLYCFZM_5PE&i=1");
+                //var request = (HttpWebRequest)WebRequest.Create("https://sleepingpartnertesting.royalcryptoexchange.com/messageNotifyApi.php?send_notification&sname=acccepted_your_status&uid=1&sid=2&message=Verification&token=crFqGndflQA:APA91bE9mEQjjerEp1GGOalbPehcZqXg8goxyeUBG__l1WhF_51nrPsGRmWa-GFVwDlDetN-vbpKVgGvu1mam5D7GjDFAodX-uB98RS7tc-A1U_t4MYcRf_Kfp3mfmVGfzLYCFZM_5PE&i=1");
                 //request.Method = "HEAD";
                 //var response = request.GetResponse();
                 //var location = response.Headers[HttpResponseHeader.Location];
 
                 WebClient client = new WebClient();
-                string content = client.DownloadString("http://redcodetechnologies.com/MLMAPI/messageNotifyApi.php?send_notification&sname=acccepted_your_status&uid=1&sid=2&message=Verification&token=crFqGndflQA:APA91bE9mEQjjerEp1GGOalbPehcZqXg8goxyeUBG__l1WhF_51nrPsGRmWa-GFVwDlDetN-vbpKVgGvu1mam5D7GjDFAodX-uB98RS7tc-A1U_t4MYcRf_Kfp3mfmVGfzLYCFZM_5PE&i=1");
+                string content = client.DownloadString("https://sleepingpartnertesting.royalcryptoexchange.com/messageNotifyApi.php?send_notification&sname=acccepted_your_status&uid=1&sid=2&message=Verification&token=crFqGndflQA:APA91bE9mEQjjerEp1GGOalbPehcZqXg8goxyeUBG__l1WhF_51nrPsGRmWa-GFVwDlDetN-vbpKVgGvu1mam5D7GjDFAodX-uB98RS7tc-A1U_t4MYcRf_Kfp3mfmVGfzLYCFZM_5PE&i=1");
 
                 //HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create("http://www.yoursite.com/resource/file.htm");
 

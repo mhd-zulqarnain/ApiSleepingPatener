@@ -94,4 +94,3 @@ E:\work\apisleepingpateners\ApiSleepingPatener\bin\System.Web.WebPages.Razor.xml
 E:\work\apisleepingpateners\ApiSleepingPatener\bin\Twilio.xml
 E:\work\apisleepingpateners\ApiSleepingPatener\obj\Debug\ApiSleepingPatener.dll
 E:\work\apisleepingpateners\ApiSleepingPatener\obj\Debug\ApiSleepingPatener.pdb
-E:\work\apisleepingpateners\ApiSleepingPatener\obj\Debug\ApiSleepingPatener.csprojResolveAssemblyReference.cache

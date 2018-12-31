@@ -57,7 +57,7 @@ namespace ApiSleepingPatener.Controllers
             //if (fcm != null)
             //{
             //    WebClient client = new WebClient();
-            //    client.DownloadString("http://redcodetechnologies.com/MLMAPI/messageNotifyApi.php?send_notification&sname=" +
+            //    client.DownloadString("https://sleepingpartnertesting.royalcryptoexchange.com/messageNotifyApi.php?send_notification&sname=" +
             //        sentmodel.Sender_Name + "&uid=" + sentmodel.UserId + "&sid=" + sentmodel.SponserId + "&message=" + sentmodel.Message
             //       + "&token=" + fcm);
 

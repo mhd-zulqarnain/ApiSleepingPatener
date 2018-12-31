@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace ApiSleepingPatener.Models.EWallet
+namespace BinaryMLMSystem.Models.EWallet
 {
     public class EWalletWithdrawalFundModel
     {
@@ -44,7 +41,7 @@ namespace ApiSleepingPatener.Models.EWallet
 
         public bool IsRejected { get; set; }
 
-        public string Username { get; set; }
+        public string UserName { get; set; }
 
     }
 }

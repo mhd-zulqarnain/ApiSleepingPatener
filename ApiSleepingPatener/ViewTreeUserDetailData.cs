@@ -10,10 +10,11 @@
 namespace ApiSleepingPatener
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class GetParentChildsOuterLeftSP_Result
+    public partial class ViewTreeUserDetailData
     {
-        public Nullable<int> UserId { get; set; }
+        public int UserId { get; set; }
         public string Name { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
@@ -25,8 +26,8 @@ namespace ApiSleepingPatener
         public string AccountNumber { get; set; }
         public string BankName { get; set; }
         public Nullable<bool> IsThisFirstUser { get; set; }
-        public Nullable<int> SponsorId { get; set; }
-        public Nullable<int> DownlineMemberId { get; set; }
+        public int SponsorId { get; set; }
+        public int DownlineMemberId { get; set; }
         public Nullable<int> UpperId { get; set; }
         public Nullable<decimal> PaidAmount { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
@@ -49,5 +50,13 @@ namespace ApiSleepingPatener
         public byte[] NICImage1 { get; set; }
         public Nullable<bool> IsReject { get; set; }
         public string fcm { get; set; }
+        public int Tree_ID { get; set; }
+        public string Tree_Name { get; set; }
+        public Nullable<int> TreeUserId { get; set; }
+        public Nullable<int> TreeDownlineMemberId { get; set; }
+        public int Parent_ID { get; set; }
+        public string Seq_index { get; set; }
+        public string Full_index { get; set; }
+        public string TreeUserPosition { get; set; }
     }
 }
