@@ -507,6 +507,9 @@
     <Compile Include="VideoPackTbl.cs">
       <DependentUpon>SleepingPartnermanagementTestingEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewTreeUserDetailData.cs">
+      <DependentUpon>SleepingPartnermanagementTreeTestingEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="view_human_tree_Result.cs">
       <DependentUpon>SleepingPartnermanagementTreeTestingEntities.tt</DependentUpon>
     </Compile>

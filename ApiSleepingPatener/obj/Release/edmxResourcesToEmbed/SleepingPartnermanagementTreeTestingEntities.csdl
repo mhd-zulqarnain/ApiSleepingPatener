@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="TestingTreeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="SleepingPartnerTreeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="TreeDataTbl">
     <Key>
       <PropertyRef Name="Tree_ID" />
@@ -13,15 +13,72 @@
     <Property Name="Full_index" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="UserPosition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
+  <EntityType Name="ViewTreeUserDetailData">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="SponsorId" />
+      <PropertyRef Name="DownlineMemberId" />
+      <PropertyRef Name="Tree_ID" />
+      <PropertyRef Name="Tree_Name" />
+      <PropertyRef Name="Parent_ID" />
+      <PropertyRef Name="Seq_index" />
+      <PropertyRef Name="Full_index" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="Int32" />
+    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CNIC" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="AccountNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsThisFirstUser" Type="Boolean" />
+    <Property Name="SponsorId" Type="Int32" Nullable="false" />
+    <Property Name="DownlineMemberId" Type="Int32" Nullable="false" />
+    <Property Name="UpperId" Type="Int32" />
+    <Property Name="PaidAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="UserCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsUserActive" Type="Boolean" />
+    <Property Name="IsNewRequest" Type="Boolean" />
+    <Property Name="UserPosition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsPaidMember" Type="Boolean" />
+    <Property Name="UserPackage" Type="Int32" />
+    <Property Name="DocumentImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="IsSleepingPartner" Type="Boolean" />
+    <Property Name="IsSalesExecutive" Type="Boolean" />
+    <Property Name="UserDesignation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsWithdrawalOpen" Type="Boolean" />
+    <Property Name="NICImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProfileImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="AccountTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsVerify" Type="Boolean" />
+    <Property Name="IsBlock" Type="Boolean" />
+    <Property Name="NICImage1" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="IsReject" Type="Boolean" />
+    <Property Name="fcm" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Tree_ID" Type="Int32" Nullable="false" />
+    <Property Name="Tree_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TreeUserId" Type="Int32" />
+    <Property Name="TreeDownlineMemberId" Type="Int32" />
+    <Property Name="Parent_ID" Type="Int32" Nullable="false" />
+    <Property Name="Seq_index" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Full_index" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TreeUserPosition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
   <EntityContainer Name="SleepingPartnermanagementTreeTestingEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="TreeDataTbls" EntityType="Self.TreeDataTbl" />
-    <FunctionImport Name="GetUserTree" ReturnType="Collection(TestingTreeModel.GetUserTree_Result)">
+    <EntitySet Name="ViewTreeUserDetailDatas" EntityType="Self.ViewTreeUserDetailData" />
+    <FunctionImport Name="GetUserTree" ReturnType="Collection(SleepingPartnerTreeModel.GetUserTree_Result)">
       <Parameter Name="UserId" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="GetUserTreeLeft" ReturnType="Collection(TestingTreeModel.GetUserTreeLeft_Result)">
+    <FunctionImport Name="GetUserTreeLeft" ReturnType="Collection(SleepingPartnerTreeModel.GetUserTreeLeft_Result)">
       <Parameter Name="UserId" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="GetUserTreeRight" ReturnType="Collection(TestingTreeModel.GetUserTreeRight_Result)">
+    <FunctionImport Name="GetUserTreeRight" ReturnType="Collection(SleepingPartnerTreeModel.GetUserTreeRight_Result)">
       <Parameter Name="UserId" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="insert_tree_node">
@@ -44,8 +101,8 @@
       <Parameter Name="UserId" Mode="In" Type="Int32" />
       <Parameter Name="UserName" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="view_human_tree" ReturnType="Collection(TestingTreeModel.view_human_tree_Result)" />
-    <FunctionImport Name="view_tree" ReturnType="Collection(TestingTreeModel.view_tree_Result)" />
+    <FunctionImport Name="view_human_tree" ReturnType="Collection(SleepingPartnerTreeModel.view_human_tree_Result)" />
+    <FunctionImport Name="view_tree" ReturnType="Collection(SleepingPartnerTreeModel.view_tree_Result)" />
   </EntityContainer>
   <ComplexType Name="GetUserTree_Result">
     <Property Type="Int32" Name="Tree_ID" Nullable="true" />

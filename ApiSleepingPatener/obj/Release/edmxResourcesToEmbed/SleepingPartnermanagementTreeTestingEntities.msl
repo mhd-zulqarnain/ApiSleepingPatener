@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="TestingTreeModelStoreContainer" CdmEntityContainer="SleepingPartnermanagementTreeTestingEntities">
+  <EntityContainerMapping StorageEntityContainer="SleepingPartnerTreeModelStoreContainer" CdmEntityContainer="SleepingPartnermanagementTreeTestingEntities">
     <EntitySetMapping Name="TreeDataTbls">
-      <EntityTypeMapping TypeName="TestingTreeModel.TreeDataTbl">
+      <EntityTypeMapping TypeName="SleepingPartnerTreeModel.TreeDataTbl">
         <MappingFragment StoreEntitySet="TreeDataTbl">
           <ScalarProperty Name="Tree_ID" ColumnName="Tree_ID" />
           <ScalarProperty Name="Tree_Name" ColumnName="Tree_Name" />
@@ -15,9 +15,59 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="GetUserTree" FunctionName="TestingTreeModel.Store.GetUserTree">
+    <EntitySetMapping Name="ViewTreeUserDetailDatas">
+      <EntityTypeMapping TypeName="SleepingPartnerTreeModel.ViewTreeUserDetailData">
+        <MappingFragment StoreEntitySet="ViewTreeUserDetailData">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="IsThisFirstUser" ColumnName="IsThisFirstUser" />
+          <ScalarProperty Name="SponsorId" ColumnName="SponsorId" />
+          <ScalarProperty Name="DownlineMemberId" ColumnName="DownlineMemberId" />
+          <ScalarProperty Name="UpperId" ColumnName="UpperId" />
+          <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+          <ScalarProperty Name="IsUserActive" ColumnName="IsUserActive" />
+          <ScalarProperty Name="IsNewRequest" ColumnName="IsNewRequest" />
+          <ScalarProperty Name="UserPosition" ColumnName="UserPosition" />
+          <ScalarProperty Name="IsPaidMember" ColumnName="IsPaidMember" />
+          <ScalarProperty Name="UserPackage" ColumnName="UserPackage" />
+          <ScalarProperty Name="DocumentImage" ColumnName="DocumentImage" />
+          <ScalarProperty Name="IsSleepingPartner" ColumnName="IsSleepingPartner" />
+          <ScalarProperty Name="IsSalesExecutive" ColumnName="IsSalesExecutive" />
+          <ScalarProperty Name="UserDesignation" ColumnName="UserDesignation" />
+          <ScalarProperty Name="IsWithdrawalOpen" ColumnName="IsWithdrawalOpen" />
+          <ScalarProperty Name="NICImage" ColumnName="NICImage" />
+          <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+          <ScalarProperty Name="AccountTitle" ColumnName="AccountTitle" />
+          <ScalarProperty Name="IsVerify" ColumnName="IsVerify" />
+          <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
+          <ScalarProperty Name="NICImage1" ColumnName="NICImage1" />
+          <ScalarProperty Name="IsReject" ColumnName="IsReject" />
+          <ScalarProperty Name="fcm" ColumnName="fcm" />
+          <ScalarProperty Name="Tree_ID" ColumnName="Tree_ID" />
+          <ScalarProperty Name="Tree_Name" ColumnName="Tree_Name" />
+          <ScalarProperty Name="TreeUserId" ColumnName="TreeUserId" />
+          <ScalarProperty Name="TreeDownlineMemberId" ColumnName="TreeDownlineMemberId" />
+          <ScalarProperty Name="Parent_ID" ColumnName="Parent_ID" />
+          <ScalarProperty Name="Seq_index" ColumnName="Seq_index" />
+          <ScalarProperty Name="Full_index" ColumnName="Full_index" />
+          <ScalarProperty Name="TreeUserPosition" ColumnName="TreeUserPosition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetUserTree" FunctionName="SleepingPartnerTreeModel.Store.GetUserTree">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="TestingTreeModel.GetUserTree_Result">
+        <ComplexTypeMapping TypeName="SleepingPartnerTreeModel.GetUserTree_Result">
           <ScalarProperty Name="Tree_ID" ColumnName="Tree_ID" />
           <ScalarProperty Name="Tree_name" ColumnName="Tree_name" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -30,9 +80,9 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="GetUserTreeLeft" FunctionName="TestingTreeModel.Store.GetUserTreeLeft">
+    <FunctionImportMapping FunctionImportName="GetUserTreeLeft" FunctionName="SleepingPartnerTreeModel.Store.GetUserTreeLeft">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="TestingTreeModel.GetUserTreeLeft_Result">
+        <ComplexTypeMapping TypeName="SleepingPartnerTreeModel.GetUserTreeLeft_Result">
           <ScalarProperty Name="Tree_ID" ColumnName="Tree_ID" />
           <ScalarProperty Name="Tree_name" ColumnName="Tree_name" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -45,9 +95,9 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="GetUserTreeRight" FunctionName="TestingTreeModel.Store.GetUserTreeRight">
+    <FunctionImportMapping FunctionImportName="GetUserTreeRight" FunctionName="SleepingPartnerTreeModel.Store.GetUserTreeRight">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="TestingTreeModel.GetUserTreeRight_Result">
+        <ComplexTypeMapping TypeName="SleepingPartnerTreeModel.GetUserTreeRight_Result">
           <ScalarProperty Name="Tree_ID" ColumnName="Tree_ID" />
           <ScalarProperty Name="Tree_name" ColumnName="Tree_name" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -60,22 +110,22 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="insert_tree_node" FunctionName="TestingTreeModel.Store.insert_tree_node" />
-    <FunctionImportMapping FunctionImportName="move_node_down" FunctionName="TestingTreeModel.Store.move_node_down" />
-    <FunctionImportMapping FunctionImportName="move_node_up" FunctionName="TestingTreeModel.Store.move_node_up" />
-    <FunctionImportMapping FunctionImportName="remove_node" FunctionName="TestingTreeModel.Store.remove_node" />
-    <FunctionImportMapping FunctionImportName="update_tree_name" FunctionName="TestingTreeModel.Store.update_tree_name" />
-    <FunctionImportMapping FunctionImportName="view_human_tree" FunctionName="TestingTreeModel.Store.view_human_tree">
+    <FunctionImportMapping FunctionImportName="insert_tree_node" FunctionName="SleepingPartnerTreeModel.Store.insert_tree_node" />
+    <FunctionImportMapping FunctionImportName="move_node_down" FunctionName="SleepingPartnerTreeModel.Store.move_node_down" />
+    <FunctionImportMapping FunctionImportName="move_node_up" FunctionName="SleepingPartnerTreeModel.Store.move_node_up" />
+    <FunctionImportMapping FunctionImportName="remove_node" FunctionName="SleepingPartnerTreeModel.Store.remove_node" />
+    <FunctionImportMapping FunctionImportName="update_tree_name" FunctionName="SleepingPartnerTreeModel.Store.update_tree_name" />
+    <FunctionImportMapping FunctionImportName="view_human_tree" FunctionName="SleepingPartnerTreeModel.Store.view_human_tree">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="TestingTreeModel.view_human_tree_Result">
+        <ComplexTypeMapping TypeName="SleepingPartnerTreeModel.view_human_tree_Result">
           <ScalarProperty Name="Full_index" ColumnName="Full_index" />
           <ScalarProperty Name="TreeDes" ColumnName="TreeDes" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="view_tree" FunctionName="TestingTreeModel.Store.view_tree">
+    <FunctionImportMapping FunctionImportName="view_tree" FunctionName="SleepingPartnerTreeModel.Store.view_tree">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="TestingTreeModel.view_tree_Result">
+        <ComplexTypeMapping TypeName="SleepingPartnerTreeModel.view_tree_Result">
           <ScalarProperty Name="Full_index" ColumnName="Full_index" />
           <ScalarProperty Name="Tree_Name" ColumnName="Tree_Name" />
         </ComplexTypeMapping>
